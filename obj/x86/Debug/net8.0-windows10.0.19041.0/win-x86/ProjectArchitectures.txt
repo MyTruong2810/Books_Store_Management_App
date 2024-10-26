@@ -1,1 +1,1 @@
-C:\Users\Admin\source\repos\Books_Store_Management_App\Books_Store_Management_App.csproj;x86
+C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Books_Store_Management_App.csproj;x86

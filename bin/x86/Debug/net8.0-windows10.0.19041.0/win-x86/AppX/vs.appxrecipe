@@ -10,14 +10,14 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>6a667269-ad92-496d-9d8b-88544576e41d</PackageIdentityName>
     <PackageIdentityPublisher>CN=Admin</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Admin\source\repos\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
     </PackageRegistrationPath>
     <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppX</LayoutDir>
+    <LayoutDir>C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppX</LayoutDir>
     <RegisteredManifestChecksum>B5B3191C534933DC2F42A01152DDA9355BDA850EAB44E4B53B0620040C3B829F</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>6a667269-ad92-496d-9d8b-88544576e41d_1.0.0.0_x86__5gyrq6psz227t</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>6a667269-ad92-496d-9d8b-88544576e41d_5gyrq6psz227t!App</RegisteredUserModeAppID>
@@ -26,72 +26,72 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-10-26T03:34:24.136</Modified>
+      <Modified>2024-10-26T04:17:46.525</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-10-26T03:34:23.151</Modified>
+      <Modified>2024-10-26T04:17:45.269</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.runtimeconfig.json">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.runtimeconfig.json">
       <PackagePath>Books_Store_Management_App.runtimeconfig.json</PackagePath>
-      <Modified>2024-10-26T02:10:03.116</Modified>
+      <Modified>2024-10-26T04:17:44.833</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.dll">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
-      <Modified>2024-10-26T03:34:21.370</Modified>
+      <Modified>2024-10-26T04:17:43.599</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\apphost.exe">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
-      <Modified>2024-10-26T03:34:21.448</Modified>
+      <Modified>2024-10-26T04:17:43.630</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x86\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x86\native\WebView2Loader.dll</PackagePath>
       <Modified>2024-07-20T08:33:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image1.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image1.jpg">
       <PackagePath>Assets\image1.jpg</PackagePath>
-      <Modified>2024-10-24T10:57:08.498</Modified>
+      <Modified>2024-10-26T04:16:50.900</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image10.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image10.jpg">
       <PackagePath>Assets\image10.jpg</PackagePath>
-      <Modified>2024-10-25T07:41:27.510</Modified>
+      <Modified>2024-10-26T04:16:50.901</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image2.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image2.jpg">
       <PackagePath>Assets\image2.jpg</PackagePath>
-      <Modified>2024-10-25T07:36:46.663</Modified>
+      <Modified>2024-10-26T04:16:50.902</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image3.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image3.jpg">
       <PackagePath>Assets\image3.jpg</PackagePath>
-      <Modified>2024-10-17T02:20:18.489</Modified>
+      <Modified>2024-10-26T04:16:50.903</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image4.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image4.jpg">
       <PackagePath>Assets\image4.jpg</PackagePath>
-      <Modified>2024-10-25T07:38:40.374</Modified>
+      <Modified>2024-10-26T04:16:50.904</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image5.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image5.jpg">
       <PackagePath>Assets\image5.jpg</PackagePath>
-      <Modified>2024-10-25T07:39:02.312</Modified>
+      <Modified>2024-10-26T04:16:50.906</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image6.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image6.jpg">
       <PackagePath>Assets\image6.jpg</PackagePath>
-      <Modified>2024-10-25T07:39:32.485</Modified>
+      <Modified>2024-10-26T04:16:50.907</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image7.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image7.jpg">
       <PackagePath>Assets\image7.jpg</PackagePath>
-      <Modified>2024-10-25T07:39:52.898</Modified>
+      <Modified>2024-10-26T04:16:50.912</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image8.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image8.jpg">
       <PackagePath>Assets\image8.jpg</PackagePath>
-      <Modified>2024-10-25T07:40:20.308</Modified>
+      <Modified>2024-10-26T04:16:50.913</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image9.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image9.jpg">
       <PackagePath>Assets\image9.jpg</PackagePath>
-      <Modified>2024-10-25T07:40:59.276</Modified>
+      <Modified>2024-10-26T04:16:50.915</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.netcore.app.runtime.win-x86\8.0.8\runtimes\win-x86\lib\net8.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -2085,37 +2085,37 @@
       <PackagePath>Microsoft.Web.WebView2.Core.Projection.dll</PackagePath>
       <Modified>2024-07-20T08:33:44.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.deps.json">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.deps.json">
       <PackagePath>Books_Store_Management_App.deps.json</PackagePath>
-      <Modified>2024-10-26T03:34:22.839</Modified>
+      <Modified>2024-10-26T04:17:44.630</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.562</Modified>
+      <Modified>2024-10-26T04:16:50.894</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.562</Modified>
+      <Modified>2024-10-26T04:16:50.895</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.563</Modified>
+      <Modified>2024-10-26T04:16:50.895</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.564</Modified>
+      <Modified>2024-10-26T04:16:50.896</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.564</Modified>
+      <Modified>2024-10-26T04:16:50.897</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.565</Modified>
+      <Modified>2024-10-26T04:16:50.897</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
-      <Modified>2024-09-23T10:13:59.565</Modified>
+      <Modified>2024-10-26T04:16:50.898</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -10,64 +10,64 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>6a667269-ad92-496d-9d8b-88544576e41d</PackageIdentityName>
     <PackageIdentityPublisher>CN=Admin</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Admin\source\repos\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppX</LayoutDir>
+    <LayoutDir>C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.runtimeconfig.json">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.runtimeconfig.json">
       <PackagePath>Books_Store_Management_App.runtimeconfig.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.dll">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\apphost.exe">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\obj\x86\Debug\net8.0-windows10.0.19041.0\win-x86\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x86\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x86\native\WebView2Loader.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image1.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image1.jpg">
       <PackagePath>Assets\image1.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image10.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image10.jpg">
       <PackagePath>Assets\image10.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image2.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image2.jpg">
       <PackagePath>Assets\image2.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image3.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image3.jpg">
       <PackagePath>Assets\image3.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image4.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image4.jpg">
       <PackagePath>Assets\image4.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image5.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image5.jpg">
       <PackagePath>Assets\image5.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image6.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image6.jpg">
       <PackagePath>Assets\image6.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image7.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image7.jpg">
       <PackagePath>Assets\image7.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image8.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image8.jpg">
       <PackagePath>Assets\image8.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\image9.jpg">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\image9.jpg">
       <PackagePath>Assets\image9.jpg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.netcore.app.runtime.win-x86\8.0.8\runtimes\win-x86\lib\net8.0\Microsoft.CSharp.dll">
@@ -1564,28 +1564,28 @@
     <AppxPackagedFile Include="C:\Users\Admin\.nuget\packages\microsoft.web.webview2\1.0.2651.64\lib_manual\net6.0-windows10.0.17763.0\Microsoft.Web.WebView2.Core.Projection.dll">
       <PackagePath>Microsoft.Web.WebView2.Core.Projection.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.deps.json">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\bin\x86\Debug\net8.0-windows10.0.19041.0\win-x86\Books_Store_Management_App.deps.json">
       <PackagePath>Books_Store_Management_App.deps.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Admin\source\repos\Books_Store_Management_App\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Admin\Desktop\WORK\WP\Books_Store_Management_App\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

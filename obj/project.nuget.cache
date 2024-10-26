@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MZRw+RWuJWU=",
+  "dgSpecHash": "DQtM1XKO+qs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\Books_Store_Management_App\\Books_Store_Management_App.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Books_Store_Management_App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\catel.core\\6.0.3\\catel.core.6.0.3.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\catel.mvvm\\6.0.3\\catel.mvvm.6.0.3.nupkg.sha512",
