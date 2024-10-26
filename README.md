@@ -2,14 +2,14 @@
 
 ## Set up
 
-### Để chạy được PslqDao cài thực hiện chon Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
+## Để chạy được PslqDao cài thực hiện chon Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
 ```bash
 Install-Package Npgsql -Version 5.0.4
 ```
 
 Ngoài ra nếu code có bug thì có thể làm theo hướng dẫn Install hoặc Using khi hover trên bug chọn "Show potential fixes".
 
-## #Postgres
+## Postgres
 1. Có thể Install Postgres hoặc sử dụng Docker như thầy Demo trên lớp.
 2. Cần đổi lại Password ở đường dẫn Database và các thông số khác nếu cần.
 3. Có mẫu book.sql và order_book.sql
@@ -32,7 +32,7 @@ Ngoài ra nếu code có bug thì có thể làm theo hướng dẫn Install ho�
 2. Có comment đầy đủ chức năng hàm và lớp.
 3. Khi clone code nên làm riêng trên một branch và thực hiện unit test và ui test theo các hướng dẫn sau:
   "Về Unit test, tham khảo ở đây: 
-  1. https://learn.microsoft.com/en-us/visualstudio/test/walkthrough-creating-and-running-unit-tests-for-managed-code?view=vs-2022
-  2. https://learn.microsoft.com/en-us/windows/apps/winui/winui3/testing/create-winui-unit-test-project
+     https://learn.microsoft.com/en-us/visualstudio/test/walkthrough-creating-and-running-unit-tests-for-managed-code?view=vs-2022
+     https://learn.microsoft.com/en-us/windows/apps/winui/winui3/testing/create-winui-unit-test-project
   Về UI Automation testing, có thể tham khảo ở đây
   https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-fundamentals"
