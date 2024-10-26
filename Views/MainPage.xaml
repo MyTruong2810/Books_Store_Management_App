@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+     x:Class="Books_Store_Management_App.Views.MainPage"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:local="using:Books_Store_Management_App"
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+     xmlns:transitions="using:Microsoft.UI.Xaml.Media.Animation"
+     mc:Ignorable="d"
+     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <NavigationView x:Name="nvSample" CornerRadius="100" Grid.Column="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
+                  IsPaneOpen="True"
+                  PaneDisplayMode="Left"
+                  PaneTitle="Book Store Management"
+                  SelectionFollowsFocus="Enabled"
+                  SelectionChanged="nvSample_SelectionChanged"  
+                  Background="{StaticResource NavigationViewBackgroundBrush}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Margin="0 10 0 0" Content="Admin" Tag="Admin" FontWeight="Bold" FontSize="16"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE77B;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem x:Name="navDashboard" Margin="0 10 0 0" Content="Dashboard" IsSelected="True" FontWeight="Bold" FontSize="16" Tag="DashboardPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF404;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Classification" Tag="ClassificationPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8C8;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Stock" Tag="StockPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE736;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Statistics" Tag="StatisticsPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE870;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Orders" Tag="OrderPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE7BF;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Setting" Tag="SettingPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE713;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Log out" Tag="LogoutPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF3B1;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+        </NavigationView>
+        <Frame Grid.Column="1" x:Name="content">
+        </Frame>
+    </Grid>
+</Page>
