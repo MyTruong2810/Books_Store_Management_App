@@ -2,7 +2,7 @@
 
 ## Set up
 
-## Để chạy được PslqDao cài thực hiện chon Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
+## Để chạy được PslqDao cài thực hiện chọn Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
 ```bash
 Install-Package Npgsql -Version 5.0.4
 ```
@@ -18,7 +18,7 @@ Ngoài ra nếu code có bug thì có thể làm theo hướng dẫn Install ho�
 ## Advance
 
 1. Tổ chức ứng dụng theo mô hình MVVM không sử dụng MVVM Toolkit.
-2. Có sử dụng lớp RelayCommand để tách biệt giữa code-behind và UI mọi xủ lý thông qua ViewModels.
+2. Có sử dụng lớp RelayCommand để tách biệt giữa code-behind và UI mọi xử lý thông qua ViewModels.
 
 ## Code chưa cài đặt các Feature sau:
 1. Khi minimize cửa sổ ứng dụng tự reset? --> Đang tìm cách khắc phục.
