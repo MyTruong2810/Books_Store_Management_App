@@ -11,6 +11,7 @@
     xmlns:transitions="using:Microsoft.UI.Xaml.Media.Animation"
     mc:Ignorable="d"
     xmlns:local3="using:Books_Store_Management_App.Views"
+    SizeChanged="Window_SizeChanged"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -147,11 +148,11 @@
                                 <TextBlock Grid.Column="4" FontWeight="Bold" Foreground="White" Text="{x:Bind Price}" />
                                 <TextBlock Grid.Column="5" FontWeight="Bold" Foreground="White" Text="{x:Bind Genre}" />
                                 <TextBlock Grid.Column="6" FontWeight="Bold" Foreground="White" Text="{x:Bind Quantity}" />
-                                <Button Background="Transparent" Grid.Column="7" Click="DeleteBook_Click" Margin="40 0 0 0">
+                                <Button Background="Transparent" Grid.Column="7" Click="DeleteBook_Click" Tag="{x:Bind}" Margin="40 0 0 0">
                                     <FontIcon FontWeight="Bold" Foreground="Red" Glyph="&#xE74D;"/>
 
                                 </Button>
-                                <Button Background="Transparent" Grid.Column="7" Click="EditBook_Click">
+                                <Button Background="Transparent" Grid.Column="7" Click="EditBook_Click" Tag="{x:Bind}">
                                     <FontIcon FontWeight="Bold" Foreground="Violet" Glyph="&#xE70F;" />
                                 </Button>
                             </Grid>
@@ -167,5 +168,16 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+
+        <Popup VerticalOffset="0" x:Name="StandardPopup">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Right"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <local:BookPopupControl x:Name="BookPopupControl"/>
+
+        </Popup>
     </Grid>
 </Page> 

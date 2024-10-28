@@ -11,6 +11,7 @@
     xmlns:transitions="using:Microsoft.UI.Xaml.Media.Animation"
     mc:Ignorable="d"
     xmlns:local3="using:Books_Store_Management_App.Views"
+                                    
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -30,11 +31,11 @@
             <StackPanel>
                 <!-- Add Book Button -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                    <ComboBox x:ConnectionId='39' PlaceholderText="Show 10" IsEditable="True"                                     Width="90" Margin="0 0 50 0"                                     />
-                    <TextBox x:ConnectionId='40' Margin="0 0 50 0" Width="150" Height="30"                                         PlaceholderText="                             🔎"/>
-                    <ComboBox x:ConnectionId='41'                                    Width="150" Margin="0 0 50 0"/>
-                    <ComboBox x:ConnectionId='42'                                    Width="160" Margin="0 0 350 0"/>
-                    <Button x:ConnectionId='43' BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Book"                      />
+                    <ComboBox x:ConnectionId='41' PlaceholderText="Show 10" IsEditable="True"                                     Width="90" Margin="0 0 50 0"                                     />
+                    <TextBox x:ConnectionId='42' Margin="0 0 50 0" Width="150" Height="30"                                         PlaceholderText="                             🔎"/>
+                    <ComboBox x:ConnectionId='43'                                    Width="150" Margin="0 0 50 0"/>
+                    <ComboBox x:ConnectionId='44'                                    Width="160" Margin="0 0 350 0"/>
+                    <Button x:ConnectionId='45' BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Book"                      />
                 </StackPanel>
 
                 <Grid Margin="60 0 0 0">
@@ -48,65 +49,65 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <DropDownButton x:ConnectionId='18' x:Name="Title" Grid.Column="0" Content="Title" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='20' x:Name="Title" Grid.Column="0" Content="Title" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='37' Text="ASC" CommandParameter="Title,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='38' Text="DES" CommandParameter="Title,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='39' Text="ASC" CommandParameter="Title,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='40' Text="DES" CommandParameter="Title,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:ConnectionId='19' x:Name="ISBN" Grid.Column="1" Content="ISBN" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='21' x:Name="ISBN" Grid.Column="1" Content="ISBN" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='35' Text="ASC" CommandParameter="ISBN,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='36' Text="DES" CommandParameter="ISBN,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='37' Text="ASC" CommandParameter="ISBN,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='38' Text="DES" CommandParameter="ISBN,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:ConnectionId='20' x:Name="Author" Grid.Column="2" Content="Author" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='22' x:Name="Author" Grid.Column="2" Content="Author" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='33' Text="ASC" CommandParameter="Author,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='34' Text="DES" CommandParameter="Author,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='35' Text="ASC" CommandParameter="Author,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='36' Text="DES" CommandParameter="Author,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:ConnectionId='21' x:Name="Year" Grid.Column="3" Content="Year" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='23' x:Name="Year" Grid.Column="3" Content="Year" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='31' Text="ASC" CommandParameter="Year,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='32' Text="DES" CommandParameter="Year,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='33' Text="ASC" CommandParameter="Year,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='34' Text="DES" CommandParameter="Year,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:ConnectionId='22' x:Name="Price" Grid.Column="4" Content="Price" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='24' x:Name="Price" Grid.Column="4" Content="Price" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='29' Text="ASC" CommandParameter="Price,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='30' Text="DES" CommandParameter="Price,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='31' Text="ASC" CommandParameter="Price,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='32' Text="DES" CommandParameter="Price,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:ConnectionId='23' x:Name="Genre" Grid.Column="5" Content="Genre" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='25' x:Name="Genre" Grid.Column="5" Content="Genre" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='27' Text="ASC" CommandParameter="Genre,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='28' Text="DES" CommandParameter="Genre,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='29' Text="ASC" CommandParameter="Genre,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='30' Text="DES" CommandParameter="Genre,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:ConnectionId='24' x:Name="Quali" Grid.Column="6" Content="Quali" Background="White" FontWeight="Bold">
+                    <DropDownButton x:ConnectionId='26' x:Name="Quali" Grid.Column="6" Content="Quali" Background="White" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem x:ConnectionId='25' Text="ASC" CommandParameter="Quantity,ASC"                                />
-                                <MenuFlyoutItem x:ConnectionId='26' Text="DES" CommandParameter="Quantity,DES"                                />
+                                <MenuFlyoutItem x:ConnectionId='27' Text="ASC" CommandParameter="Quantity,ASC"                                />
+                                <MenuFlyoutItem x:ConnectionId='28' Text="DES" CommandParameter="Quantity,DES"                                />
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
@@ -115,12 +116,12 @@
                 </Grid>
 
                 <!-- ListView to display books -->
-                <ListView x:ConnectionId='2' x:Name="BookListView" Background="Transparent"                                       
+                <ListView x:ConnectionId='4' x:Name="BookListView" Background="Transparent"                                       
                       Height="500"
                       MinWidth="550">
                     <ListView.ItemTemplate>
                         <DataTemplate                         >
-                            <Grid x:ConnectionId='7' CornerRadius="5" Margin="1" Background="{Binding IsEven, Converter={StaticResource AlternationIndexToBackgroundConverter}}">
+                            <Grid x:ConnectionId='9' CornerRadius="5" Margin="1" Background="{Binding IsEven, Converter={StaticResource AlternationIndexToBackgroundConverter}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="150" />
                                     <ColumnDefinition Width="200" />
@@ -132,26 +133,26 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <StackPanel CornerRadius="100" Grid.Column="0">
-                                    <TextBlock x:ConnectionId='16' FontWeight="Bold" Foreground="White"                       Margin="0" 
+                                    <TextBlock x:ConnectionId='18' FontWeight="Bold" Foreground="White"                       Margin="0" 
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"/>
                                     <Border BorderBrush="Black" MaxWidth="25">
-                                        <Image x:ConnectionId='17'                              
+                                        <Image x:ConnectionId='19'                              
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"/>
                                     </Border>
                                 </StackPanel>
-                                <TextBlock x:ConnectionId='8' Grid.Column="1" FontWeight="Bold" Foreground="White"                                                                        />
-                                <TextBlock x:ConnectionId='9' Grid.Column="2" FontWeight="Bold" Foreground="White"                        />
-                                <TextBlock x:ConnectionId='10' Grid.Column="3" FontWeight="Bold" Foreground="White"                      />
-                                <TextBlock x:ConnectionId='11' Grid.Column="4" FontWeight="Bold" Foreground="White"                       />
-                                <TextBlock x:ConnectionId='12' Grid.Column="5" FontWeight="Bold" Foreground="White"                       />
-                                <TextBlock x:ConnectionId='13' Grid.Column="6" FontWeight="Bold" Foreground="White"                          />
-                                <Button x:ConnectionId='14' Background="Transparent" Grid.Column="7"                          Margin="40 0 0 0">
+                                <TextBlock x:ConnectionId='10' Grid.Column="1" FontWeight="Bold" Foreground="White"                                                                        />
+                                <TextBlock x:ConnectionId='11' Grid.Column="2" FontWeight="Bold" Foreground="White"                        />
+                                <TextBlock x:ConnectionId='12' Grid.Column="3" FontWeight="Bold" Foreground="White"                      />
+                                <TextBlock x:ConnectionId='13' Grid.Column="4" FontWeight="Bold" Foreground="White"                       />
+                                <TextBlock x:ConnectionId='14' Grid.Column="5" FontWeight="Bold" Foreground="White"                       />
+                                <TextBlock x:ConnectionId='15' Grid.Column="6" FontWeight="Bold" Foreground="White"                          />
+                                <Button x:ConnectionId='16' Background="Transparent" Grid.Column="7"                                         Margin="40 0 0 0">
                                     <FontIcon FontWeight="Bold" Foreground="Red" Glyph="&#xE74D;"/>
 
                                 </Button>
-                                <Button x:ConnectionId='15' Background="Transparent" Grid.Column="7"                       >
+                                <Button x:ConnectionId='17' Background="Transparent" Grid.Column="7"                                      >
                                     <FontIcon FontWeight="Bold" Foreground="Violet" Glyph="&#xE70F;" />
                                 </Button>
                             </Grid>
@@ -161,12 +162,23 @@
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button x:ConnectionId='3' x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous"                            IsEnabled="False" />
-                    <TextBlock x:ConnectionId='4' x:Name="PageInfo" Margin="10,0" />
-                    <Button x:ConnectionId='5' x:Name="NextButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Next"                        IsEnabled="True" />
+                    <Button x:ConnectionId='5' x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous"                            IsEnabled="False" />
+                    <TextBlock x:ConnectionId='6' x:Name="PageInfo" Margin="10,0" />
+                    <Button x:ConnectionId='7' x:Name="NextButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Next"                        IsEnabled="True" />
                 </StackPanel>
             </StackPanel>
         </Grid>
+
+        <Popup x:ConnectionId='2' VerticalOffset="0" x:Name="StandardPopup">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Right"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <local:BookPopupControl x:ConnectionId='3' x:Name="BookPopupControl"/>
+
+        </Popup>
     </Grid>
 </Page> 
 

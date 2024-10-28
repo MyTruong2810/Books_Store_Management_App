@@ -248,7 +248,7 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
             _typeNameTable[18] = "Microsoft.UI.Xaml.TextReadingOrder";
             _typeNameTable[19] = "Microsoft.UI.Xaml.Controls.NumberBoxValidationMode";
             _typeNameTable[20] = "Microsoft.UI.Xaml.Controls.Button";
-            _typeNameTable[21] = "Books_Store_Management_App.Views.BookPopupControl";
+            _typeNameTable[21] = "Books_Store_Management_App.BookPopupControl";
             _typeNameTable[22] = "Microsoft.UI.Xaml.Controls.UserControl";
             _typeNameTable[23] = "Books_Store_Management_App.ViewModels.BookPopupControlViewModel";
             _typeNameTable[24] = "Books_Store_Management_App.Helpers.StringToISBNConverter";
@@ -327,7 +327,7 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
             _typeTable[18] = typeof(global::Microsoft.UI.Xaml.TextReadingOrder);
             _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode);
             _typeTable[20] = typeof(global::Microsoft.UI.Xaml.Controls.Button);
-            _typeTable[21] = typeof(global::Books_Store_Management_App.Views.BookPopupControl);
+            _typeTable[21] = typeof(global::Books_Store_Management_App.BookPopupControl);
             _typeTable[22] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
             _typeTable[23] = typeof(global::Books_Store_Management_App.ViewModels.BookPopupControlViewModel);
             _typeTable[24] = typeof(global::Books_Store_Management_App.Helpers.StringToISBNConverter);
@@ -421,7 +421,7 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
         private object Activate_4_MainWindow() { return new global::Books_Store_Management_App.MainWindow(); }
         private object Activate_6_StringToVisibableConverter() { return new global::Books_Store_Management_App.Helpers.StringToVisibableConverter(); }
         private object Activate_7_NumberBox() { return new global::Microsoft.UI.Xaml.Controls.NumberBox(); }
-        private object Activate_21_BookPopupControl() { return new global::Books_Store_Management_App.Views.BookPopupControl(); }
+        private object Activate_21_BookPopupControl() { return new global::Books_Store_Management_App.BookPopupControl(); }
         private object Activate_23_BookPopupControlViewModel() { return new global::Books_Store_Management_App.ViewModels.BookPopupControlViewModel(); }
         private object Activate_24_StringToISBNConverter() { return new global::Books_Store_Management_App.Helpers.StringToISBNConverter(); }
         private object Activate_25_StringFormatConverter() { return new global::Books_Store_Management_App.Helpers.StringFormatConverter(); }
@@ -461,7 +461,7 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
         private void StaticInitializer_16_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
         private void StaticInitializer_17_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
         private void StaticInitializer_19_NumberBoxValidationMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode).TypeHandle);
-        private void StaticInitializer_21_BookPopupControl() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.BookPopupControl).TypeHandle);
+        private void StaticInitializer_21_BookPopupControl() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.BookPopupControl).TypeHandle);
         private void StaticInitializer_23_BookPopupControlViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.ViewModels.BookPopupControlViewModel).TypeHandle);
         private void StaticInitializer_24_StringToISBNConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.StringToISBNConverter).TypeHandle);
         private void StaticInitializer_25_StringFormatConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.StringFormatConverter).TypeHandle);
@@ -719,7 +719,7 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 21:   //  Books_Store_Management_App.Views.BookPopupControl
+            case 21:   //  Books_Store_Management_App.BookPopupControl
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
                 userType.Activator = Activate_21_BookPopupControl;
                 userType.StaticInitializer = StaticInitializer_21_BookPopupControl;
@@ -1490,22 +1490,22 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
         }
         private object get_20_BookPopupControl_ViewModel(object instance)
         {
-            var that = (global::Books_Store_Management_App.Views.BookPopupControl)instance;
+            var that = (global::Books_Store_Management_App.BookPopupControl)instance;
             return that.ViewModel;
         }
         private void set_20_BookPopupControl_ViewModel(object instance, object Value)
         {
-            var that = (global::Books_Store_Management_App.Views.BookPopupControl)instance;
+            var that = (global::Books_Store_Management_App.BookPopupControl)instance;
             that.ViewModel = (global::Books_Store_Management_App.ViewModels.BookPopupControlViewModel)Value;
         }
         private object get_21_BookPopupControl_RightDialogHeight(object instance)
         {
-            var that = (global::Books_Store_Management_App.Views.BookPopupControl)instance;
+            var that = (global::Books_Store_Management_App.BookPopupControl)instance;
             return that.RightDialogHeight;
         }
         private void set_21_BookPopupControl_RightDialogHeight(object instance, object Value)
         {
-            var that = (global::Books_Store_Management_App.Views.BookPopupControl)instance;
+            var that = (global::Books_Store_Management_App.BookPopupControl)instance;
             that.RightDialogHeight = (global::System.Double)Value;
         }
         private object get_22_DashboardPage_ViewModel(object instance)
@@ -2591,14 +2591,14 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlMember.Getter = get_19_NumberBox_Value;
                 xamlMember.Setter = set_19_NumberBox_Value;
                 break;
-            case "Books_Store_Management_App.Views.BookPopupControl.ViewModel":
-                userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.BookPopupControl");
+            case "Books_Store_Management_App.BookPopupControl.ViewModel":
+                userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.BookPopupControl");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ViewModel", "Books_Store_Management_App.ViewModels.BookPopupControlViewModel");
                 xamlMember.Getter = get_20_BookPopupControl_ViewModel;
                 xamlMember.Setter = set_20_BookPopupControl_ViewModel;
                 break;
-            case "Books_Store_Management_App.Views.BookPopupControl.RightDialogHeight":
-                userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.BookPopupControl");
+            case "Books_Store_Management_App.BookPopupControl.RightDialogHeight":
+                userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.BookPopupControl");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "RightDialogHeight", "Double");
                 xamlMember.Getter = get_21_BookPopupControl_RightDialogHeight;
                 xamlMember.Setter = set_21_BookPopupControl_RightDialogHeight;

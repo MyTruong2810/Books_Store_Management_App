@@ -234,6 +234,17 @@ namespace Books_Store_Management_App.ViewModels
             ImageSource = "ms-appx:///Assets/default_image.jpg";
         }
 
+        public void ClearErrorMessage()
+        {
+            TitleErrorMessage = "";
+            AuthorErrorMessage = "";
+            PublisherErrorMessage = "";
+            YearErrorMessage = "";
+            ISBNErrorMessage = "";
+            SellingPricesErrorMessage = "";
+            PurchasePriceErrorMessage = "";
+            QuantityErrorMessage = "";
+        }
         public void MergeToBook()
         {
             if (Book == null)

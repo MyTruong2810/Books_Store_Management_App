@@ -58,6 +58,47 @@ namespace Books_Store_Management_App.Views
             AllBooksDisplay = ViewModel.AllBooks;
             totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
             UpdateDisplayedBooks();
+
+            // Init BookPopupControl
+            StandardPopup.HorizontalOffset = this.ActualWidth - 730;
+            BookPopupControl.RightDialogHeight = this.ActualHeight;
+            BookPopupControl.SaveButtonClicked += BookPopupControl_SaveButtonClicked;
+        }
+        private void BookPopupControl_SaveButtonClicked(object sender, Book e)
+        {
+            if (BookPopupControl.GetButton() == "Add")
+            {
+                // Todo in view model
+                //e.Index = ViewModel.Books.Count + 1;
+                //ViewModel.Books.Add(e);
+
+                // Update the displayed books
+                e.Index = AllBooksDisplay.Count + 1;
+                AllBooksDisplay.Add(e);
+                totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                UpdateDisplayedBooks();
+            }
+            else if (BookPopupControl.GetButton() == "Edit")
+            {
+                //var index = ViewModel.Books.ToList().FindIndex(x => x.Id == e.Id);
+                //if (index != -1)
+                //{
+                //    ViewModel.Books[index] = e;
+                //}
+
+                // Update the displayed books
+                var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
+                if (index != -1)
+                {
+                    AllBooksDisplay[index] = e;
+                }
+                UpdateDisplayedBooks();
+            }
+        }
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            StandardPopup.HorizontalOffset = this.ActualWidth - 730;
+            BookPopupControl.RightDialogHeight = this.ActualHeight;
         }
         private void UpdateDisplayedBooks()
         {
@@ -100,14 +141,33 @@ namespace Books_Store_Management_App.Views
             //AllBooksDisplay.Add(newBook);
             //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
             //UpdateDisplayedBooks();
+
+            // Open the popup to add a new book
+            BookPopupControl.ViewModel.ClearData();
+            BookPopupControl.ClearErrorMessage();
+            BookPopupControl.SetPopupTitle("Add New Book");
+            BookPopupControl.SetButton("Add");
+            BookPopupControl.SetEditable(true);
+            StandardPopup.IsOpen = true;
         }
         private void DeleteBook_Click(object sender, RoutedEventArgs e)
         {
-            var book = (sender as Button).DataContext as Book;
-            AllBooksDisplay.Remove(book);
+            //var book = (sender as Button).DataContext as Book;
+            //AllBooksDisplay.Remove(book);
+            //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+            //if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+
+            //UpdateDisplayedBooks();
+
+            var button = sender as Button;
+            var book = button?.Tag as Book;
+
+            if (book != null)
+            {
+                AllBooksDisplay.Remove(book);
+            }
             totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
             if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
-
             UpdateDisplayedBooks();
         }
         private void EditBook_Click(object sender, RoutedEventArgs e)
@@ -117,6 +177,20 @@ namespace Books_Store_Management_App.Views
              * You: Implement code to change the edit Page / edit Frame ||
              * ==========================================================
              */
+
+            StandardPopup.IsOpen = true;
+
+            var button = sender as Button;
+            var book = button?.Tag as Book;
+
+            if (book != null)
+            {
+                BookPopupControl.setData(book);
+                BookPopupControl.ClearErrorMessage();
+                BookPopupControl.SetPopupTitle("Edit Book");
+                BookPopupControl.SetButton("Edit");
+                BookPopupControl.SetEditable(true);
+            }
         }
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
