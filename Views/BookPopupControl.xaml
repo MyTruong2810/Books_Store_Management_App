@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Books_Store_Management_App.Views.BookPopupControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Books_Store_Management_App.Views"
+    xmlns:local1="using:Books_Store_Management_App.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <local1:StringToVisibableConverter x:Key="toVisibableConverter" />
+    </UserControl.Resources>
+
+
+    <StackPanel x:Name="rightDialog" Orientation="Vertical" HorizontalAlignment="Right" CornerRadius="25, 0, 0, 25" Background="#292C2D" Width="730">
+        <RelativePanel Margin="25, 10, 25, 0" Padding="0, 0, 0, 10" BorderBrush="Gray" BorderThickness="0, 0, 0, 1">
+            <TextBlock x:Name="TitleTextBlock" FontWeight="SemiBold" FontSize="18" Text="Add New Book" Foreground="White" VerticalAlignment="Center"/>
+            <Button x:Name="xBtn" Content="X" Foreground="White" Margin="0,0,0,0" Width="25" Height="25" Padding="0" BorderThickness="0" VerticalAlignment="Center"
+            RelativePanel.AlignRightWithPanel="True"
+            PointerEntered="Button_PointerEntered"
+            PointerExited="Button_PointerExited"
+            Click="xBtn_Click" >
+                <Button.Background>
+                    <SolidColorBrush Color="Gray"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}" />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </RelativePanel>
+
+        <Grid Margin="25, 10, 25, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="0" Grid.RowSpan="4">
+                <Image VerticalAlignment="Center" Source="{x:Bind ViewModel.ImageSource, Mode=OneWay}" Width="158" Height="212" />
+                <TextBlock HorizontalAlignment="Center" Text="Change Icon" Foreground="#FAC1D9" Tapped="ChangeIcon_Tapped" Margin="0, 5, 0, 0" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch">
+                <TextBlock Text="Book Name" />
+                <TextBox x:Name="bookNameTextBox" Text="{x:Bind ViewModel.Title, Mode=TwoWay}" PlaceholderText="Enter book name" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                <TextBlock 
+                    Text="{x:Bind ViewModel.TitleErrorMessage, Mode=OneWay}" Foreground="Red" 
+                    Visibility="{x:Bind ViewModel.TitleErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+            </StackPanel>
+
+            <StackPanel Margin="0, 10, 0, 0" Orientation="Vertical" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch">
+                <TextBlock Text="Author" />
+                <TextBox x:Name="authorTextBox" Text="{x:Bind ViewModel.Author, Mode=TwoWay}" PlaceholderText="Enter book's author" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                <TextBlock 
+                    Text="{x:Bind ViewModel.AuthorErrorMessage, Mode=OneWay}" Foreground="Red" 
+                    Visibility="{x:Bind ViewModel.AuthorErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+            </StackPanel>
+
+            <Grid Margin="0, 10, 0, 0" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <TextBlock Text="Publisher" />
+                    <TextBox x:Name="publisherTextBox" Text="{x:Bind ViewModel.Publisher, Mode=TwoWay}" PlaceholderText="Enter book's publisher" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                    <TextBlock 
+                        Text="{x:Bind ViewModel.PublisherErrorMessage, Mode=OneWay}" Foreground="Red" 
+                        Visibility="{x:Bind ViewModel.PublisherErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10, 0 , 0 , 0">
+                    <TextBlock Text="ISBN" />
+                    <TextBox x:Name="isbnTextBox" Text="{x:Bind ViewModel.ISBN, Mode=TwoWay}" PlaceholderText="Enter book's isbn" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"
+                            >
+                    </TextBox>
+                    <TextBlock 
+                         Text="{x:Bind ViewModel.ISBNErrorMessage, Mode=OneWay}" Foreground="Red" 
+                         Visibility="{x:Bind ViewModel.ISBNErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0, 10, 0, 0" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <TextBlock Text="Year" />
+                    <NumberBox x:Name="yearTextBox" Text="{x:Bind ViewModel.Year, Mode=TwoWay}" PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                    <TextBlock 
+                        Text="{x:Bind ViewModel.YearErrorMessage, Mode=OneWay}" Foreground="Red" 
+                        Visibility="{x:Bind ViewModel.YearErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10, 0 , 0 , 0">
+                    <TextBlock Text="Classify" />
+                    <ComboBox x:Name="classifyComboBox" ItemsSource="{x:Bind genreList}" SelectedIndex="0" PlaceholderText="Enter book name" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch">
+
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Margin="0, 10, 0, 0" Orientation="Vertical" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch">
+                <Grid Margin="0, 10, 0, 0" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <TextBlock Text="Selling Prices" />
+                        <NumberBox x:Name="sellingPricesTextBox" Text="{x:Bind ViewModel.SellingPrices, Mode=TwoWay}"  PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                        <TextBlock 
+                            Text="{x:Bind ViewModel.SellingPricesErrorMessage, Mode=OneWay}" Foreground="Red" 
+                            Visibility="{x:Bind ViewModel.SellingPricesErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10, 0 , 0 , 0">
+                        <TextBlock Text="Purchase Price" />
+                        <NumberBox x:Name="purchasePriceTextBox" Text="{x:Bind ViewModel.PurchasePrice, Mode=TwoWay}" PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                        <TextBlock 
+                            Text="{x:Bind ViewModel.PurchasePriceErrorMessage, Mode=OneWay}" Foreground="Red" 
+                            Visibility="{x:Bind ViewModel.PurchasePriceErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10, 0 , 0 , 0">
+                        <TextBlock Text="Quantities" />
+                        <NumberBox x:Name="quantityTextBox" Text="{x:Bind ViewModel.Quantity, Mode=TwoWay}" PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
+                        <TextBlock 
+                            Text="{x:Bind ViewModel.QuantityErrorMessage, Mode=OneWay}"  Foreground="Red" 
+                            Visibility="{x:Bind ViewModel.QuantityErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel  Margin="25, 10, 25, 0" Orientation="Vertical">
+            <TextBlock Text="Description" FontSize="16" Margin="0,0,0,10"/>
+            <TextBox x:Name="desciptionTextBox" Height="100" AcceptsReturn="True" TextWrapping="Wrap" PlaceholderText="Enter your text here" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="25, 15, 25, 0" HorizontalAlignment="Right">
+            <Button Content="Cancel" Click="CancelButton_Click"/>
+            <Button Margin="10, 0, 0, 0" Content="Save" x:Name="SaveBtn" Click="SaveButton_Click" Foreground="Black" Background="#8CB3ED" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

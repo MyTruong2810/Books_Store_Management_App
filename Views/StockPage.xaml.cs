@@ -96,10 +96,10 @@ namespace Books_Store_Management_App.Views
         }
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
-            var newBook = new Book("ms-appx:///Assets/image1.jpg", "New Book", "New Publisher", "New Author", "1234567890123", 2024, 9.99, "New Genre", 100, 0);
-            AllBooksDisplay.Add(newBook);
-            totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-            UpdateDisplayedBooks();
+            //var newBook = new Book("ms-appx:///Assets/image1.jpg", "New Book", "New Publisher", "New Author", "1234567890123", 2024, 9.99, "New Genre", 100, 0);
+            //AllBooksDisplay.Add(newBook);
+            //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+            //UpdateDisplayedBooks();
         }
         private void DeleteBook_Click(object sender, RoutedEventArgs e)
         {

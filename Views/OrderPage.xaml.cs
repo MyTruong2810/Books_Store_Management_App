@@ -96,10 +96,10 @@ namespace Books_Store_Management_App.Views
         }
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
-            var newOrder = new Order("#001", "Peter Pan", "12:00AM - 12/10/2024", 30, 3, 12.2, 0);
-            AllOrdersDisplay.Add(newOrder);
-            totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
-            UpdateDisplayedOrders();
+            //var newOrder = new Order("#001", "Peter Pan", "12:00AM - 12/10/2024", 30, 3, 12.2, 0);
+            //AllOrdersDisplay.Add(newOrder);
+            //totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+            //UpdateDisplayedOrders();
         }
         private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
