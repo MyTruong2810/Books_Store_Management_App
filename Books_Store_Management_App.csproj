@@ -33,6 +33,7 @@
     <None Remove="Views\MainPage.xaml" />
     <None Remove="Views\OrderDetailPage.xaml" />
     <None Remove="Views\OrderPage.xaml" />
+    <None Remove="Views\ReadOnlyOrderDetailPage.xaml" />
     <None Remove="Views\StockPage.xaml" />
   </ItemGroup>
 
@@ -99,6 +100,9 @@
     <None Update="Assets\image9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\ReadOnlyOrderDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\OrderDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,6 +3,7 @@ using Books_Store_Management_App.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,6 @@ namespace Books_Store_Management_App.ViewModels
         public DateTime PurchaseDate { get; set; }
         public Boolean IsDelivered { get; set; }
 
-
         private FullObservableCollection<Coupon> _selectedCoupons;
         public FullObservableCollection<Coupon> SelectedCoupons
         {
@@ -30,8 +30,22 @@ namespace Books_Store_Management_App.ViewModels
                 _selectedCoupons = value;
                 OnPropertyChanged(nameof(SelectedCoupons));
                 OnPropertyChanged(nameof(ActualTotal));
+                OnPropertyChanged(nameof(HasCoupon));
+
+                if (_selectedCoupons != null)
+                    _selectedCoupons.CollectionChanged -= SelectedCoupons_CollectionChanged;
+
+                if (_selectedCoupons != null)
+                    _selectedCoupons.CollectionChanged += SelectedCoupons_CollectionChanged;
             }
         }
+
+        private void SelectedCoupons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(HasCoupon));
+            OnPropertyChanged(nameof(ActualTotal));
+        }
+        public bool HasCoupon => (SelectedCoupons.Count > 0);
 
         private ObservableCollection<OrderItem> _selectedBooks;
         public ObservableCollection<OrderItem> SelectedBooks

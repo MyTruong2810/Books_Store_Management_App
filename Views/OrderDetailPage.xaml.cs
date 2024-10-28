@@ -43,10 +43,12 @@ namespace Books_Store_Management_App.Views
 
             CouponsComboBox.ItemsSource = ViewModel.Coupons;
 
+            // Đoạn này bí quá
             if (e.Parameter is Order order)
             {
+
                 CreateOrderButton.Visibility = Visibility.Collapsed;
-                PayBillOrderButtonGroup.Visibility = Visibility.Visible;
+                UpdateOrderButton.Visibility = Visibility.Visible;
 
                 ViewModel.Order = order;
                 ViewModel.CustomerName = order.Customer;
@@ -136,7 +138,7 @@ namespace Books_Store_Management_App.Views
 
             this.OrderViewModel.Orders.Add(order);
 
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(OrderPage), this.GetType().Name);
         }
 
         private void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
@@ -158,18 +160,23 @@ namespace Books_Store_Management_App.Views
             Frame.Navigate(typeof(OrderPage));
         }
 
-        private void PayOrderButton_Click(object sender, RoutedEventArgs e)
+        //private void PayOrderButton_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        //private void BillOrderButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
+        //    ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
+        //    ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
+
+        //    //Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
+        //}
+
+        private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void BillOrderButton_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
-            ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
-            ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
-
-            //Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
         }
 
 

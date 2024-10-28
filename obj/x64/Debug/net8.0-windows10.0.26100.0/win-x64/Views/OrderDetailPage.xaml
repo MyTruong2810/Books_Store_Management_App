@@ -55,13 +55,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer Name:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <TextBox x:ConnectionId='15' Grid.Column="1" Grid.Row="0"                                                     PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
+                    <TextBox x:ConnectionId='15' x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0"                                                     PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Purchase Date:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  Margin="0, 10, 0, 0">
-                        <TextBox x:ConnectionId='18'                                                                                                              HorizontalAlignment="Stretch" />
+                        <TextBox x:ConnectionId='18' IsReadOnly="True"                                                                                                              HorizontalAlignment="Stretch" />
                         <Canvas HorizontalAlignment="Right">
-                            <Button Width="45" Canvas.Left="-45">
+                            <Button x:ConnectionId='19' Width="45" Canvas.Left="-45" x:Name="ChooseDateTimeButton">
                                 <SymbolIcon Symbol="Calendar" />
                                 <Button.Flyout>
                                     <!-- Nội dung của Popup khi nhấn vào Button -->
@@ -70,11 +70,11 @@
                                             <TextBlock Text="Select Date And Time" FontWeight="Bold" Margin="0,0,0,10" />
                                             <!-- DatePicker để chọn ngày -->
                                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                                <CalendarDatePicker x:ConnectionId='19' 
+                                                <CalendarDatePicker x:ConnectionId='20' 
                                                                                            
                                                PlaceholderText="Pick a date" Header="Calendar" VerticalAlignment="Center"/>
                                                 <!-- TimePicker để chọn giờ -->
-                                                <TimePicker x:ConnectionId='20'
+                                                <TimePicker x:ConnectionId='21'
                                                                                    
                                                Header="Time" VerticalAlignment="Center" />
                                             </StackPanel>
@@ -141,20 +141,21 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Payment Method:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <editors:SfComboBox
+                    <editors:SfComboBox x:ConnectionId='13'
                Grid.Column="1" Grid.Row="0" Margin="0, 10, 0, 0"
                HorizontalAlignment="Stretch"
                SelectionMode="Multiple"
                MultiSelectionDisplayMode="Token"
+               x:Name="PaymentMethodCombobox"
                DelimiterText=","
            >
-                        <x:String>Facebook</x:String>
-                        <x:String>Twitter</x:String>
-                        <x:String>Instagram</x:String>
-                        <x:String>LinkedIn</x:String>
+                        <x:String>MoMo</x:String>
+                        <x:String>CASH</x:String>
+                        <x:String>VNPAY</x:String>
                     </editors:SfComboBox>
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Delivery:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <CheckBox x:ConnectionId='14' Grid.Column="1" Grid.Row="1"
+                        x:Name="IsDeliveredCheckBox"
                                                                                    />
                 </Grid>
             </Border>
@@ -174,47 +175,29 @@
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="TOTAL" FontSize="35" FontWeight="Bold" Margin="0, 30, 0, 0"/>
                 <Canvas Grid.Column="1" Grid.Row="0">
-                    <TextBlock x:ConnectionId='12' Canvas.Top="-30" Canvas.Left="60"                                                                                            FontSize="35" FontWeight="Light" TextDecorations="Strikethrough" Margin="0, 30, 0, 0"/>
-                    <TextBlock x:ConnectionId='13'                                                                                                  FontSize="35" FontWeight="Bold" Margin="0, 30, 0, 0"/>
+                    <TextBlock x:ConnectionId='11' Canvas.Top="-30" Canvas.Left="60" 
+                                                                                                                         
+                                                                                                                                        
+                               FontSize="35" FontWeight="Light" TextDecorations="Strikethrough" Margin="0, 30, 0, 0"/>
+                    <TextBlock x:ConnectionId='12'                                                                                                  FontSize="35" FontWeight="Bold" Margin="0, 30, 0, 0"/>
                 </Canvas>
                 <!-- Create Order Button -->
-                <Button x:ConnectionId='8' Grid.ColumnSpan="2" Grid.Row="1" Content="Create Order" x:Name="CreateOrderButton"                                 Margin="0, 10, 0 , 0" 
-               HorizontalAlignment="Stretch" 
-               Height="40" 
-               FontWeight="SemiBold"
-               Foreground="Black"
-               Background="#8CB3ED" />
+                <Button x:ConnectionId='9' Grid.ColumnSpan="2" Grid.Row="1" Content="Create Order" x:Name="CreateOrderButton"                                 Margin="0, 10, 0 , 0" 
+                       HorizontalAlignment="Stretch" 
+                       Height="40" 
+                       FontWeight="SemiBold"
+                       Foreground="Black"
+                       Background="#8CB3ED" />
                 <!-- End Create Order Button -->
 
-                <!-- Pay Bill Order Button -->
-                <Grid x:ConnectionId='9' Name="PayBillOrderButtonGroup" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.Row="1" Margin="0, 10, 0 , 0" 
-               HorizontalAlignment="Stretch"
-               Height="40" >
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:ConnectionId='10' Grid.Column="0"
-                   Content="Pay"
-                   HorizontalAlignment="Stretch" 
-                   FontWeight="SemiBold"
-                   Foreground="Black"
-                   Background="#8CB3ED"
-                                                                     
-                                               />
-
-                    <Button x:ConnectionId='11' Grid.Column="1"
-                   Content="Bill"
-                   HorizontalAlignment="Stretch" 
-                   FontWeight="SemiBold"
-                   Foreground="Black"
-                   Background="#8CB3ED" 
-                   Margin="10, 0, 0, 0" 
-                                                />
-                </Grid>
-                <!-- End Pay Bill Order Button -->
+                <!-- Update Order Button -->
+                <Button x:ConnectionId='10' Grid.ColumnSpan="2" Grid.Row="1" Visibility="Collapsed" Content="Update Order" x:Name="UpdateOrderButton"                                 Margin="0, 10, 0 , 0" 
+                        HorizontalAlignment="Stretch" 
+                        Height="40" 
+                        FontWeight="SemiBold"
+                        Foreground="Black"
+                        Background="#8CB3ED" />
+                <!-- End Update Order Button -->
 
             </Grid>
             <!-- Kết thúc -->
@@ -272,6 +255,7 @@
                                         <TextBlock Grid.Row="4" Grid.Column="0" Text="Quantities:" FontSize="20" FontWeight="Bold" Margin="5" />
                                         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="20, 5, 5, 5" >
                                             <NumberBox
+                                                x:Name="QuantityBox"
                                        Minimum="0"
                                        Value="{Binding Quantity, Mode=TwoWay}"
                                        SpinButtonPlacementMode="Compact"
@@ -300,6 +284,7 @@
                                            Grid.Column="2" 
                                            Margin="5" 
                                            Tag="{Binding}"
+                                           x:Name="DeleteSelectedButton"
                                                                             
                                            HorizontalAlignment="Right" BorderBrush="#FAC1D9">
                                                 <SymbolIcon Symbol="Delete" Foreground="#FAC1D9" />

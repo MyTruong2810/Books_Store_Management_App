@@ -6,4 +6,5 @@ Views\LoginPage.xbf
 Views\MainPage.xbf
 Views\OrderDetailPage.xbf
 Views\OrderPage.xbf
+Views\ReadOnlyOrderDetailPage.xbf
 Views\StockPage.xbf
