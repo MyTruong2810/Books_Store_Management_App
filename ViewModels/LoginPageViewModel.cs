@@ -50,8 +50,11 @@ namespace Books_Store_Management_App.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand(async () => await LoginAsync());
-            SignupCommand = new RelayCommand(Signup);
+            //LoginCommand = new RelayCommand(async () => await LoginAsync());
+            //SignupCommand = new RelayCommand(Signup);
+
+            LoginCommand = new RelayCommand(async _ => await LoginAsync());
+            SignupCommand = new RelayCommand(_ => Signup());
             LoadSavedCredentials();
         }
 

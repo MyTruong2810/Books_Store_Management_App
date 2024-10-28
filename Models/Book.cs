@@ -165,6 +165,26 @@ namespace Books_Store_Management_App.Models
         }
 
         public bool IsEven => Index % 2 == 0;
+
+        public override string ToString()
+        {
+            return Title.Trim();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Book book)
+            {
+                return book.Index == Index;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Index;
+        }
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -100,6 +100,9 @@ namespace Books_Store_Management_App.Views
             //AllOrdersDisplay.Add(newOrder);
             //totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
             //UpdateDisplayedOrders();
+
+            //New add page
+            Frame.Navigate(typeof(OrderDetailPage));
         }
         private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +116,7 @@ namespace Books_Store_Management_App.Views
         private void EditOrder_Click(object sender, RoutedEventArgs e)
         {
             //New edit page
+            Frame.Navigate(typeof(OrderDetailPage), (sender as Button).DataContext);
         }
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
