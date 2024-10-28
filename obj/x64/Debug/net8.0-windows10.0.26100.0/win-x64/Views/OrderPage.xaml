@@ -106,6 +106,7 @@
 
                 <!-- ListView to display Orders -->
                 <ListView x:ConnectionId='2' x:Name="OrderListView" Background="Transparent"                                        
+                      IsItemClickEnabled="True"                                    
                       Height="500"
                       MinWidth="550">
                     <ListView.ItemTemplate>

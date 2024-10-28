@@ -25,6 +25,7 @@ using System.ComponentModel;
 using static Books_Store_Management_App.Views.DashboardPage;
 using System.Drawing;
 using Books_Store_Management_App.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Books_Store_Management_App.Views
 {
@@ -38,26 +39,36 @@ namespace Books_Store_Management_App.Views
         private int ItemsPerPage = 10;
         private int currentPage = 1;
         private int totalPages;
-        public class OrderPageViewModel
-        {
-            public ObservableCollection<Order> AllOrders { get; set; }
-            public void Init()
-            {
-                IDao dao = new PsqlDao();
-                AllOrders = dao.GetAllOrders();
-            }
-        }
 
         public OrderPageViewModel ViewModel { get; set; }
 
         public OrderPage()
         {
             this.InitializeComponent();
-            ViewModel = new OrderPageViewModel();
-            ViewModel.Init();
-            AllOrdersDisplay = ViewModel.AllOrders;
+
+            // ViewModel dùng chung
+            ViewModel = (Microsoft.UI.Xaml.Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
+
+            AllOrdersDisplay = ViewModel.Orders;
             totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
             UpdateDisplayedOrders();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            string previousPage = e.Parameter as string;
+            
+            if (previousPage == nameof(OrderDetailPage))
+            {
+                //ViewModel.Init();
+                //AllOrdersDisplay = ViewModel.AllOrders;
+                AllOrdersDisplay = ViewModel.Orders;
+                totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+                UpdateDisplayedOrders();
+            }
+
         }
         private void UpdateDisplayedOrders()
         {
@@ -181,7 +192,7 @@ namespace Books_Store_Management_App.Views
 
             if (!string.IsNullOrWhiteSpace(searchText))
             {
-                var filteredOrders = ViewModel.AllOrders.Where(order =>
+                var filteredOrders = ViewModel.Orders.Where(order =>
                     order.Customer.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
                 DisplayedOrders.Clear();
@@ -194,6 +205,12 @@ namespace Books_Store_Management_App.Views
             {
                 UpdateDisplayedOrders();
             }
+        }
+
+        private void OrderListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var order = e.ClickedItem as Order;
+            Frame.Navigate(typeof(ReadOnlyOrderDetailPage), order);
         }
     }
 }

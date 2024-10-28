@@ -26,7 +26,7 @@ namespace Books_Store_Management_App.Views
 
             public void Init()
             {
-                IDao dao = new MockDao();
+                IDao dao = new PsqlDao();
                 Books = dao.GetAllBooks();
             }
         }
