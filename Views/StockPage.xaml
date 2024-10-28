@@ -1,0 +1,171 @@
+<Page
+    x:Class="Books_Store_Management_App.Views.StockPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Books_Store_Management_App"
+    xmlns:local1="using:Books_Store_Management_App.Helpers" 
+    xmlns:local2="using:Books_Store_Management_App.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:transitions="using:Microsoft.UI.Xaml.Media.Animation"
+    mc:Ignorable="d"
+    xmlns:local3="using:Books_Store_Management_App.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <local1:StringToISBNConverter x:Key="StringToISBNConverter"/>
+        <local3:AlternationIndexToBackgroundConverter x:Key="AlternationIndexToBackgroundConverter"/>
+    </Page.Resources>
+
+    <Grid Background="#C4C4FC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Padding="10" Margin="0 10 0 0">
+            <TextBlock Text="Stock" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="40">
+            <StackPanel>
+                <!-- Add Book Button -->
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
+                    <TextBox Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" PlaceholderText="                             🔎"/>
+                    <ComboBox ItemsSource="{x:Bind generSearch}" Width="150" Margin="0 0 50 0"/>
+                    <ComboBox ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 350 0"/>
+                    <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Book" Click="AddBook_Click"/>
+                </StackPanel>
+
+                <Grid Margin="60 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <DropDownButton x:Name="Title" Grid.Column="0" Content="Title" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="Title,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="Title,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <DropDownButton x:Name="ISBN" Grid.Column="1" Content="ISBN" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="ISBN,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="ISBN,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <DropDownButton x:Name="Author" Grid.Column="2" Content="Author" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="Author,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="Author,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <DropDownButton x:Name="Year" Grid.Column="3" Content="Year" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="Year,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="Year,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <DropDownButton x:Name="Price" Grid.Column="4" Content="Price" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="Price,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="Price,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <DropDownButton x:Name="Genre" Grid.Column="5" Content="Genre" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="Genre,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="Genre,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <DropDownButton x:Name="Quali" Grid.Column="6" Content="Quali" Background="White" FontWeight="Bold">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="ASC" CommandParameter="Quantity,ASC" Click="PublisherMenuItem_Click"/>
+                                <MenuFlyoutItem Text="DES" CommandParameter="Quantity,DES" Click="PublisherMenuItem_Click"/>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <Button Grid.Column="7" Content="Action" Background="White" FontWeight="Bold"/>
+                </Grid>
+
+                <!-- ListView to display books -->
+                <ListView x:Name="BookListView" Background="Transparent" ItemsSource="{x:Bind DisplayedBooks }"
+                      Height="500"
+                      MinWidth="550">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local2:Book">
+                            <Grid CornerRadius="5" Margin="1" Background="{Binding IsEven, Converter={StaticResource AlternationIndexToBackgroundConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel CornerRadius="100" Grid.Column="0">
+                                    <TextBlock FontWeight="Bold" Foreground="White" Text="{x:Bind Title}" Margin="0" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                                    <Border BorderBrush="Black" MaxWidth="25">
+                                        <Image Source="{x:Bind ImageSource}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" FontWeight="Bold" Foreground="White" Text="{x:Bind ISBN, Converter={StaticResource StringToISBNConverter}}" />
+                                <TextBlock Grid.Column="2" FontWeight="Bold" Foreground="White" Text="{x:Bind Author}" />
+                                <TextBlock Grid.Column="3" FontWeight="Bold" Foreground="White" Text="{x:Bind Year}" />
+                                <TextBlock Grid.Column="4" FontWeight="Bold" Foreground="White" Text="{x:Bind Price}" />
+                                <TextBlock Grid.Column="5" FontWeight="Bold" Foreground="White" Text="{x:Bind Genre}" />
+                                <TextBlock Grid.Column="6" FontWeight="Bold" Foreground="White" Text="{x:Bind Quantity}" />
+                                <Button Background="Transparent" Grid.Column="7" Click="DeleteBook_Click" Margin="40 0 0 0">
+                                    <FontIcon FontWeight="Bold" Foreground="Red" Glyph="&#xE74D;"/>
+
+                                </Button>
+                                <Button Background="Transparent" Grid.Column="7" Click="EditBook_Click">
+                                    <FontIcon FontWeight="Bold" Foreground="Violet" Glyph="&#xE70F;" />
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous" Click="PreviousPage_Click" IsEnabled="False" />
+                    <TextBlock x:Name="PageInfo" Margin="10,0" />
+                    <Button x:Name="NextButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Next" Click="NextPage_Click" IsEnabled="True" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page> 

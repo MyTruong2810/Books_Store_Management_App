@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Books_Store_Management_App.Views.CustomerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Books_Store_Management_App.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Books_Store_Management_App.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate x:Key="HorizontalFormat" x:DataType="models:Customer">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="5" BorderBrush="DarkCyan" Background="AntiqueWhite" CornerRadius="10">
+                <Border CornerRadius="20" Margin="3" >
+                    <Image Source="{x:Bind Avatar}" Width="40" Height="40" Stretch="UniformToFill" />
+                </Border>
+
+                <StackPanel Orientation="Horizontal" Margin="5 0 0 0" Height="20" >
+                    <TextBlock Width="70" Margin="10 0" Foreground="Blue" >ID: <Run Text="{x:Bind ID}" Foreground="Red"/></TextBlock>
+                    <TextBlock Width="210" Margin="5 0" Foreground="Gray">Name: <Run Text="{x:Bind Name}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="100" Margin="5 0" Foreground="Gray">Gender: <Run Text="{x:Bind Gender}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="135" Margin="5 0" Foreground="Gray">Phone: <Run Text="{x:Bind Phone}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="135" Margin="5 0" Foreground="Gray">Date: <Run Text="{x:Bind DateofBirth}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="370" Margin="5 0" Foreground="Gray">Address: <Run Text="{x:Bind Address}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="deleteButton" Click="deleteButton_Click" Tag="{x:Bind ID}" Foreground="DarkBlue">
+                        <FontIcon Glyph="&#xE74D;" />
+                    </Button>
+                    <Button Name="updateButton" Click="updateButton_Click" Tag="{x:Bind ID}" Foreground="DarkBlue">
+                        <FontIcon Glyph="&#xE70F;" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <StackPanel Background="#FFFFE1">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  
+                CornerRadius="20"
+                BorderBrush="DarkBlue" BorderThickness="1" Background="#ADD9E6" 
+                Padding="10 0 " Margin=" 10 10 10 20 ">
+            <Button MaxWidth="50">
+                <FontIcon Glyph="&#xE72B;" />
+            </Button>
+            <TextBlock FontSize="18" FontWeight="Bold" Text="CUSTOMER" Margin="10,10"/>
+        </StackPanel>
+
+        <StackPanel Margin="10" BorderBrush="DarkBlue" CornerRadius="15">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Background="#DDB989" Padding="10">
+                <TextBlock Margin="10 0" VerticalAlignment="Center">Show</TextBlock>
+                <ComboBox x:Name="rowsPerPageComboBox" Height="30" SelectionChanged="rowsPerPageComboBox_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                            <Run Text="{Binding item}"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBox Margin="100 0 5 0" HorizontalAlignment="Center" x:Name="keywordTextBox" Width="300" Height="30"/>
+
+                <Button Name="searchButton" Width="80" Height="30" Content="Search" Click="searchButton_Click"/>
+
+                <TextBlock Margin="100 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+
+                <ComboBox x:Name="filterSearchComboBox" Width="150" SelectionChanged="filterbyComboBox_SelectionChanged" PlaceholderText="Search by...">
+                    <TextBlock>ID</TextBlock>
+                    <TextBlock>Name</TextBlock>
+                    <TextBlock>Phone</TextBlock>
+                    <TextBlock>Gender</TextBlock>
+                    <TextBlock>DateOfBirth</TextBlock>
+                    <TextBlock>Address</TextBlock>
+                </ComboBox>
+
+                <TextBlock Margin="50 0  10 0" VerticalAlignment="Center">Sort by</TextBlock>
+                <ComboBox x:Name="sortbyComboBox" Width="150" SelectionChanged="sortbyComboBox_SelectionChanged" PlaceholderText="Sort by..." Margin="0 0 100 0">
+                    <TextBlock>ID</TextBlock>
+                    <TextBlock>Name</TextBlock>
+                    <TextBlock>Phone</TextBlock>
+                    <TextBlock>Gender</TextBlock>
+                    <TextBlock>DateOfBirth</TextBlock>
+                    <TextBlock>Address</TextBlock>
+                </ComboBox>
+
+
+                <Button  Name="addButton" Width="60" HorizontalAlignment="Right" Height="30" Background="DarkBlue" Click="addButton_Click">
+                    <FontIcon Glyph="&#xE710;" DataContext="Add New Customer" />
+                </Button>
+            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                <ListView Name="employeesComboBox" Background="AliceBlue" Height="570"
+                      ItemsSource="{x:Bind CustomerVM.Customers, Mode=OneWay}"
+                      ItemTemplate="{StaticResource HorizontalFormat}">
+                </ListView>
+            </ScrollViewer>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Background="DarkCyan" CornerRadius="10"
+                    Padding="5" Margin="3">
+                <Button Name="previousButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Previous" Click="prevButton_Click" Margin="5"/>
+
+                <ComboBox x:Name="pagesComboBox" Background="GhostWhite" Foreground="Red"  Width="80" Height="30" SelectionChanged="pagesComboBox_SelectionChanged" Margin="5">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                            <Run Text="{Binding Page}"/> / <Run Text="{Binding Total}"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Button Name="nextButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Next" Click="nextButton_Click" Margin="5"/>
+            </StackPanel>
+
+            <TextBlock Name="infoTextBlock" Foreground="Black" HorizontalAlignment="Right"  Margin="20 0">
+            Displaying
+            <Run Text="{x:Bind CustomerVM.Customers.Count, Mode=OneWay}"/> /
+            <Run Text="{x:Bind CustomerVM.RowsPerPage, Mode=OneWay}"/> of total
+            <Run Text="{x:Bind CustomerVM.TotalItems, Mode=OneWay}"/>
+            </TextBlock>
+        </StackPanel>
+
+        <ContentDialog
+        x:Name="EditCustomerDialog"
+        Title="Edit Customer Profile"
+        PrimaryButtonText="Save"
+        CloseButtonText="Cancel"
+        DefaultButton="Primary"
+        Background="Black">
+
+            <StackPanel Width="700" Margin="0">
+                <VariableSizedWrapGrid  Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="60" ItemWidth="170">
+                    <Border VariableSizedWrapGrid.RowSpan="3" CornerRadius="80" Width="150" Height="150" >
+                        <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
+                    </Border>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" PlaceholderText="Fullname"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Date of Birth" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.DateofBirth, Mode=TwoWay}" PlaceholderText="Date of Birth : (dd/mm/yyyy)"/>
+                    <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
+                    <StackPanel VariableSizedWrapGrid.ColumnSpan="1" HorizontalAlignment="Center" >
+                        <Button Content="Change Image" Click="ChangeImage_Click" />
+                        <TextBlock VariableSizedWrapGrid.ColumnSpan="1" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Payment" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Payment, Mode=TwoWay}" PlaceholderText="Payment"/>
+                    <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="CVV" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.CVV, Mode=TwoWay}" PlaceholderText="CVV"/>
+                    <TextBox  VariableSizedWrapGrid.ColumnSpan="3" Header="Address" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Address, Mode=TwoWay}" PlaceholderText="Address"/>
+                </VariableSizedWrapGrid>
+            </StackPanel>
+        </ContentDialog>
+
+        <ContentDialog
+        x:Name="AddCustomerDialog"
+        Title="Add Customer Profile"
+        PrimaryButtonText="Save"
+        CloseButtonText="Cancel"
+        DefaultButton="Primary"
+        Background="Black">
+
+            <StackPanel Width="700" Margin="0">
+                <VariableSizedWrapGrid  Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="60" ItemWidth="170">
+                    <Border VariableSizedWrapGrid.RowSpan="3" CornerRadius="80" Width="150" Height="150" >
+                        <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
+                    </Border>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" PlaceholderText="Fullname"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Date of Birth" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.DateofBirth, Mode=TwoWay}" PlaceholderText="Date of Birth : (dd/mm/yyyy)"/>
+                    <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
+                    <StackPanel VariableSizedWrapGrid.ColumnSpan="1" HorizontalAlignment="Center" >
+                        <Button Content="Change Image" Click="ChangeImage_Click" />
+                        <TextBlock VariableSizedWrapGrid.ColumnSpan="1" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Payment" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Payment, Mode=TwoWay}" PlaceholderText="Payment"/>
+                    <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="CVV" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.CVV, Mode=TwoWay}" PlaceholderText="CVV"/>
+                    <TextBox  VariableSizedWrapGrid.ColumnSpan="3" Header="Address" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Address, Mode=TwoWay}" PlaceholderText="Address"/>
+                </VariableSizedWrapGrid>
+            </StackPanel>
+        </ContentDialog>
+
+        <ContentDialog
+        x:Name="DeleteCustomerDialog"
+        Title="Delete customer"
+        PrimaryButtonText="Yes"
+        CloseButtonText="No"
+        DefaultButton="Primary"
+        Background="Black">
+
+            <StackPanel Width="500" Margin="0">
+                <TextBlock Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=OneWay}"/>
+                <TextBlock>Do you want to delete this customer?</TextBlock>
+            </StackPanel>
+        </ContentDialog>
+    </StackPanel>
+</Page>
