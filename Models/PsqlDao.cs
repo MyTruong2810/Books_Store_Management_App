@@ -99,8 +99,8 @@ namespace Books_Store_Management_App.Models
                         genres.Add(new Genre
                         {
                             Id = reader.GetInt32(0),
-                            Name = reader.GetString(0),
-                            Description = reader.GetString(1)
+                            Name = reader.GetString(1),
+                            Description = reader.GetString(2)
                         });
                     }
                 }

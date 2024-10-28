@@ -1,4 +1,5 @@
 using Books_Store_Management_App.Models;
+using Books_Store_Management_App.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -13,12 +14,11 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Books_Store_Management_App.ViewModels;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace Books_Store_Management_App.Views
+namespace Books_Store_Management_App
 {
     public sealed partial class BookPopupControl : UserControl
     {
@@ -179,6 +179,11 @@ namespace Books_Store_Management_App.Views
             //purchasePriceTextBox.Text = "";
             //quantityTextBox.Text = "";
             //desciptionTextBox.Text = "";
+        }
+
+        public void ClearErrorMessage()
+        {
+            ViewModel.ClearErrorMessage();
         }
     }
 }
