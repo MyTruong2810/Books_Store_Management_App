@@ -147,6 +147,8 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        public string Description { get; set; }
+
         private int _index;
         public int Index
         {
