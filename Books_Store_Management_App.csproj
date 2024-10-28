@@ -31,6 +31,7 @@
     <None Remove="Views\DashboardPage.xaml" />
     <None Remove="Views\LoginPage.xaml" />
     <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\OrderDetailPage.xaml" />
     <None Remove="Views\OrderPage.xaml" />
     <None Remove="Views\StockPage.xaml" />
   </ItemGroup>
@@ -98,6 +99,9 @@
     <None Update="Assets\image9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\OrderDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\BookPopupControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

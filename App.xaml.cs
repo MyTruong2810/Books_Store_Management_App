@@ -1,4 +1,5 @@
 ﻿using Books_Store_Management_App;
+using Books_Store_Management_App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -32,9 +33,25 @@ namespace Books_Store_Management_App
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        /// 
+        public IServiceProvider ServiceProvider { get; private set; }
+
         public App()
         {
             this.InitializeComponent();
+
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            //services.AddSingleton<IDao<Order>, MockOrderDao>();
+            //services.AddSingleton<IDao<Book>, MockBookDao>();
+            //services.AddTransient<OrderViewModel>();
+            services.AddSingleton<OrderPageViewModel>();
+            services.AddTransient<OrderDetailViewModel>();
         }
 
         /// <summary>

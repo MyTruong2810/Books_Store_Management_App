@@ -4,5 +4,6 @@ Views\BookPopupControl.xbf
 Views\DashboardPage.xbf
 Views\LoginPage.xbf
 Views\MainPage.xbf
+Views\OrderDetailPage.xbf
 Views\OrderPage.xbf
 Views\StockPage.xbf

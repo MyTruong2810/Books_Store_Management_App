@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-10-28T14:15:28.115</Modified>
+      <Modified>2024-10-28T14:53:42.168</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-10-28T14:02:24.703</Modified>
+      <Modified>2024-10-28T14:53:41.589</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.runtimeconfig.json">
       <PackagePath>Books_Store_Management_App.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
-      <Modified>2024-10-28T14:15:27.422</Modified>
+      <Modified>2024-10-28T14:53:41.451</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
-      <Modified>2024-10-28T14:15:27.466</Modified>
+      <Modified>2024-10-28T14:53:41.472</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x64\native\WebView2Loader.dll</PackagePath>
@@ -2192,7 +2192,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.deps.json">
       <PackagePath>Books_Store_Management_App.deps.json</PackagePath>
-      <Modified>2024-10-28T13:56:44.980</Modified>
+      <Modified>2024-10-28T14:48:16.715</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\syncfusion.core.winui\27.1.56\lib\net8.0-windows10.0\Syncfusion.Core.WinUI.pri">
       <PackagePath>Syncfusion.Core.WinUI.pri</PackagePath>
