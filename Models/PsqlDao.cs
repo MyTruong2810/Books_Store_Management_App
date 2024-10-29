@@ -9,7 +9,7 @@ namespace Books_Store_Management_App.Models
 {
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
+        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=28102004;Database=mybookstore";
 
         public ObservableCollection<Book> GetAllBooks()
         {
