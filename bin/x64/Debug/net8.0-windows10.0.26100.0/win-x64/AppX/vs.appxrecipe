@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-10-28T17:31:25.669</Modified>
+      <Modified>2024-10-29T12:02:15.324</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-10-28T17:29:01.946</Modified>
+      <Modified>2024-10-29T12:02:14.697</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.runtimeconfig.json">
       <PackagePath>Books_Store_Management_App.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
-      <Modified>2024-10-28T17:31:24.866</Modified>
+      <Modified>2024-10-29T12:02:14.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
-      <Modified>2024-10-28T17:31:24.880</Modified>
+      <Modified>2024-10-29T12:02:14.525</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x64\native\WebView2Loader.dll</PackagePath>
