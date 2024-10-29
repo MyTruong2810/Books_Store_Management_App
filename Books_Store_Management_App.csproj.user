@@ -11,15 +11,12 @@
     <None Update="Package.appxmanifest">
       <SubType>Designer</SubType>
     </None>
-<<<<<<< HEAD
     <Page Update="Views\ClassificationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\AdminPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-=======
->>>>>>> 733b15e1e6f0378c5e4d1c2edc9446cfc142463e
     <Page Update="Views\OrderPage.xaml">
       <SubType>Designer</SubType>
     </Page>
