@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -140,7 +141,28 @@ namespace Books_Store_Management_App.Views
 
             this.OrderViewModel.Orders.Add(order);
 
-            Frame.Navigate(typeof(OrderPage), this.GetType().Name);
+            // Payment giả lập
+            PayBillOrderButtonGroup.Visibility = Visibility.Visible;
+            CreateOrderButton.Visibility = Visibility.Collapsed;
+
+            ViewModel.IsQrCodeVisible = true;
+            ViewModel.IsBooksListViewVisible = false;
+        }
+
+        private async void ShowDialog(string title, string message)
+        {
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = title;
+            dialog.PrimaryButtonText = "Oke";
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new TextBlock { Text = message };
+
+            var result = await dialog.ShowAsync();
         }
 
         private void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
@@ -195,6 +217,20 @@ namespace Books_Store_Management_App.Views
         }
 
         private void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
+        {
+            ViewModel.PaymentMethodQRCode = ViewModel.PaymentMethods[PaymentMethodCombobox.SelectedItem.ToString()];
+        }
+
+        private void PayOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            Thread.Sleep(2000);
+
+            ShowDialog("Payment", "Payment successful!");
+
+            Frame.Navigate(typeof(OrderPage), this.GetType().Name);
+        }
+
+        private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
