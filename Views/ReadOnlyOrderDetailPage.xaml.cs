@@ -26,6 +26,7 @@ namespace Books_Store_Management_App.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
 
+    // Dùng để hiển thị thông tin chi tiết của một đơn hàng
     public sealed partial class ReadOnlyOrderDetailPage : Page
     {
         public OrderDetailViewModel ViewModel { get; set; }
@@ -34,6 +35,9 @@ namespace Books_Store_Management_App.Views
         {
             this.InitializeComponent();
 
+            // Lấy ra OrderDetailViewModel và OrderPageViewModel từ ServiceProvider
+            // Trong đó OrderDetailViewModel chứa thông tin chi tiết của một đơn hàng
+            // OrderPageViewModel chứa thông tin của tất cả các đơn hàng
             ViewModel = (Application.Current as App).ServiceProvider.GetService<OrderDetailViewModel>();
             OrderViewModel = (Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
         }
@@ -44,17 +48,20 @@ namespace Books_Store_Management_App.Views
 
             CouponsComboBox.ItemsSource = ViewModel.Coupons;
 
-            // Đoạn này bí quá
+            // Đoạn này bí quá làm dài dòng
             if (e.Parameter is Order order)
             {
+                // Gán thông tin của đơn hàng vào ViewModel, để hiển thị lên giao diện
                 ViewModel.Order = order;
                 ViewModel.CustomerName = order.Customer;
                 ViewModel.PurchaseDate = DateTime.Parse(order.Date);
                 ViewModel.IsDelivered = order.IsDelivered;
 
+                // Thêm sách và mã giảm giá đã chọn vào SelectedBooks và SelectedCoupons
                 ViewModel.AddSelectedBooks(order.OrderItems);
                 ViewModel.AddSelectedCoupons(order.Coupons);
 
+                // Hiển thị thông tin sách và mã giảm giá đã chọn lên giao diện
                 CouponsComboBox.SelectedItems.Clear();
                 var selectedCoupons = ViewModel.Coupons
                     .Where(coupon => ViewModel.SelectedCoupons.Any(selected => selected.Id == coupon.Id))

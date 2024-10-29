@@ -135,6 +135,9 @@ namespace Books_Store_Management_App
             //SaveButtonClicked.Invoke(this, ViewModel);
             SaveButtonClicked.Invoke(this, ViewModel.Book);
         }
+
+        // Hiển thị dialog để chọn ảnh
+        // Note Chọn Ảnh trong Assets
         private void ChangeIcon_Tapped(object sender, TappedRoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();

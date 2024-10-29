@@ -26,6 +26,7 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        // Cách trường lấy thông tin để Validate xong mới đưa vào Book
         private string _title;
         private string _author;
         private string _publisher;
@@ -50,6 +51,8 @@ namespace Books_Store_Management_App.ViewModels
                 }
             }
         }
+        //
+
         public string TitleErrorMessage { get; set; } = "";
 
         [Required(ErrorMessage = "Title is required.")]
