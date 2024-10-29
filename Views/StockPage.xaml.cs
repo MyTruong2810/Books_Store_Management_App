@@ -95,6 +95,8 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedBooks();
             }
         }
+
+        // Dùng để thay đổi lại vị trí và chiều cao của popup khi thay đổi kích thước cửa sổ
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             StandardPopup.HorizontalOffset = this.ActualWidth - 730;
@@ -159,6 +161,7 @@ namespace Books_Store_Management_App.Views
 
             //UpdateDisplayedBooks();
 
+            // Chỉ giả lập xóa sách, chưa đụng vào database
             var button = sender as Button;
             var book = button?.Tag as Book;
 

@@ -26,6 +26,9 @@ namespace Books_Store_Management_App.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
+    // Trang dùng để thêm và sửa thông tin đơn hàng
     public sealed partial class OrderDetailPage : Page
     {
         public OrderDetailViewModel ViewModel { get; set; }
@@ -47,10 +50,12 @@ namespace Books_Store_Management_App.Views
             // Đoạn này bí quá
             if (e.Parameter is Order order)
             {
-
+                // Nếu đang sửa thông tin đơn hàng
+                // Bật nút cập nhật thông tin đơn hàng
                 CreateOrderButton.Visibility = Visibility.Collapsed;
                 UpdateOrderButton.Visibility = Visibility.Visible;
 
+                // Hiển thị thông tin đơn hàng cần sửa
                 ViewModel.Order = order;
                 ViewModel.CustomerName = order.Customer;
                 ViewModel.PurchaseDate = DateTime.Parse(order.Date);
@@ -73,6 +78,7 @@ namespace Books_Store_Management_App.Views
             }
         }
 
+        // Xử lý sự kiện khi thêm sách vào đơn hàng
         private void bookComboBox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
         {
             if (ViewModel.BookSelectionChangedCommand.CanExecute(e))
@@ -149,6 +155,8 @@ namespace Books_Store_Management_App.Views
             ViewModel.IsBooksListViewVisible = false;
         }
 
+        // Hiển thị dialog thông báo thanh toán thành công
+        // Nếu người dùng chọn "Yes", chuyển đến trang xuất hóa đơn
         private async void ShowDialog(string title, string message)
         {
             ContentDialog dialog = new ContentDialog();
@@ -182,7 +190,6 @@ namespace Books_Store_Management_App.Views
             }
 
         }
-
         private void TimePicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
         {
             ViewModel.TimeSelectedCommand.Execute(e.NewTime);
@@ -227,6 +234,7 @@ namespace Books_Store_Management_App.Views
             Frame.Navigate(typeof(OrderPage), this.GetType().Name);
         }
 
+        // Xử lý sự kiện khi chọn phương thức thanh toán
         private void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
         {
             ViewModel.PaymentMethodQRCode = ViewModel.PaymentMethods[PaymentMethodCombobox.SelectedItem.ToString()];

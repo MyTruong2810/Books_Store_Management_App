@@ -30,7 +30,7 @@
     <AppXManifest Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-10-29T13:53:33.806</Modified>
+      <Modified>2024-10-29T14:07:22.076</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
-      <Modified>2024-10-29T13:53:33.117</Modified>
+      <Modified>2024-10-29T14:07:21.403</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
-      <Modified>2024-10-29T13:53:33.133</Modified>
+      <Modified>2024-10-29T14:07:21.418</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x64\native\WebView2Loader.dll</PackagePath>
