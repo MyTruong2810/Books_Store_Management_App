@@ -74,18 +74,13 @@ namespace Books_Store_Management_App.Views
             Frame.Navigate(typeof(OrderPage));
         }
 
-        private void PayOrderButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
             ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 
-            //Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
+            Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
         }
 
     }

@@ -25,6 +25,7 @@
     <Content Remove="Assets\image7.jpg" />
     <Content Remove="Assets\image8.jpg" />
     <Content Remove="Assets\image9.jpg" />
+    <Content Remove="Assets\logo.png" />
     <Content Remove="Assets\momo_qr.png" />
     <Content Remove="Assets\vnpay_qr.jpg" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <None Remove="BookPopupControl.xaml" />
     <None Remove="Views\BookPopupControl.xaml" />
     <None Remove="Views\DashboardPage.xaml" />
+    <None Remove="Views\InvoicePage.xaml" />
     <None Remove="Views\LoginPage.xaml" />
     <None Remove="Views\MainPage.xaml" />
     <None Remove="Views\OrderDetailPage.xaml" />
@@ -106,12 +108,18 @@
     <None Update="Assets\image9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Assets\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\momo_qr.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Assets\vnpay_qr.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\InvoicePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ReadOnlyOrderDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

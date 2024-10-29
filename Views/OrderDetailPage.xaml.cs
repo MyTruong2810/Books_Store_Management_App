@@ -157,12 +157,21 @@ namespace Books_Store_Management_App.Views
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = title;
-            dialog.PrimaryButtonText = "Oke";
+            dialog.PrimaryButtonText = "Yes";
             dialog.CloseButtonText = "Cancel";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new TextBlock { Text = message };
 
             var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                BillOrderButton_Click(null, null);
+            }
+            else
+            {
+                Frame.Navigate(typeof(OrderPage), this.GetType().Name);
+            }
         }
 
         private void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
@@ -213,6 +222,8 @@ namespace Books_Store_Management_App.Views
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
             ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 
+            OrderViewModel.Orders[ViewModel.Order.Index] = ViewModel.Order;
+
             Frame.Navigate(typeof(OrderPage), this.GetType().Name);
         }
 
@@ -225,14 +236,20 @@ namespace Books_Store_Management_App.Views
         {
             Thread.Sleep(2000);
 
-            ShowDialog("Payment", "Payment successful!");
-
-            Frame.Navigate(typeof(OrderPage), this.GetType().Name);
+            ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
         }
 
         private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.Order = new Order();
+            ViewModel.Order.ID = OrderViewModel.Orders.Count;
+            ViewModel.Order.Customer = ViewModel.CustomerName;
+            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
+            ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
+            ViewModel.Order.IsDelivered = ViewModel.IsDelivered;
+            ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 
+            Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
         }
     }
 

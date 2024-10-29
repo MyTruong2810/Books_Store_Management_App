@@ -73,6 +73,9 @@
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\image9.jpg">
       <PackagePath>Assets\image9.jpg</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\logo.png">
+      <PackagePath>Assets\logo.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\momo_qr.png">
       <PackagePath>Assets\momo_qr.png</PackagePath>
     </AppxPackagedFile>
