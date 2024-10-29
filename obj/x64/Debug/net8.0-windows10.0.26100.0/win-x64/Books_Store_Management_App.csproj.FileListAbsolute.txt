@@ -624,3 +624,9 @@ D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\
 D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Assets\cash.jpg
 D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Assets\momo_qr.png
 D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Assets\vnpay_qr.jpg
+D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Views\InvoicePage.g.i.cs
+D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Views\InvoicePage.g.cs
+D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Views\InvoicePage.xaml
+D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Views\InvoicePage.xbf
+D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Views\InvoicePage.xbf
+D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Assets\logo.png

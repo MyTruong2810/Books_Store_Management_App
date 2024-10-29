@@ -226,7 +226,7 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[101];
+            _typeNameTable = new string[104];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
@@ -256,80 +256,83 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
             _typeNameTable[26] = "Books_Store_Management_App.Views.DashboardPage";
             _typeNameTable[27] = "Microsoft.UI.Xaml.Controls.Page";
             _typeNameTable[28] = "Books_Store_Management_App.Views.DashboardPage.DashboardViewModel";
-            _typeNameTable[29] = "Books_Store_Management_App.ViewModels.LoginViewModel";
-            _typeNameTable[30] = "System.Windows.Input.ICommand";
-            _typeNameTable[31] = "Books_Store_Management_App.Views.LoginPage";
-            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.NavigationView";
-            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[34] = "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible";
-            _typeNameTable[35] = "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode";
-            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus";
-            _typeNameTable[37] = "System.Collections.Generic.IList`1<Object>";
-            _typeNameTable[38] = "Microsoft.UI.Xaml.Controls.AutoSuggestBox";
-            _typeNameTable[39] = "Microsoft.UI.Xaml.UIElement";
-            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode";
-            _typeNameTable[41] = "Microsoft.UI.Xaml.Style";
-            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.StyleSelector";
-            _typeNameTable[43] = "Microsoft.UI.Xaml.Controls.DataTemplateSelector";
-            _typeNameTable[44] = "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode";
-            _typeNameTable[45] = "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled";
-            _typeNameTable[46] = "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings";
-            _typeNameTable[47] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[48] = "Microsoft.UI.Xaml.Controls.NavigationViewItem";
-            _typeNameTable[49] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
-            _typeNameTable[50] = "Microsoft.UI.Xaml.Controls.IconElement";
-            _typeNameTable[51] = "Microsoft.UI.Xaml.Controls.InfoBadge";
-            _typeNameTable[52] = "Books_Store_Management_App.Views.MainPage";
-            _typeNameTable[53] = "Books_Store_Management_App.Helpers.DateTimeToStringConverter";
-            _typeNameTable[54] = "Books_Store_Management_App.Helpers.BoolToVisibleConverter";
-            _typeNameTable[55] = "Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter";
-            _typeNameTable[56] = "Syncfusion.UI.Xaml.Editors.SfComboBox";
-            _typeNameTable[57] = "Syncfusion.UI.Xaml.Editors.DropDownListBase";
-            _typeNameTable[58] = "Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode";
-            _typeNameTable[59] = "Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode";
-            _typeNameTable[60] = "Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger";
-            _typeNameTable[61] = "Int32";
-            _typeNameTable[62] = "Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode";
-            _typeNameTable[63] = "Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior";
-            _typeNameTable[64] = "Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior";
-            _typeNameTable[65] = "Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode";
-            _typeNameTable[66] = "Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType";
-            _typeNameTable[67] = "Microsoft.UI.Xaml.Media.Brush";
-            _typeNameTable[68] = "Windows.Foundation.Collections.IObservableVector`1<Microsoft.UI.Xaml.Controls.GroupStyle>";
-            _typeNameTable[69] = "Microsoft.UI.Xaml.Controls.GroupStyle";
-            _typeNameTable[70] = "Windows.UI.Text.FontWeight";
-            _typeNameTable[71] = "System.Nullable`1<Windows.UI.Text.FontStyle>";
-            _typeNameTable[72] = "Windows.UI.Text.FontStyle";
-            _typeNameTable[73] = "System.Nullable`1<Double>";
-            _typeNameTable[74] = "Microsoft.UI.Xaml.Controls.TextBlock";
-            _typeNameTable[75] = "Books_Store_Management_App.Views.OrderDetailPage";
-            _typeNameTable[76] = "Books_Store_Management_App.ViewModels.OrderDetailViewModel";
-            _typeNameTable[77] = "Books_Store_Management_App.OrderPageViewModel";
-            _typeNameTable[78] = "Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter";
-            _typeNameTable[79] = "Microsoft.UI.Xaml.Controls.DropDownButton";
-            _typeNameTable[80] = "Books_Store_Management_App.Views.OrderPage";
-            _typeNameTable[81] = "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Order>";
-            _typeNameTable[82] = "System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Order>";
-            _typeNameTable[83] = "Books_Store_Management_App.Models.Order";
-            _typeNameTable[84] = "Books_Store_Management_App.Helpers.FullObservableCollection`1<Books_Store_Management_App.Models.Coupon>";
-            _typeNameTable[85] = "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Coupon>";
-            _typeNameTable[86] = "System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Coupon>";
-            _typeNameTable[87] = "Books_Store_Management_App.Models.Coupon";
-            _typeNameTable[88] = "System.DateTime";
-            _typeNameTable[89] = "System.Collections.Generic.List`1<Books_Store_Management_App.Models.OrderItem>";
-            _typeNameTable[90] = "Books_Store_Management_App.Models.OrderItem";
-            _typeNameTable[91] = "Books_Store_Management_App.Models.Book";
-            _typeNameTable[92] = "Books_Store_Management_App.Views.ReadOnlyOrderDetailPage";
-            _typeNameTable[93] = "Books_Store_Management_App.Views.StockPage";
-            _typeNameTable[94] = "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Book>";
-            _typeNameTable[95] = "System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Book>";
-            _typeNameTable[96] = "Books_Store_Management_App.Views.StockPage.StockPageViewModel";
-            _typeNameTable[97] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[98] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[99] = "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter";
-            _typeNameTable[100] = "Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter";
+            _typeNameTable[29] = "Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter";
+            _typeNameTable[30] = "Books_Store_Management_App.Helpers.DoubleToPercentageConverter";
+            _typeNameTable[31] = "Books_Store_Management_App.Views.InvoicePage";
+            _typeNameTable[32] = "Books_Store_Management_App.ViewModels.InvoiceViewModel";
+            _typeNameTable[33] = "Books_Store_Management_App.ViewModels.LoginViewModel";
+            _typeNameTable[34] = "System.Windows.Input.ICommand";
+            _typeNameTable[35] = "Books_Store_Management_App.Views.LoginPage";
+            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.NavigationView";
+            _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[38] = "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible";
+            _typeNameTable[39] = "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode";
+            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus";
+            _typeNameTable[41] = "System.Collections.Generic.IList`1<Object>";
+            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.AutoSuggestBox";
+            _typeNameTable[43] = "Microsoft.UI.Xaml.UIElement";
+            _typeNameTable[44] = "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode";
+            _typeNameTable[45] = "Microsoft.UI.Xaml.Style";
+            _typeNameTable[46] = "Microsoft.UI.Xaml.Controls.StyleSelector";
+            _typeNameTable[47] = "Microsoft.UI.Xaml.Controls.DataTemplateSelector";
+            _typeNameTable[48] = "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode";
+            _typeNameTable[49] = "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled";
+            _typeNameTable[50] = "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings";
+            _typeNameTable[51] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[52] = "Microsoft.UI.Xaml.Controls.NavigationViewItem";
+            _typeNameTable[53] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
+            _typeNameTable[54] = "Microsoft.UI.Xaml.Controls.IconElement";
+            _typeNameTable[55] = "Microsoft.UI.Xaml.Controls.InfoBadge";
+            _typeNameTable[56] = "Books_Store_Management_App.Views.MainPage";
+            _typeNameTable[57] = "Books_Store_Management_App.Helpers.DateTimeToStringConverter";
+            _typeNameTable[58] = "Books_Store_Management_App.Helpers.BoolToVisibleConverter";
+            _typeNameTable[59] = "Syncfusion.UI.Xaml.Editors.SfComboBox";
+            _typeNameTable[60] = "Syncfusion.UI.Xaml.Editors.DropDownListBase";
+            _typeNameTable[61] = "Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode";
+            _typeNameTable[62] = "Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode";
+            _typeNameTable[63] = "Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger";
+            _typeNameTable[64] = "Int32";
+            _typeNameTable[65] = "Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode";
+            _typeNameTable[66] = "Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior";
+            _typeNameTable[67] = "Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior";
+            _typeNameTable[68] = "Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode";
+            _typeNameTable[69] = "Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType";
+            _typeNameTable[70] = "Microsoft.UI.Xaml.Media.Brush";
+            _typeNameTable[71] = "Windows.Foundation.Collections.IObservableVector`1<Microsoft.UI.Xaml.Controls.GroupStyle>";
+            _typeNameTable[72] = "Microsoft.UI.Xaml.Controls.GroupStyle";
+            _typeNameTable[73] = "Windows.UI.Text.FontWeight";
+            _typeNameTable[74] = "System.Nullable`1<Windows.UI.Text.FontStyle>";
+            _typeNameTable[75] = "Windows.UI.Text.FontStyle";
+            _typeNameTable[76] = "System.Nullable`1<Double>";
+            _typeNameTable[77] = "Microsoft.UI.Xaml.Controls.TextBlock";
+            _typeNameTable[78] = "Books_Store_Management_App.Views.OrderDetailPage";
+            _typeNameTable[79] = "Books_Store_Management_App.ViewModels.OrderDetailViewModel";
+            _typeNameTable[80] = "Books_Store_Management_App.OrderPageViewModel";
+            _typeNameTable[81] = "Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter";
+            _typeNameTable[82] = "Microsoft.UI.Xaml.Controls.DropDownButton";
+            _typeNameTable[83] = "Books_Store_Management_App.Views.OrderPage";
+            _typeNameTable[84] = "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Order>";
+            _typeNameTable[85] = "System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Order>";
+            _typeNameTable[86] = "Books_Store_Management_App.Models.Order";
+            _typeNameTable[87] = "Books_Store_Management_App.Helpers.FullObservableCollection`1<Books_Store_Management_App.Models.Coupon>";
+            _typeNameTable[88] = "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Coupon>";
+            _typeNameTable[89] = "System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Coupon>";
+            _typeNameTable[90] = "Books_Store_Management_App.Models.Coupon";
+            _typeNameTable[91] = "System.DateTime";
+            _typeNameTable[92] = "System.Collections.Generic.List`1<Books_Store_Management_App.Models.OrderItem>";
+            _typeNameTable[93] = "Books_Store_Management_App.Models.OrderItem";
+            _typeNameTable[94] = "Books_Store_Management_App.Models.Book";
+            _typeNameTable[95] = "Books_Store_Management_App.Views.ReadOnlyOrderDetailPage";
+            _typeNameTable[96] = "Books_Store_Management_App.Views.StockPage";
+            _typeNameTable[97] = "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Book>";
+            _typeNameTable[98] = "System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Book>";
+            _typeNameTable[99] = "Books_Store_Management_App.Views.StockPage.StockPageViewModel";
+            _typeNameTable[100] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[101] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[102] = "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter";
+            _typeNameTable[103] = "Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter";
 
-            _typeTable = new global::System.Type[101];
+            _typeTable = new global::System.Type[104];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
@@ -359,78 +362,81 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
             _typeTable[26] = typeof(global::Books_Store_Management_App.Views.DashboardPage);
             _typeTable[27] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
             _typeTable[28] = typeof(global::Books_Store_Management_App.Views.DashboardPage.DashboardViewModel);
-            _typeTable[29] = typeof(global::Books_Store_Management_App.ViewModels.LoginViewModel);
-            _typeTable[30] = typeof(global::System.Windows.Input.ICommand);
-            _typeTable[31] = typeof(global::Books_Store_Management_App.Views.LoginPage);
-            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationView);
-            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
-            _typeTable[34] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible);
-            _typeTable[35] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode);
-            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus);
-            _typeTable[37] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
-            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Controls.AutoSuggestBox);
-            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.UIElement);
-            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode);
-            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Style);
-            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
-            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.Controls.DataTemplateSelector);
-            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode);
-            _typeTable[45] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled);
-            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings);
-            _typeTable[47] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[48] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem);
-            _typeTable[49] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
-            _typeTable[50] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
-            _typeTable[51] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
-            _typeTable[52] = typeof(global::Books_Store_Management_App.Views.MainPage);
-            _typeTable[53] = typeof(global::Books_Store_Management_App.Helpers.DateTimeToStringConverter);
-            _typeTable[54] = typeof(global::Books_Store_Management_App.Helpers.BoolToVisibleConverter);
-            _typeTable[55] = typeof(global::Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter);
-            _typeTable[56] = typeof(global::Syncfusion.UI.Xaml.Editors.SfComboBox);
-            _typeTable[57] = typeof(global::Syncfusion.UI.Xaml.Editors.DropDownListBase);
-            _typeTable[58] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode);
-            _typeTable[59] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode);
-            _typeTable[60] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger);
-            _typeTable[61] = typeof(global::System.Int32);
-            _typeTable[62] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode);
-            _typeTable[63] = typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior);
-            _typeTable[64] = typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior);
-            _typeTable[65] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode);
-            _typeTable[66] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType);
-            _typeTable[67] = typeof(global::Microsoft.UI.Xaml.Media.Brush);
-            _typeTable[68] = typeof(global::Windows.Foundation.Collections.IObservableVector<global::Microsoft.UI.Xaml.Controls.GroupStyle>);
-            _typeTable[69] = typeof(global::Microsoft.UI.Xaml.Controls.GroupStyle);
-            _typeTable[70] = typeof(global::Windows.UI.Text.FontWeight);
-            _typeTable[71] = typeof(global::System.Nullable<global::Windows.UI.Text.FontStyle>);
-            _typeTable[72] = typeof(global::Windows.UI.Text.FontStyle);
-            _typeTable[73] = typeof(global::System.Nullable<global::System.Double>);
-            _typeTable[74] = typeof(global::Microsoft.UI.Xaml.Controls.TextBlock);
-            _typeTable[75] = typeof(global::Books_Store_Management_App.Views.OrderDetailPage);
-            _typeTable[76] = typeof(global::Books_Store_Management_App.ViewModels.OrderDetailViewModel);
-            _typeTable[77] = typeof(global::Books_Store_Management_App.OrderPageViewModel);
-            _typeTable[78] = typeof(global::Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter);
-            _typeTable[79] = typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton);
-            _typeTable[80] = typeof(global::Books_Store_Management_App.Views.OrderPage);
-            _typeTable[81] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>);
-            _typeTable[82] = typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Order>);
-            _typeTable[83] = typeof(global::Books_Store_Management_App.Models.Order);
-            _typeTable[84] = typeof(global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>);
-            _typeTable[85] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Coupon>);
-            _typeTable[86] = typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Coupon>);
-            _typeTable[87] = typeof(global::Books_Store_Management_App.Models.Coupon);
-            _typeTable[88] = typeof(global::System.DateTime);
-            _typeTable[89] = typeof(global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>);
-            _typeTable[90] = typeof(global::Books_Store_Management_App.Models.OrderItem);
-            _typeTable[91] = typeof(global::Books_Store_Management_App.Models.Book);
-            _typeTable[92] = typeof(global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage);
-            _typeTable[93] = typeof(global::Books_Store_Management_App.Views.StockPage);
-            _typeTable[94] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>);
-            _typeTable[95] = typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Book>);
-            _typeTable[96] = typeof(global::Books_Store_Management_App.Views.StockPage.StockPageViewModel);
-            _typeTable[97] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[98] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[99] = typeof(global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter);
-            _typeTable[100] = typeof(global::Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter);
+            _typeTable[29] = typeof(global::Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter);
+            _typeTable[30] = typeof(global::Books_Store_Management_App.Helpers.DoubleToPercentageConverter);
+            _typeTable[31] = typeof(global::Books_Store_Management_App.Views.InvoicePage);
+            _typeTable[32] = typeof(global::Books_Store_Management_App.ViewModels.InvoiceViewModel);
+            _typeTable[33] = typeof(global::Books_Store_Management_App.ViewModels.LoginViewModel);
+            _typeTable[34] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[35] = typeof(global::Books_Store_Management_App.Views.LoginPage);
+            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationView);
+            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
+            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible);
+            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode);
+            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus);
+            _typeTable[41] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
+            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.AutoSuggestBox);
+            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.UIElement);
+            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode);
+            _typeTable[45] = typeof(global::Microsoft.UI.Xaml.Style);
+            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
+            _typeTable[47] = typeof(global::Microsoft.UI.Xaml.Controls.DataTemplateSelector);
+            _typeTable[48] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode);
+            _typeTable[49] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled);
+            _typeTable[50] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings);
+            _typeTable[51] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[52] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem);
+            _typeTable[53] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
+            _typeTable[54] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
+            _typeTable[55] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
+            _typeTable[56] = typeof(global::Books_Store_Management_App.Views.MainPage);
+            _typeTable[57] = typeof(global::Books_Store_Management_App.Helpers.DateTimeToStringConverter);
+            _typeTable[58] = typeof(global::Books_Store_Management_App.Helpers.BoolToVisibleConverter);
+            _typeTable[59] = typeof(global::Syncfusion.UI.Xaml.Editors.SfComboBox);
+            _typeTable[60] = typeof(global::Syncfusion.UI.Xaml.Editors.DropDownListBase);
+            _typeTable[61] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode);
+            _typeTable[62] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode);
+            _typeTable[63] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger);
+            _typeTable[64] = typeof(global::System.Int32);
+            _typeTable[65] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode);
+            _typeTable[66] = typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior);
+            _typeTable[67] = typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior);
+            _typeTable[68] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode);
+            _typeTable[69] = typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType);
+            _typeTable[70] = typeof(global::Microsoft.UI.Xaml.Media.Brush);
+            _typeTable[71] = typeof(global::Windows.Foundation.Collections.IObservableVector<global::Microsoft.UI.Xaml.Controls.GroupStyle>);
+            _typeTable[72] = typeof(global::Microsoft.UI.Xaml.Controls.GroupStyle);
+            _typeTable[73] = typeof(global::Windows.UI.Text.FontWeight);
+            _typeTable[74] = typeof(global::System.Nullable<global::Windows.UI.Text.FontStyle>);
+            _typeTable[75] = typeof(global::Windows.UI.Text.FontStyle);
+            _typeTable[76] = typeof(global::System.Nullable<global::System.Double>);
+            _typeTable[77] = typeof(global::Microsoft.UI.Xaml.Controls.TextBlock);
+            _typeTable[78] = typeof(global::Books_Store_Management_App.Views.OrderDetailPage);
+            _typeTable[79] = typeof(global::Books_Store_Management_App.ViewModels.OrderDetailViewModel);
+            _typeTable[80] = typeof(global::Books_Store_Management_App.OrderPageViewModel);
+            _typeTable[81] = typeof(global::Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter);
+            _typeTable[82] = typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton);
+            _typeTable[83] = typeof(global::Books_Store_Management_App.Views.OrderPage);
+            _typeTable[84] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>);
+            _typeTable[85] = typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Order>);
+            _typeTable[86] = typeof(global::Books_Store_Management_App.Models.Order);
+            _typeTable[87] = typeof(global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>);
+            _typeTable[88] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Coupon>);
+            _typeTable[89] = typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Coupon>);
+            _typeTable[90] = typeof(global::Books_Store_Management_App.Models.Coupon);
+            _typeTable[91] = typeof(global::System.DateTime);
+            _typeTable[92] = typeof(global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>);
+            _typeTable[93] = typeof(global::Books_Store_Management_App.Models.OrderItem);
+            _typeTable[94] = typeof(global::Books_Store_Management_App.Models.Book);
+            _typeTable[95] = typeof(global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage);
+            _typeTable[96] = typeof(global::Books_Store_Management_App.Views.StockPage);
+            _typeTable[97] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>);
+            _typeTable[98] = typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Book>);
+            _typeTable[99] = typeof(global::Books_Store_Management_App.Views.StockPage.StockPageViewModel);
+            _typeTable[100] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[101] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[102] = typeof(global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter);
+            _typeTable[103] = typeof(global::Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -474,40 +480,43 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
         private object Activate_24_StringToISBNConverter() { return new global::Books_Store_Management_App.Helpers.StringToISBNConverter(); }
         private object Activate_25_StringFormatConverter() { return new global::Books_Store_Management_App.Helpers.StringFormatConverter(); }
         private object Activate_26_DashboardPage() { return new global::Books_Store_Management_App.Views.DashboardPage(); }
-        private object Activate_29_LoginViewModel() { return new global::Books_Store_Management_App.ViewModels.LoginViewModel(); }
-        private object Activate_31_LoginPage() { return new global::Books_Store_Management_App.Views.LoginPage(); }
-        private object Activate_32_NavigationView() { return new global::Microsoft.UI.Xaml.Controls.NavigationView(); }
-        private object Activate_46_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
-        private object Activate_48_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
-        private object Activate_51_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
-        private object Activate_52_MainPage() { return new global::Books_Store_Management_App.Views.MainPage(); }
-        private object Activate_53_DateTimeToStringConverter() { return new global::Books_Store_Management_App.Helpers.DateTimeToStringConverter(); }
-        private object Activate_54_BoolToVisibleConverter() { return new global::Books_Store_Management_App.Helpers.BoolToVisibleConverter(); }
-        private object Activate_55_DoubleToUsdCurrencyConverter() { return new global::Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter(); }
-        private object Activate_56_SfComboBox() { return new global::Syncfusion.UI.Xaml.Editors.SfComboBox(); }
-        private object Activate_75_OrderDetailPage() { return new global::Books_Store_Management_App.Views.OrderDetailPage(); }
-        private object Activate_76_OrderDetailViewModel() { return new global::Books_Store_Management_App.ViewModels.OrderDetailViewModel(); }
-        private object Activate_77_OrderPageViewModel() { return new global::Books_Store_Management_App.OrderPageViewModel(); }
-        private object Activate_78_AlternationIndexToBackgroundConverter() { return new global::Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter(); }
-        private object Activate_79_DropDownButton() { return new global::Microsoft.UI.Xaml.Controls.DropDownButton(); }
-        private object Activate_80_OrderPage() { return new global::Books_Store_Management_App.Views.OrderPage(); }
-        private object Activate_81_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>(); }
-        private object Activate_82_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Order>(); }
-        private object Activate_83_Order() { return new global::Books_Store_Management_App.Models.Order(); }
-        private object Activate_84_FullObservableCollection() { return new global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>(); }
-        private object Activate_85_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Coupon>(); }
-        private object Activate_86_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Coupon>(); }
-        private object Activate_87_Coupon() { return new global::Books_Store_Management_App.Models.Coupon(); }
-        private object Activate_89_List() { return new global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>(); }
-        private object Activate_90_OrderItem() { return new global::Books_Store_Management_App.Models.OrderItem(); }
-        private object Activate_91_Book() { return new global::Books_Store_Management_App.Models.Book(); }
-        private object Activate_92_ReadOnlyOrderDetailPage() { return new global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage(); }
-        private object Activate_93_StockPage() { return new global::Books_Store_Management_App.Views.StockPage(); }
-        private object Activate_94_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>(); }
-        private object Activate_95_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Book>(); }
-        private object Activate_97_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
-        private object Activate_99_DoubleToObjectConverter() { return new global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter(); }
-        private object Activate_100_DoubleToVisibilityConverter() { return new global::Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter(); }
+        private object Activate_29_DoubleToUsdCurrencyConverter() { return new global::Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter(); }
+        private object Activate_30_DoubleToPercentageConverter() { return new global::Books_Store_Management_App.Helpers.DoubleToPercentageConverter(); }
+        private object Activate_31_InvoicePage() { return new global::Books_Store_Management_App.Views.InvoicePage(); }
+        private object Activate_32_InvoiceViewModel() { return new global::Books_Store_Management_App.ViewModels.InvoiceViewModel(); }
+        private object Activate_33_LoginViewModel() { return new global::Books_Store_Management_App.ViewModels.LoginViewModel(); }
+        private object Activate_35_LoginPage() { return new global::Books_Store_Management_App.Views.LoginPage(); }
+        private object Activate_36_NavigationView() { return new global::Microsoft.UI.Xaml.Controls.NavigationView(); }
+        private object Activate_50_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
+        private object Activate_52_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
+        private object Activate_55_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
+        private object Activate_56_MainPage() { return new global::Books_Store_Management_App.Views.MainPage(); }
+        private object Activate_57_DateTimeToStringConverter() { return new global::Books_Store_Management_App.Helpers.DateTimeToStringConverter(); }
+        private object Activate_58_BoolToVisibleConverter() { return new global::Books_Store_Management_App.Helpers.BoolToVisibleConverter(); }
+        private object Activate_59_SfComboBox() { return new global::Syncfusion.UI.Xaml.Editors.SfComboBox(); }
+        private object Activate_78_OrderDetailPage() { return new global::Books_Store_Management_App.Views.OrderDetailPage(); }
+        private object Activate_79_OrderDetailViewModel() { return new global::Books_Store_Management_App.ViewModels.OrderDetailViewModel(); }
+        private object Activate_80_OrderPageViewModel() { return new global::Books_Store_Management_App.OrderPageViewModel(); }
+        private object Activate_81_AlternationIndexToBackgroundConverter() { return new global::Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter(); }
+        private object Activate_82_DropDownButton() { return new global::Microsoft.UI.Xaml.Controls.DropDownButton(); }
+        private object Activate_83_OrderPage() { return new global::Books_Store_Management_App.Views.OrderPage(); }
+        private object Activate_84_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>(); }
+        private object Activate_85_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Order>(); }
+        private object Activate_86_Order() { return new global::Books_Store_Management_App.Models.Order(); }
+        private object Activate_87_FullObservableCollection() { return new global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>(); }
+        private object Activate_88_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Coupon>(); }
+        private object Activate_89_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Coupon>(); }
+        private object Activate_90_Coupon() { return new global::Books_Store_Management_App.Models.Coupon(); }
+        private object Activate_92_List() { return new global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>(); }
+        private object Activate_93_OrderItem() { return new global::Books_Store_Management_App.Models.OrderItem(); }
+        private object Activate_94_Book() { return new global::Books_Store_Management_App.Models.Book(); }
+        private object Activate_95_ReadOnlyOrderDetailPage() { return new global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage(); }
+        private object Activate_96_StockPage() { return new global::Books_Store_Management_App.Views.StockPage(); }
+        private object Activate_97_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>(); }
+        private object Activate_98_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Book>(); }
+        private object Activate_100_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_102_DoubleToObjectConverter() { return new global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter(); }
+        private object Activate_103_DoubleToVisibilityConverter() { return new global::Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
         private void StaticInitializer_4_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.MainWindow).TypeHandle);
         private void StaticInitializer_6_StringToVisibableConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.StringToVisibableConverter).TypeHandle);
@@ -523,66 +532,69 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
         private void StaticInitializer_25_StringFormatConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.StringFormatConverter).TypeHandle);
         private void StaticInitializer_26_DashboardPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.DashboardPage).TypeHandle);
         private void StaticInitializer_28_DashboardViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.DashboardPage.DashboardViewModel).TypeHandle);
-        private void StaticInitializer_29_LoginViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.ViewModels.LoginViewModel).TypeHandle);
-        private void StaticInitializer_30_ICommand() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Windows.Input.ICommand).TypeHandle);
-        private void StaticInitializer_31_LoginPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.LoginPage).TypeHandle);
-        private void StaticInitializer_32_NavigationView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationView).TypeHandle);
-        private void StaticInitializer_34_NavigationViewBackButtonVisible() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible).TypeHandle);
-        private void StaticInitializer_35_NavigationViewPaneDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode).TypeHandle);
-        private void StaticInitializer_36_NavigationViewSelectionFollowsFocus() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus).TypeHandle);
-        private void StaticInitializer_37_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::System.Object>).TypeHandle);
-        private void StaticInitializer_40_NavigationViewDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode).TypeHandle);
-        private void StaticInitializer_44_NavigationViewOverflowLabelMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode).TypeHandle);
-        private void StaticInitializer_45_NavigationViewShoulderNavigationEnabled() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled).TypeHandle);
-        private void StaticInitializer_46_NavigationViewTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings).TypeHandle);
-        private void StaticInitializer_48_NavigationViewItem() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem).TypeHandle);
-        private void StaticInitializer_49_NavigationViewItemBase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase).TypeHandle);
-        private void StaticInitializer_51_InfoBadge() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge).TypeHandle);
-        private void StaticInitializer_52_MainPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.MainPage).TypeHandle);
-        private void StaticInitializer_53_DateTimeToStringConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.DateTimeToStringConverter).TypeHandle);
-        private void StaticInitializer_54_BoolToVisibleConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.BoolToVisibleConverter).TypeHandle);
-        private void StaticInitializer_55_DoubleToUsdCurrencyConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter).TypeHandle);
-        private void StaticInitializer_56_SfComboBox() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.SfComboBox).TypeHandle);
-        private void StaticInitializer_57_DropDownListBase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.DropDownListBase).TypeHandle);
-        private void StaticInitializer_58_ComboBoxSelectionMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode).TypeHandle);
-        private void StaticInitializer_59_ComboBoxMultiSelectionDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode).TypeHandle);
-        private void StaticInitializer_60_ComboBoxSelectionChangeTrigger() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger).TypeHandle);
-        private void StaticInitializer_62_ComboBoxTextSearchMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode).TypeHandle);
-        private void StaticInitializer_63_IComboBoxFilterBehavior() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior).TypeHandle);
-        private void StaticInitializer_64_IComboBoxSearchBehavior() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior).TypeHandle);
-        private void StaticInitializer_65_ComboBoxTextHighlightMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode).TypeHandle);
-        private void StaticInitializer_66_ComboBoxAutoAppendType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType).TypeHandle);
-        private void StaticInitializer_68_IObservableVector() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.Foundation.Collections.IObservableVector<global::Microsoft.UI.Xaml.Controls.GroupStyle>).TypeHandle);
-        private void StaticInitializer_70_FontWeight() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontWeight).TypeHandle);
-        private void StaticInitializer_71_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::Windows.UI.Text.FontStyle>).TypeHandle);
-        private void StaticInitializer_72_FontStyle() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontStyle).TypeHandle);
-        private void StaticInitializer_73_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::System.Double>).TypeHandle);
-        private void StaticInitializer_75_OrderDetailPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.OrderDetailPage).TypeHandle);
-        private void StaticInitializer_76_OrderDetailViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.ViewModels.OrderDetailViewModel).TypeHandle);
-        private void StaticInitializer_77_OrderPageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.OrderPageViewModel).TypeHandle);
-        private void StaticInitializer_78_AlternationIndexToBackgroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter).TypeHandle);
-        private void StaticInitializer_79_DropDownButton() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton).TypeHandle);
-        private void StaticInitializer_80_OrderPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.OrderPage).TypeHandle);
-        private void StaticInitializer_81_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>).TypeHandle);
-        private void StaticInitializer_82_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Order>).TypeHandle);
-        private void StaticInitializer_83_Order() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.Order).TypeHandle);
-        private void StaticInitializer_84_FullObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>).TypeHandle);
-        private void StaticInitializer_85_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Coupon>).TypeHandle);
-        private void StaticInitializer_86_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Coupon>).TypeHandle);
-        private void StaticInitializer_87_Coupon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.Coupon).TypeHandle);
-        private void StaticInitializer_88_DateTime() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.DateTime).TypeHandle);
-        private void StaticInitializer_89_List() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>).TypeHandle);
-        private void StaticInitializer_90_OrderItem() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.OrderItem).TypeHandle);
-        private void StaticInitializer_91_Book() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.Book).TypeHandle);
-        private void StaticInitializer_92_ReadOnlyOrderDetailPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage).TypeHandle);
-        private void StaticInitializer_93_StockPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.StockPage).TypeHandle);
-        private void StaticInitializer_94_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>).TypeHandle);
-        private void StaticInitializer_95_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Book>).TypeHandle);
-        private void StaticInitializer_96_StockPageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.StockPage.StockPageViewModel).TypeHandle);
-        private void StaticInitializer_97_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_98_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
-        private void StaticInitializer_99_DoubleToObjectConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter).TypeHandle);
-        private void StaticInitializer_100_DoubleToVisibilityConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter).TypeHandle);
+        private void StaticInitializer_29_DoubleToUsdCurrencyConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter).TypeHandle);
+        private void StaticInitializer_30_DoubleToPercentageConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.DoubleToPercentageConverter).TypeHandle);
+        private void StaticInitializer_31_InvoicePage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.InvoicePage).TypeHandle);
+        private void StaticInitializer_32_InvoiceViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.ViewModels.InvoiceViewModel).TypeHandle);
+        private void StaticInitializer_33_LoginViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.ViewModels.LoginViewModel).TypeHandle);
+        private void StaticInitializer_34_ICommand() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Windows.Input.ICommand).TypeHandle);
+        private void StaticInitializer_35_LoginPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.LoginPage).TypeHandle);
+        private void StaticInitializer_36_NavigationView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationView).TypeHandle);
+        private void StaticInitializer_38_NavigationViewBackButtonVisible() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible).TypeHandle);
+        private void StaticInitializer_39_NavigationViewPaneDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode).TypeHandle);
+        private void StaticInitializer_40_NavigationViewSelectionFollowsFocus() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus).TypeHandle);
+        private void StaticInitializer_41_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::System.Object>).TypeHandle);
+        private void StaticInitializer_44_NavigationViewDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode).TypeHandle);
+        private void StaticInitializer_48_NavigationViewOverflowLabelMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode).TypeHandle);
+        private void StaticInitializer_49_NavigationViewShoulderNavigationEnabled() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled).TypeHandle);
+        private void StaticInitializer_50_NavigationViewTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings).TypeHandle);
+        private void StaticInitializer_52_NavigationViewItem() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem).TypeHandle);
+        private void StaticInitializer_53_NavigationViewItemBase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase).TypeHandle);
+        private void StaticInitializer_55_InfoBadge() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge).TypeHandle);
+        private void StaticInitializer_56_MainPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.MainPage).TypeHandle);
+        private void StaticInitializer_57_DateTimeToStringConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.DateTimeToStringConverter).TypeHandle);
+        private void StaticInitializer_58_BoolToVisibleConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.BoolToVisibleConverter).TypeHandle);
+        private void StaticInitializer_59_SfComboBox() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.SfComboBox).TypeHandle);
+        private void StaticInitializer_60_DropDownListBase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.DropDownListBase).TypeHandle);
+        private void StaticInitializer_61_ComboBoxSelectionMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode).TypeHandle);
+        private void StaticInitializer_62_ComboBoxMultiSelectionDisplayMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode).TypeHandle);
+        private void StaticInitializer_63_ComboBoxSelectionChangeTrigger() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger).TypeHandle);
+        private void StaticInitializer_65_ComboBoxTextSearchMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode).TypeHandle);
+        private void StaticInitializer_66_IComboBoxFilterBehavior() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior).TypeHandle);
+        private void StaticInitializer_67_IComboBoxSearchBehavior() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior).TypeHandle);
+        private void StaticInitializer_68_ComboBoxTextHighlightMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode).TypeHandle);
+        private void StaticInitializer_69_ComboBoxAutoAppendType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType).TypeHandle);
+        private void StaticInitializer_71_IObservableVector() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.Foundation.Collections.IObservableVector<global::Microsoft.UI.Xaml.Controls.GroupStyle>).TypeHandle);
+        private void StaticInitializer_73_FontWeight() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontWeight).TypeHandle);
+        private void StaticInitializer_74_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::Windows.UI.Text.FontStyle>).TypeHandle);
+        private void StaticInitializer_75_FontStyle() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Text.FontStyle).TypeHandle);
+        private void StaticInitializer_76_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::System.Double>).TypeHandle);
+        private void StaticInitializer_78_OrderDetailPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.OrderDetailPage).TypeHandle);
+        private void StaticInitializer_79_OrderDetailViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.ViewModels.OrderDetailViewModel).TypeHandle);
+        private void StaticInitializer_80_OrderPageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.OrderPageViewModel).TypeHandle);
+        private void StaticInitializer_81_AlternationIndexToBackgroundConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter).TypeHandle);
+        private void StaticInitializer_82_DropDownButton() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton).TypeHandle);
+        private void StaticInitializer_83_OrderPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.OrderPage).TypeHandle);
+        private void StaticInitializer_84_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>).TypeHandle);
+        private void StaticInitializer_85_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Order>).TypeHandle);
+        private void StaticInitializer_86_Order() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.Order).TypeHandle);
+        private void StaticInitializer_87_FullObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>).TypeHandle);
+        private void StaticInitializer_88_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Coupon>).TypeHandle);
+        private void StaticInitializer_89_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Coupon>).TypeHandle);
+        private void StaticInitializer_90_Coupon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.Coupon).TypeHandle);
+        private void StaticInitializer_91_DateTime() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.DateTime).TypeHandle);
+        private void StaticInitializer_92_List() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>).TypeHandle);
+        private void StaticInitializer_93_OrderItem() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.OrderItem).TypeHandle);
+        private void StaticInitializer_94_Book() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Models.Book).TypeHandle);
+        private void StaticInitializer_95_ReadOnlyOrderDetailPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage).TypeHandle);
+        private void StaticInitializer_96_StockPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.StockPage).TypeHandle);
+        private void StaticInitializer_97_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>).TypeHandle);
+        private void StaticInitializer_98_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::Books_Store_Management_App.Models.Book>).TypeHandle);
+        private void StaticInitializer_99_StockPageViewModel() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Books_Store_Management_App.Views.StockPage.StockPageViewModel).TypeHandle);
+        private void StaticInitializer_100_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_101_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_102_DoubleToObjectConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter).TypeHandle);
+        private void StaticInitializer_103_DoubleToVisibilityConverter() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -590,67 +602,67 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_37_IList(object instance, object item)
+        private void VectorAdd_41_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::System.Object>)instance;
             var newItem = (global::System.Object)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_68_IObservableVector(object instance, object item)
+        private void VectorAdd_71_IObservableVector(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.GroupStyle>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.GroupStyle)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_81_ObservableCollection(object instance, object item)
+        private void VectorAdd_84_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Order>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Order)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_82_Collection(object instance, object item)
+        private void VectorAdd_85_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Order>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Order)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_84_FullObservableCollection(object instance, object item)
+        private void VectorAdd_87_FullObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Coupon>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Coupon)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_85_ObservableCollection(object instance, object item)
+        private void VectorAdd_88_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Coupon>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Coupon)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_86_Collection(object instance, object item)
+        private void VectorAdd_89_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Coupon>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Coupon)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_89_List(object instance, object item)
+        private void VectorAdd_92_List(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.OrderItem>)instance;
             var newItem = (global::Books_Store_Management_App.Models.OrderItem)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_94_ObservableCollection(object instance, object item)
+        private void VectorAdd_97_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Book>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Book)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_95_Collection(object instance, object item)
+        private void VectorAdd_98_Collection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Books_Store_Management_App.Models.Book>)instance;
             var newItem = (global::Books_Store_Management_App.Models.Book)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_98_IList(object instance, object item)
+        private void VectorAdd_101_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -861,10 +873,43 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 29:   //  Books_Store_Management_App.ViewModels.LoginViewModel
+            case 29:   //  Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_29_LoginViewModel;
-                userType.StaticInitializer = StaticInitializer_29_LoginViewModel;
+                userType.Activator = Activate_29_DoubleToUsdCurrencyConverter;
+                userType.StaticInitializer = StaticInitializer_29_DoubleToUsdCurrencyConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 30:   //  Books_Store_Management_App.Helpers.DoubleToPercentageConverter
+                userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_30_DoubleToPercentageConverter;
+                userType.StaticInitializer = StaticInitializer_30_DoubleToPercentageConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 31:   //  Books_Store_Management_App.Views.InvoicePage
+                userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_31_InvoicePage;
+                userType.StaticInitializer = StaticInitializer_31_InvoicePage;
+                userType.AddMemberName("ViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 32:   //  Books_Store_Management_App.ViewModels.InvoiceViewModel
+                userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_32_InvoiceViewModel;
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 33:   //  Books_Store_Management_App.ViewModels.LoginViewModel
+                userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_33_LoginViewModel;
+                userType.StaticInitializer = StaticInitializer_33_LoginViewModel;
                 userType.AddMemberName("Username");
                 userType.AddMemberName("Password");
                 userType.AddMemberName("IsPasswordSaved");
@@ -874,25 +919,25 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 30:   //  System.Windows.Input.ICommand
+            case 34:   //  System.Windows.Input.ICommand
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_30_ICommand;
+                userType.StaticInitializer = StaticInitializer_34_ICommand;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 31:   //  Books_Store_Management_App.Views.LoginPage
+            case 35:   //  Books_Store_Management_App.Views.LoginPage
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_31_LoginPage;
-                userType.StaticInitializer = StaticInitializer_31_LoginPage;
+                userType.Activator = Activate_35_LoginPage;
+                userType.StaticInitializer = StaticInitializer_35_LoginPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 32:   //  Microsoft.UI.Xaml.Controls.NavigationView
+            case 36:   //  Microsoft.UI.Xaml.Controls.NavigationView
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
-                userType.Activator = Activate_32_NavigationView;
-                userType.StaticInitializer = StaticInitializer_32_NavigationView;
+                userType.Activator = Activate_36_NavigationView;
+                userType.StaticInitializer = StaticInitializer_36_NavigationView;
                 userType.AddMemberName("IsBackButtonVisible");
                 userType.AddMemberName("IsSettingsVisible");
                 userType.AddMemberName("IsPaneOpen");
@@ -933,22 +978,22 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 33:   //  Microsoft.UI.Xaml.Controls.ContentControl
+            case 37:   //  Microsoft.UI.Xaml.Controls.ContentControl
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 34:   //  Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible
+            case 38:   //  Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_34_NavigationViewBackButtonVisible;
+                userType.StaticInitializer = StaticInitializer_38_NavigationViewBackButtonVisible;
                 userType.AddEnumValue("Collapsed", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed);
                 userType.AddEnumValue("Visible", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible);
                 userType.AddEnumValue("Auto", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Auto);
                 xamlType = userType;
                 break;
 
-            case 35:   //  Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode
+            case 39:   //  Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_35_NavigationViewPaneDisplayMode;
+                userType.StaticInitializer = StaticInitializer_39_NavigationViewPaneDisplayMode;
                 userType.AddEnumValue("Auto", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto);
                 userType.AddEnumValue("Left", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left);
                 userType.AddEnumValue("Top", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top);
@@ -957,83 +1002,83 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 36:   //  Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus
+            case 40:   //  Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_36_NavigationViewSelectionFollowsFocus;
+                userType.StaticInitializer = StaticInitializer_40_NavigationViewSelectionFollowsFocus;
                 userType.AddEnumValue("Disabled", global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Disabled);
                 userType.AddEnumValue("Enabled", global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Enabled);
                 xamlType = userType;
                 break;
 
-            case 37:   //  System.Collections.Generic.IList`1<Object>
+            case 41:   //  System.Collections.Generic.IList`1<Object>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_37_IList;
-                userType.CollectionAdd = VectorAdd_37_IList;
+                userType.StaticInitializer = StaticInitializer_41_IList;
+                userType.CollectionAdd = VectorAdd_41_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 38:   //  Microsoft.UI.Xaml.Controls.AutoSuggestBox
+            case 42:   //  Microsoft.UI.Xaml.Controls.AutoSuggestBox
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 39:   //  Microsoft.UI.Xaml.UIElement
+            case 43:   //  Microsoft.UI.Xaml.UIElement
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 40:   //  Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode
+            case 44:   //  Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_40_NavigationViewDisplayMode;
+                userType.StaticInitializer = StaticInitializer_44_NavigationViewDisplayMode;
                 userType.AddEnumValue("Minimal", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal);
                 userType.AddEnumValue("Compact", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Compact);
                 userType.AddEnumValue("Expanded", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded);
                 xamlType = userType;
                 break;
 
-            case 41:   //  Microsoft.UI.Xaml.Style
+            case 45:   //  Microsoft.UI.Xaml.Style
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 42:   //  Microsoft.UI.Xaml.Controls.StyleSelector
+            case 46:   //  Microsoft.UI.Xaml.Controls.StyleSelector
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 43:   //  Microsoft.UI.Xaml.Controls.DataTemplateSelector
+            case 47:   //  Microsoft.UI.Xaml.Controls.DataTemplateSelector
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 44:   //  Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode
+            case 48:   //  Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_44_NavigationViewOverflowLabelMode;
+                userType.StaticInitializer = StaticInitializer_48_NavigationViewOverflowLabelMode;
                 userType.AddEnumValue("MoreLabel", global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode.MoreLabel);
                 userType.AddEnumValue("NoLabel", global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode.NoLabel);
                 xamlType = userType;
                 break;
 
-            case 45:   //  Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled
+            case 49:   //  Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_45_NavigationViewShoulderNavigationEnabled;
+                userType.StaticInitializer = StaticInitializer_49_NavigationViewShoulderNavigationEnabled;
                 userType.AddEnumValue("WhenSelectionFollowsFocus", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.WhenSelectionFollowsFocus);
                 userType.AddEnumValue("Always", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.Always);
                 userType.AddEnumValue("Never", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.Never);
                 xamlType = userType;
                 break;
 
-            case 46:   //  Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings
+            case 50:   //  Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.StaticInitializer = StaticInitializer_46_NavigationViewTemplateSettings;
+                userType.StaticInitializer = StaticInitializer_50_NavigationViewTemplateSettings;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 47:   //  Microsoft.UI.Xaml.DependencyObject
+            case 51:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 48:   //  Microsoft.UI.Xaml.Controls.NavigationViewItem
+            case 52:   //  Microsoft.UI.Xaml.Controls.NavigationViewItem
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItemBase"));
-                userType.Activator = Activate_48_NavigationViewItem;
-                userType.StaticInitializer = StaticInitializer_48_NavigationViewItem;
+                userType.Activator = Activate_52_NavigationViewItem;
+                userType.StaticInitializer = StaticInitializer_52_NavigationViewItem;
                 userType.AddMemberName("Icon");
                 userType.AddMemberName("CompactPaneLength");
                 userType.AddMemberName("HasUnrealizedChildren");
@@ -1046,60 +1091,52 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 49:   //  Microsoft.UI.Xaml.Controls.NavigationViewItemBase
+            case 53:   //  Microsoft.UI.Xaml.Controls.NavigationViewItemBase
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
-                userType.StaticInitializer = StaticInitializer_49_NavigationViewItemBase;
+                userType.StaticInitializer = StaticInitializer_53_NavigationViewItemBase;
                 userType.AddMemberName("IsSelected");
                 xamlType = userType;
                 break;
 
-            case 50:   //  Microsoft.UI.Xaml.Controls.IconElement
+            case 54:   //  Microsoft.UI.Xaml.Controls.IconElement
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 51:   //  Microsoft.UI.Xaml.Controls.InfoBadge
+            case 55:   //  Microsoft.UI.Xaml.Controls.InfoBadge
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.StaticInitializer = StaticInitializer_51_InfoBadge;
+                userType.StaticInitializer = StaticInitializer_55_InfoBadge;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 52:   //  Books_Store_Management_App.Views.MainPage
+            case 56:   //  Books_Store_Management_App.Views.MainPage
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_52_MainPage;
-                userType.StaticInitializer = StaticInitializer_52_MainPage;
+                userType.Activator = Activate_56_MainPage;
+                userType.StaticInitializer = StaticInitializer_56_MainPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 53:   //  Books_Store_Management_App.Helpers.DateTimeToStringConverter
+            case 57:   //  Books_Store_Management_App.Helpers.DateTimeToStringConverter
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_53_DateTimeToStringConverter;
-                userType.StaticInitializer = StaticInitializer_53_DateTimeToStringConverter;
+                userType.Activator = Activate_57_DateTimeToStringConverter;
+                userType.StaticInitializer = StaticInitializer_57_DateTimeToStringConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 54:   //  Books_Store_Management_App.Helpers.BoolToVisibleConverter
+            case 58:   //  Books_Store_Management_App.Helpers.BoolToVisibleConverter
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_54_BoolToVisibleConverter;
-                userType.StaticInitializer = StaticInitializer_54_BoolToVisibleConverter;
+                userType.Activator = Activate_58_BoolToVisibleConverter;
+                userType.StaticInitializer = StaticInitializer_58_BoolToVisibleConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 55:   //  Books_Store_Management_App.Helpers.DoubleToUsdCurrencyConverter
-                userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_55_DoubleToUsdCurrencyConverter;
-                userType.StaticInitializer = StaticInitializer_55_DoubleToUsdCurrencyConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 56:   //  Syncfusion.UI.Xaml.Editors.SfComboBox
+            case 59:   //  Syncfusion.UI.Xaml.Editors.SfComboBox
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase"));
-                userType.Activator = Activate_56_SfComboBox;
-                userType.StaticInitializer = StaticInitializer_56_SfComboBox;
+                userType.Activator = Activate_59_SfComboBox;
+                userType.StaticInitializer = StaticInitializer_59_SfComboBox;
                 userType.SetContentPropertyName("Syncfusion.UI.Xaml.Editors.SfComboBox.Items");
                 userType.AddMemberName("Items");
                 userType.AddMemberName("SelectionMode");
@@ -1122,9 +1159,9 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 57:   //  Syncfusion.UI.Xaml.Editors.DropDownListBase
+            case 60:   //  Syncfusion.UI.Xaml.Editors.DropDownListBase
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.StaticInitializer = StaticInitializer_57_DropDownListBase;
+                userType.StaticInitializer = StaticInitializer_60_DropDownListBase;
                 userType.AddMemberName("ItemsSource");
                 userType.AddMemberName("SelectedItem");
                 userType.AddMemberName("Text");
@@ -1161,172 +1198,172 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 58:   //  Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode
+            case 61:   //  Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_58_ComboBoxSelectionMode;
+                userType.StaticInitializer = StaticInitializer_61_ComboBoxSelectionMode;
                 userType.AddEnumValue("Single", global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode.Single);
                 userType.AddEnumValue("Multiple", global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode.Multiple);
                 xamlType = userType;
                 break;
 
-            case 59:   //  Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode
+            case 62:   //  Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_59_ComboBoxMultiSelectionDisplayMode;
+                userType.StaticInitializer = StaticInitializer_62_ComboBoxMultiSelectionDisplayMode;
                 userType.AddEnumValue("Delimiter", global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode.Delimiter);
                 userType.AddEnumValue("Token", global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode.Token);
                 xamlType = userType;
                 break;
 
-            case 60:   //  Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger
+            case 63:   //  Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_60_ComboBoxSelectionChangeTrigger;
+                userType.StaticInitializer = StaticInitializer_63_ComboBoxSelectionChangeTrigger;
                 userType.AddEnumValue("Committed", global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger.Committed);
                 userType.AddEnumValue("Always", global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger.Always);
                 xamlType = userType;
                 break;
 
-            case 61:   //  Int32
+            case 64:   //  Int32
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 62:   //  Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode
+            case 65:   //  Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_62_ComboBoxTextSearchMode;
+                userType.StaticInitializer = StaticInitializer_65_ComboBoxTextSearchMode;
                 userType.AddEnumValue("StartsWith", global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode.StartsWith);
                 userType.AddEnumValue("Contains", global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode.Contains);
                 xamlType = userType;
                 break;
 
-            case 63:   //  Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior
+            case 66:   //  Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_63_IComboBoxFilterBehavior;
+                userType.StaticInitializer = StaticInitializer_66_IComboBoxFilterBehavior;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 64:   //  Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior
+            case 67:   //  Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_64_IComboBoxSearchBehavior;
+                userType.StaticInitializer = StaticInitializer_67_IComboBoxSearchBehavior;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 65:   //  Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode
+            case 68:   //  Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_65_ComboBoxTextHighlightMode;
+                userType.StaticInitializer = StaticInitializer_68_ComboBoxTextHighlightMode;
                 userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode.None);
                 userType.AddEnumValue("Matched", global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode.Matched);
                 userType.AddEnumValue("Unmatched", global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode.Unmatched);
                 xamlType = userType;
                 break;
 
-            case 66:   //  Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType
+            case 69:   //  Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_66_ComboBoxAutoAppendType;
+                userType.StaticInitializer = StaticInitializer_69_ComboBoxAutoAppendType;
                 userType.AddEnumValue("TextWithSelection", global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType.TextWithSelection);
                 userType.AddEnumValue("Text", global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType.Text);
                 xamlType = userType;
                 break;
 
-            case 67:   //  Microsoft.UI.Xaml.Media.Brush
+            case 70:   //  Microsoft.UI.Xaml.Media.Brush
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 68:   //  Windows.Foundation.Collections.IObservableVector`1<Microsoft.UI.Xaml.Controls.GroupStyle>
+            case 71:   //  Windows.Foundation.Collections.IObservableVector`1<Microsoft.UI.Xaml.Controls.GroupStyle>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_68_IObservableVector;
-                userType.CollectionAdd = VectorAdd_68_IObservableVector;
+                userType.StaticInitializer = StaticInitializer_71_IObservableVector;
+                userType.CollectionAdd = VectorAdd_71_IObservableVector;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 69:   //  Microsoft.UI.Xaml.Controls.GroupStyle
+            case 72:   //  Microsoft.UI.Xaml.Controls.GroupStyle
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 70:   //  Windows.UI.Text.FontWeight
+            case 73:   //  Windows.UI.Text.FontWeight
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_70_FontWeight;
+                userType.StaticInitializer = StaticInitializer_73_FontWeight;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 71:   //  System.Nullable`1<Windows.UI.Text.FontStyle>
+            case 74:   //  System.Nullable`1<Windows.UI.Text.FontStyle>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetBoxedType(GetXamlTypeByName("Windows.UI.Text.FontStyle"));
                 userType.BoxInstance = userType.BoxType<global::Windows.UI.Text.FontStyle>;
-                userType.StaticInitializer = StaticInitializer_71_Nullable;
+                userType.StaticInitializer = StaticInitializer_74_Nullable;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 72:   //  Windows.UI.Text.FontStyle
+            case 75:   //  Windows.UI.Text.FontStyle
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_72_FontStyle;
+                userType.StaticInitializer = StaticInitializer_75_FontStyle;
                 userType.AddEnumValue("Normal", global::Windows.UI.Text.FontStyle.Normal);
                 userType.AddEnumValue("Oblique", global::Windows.UI.Text.FontStyle.Oblique);
                 userType.AddEnumValue("Italic", global::Windows.UI.Text.FontStyle.Italic);
                 xamlType = userType;
                 break;
 
-            case 73:   //  System.Nullable`1<Double>
+            case 76:   //  System.Nullable`1<Double>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetBoxedType(GetXamlTypeByName("Double"));
                 userType.BoxInstance = userType.BoxType<global::System.Double>;
-                userType.StaticInitializer = StaticInitializer_73_Nullable;
+                userType.StaticInitializer = StaticInitializer_76_Nullable;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 74:   //  Microsoft.UI.Xaml.Controls.TextBlock
+            case 77:   //  Microsoft.UI.Xaml.Controls.TextBlock
                 xamlType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 75:   //  Books_Store_Management_App.Views.OrderDetailPage
+            case 78:   //  Books_Store_Management_App.Views.OrderDetailPage
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_75_OrderDetailPage;
-                userType.StaticInitializer = StaticInitializer_75_OrderDetailPage;
+                userType.Activator = Activate_78_OrderDetailPage;
+                userType.StaticInitializer = StaticInitializer_78_OrderDetailPage;
                 userType.AddMemberName("ViewModel");
                 userType.AddMemberName("OrderViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 76:   //  Books_Store_Management_App.ViewModels.OrderDetailViewModel
+            case 79:   //  Books_Store_Management_App.ViewModels.OrderDetailViewModel
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_76_OrderDetailViewModel;
+                userType.StaticInitializer = StaticInitializer_79_OrderDetailViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 77:   //  Books_Store_Management_App.OrderPageViewModel
+            case 80:   //  Books_Store_Management_App.OrderPageViewModel
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_77_OrderPageViewModel;
+                userType.StaticInitializer = StaticInitializer_80_OrderPageViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 78:   //  Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter
+            case 81:   //  Books_Store_Management_App.Views.AlternationIndexToBackgroundConverter
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_78_AlternationIndexToBackgroundConverter;
-                userType.StaticInitializer = StaticInitializer_78_AlternationIndexToBackgroundConverter;
+                userType.Activator = Activate_81_AlternationIndexToBackgroundConverter;
+                userType.StaticInitializer = StaticInitializer_81_AlternationIndexToBackgroundConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 79:   //  Microsoft.UI.Xaml.Controls.DropDownButton
+            case 82:   //  Microsoft.UI.Xaml.Controls.DropDownButton
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Button"));
-                userType.Activator = Activate_79_DropDownButton;
-                userType.StaticInitializer = StaticInitializer_79_DropDownButton;
+                userType.Activator = Activate_82_DropDownButton;
+                userType.StaticInitializer = StaticInitializer_82_DropDownButton;
                 xamlType = userType;
                 break;
 
-            case 80:   //  Books_Store_Management_App.Views.OrderPage
+            case 83:   //  Books_Store_Management_App.Views.OrderPage
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_80_OrderPage;
-                userType.StaticInitializer = StaticInitializer_80_OrderPage;
+                userType.Activator = Activate_83_OrderPage;
+                userType.StaticInitializer = StaticInitializer_83_OrderPage;
                 userType.AddMemberName("AllOrdersDisplay");
                 userType.AddMemberName("DisplayedOrders");
                 userType.AddMemberName("ViewModel");
@@ -1334,26 +1371,26 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 81:   //  System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Order>
+            case 84:   //  System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Order>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Order>"));
-                userType.StaticInitializer = StaticInitializer_81_ObservableCollection;
-                userType.CollectionAdd = VectorAdd_81_ObservableCollection;
+                userType.StaticInitializer = StaticInitializer_84_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_84_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 82:   //  System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Order>
+            case 85:   //  System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Order>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_82_Collection;
-                userType.StaticInitializer = StaticInitializer_82_Collection;
-                userType.CollectionAdd = VectorAdd_82_Collection;
+                userType.Activator = Activate_85_Collection;
+                userType.StaticInitializer = StaticInitializer_85_Collection;
+                userType.CollectionAdd = VectorAdd_85_Collection;
                 xamlType = userType;
                 break;
 
-            case 83:   //  Books_Store_Management_App.Models.Order
+            case 86:   //  Books_Store_Management_App.Models.Order
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_83_Order;
-                userType.StaticInitializer = StaticInitializer_83_Order;
+                userType.Activator = Activate_86_Order;
+                userType.StaticInitializer = StaticInitializer_86_Order;
                 userType.AddMemberName("ID");
                 userType.AddMemberName("Customer");
                 userType.AddMemberName("Date");
@@ -1369,35 +1406,35 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 84:   //  Books_Store_Management_App.Helpers.FullObservableCollection`1<Books_Store_Management_App.Models.Coupon>
+            case 87:   //  Books_Store_Management_App.Helpers.FullObservableCollection`1<Books_Store_Management_App.Models.Coupon>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Coupon>"));
-                userType.StaticInitializer = StaticInitializer_84_FullObservableCollection;
-                userType.CollectionAdd = VectorAdd_84_FullObservableCollection;
+                userType.StaticInitializer = StaticInitializer_87_FullObservableCollection;
+                userType.CollectionAdd = VectorAdd_87_FullObservableCollection;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 85:   //  System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Coupon>
+            case 88:   //  System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Coupon>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Coupon>"));
-                userType.Activator = Activate_85_ObservableCollection;
-                userType.StaticInitializer = StaticInitializer_85_ObservableCollection;
-                userType.CollectionAdd = VectorAdd_85_ObservableCollection;
+                userType.Activator = Activate_88_ObservableCollection;
+                userType.StaticInitializer = StaticInitializer_88_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_88_ObservableCollection;
                 xamlType = userType;
                 break;
 
-            case 86:   //  System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Coupon>
+            case 89:   //  System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Coupon>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_86_Collection;
-                userType.StaticInitializer = StaticInitializer_86_Collection;
-                userType.CollectionAdd = VectorAdd_86_Collection;
+                userType.Activator = Activate_89_Collection;
+                userType.StaticInitializer = StaticInitializer_89_Collection;
+                userType.CollectionAdd = VectorAdd_89_Collection;
                 xamlType = userType;
                 break;
 
-            case 87:   //  Books_Store_Management_App.Models.Coupon
+            case 90:   //  Books_Store_Management_App.Models.Coupon
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_87_Coupon;
-                userType.StaticInitializer = StaticInitializer_87_Coupon;
+                userType.Activator = Activate_90_Coupon;
+                userType.StaticInitializer = StaticInitializer_90_Coupon;
                 userType.AddMemberName("Id");
                 userType.AddMemberName("Name");
                 userType.AddMemberName("Discount");
@@ -1406,25 +1443,25 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 88:   //  System.DateTime
+            case 91:   //  System.DateTime
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_88_DateTime;
+                userType.StaticInitializer = StaticInitializer_91_DateTime;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 89:   //  System.Collections.Generic.List`1<Books_Store_Management_App.Models.OrderItem>
+            case 92:   //  System.Collections.Generic.List`1<Books_Store_Management_App.Models.OrderItem>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_89_List;
-                userType.CollectionAdd = VectorAdd_89_List;
+                userType.StaticInitializer = StaticInitializer_92_List;
+                userType.CollectionAdd = VectorAdd_92_List;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 90:   //  Books_Store_Management_App.Models.OrderItem
+            case 93:   //  Books_Store_Management_App.Models.OrderItem
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_90_OrderItem;
-                userType.StaticInitializer = StaticInitializer_90_OrderItem;
+                userType.Activator = Activate_93_OrderItem;
+                userType.StaticInitializer = StaticInitializer_93_OrderItem;
                 userType.AddMemberName("Id");
                 userType.AddMemberName("Book");
                 userType.AddMemberName("Quantity");
@@ -1433,10 +1470,10 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 91:   //  Books_Store_Management_App.Models.Book
+            case 94:   //  Books_Store_Management_App.Models.Book
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_91_Book;
-                userType.StaticInitializer = StaticInitializer_91_Book;
+                userType.Activator = Activate_94_Book;
+                userType.StaticInitializer = StaticInitializer_94_Book;
                 userType.AddMemberName("ImageSource");
                 userType.AddMemberName("Title");
                 userType.AddMemberName("Publisher");
@@ -1454,20 +1491,20 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 92:   //  Books_Store_Management_App.Views.ReadOnlyOrderDetailPage
+            case 95:   //  Books_Store_Management_App.Views.ReadOnlyOrderDetailPage
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_92_ReadOnlyOrderDetailPage;
-                userType.StaticInitializer = StaticInitializer_92_ReadOnlyOrderDetailPage;
+                userType.Activator = Activate_95_ReadOnlyOrderDetailPage;
+                userType.StaticInitializer = StaticInitializer_95_ReadOnlyOrderDetailPage;
                 userType.AddMemberName("ViewModel");
                 userType.AddMemberName("OrderViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 93:   //  Books_Store_Management_App.Views.StockPage
+            case 96:   //  Books_Store_Management_App.Views.StockPage
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_93_StockPage;
-                userType.StaticInitializer = StaticInitializer_93_StockPage;
+                userType.Activator = Activate_96_StockPage;
+                userType.StaticInitializer = StaticInitializer_96_StockPage;
                 userType.AddMemberName("AllBooksDisplay");
                 userType.AddMemberName("DisplayedBooks");
                 userType.AddMemberName("ViewModel");
@@ -1475,34 +1512,34 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 94:   //  System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Book>
+            case 97:   //  System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Book>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Book>"));
-                userType.StaticInitializer = StaticInitializer_94_ObservableCollection;
-                userType.CollectionAdd = VectorAdd_94_ObservableCollection;
+                userType.StaticInitializer = StaticInitializer_97_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_97_ObservableCollection;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 95:   //  System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Book>
+            case 98:   //  System.Collections.ObjectModel.Collection`1<Books_Store_Management_App.Models.Book>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_95_Collection;
-                userType.StaticInitializer = StaticInitializer_95_Collection;
-                userType.CollectionAdd = VectorAdd_95_Collection;
+                userType.Activator = Activate_98_Collection;
+                userType.StaticInitializer = StaticInitializer_98_Collection;
+                userType.CollectionAdd = VectorAdd_98_Collection;
                 xamlType = userType;
                 break;
 
-            case 96:   //  Books_Store_Management_App.Views.StockPage.StockPageViewModel
+            case 99:   //  Books_Store_Management_App.Views.StockPage.StockPageViewModel
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_96_StockPageViewModel;
+                userType.StaticInitializer = StaticInitializer_99_StockPageViewModel;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 97:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 100:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_97_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_97_TreeViewNode;
+                userType.Activator = Activate_100_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_100_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -1514,18 +1551,18 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 98:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 101:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_98_IList;
-                userType.CollectionAdd = VectorAdd_98_IList;
+                userType.StaticInitializer = StaticInitializer_101_IList;
+                userType.CollectionAdd = VectorAdd_101_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 99:   //  Syncfusion.UI.Xaml.Core.DoubleToObjectConverter
+            case 102:   //  Syncfusion.UI.Xaml.Core.DoubleToObjectConverter
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_99_DoubleToObjectConverter;
-                userType.StaticInitializer = StaticInitializer_99_DoubleToObjectConverter;
+                userType.Activator = Activate_102_DoubleToObjectConverter;
+                userType.StaticInitializer = StaticInitializer_102_DoubleToObjectConverter;
                 userType.AddMemberName("TrueValue");
                 userType.AddMemberName("FalseValue");
                 userType.AddMemberName("NullValue");
@@ -1535,10 +1572,10 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 100:   //  Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter
+            case 103:   //  Syncfusion.UI.Xaml.Core.DoubleToVisibilityConverter
                 userType = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Core.DoubleToObjectConverter"));
-                userType.Activator = Activate_100_DoubleToVisibilityConverter;
-                userType.StaticInitializer = StaticInitializer_100_DoubleToVisibilityConverter;
+                userType.Activator = Activate_103_DoubleToVisibilityConverter;
+                userType.StaticInitializer = StaticInitializer_103_DoubleToVisibilityConverter;
                 userType.SetIsBindable();
                 xamlType = userType;
                 break;
@@ -1835,1462 +1872,1472 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
             var that = (global::Books_Store_Management_App.Views.DashboardPage)instance;
             that.ViewModel = (global::Books_Store_Management_App.Views.DashboardPage.DashboardViewModel)Value;
         }
-        private object get_23_LoginViewModel_Username(object instance)
+        private object get_23_InvoicePage_ViewModel(object instance)
+        {
+            var that = (global::Books_Store_Management_App.Views.InvoicePage)instance;
+            return that.ViewModel;
+        }
+        private void set_23_InvoicePage_ViewModel(object instance, object Value)
+        {
+            var that = (global::Books_Store_Management_App.Views.InvoicePage)instance;
+            that.ViewModel = (global::Books_Store_Management_App.ViewModels.InvoiceViewModel)Value;
+        }
+        private object get_24_LoginViewModel_Username(object instance)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             return that.Username;
         }
-        private void set_23_LoginViewModel_Username(object instance, object Value)
+        private void set_24_LoginViewModel_Username(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             that.Username = (global::System.String)Value;
         }
-        private object get_24_LoginViewModel_Password(object instance)
+        private object get_25_LoginViewModel_Password(object instance)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             return that.Password;
         }
-        private void set_24_LoginViewModel_Password(object instance, object Value)
+        private void set_25_LoginViewModel_Password(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             that.Password = (global::System.String)Value;
         }
-        private object get_25_LoginViewModel_IsPasswordSaved(object instance)
+        private object get_26_LoginViewModel_IsPasswordSaved(object instance)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             return that.IsPasswordSaved;
         }
-        private void set_25_LoginViewModel_IsPasswordSaved(object instance, object Value)
+        private void set_26_LoginViewModel_IsPasswordSaved(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             that.IsPasswordSaved = (global::System.Boolean)Value;
         }
-        private object get_26_LoginViewModel_LoginCommand(object instance)
+        private object get_27_LoginViewModel_LoginCommand(object instance)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             return that.LoginCommand;
         }
-        private object get_27_LoginViewModel_SignupCommand(object instance)
+        private object get_28_LoginViewModel_SignupCommand(object instance)
         {
             var that = (global::Books_Store_Management_App.ViewModels.LoginViewModel)instance;
             return that.SignupCommand;
         }
-        private object get_28_NavigationView_IsBackButtonVisible(object instance)
+        private object get_29_NavigationView_IsBackButtonVisible(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsBackButtonVisible;
         }
-        private void set_28_NavigationView_IsBackButtonVisible(object instance, object Value)
+        private void set_29_NavigationView_IsBackButtonVisible(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsBackButtonVisible = (global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible)Value;
         }
-        private object get_29_NavigationView_IsSettingsVisible(object instance)
+        private object get_30_NavigationView_IsSettingsVisible(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsSettingsVisible;
         }
-        private void set_29_NavigationView_IsSettingsVisible(object instance, object Value)
+        private void set_30_NavigationView_IsSettingsVisible(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsSettingsVisible = (global::System.Boolean)Value;
         }
-        private object get_30_NavigationView_IsPaneOpen(object instance)
+        private object get_31_NavigationView_IsPaneOpen(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsPaneOpen;
         }
-        private void set_30_NavigationView_IsPaneOpen(object instance, object Value)
+        private void set_31_NavigationView_IsPaneOpen(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsPaneOpen = (global::System.Boolean)Value;
         }
-        private object get_31_NavigationView_PaneDisplayMode(object instance)
+        private object get_32_NavigationView_PaneDisplayMode(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.PaneDisplayMode;
         }
-        private void set_31_NavigationView_PaneDisplayMode(object instance, object Value)
+        private void set_32_NavigationView_PaneDisplayMode(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.PaneDisplayMode = (global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode)Value;
         }
-        private object get_32_NavigationView_PaneTitle(object instance)
+        private object get_33_NavigationView_PaneTitle(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.PaneTitle;
         }
-        private void set_32_NavigationView_PaneTitle(object instance, object Value)
+        private void set_33_NavigationView_PaneTitle(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.PaneTitle = (global::System.String)Value;
         }
-        private object get_33_NavigationView_SelectionFollowsFocus(object instance)
+        private object get_34_NavigationView_SelectionFollowsFocus(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.SelectionFollowsFocus;
         }
-        private void set_33_NavigationView_SelectionFollowsFocus(object instance, object Value)
+        private void set_34_NavigationView_SelectionFollowsFocus(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.SelectionFollowsFocus = (global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus)Value;
         }
-        private object get_34_NavigationView_MenuItems(object instance)
+        private object get_35_NavigationView_MenuItems(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.MenuItems;
         }
-        private object get_35_NavigationView_AlwaysShowHeader(object instance)
+        private object get_36_NavigationView_AlwaysShowHeader(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.AlwaysShowHeader;
         }
-        private void set_35_NavigationView_AlwaysShowHeader(object instance, object Value)
+        private void set_36_NavigationView_AlwaysShowHeader(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.AlwaysShowHeader = (global::System.Boolean)Value;
         }
-        private object get_36_NavigationView_AutoSuggestBox(object instance)
+        private object get_37_NavigationView_AutoSuggestBox(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.AutoSuggestBox;
         }
-        private void set_36_NavigationView_AutoSuggestBox(object instance, object Value)
+        private void set_37_NavigationView_AutoSuggestBox(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.AutoSuggestBox = (global::Microsoft.UI.Xaml.Controls.AutoSuggestBox)Value;
         }
-        private object get_37_NavigationView_CompactModeThresholdWidth(object instance)
+        private object get_38_NavigationView_CompactModeThresholdWidth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.CompactModeThresholdWidth;
         }
-        private void set_37_NavigationView_CompactModeThresholdWidth(object instance, object Value)
+        private void set_38_NavigationView_CompactModeThresholdWidth(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.CompactModeThresholdWidth = (global::System.Double)Value;
         }
-        private object get_38_NavigationView_CompactPaneLength(object instance)
+        private object get_39_NavigationView_CompactPaneLength(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.CompactPaneLength;
         }
-        private void set_38_NavigationView_CompactPaneLength(object instance, object Value)
+        private void set_39_NavigationView_CompactPaneLength(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.CompactPaneLength = (global::System.Double)Value;
         }
-        private object get_39_NavigationView_ContentOverlay(object instance)
+        private object get_40_NavigationView_ContentOverlay(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.ContentOverlay;
         }
-        private void set_39_NavigationView_ContentOverlay(object instance, object Value)
+        private void set_40_NavigationView_ContentOverlay(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.ContentOverlay = (global::Microsoft.UI.Xaml.UIElement)Value;
         }
-        private object get_40_NavigationView_DisplayMode(object instance)
+        private object get_41_NavigationView_DisplayMode(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.DisplayMode;
         }
-        private object get_41_NavigationView_ExpandedModeThresholdWidth(object instance)
+        private object get_42_NavigationView_ExpandedModeThresholdWidth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.ExpandedModeThresholdWidth;
         }
-        private void set_41_NavigationView_ExpandedModeThresholdWidth(object instance, object Value)
+        private void set_42_NavigationView_ExpandedModeThresholdWidth(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.ExpandedModeThresholdWidth = (global::System.Double)Value;
         }
-        private object get_42_NavigationView_FooterMenuItems(object instance)
+        private object get_43_NavigationView_FooterMenuItems(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.FooterMenuItems;
         }
-        private object get_43_NavigationView_FooterMenuItemsSource(object instance)
+        private object get_44_NavigationView_FooterMenuItemsSource(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.FooterMenuItemsSource;
         }
-        private void set_43_NavigationView_FooterMenuItemsSource(object instance, object Value)
+        private void set_44_NavigationView_FooterMenuItemsSource(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.FooterMenuItemsSource = (global::System.Object)Value;
         }
-        private object get_44_NavigationView_Header(object instance)
+        private object get_45_NavigationView_Header(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.Header;
         }
-        private void set_44_NavigationView_Header(object instance, object Value)
+        private void set_45_NavigationView_Header(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.Header = (global::System.Object)Value;
         }
-        private object get_45_NavigationView_HeaderTemplate(object instance)
+        private object get_46_NavigationView_HeaderTemplate(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.HeaderTemplate;
         }
-        private void set_45_NavigationView_HeaderTemplate(object instance, object Value)
+        private void set_46_NavigationView_HeaderTemplate(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.HeaderTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_46_NavigationView_IsBackEnabled(object instance)
+        private object get_47_NavigationView_IsBackEnabled(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsBackEnabled;
         }
-        private void set_46_NavigationView_IsBackEnabled(object instance, object Value)
+        private void set_47_NavigationView_IsBackEnabled(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsBackEnabled = (global::System.Boolean)Value;
         }
-        private object get_47_NavigationView_IsPaneToggleButtonVisible(object instance)
+        private object get_48_NavigationView_IsPaneToggleButtonVisible(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsPaneToggleButtonVisible;
         }
-        private void set_47_NavigationView_IsPaneToggleButtonVisible(object instance, object Value)
+        private void set_48_NavigationView_IsPaneToggleButtonVisible(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsPaneToggleButtonVisible = (global::System.Boolean)Value;
         }
-        private object get_48_NavigationView_IsPaneVisible(object instance)
+        private object get_49_NavigationView_IsPaneVisible(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsPaneVisible;
         }
-        private void set_48_NavigationView_IsPaneVisible(object instance, object Value)
+        private void set_49_NavigationView_IsPaneVisible(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsPaneVisible = (global::System.Boolean)Value;
         }
-        private object get_49_NavigationView_IsTitleBarAutoPaddingEnabled(object instance)
+        private object get_50_NavigationView_IsTitleBarAutoPaddingEnabled(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.IsTitleBarAutoPaddingEnabled;
         }
-        private void set_49_NavigationView_IsTitleBarAutoPaddingEnabled(object instance, object Value)
+        private void set_50_NavigationView_IsTitleBarAutoPaddingEnabled(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.IsTitleBarAutoPaddingEnabled = (global::System.Boolean)Value;
         }
-        private object get_50_NavigationView_MenuItemContainerStyle(object instance)
+        private object get_51_NavigationView_MenuItemContainerStyle(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.MenuItemContainerStyle;
         }
-        private void set_50_NavigationView_MenuItemContainerStyle(object instance, object Value)
+        private void set_51_NavigationView_MenuItemContainerStyle(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.MenuItemContainerStyle = (global::Microsoft.UI.Xaml.Style)Value;
         }
-        private object get_51_NavigationView_MenuItemContainerStyleSelector(object instance)
+        private object get_52_NavigationView_MenuItemContainerStyleSelector(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.MenuItemContainerStyleSelector;
         }
-        private void set_51_NavigationView_MenuItemContainerStyleSelector(object instance, object Value)
+        private void set_52_NavigationView_MenuItemContainerStyleSelector(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.MenuItemContainerStyleSelector = (global::Microsoft.UI.Xaml.Controls.StyleSelector)Value;
         }
-        private object get_52_NavigationView_MenuItemTemplate(object instance)
+        private object get_53_NavigationView_MenuItemTemplate(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.MenuItemTemplate;
         }
-        private void set_52_NavigationView_MenuItemTemplate(object instance, object Value)
+        private void set_53_NavigationView_MenuItemTemplate(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.MenuItemTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_53_NavigationView_MenuItemTemplateSelector(object instance)
+        private object get_54_NavigationView_MenuItemTemplateSelector(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.MenuItemTemplateSelector;
         }
-        private void set_53_NavigationView_MenuItemTemplateSelector(object instance, object Value)
+        private void set_54_NavigationView_MenuItemTemplateSelector(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.MenuItemTemplateSelector = (global::Microsoft.UI.Xaml.Controls.DataTemplateSelector)Value;
         }
-        private object get_54_NavigationView_MenuItemsSource(object instance)
+        private object get_55_NavigationView_MenuItemsSource(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.MenuItemsSource;
         }
-        private void set_54_NavigationView_MenuItemsSource(object instance, object Value)
+        private void set_55_NavigationView_MenuItemsSource(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.MenuItemsSource = (global::System.Object)Value;
         }
-        private object get_55_NavigationView_OpenPaneLength(object instance)
+        private object get_56_NavigationView_OpenPaneLength(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.OpenPaneLength;
         }
-        private void set_55_NavigationView_OpenPaneLength(object instance, object Value)
+        private void set_56_NavigationView_OpenPaneLength(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.OpenPaneLength = (global::System.Double)Value;
         }
-        private object get_56_NavigationView_OverflowLabelMode(object instance)
+        private object get_57_NavigationView_OverflowLabelMode(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.OverflowLabelMode;
         }
-        private void set_56_NavigationView_OverflowLabelMode(object instance, object Value)
+        private void set_57_NavigationView_OverflowLabelMode(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.OverflowLabelMode = (global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode)Value;
         }
-        private object get_57_NavigationView_PaneCustomContent(object instance)
+        private object get_58_NavigationView_PaneCustomContent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.PaneCustomContent;
         }
-        private void set_57_NavigationView_PaneCustomContent(object instance, object Value)
+        private void set_58_NavigationView_PaneCustomContent(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.PaneCustomContent = (global::Microsoft.UI.Xaml.UIElement)Value;
         }
-        private object get_58_NavigationView_PaneFooter(object instance)
+        private object get_59_NavigationView_PaneFooter(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.PaneFooter;
         }
-        private void set_58_NavigationView_PaneFooter(object instance, object Value)
+        private void set_59_NavigationView_PaneFooter(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.PaneFooter = (global::Microsoft.UI.Xaml.UIElement)Value;
         }
-        private object get_59_NavigationView_PaneHeader(object instance)
+        private object get_60_NavigationView_PaneHeader(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.PaneHeader;
         }
-        private void set_59_NavigationView_PaneHeader(object instance, object Value)
+        private void set_60_NavigationView_PaneHeader(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.PaneHeader = (global::Microsoft.UI.Xaml.UIElement)Value;
         }
-        private object get_60_NavigationView_PaneToggleButtonStyle(object instance)
+        private object get_61_NavigationView_PaneToggleButtonStyle(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.PaneToggleButtonStyle;
         }
-        private void set_60_NavigationView_PaneToggleButtonStyle(object instance, object Value)
+        private void set_61_NavigationView_PaneToggleButtonStyle(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.PaneToggleButtonStyle = (global::Microsoft.UI.Xaml.Style)Value;
         }
-        private object get_61_NavigationView_SelectedItem(object instance)
+        private object get_62_NavigationView_SelectedItem(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.SelectedItem;
         }
-        private void set_61_NavigationView_SelectedItem(object instance, object Value)
+        private void set_62_NavigationView_SelectedItem(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.SelectedItem = (global::System.Object)Value;
         }
-        private object get_62_NavigationView_SettingsItem(object instance)
+        private object get_63_NavigationView_SettingsItem(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.SettingsItem;
         }
-        private object get_63_NavigationView_ShoulderNavigationEnabled(object instance)
+        private object get_64_NavigationView_ShoulderNavigationEnabled(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.ShoulderNavigationEnabled;
         }
-        private void set_63_NavigationView_ShoulderNavigationEnabled(object instance, object Value)
+        private void set_64_NavigationView_ShoulderNavigationEnabled(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             that.ShoulderNavigationEnabled = (global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled)Value;
         }
-        private object get_64_NavigationView_TemplateSettings(object instance)
+        private object get_65_NavigationView_TemplateSettings(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationView)instance;
             return that.TemplateSettings;
         }
-        private object get_65_NavigationViewItem_Icon(object instance)
+        private object get_66_NavigationViewItem_Icon(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.Icon;
         }
-        private void set_65_NavigationViewItem_Icon(object instance, object Value)
+        private void set_66_NavigationViewItem_Icon(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.Icon = (global::Microsoft.UI.Xaml.Controls.IconElement)Value;
         }
-        private object get_66_NavigationViewItemBase_IsSelected(object instance)
+        private object get_67_NavigationViewItemBase_IsSelected(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase)instance;
             return that.IsSelected;
         }
-        private void set_66_NavigationViewItemBase_IsSelected(object instance, object Value)
+        private void set_67_NavigationViewItemBase_IsSelected(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase)instance;
             that.IsSelected = (global::System.Boolean)Value;
         }
-        private object get_67_NavigationViewItem_CompactPaneLength(object instance)
+        private object get_68_NavigationViewItem_CompactPaneLength(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.CompactPaneLength;
         }
-        private object get_68_NavigationViewItem_HasUnrealizedChildren(object instance)
+        private object get_69_NavigationViewItem_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_68_NavigationViewItem_HasUnrealizedChildren(object instance, object Value)
+        private void set_69_NavigationViewItem_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_69_NavigationViewItem_InfoBadge(object instance)
+        private object get_70_NavigationViewItem_InfoBadge(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.InfoBadge;
         }
-        private void set_69_NavigationViewItem_InfoBadge(object instance, object Value)
+        private void set_70_NavigationViewItem_InfoBadge(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.InfoBadge = (global::Microsoft.UI.Xaml.Controls.InfoBadge)Value;
         }
-        private object get_70_NavigationViewItem_IsChildSelected(object instance)
+        private object get_71_NavigationViewItem_IsChildSelected(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.IsChildSelected;
         }
-        private void set_70_NavigationViewItem_IsChildSelected(object instance, object Value)
+        private void set_71_NavigationViewItem_IsChildSelected(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.IsChildSelected = (global::System.Boolean)Value;
         }
-        private object get_71_NavigationViewItem_IsExpanded(object instance)
+        private object get_72_NavigationViewItem_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.IsExpanded;
         }
-        private void set_71_NavigationViewItem_IsExpanded(object instance, object Value)
+        private void set_72_NavigationViewItem_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_72_NavigationViewItem_MenuItems(object instance)
+        private object get_73_NavigationViewItem_MenuItems(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.MenuItems;
         }
-        private object get_73_NavigationViewItem_MenuItemsSource(object instance)
+        private object get_74_NavigationViewItem_MenuItemsSource(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.MenuItemsSource;
         }
-        private void set_73_NavigationViewItem_MenuItemsSource(object instance, object Value)
+        private void set_74_NavigationViewItem_MenuItemsSource(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.MenuItemsSource = (global::System.Object)Value;
         }
-        private object get_74_NavigationViewItem_SelectsOnInvoked(object instance)
+        private object get_75_NavigationViewItem_SelectsOnInvoked(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             return that.SelectsOnInvoked;
         }
-        private void set_74_NavigationViewItem_SelectsOnInvoked(object instance, object Value)
+        private void set_75_NavigationViewItem_SelectsOnInvoked(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.NavigationViewItem)instance;
             that.SelectsOnInvoked = (global::System.Boolean)Value;
         }
-        private object get_75_SfComboBox_Items(object instance)
+        private object get_76_SfComboBox_Items(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.Items;
         }
-        private object get_76_SfComboBox_SelectionMode(object instance)
+        private object get_77_SfComboBox_SelectionMode(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.SelectionMode;
         }
-        private void set_76_SfComboBox_SelectionMode(object instance, object Value)
+        private void set_77_SfComboBox_SelectionMode(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.SelectionMode = (global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode)Value;
         }
-        private object get_77_SfComboBox_MultiSelectionDisplayMode(object instance)
+        private object get_78_SfComboBox_MultiSelectionDisplayMode(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.MultiSelectionDisplayMode;
         }
-        private void set_77_SfComboBox_MultiSelectionDisplayMode(object instance, object Value)
+        private void set_78_SfComboBox_MultiSelectionDisplayMode(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.MultiSelectionDisplayMode = (global::Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode)Value;
         }
-        private object get_78_SfComboBox_DelimiterText(object instance)
+        private object get_79_SfComboBox_DelimiterText(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.DelimiterText;
         }
-        private void set_78_SfComboBox_DelimiterText(object instance, object Value)
+        private void set_79_SfComboBox_DelimiterText(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.DelimiterText = (global::System.String)Value;
         }
-        private object get_79_DropDownListBase_ItemsSource(object instance)
+        private object get_80_DropDownListBase_ItemsSource(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.ItemsSource;
         }
-        private void set_79_DropDownListBase_ItemsSource(object instance, object Value)
+        private void set_80_DropDownListBase_ItemsSource(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.ItemsSource = (global::System.Object)Value;
         }
-        private object get_80_DropDownListBase_SelectedItem(object instance)
+        private object get_81_DropDownListBase_SelectedItem(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.SelectedItem;
         }
-        private void set_80_DropDownListBase_SelectedItem(object instance, object Value)
+        private void set_81_DropDownListBase_SelectedItem(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.SelectedItem = (global::System.Object)Value;
         }
-        private object get_81_SfComboBox_IsEditable(object instance)
+        private object get_82_SfComboBox_IsEditable(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.IsEditable;
         }
-        private void set_81_SfComboBox_IsEditable(object instance, object Value)
+        private void set_82_SfComboBox_IsEditable(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.IsEditable = (global::System.Boolean)Value;
         }
-        private object get_82_SfComboBox_IsTextSearchEnabled(object instance)
+        private object get_83_SfComboBox_IsTextSearchEnabled(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.IsTextSearchEnabled;
         }
-        private void set_82_SfComboBox_IsTextSearchEnabled(object instance, object Value)
+        private void set_83_SfComboBox_IsTextSearchEnabled(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.IsTextSearchEnabled = (global::System.Boolean)Value;
         }
-        private object get_83_SfComboBox_IsFilteringEnabled(object instance)
+        private object get_84_SfComboBox_IsFilteringEnabled(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.IsFilteringEnabled;
         }
-        private void set_83_SfComboBox_IsFilteringEnabled(object instance, object Value)
+        private void set_84_SfComboBox_IsFilteringEnabled(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.IsFilteringEnabled = (global::System.Boolean)Value;
         }
-        private object get_84_SfComboBox_SelectionChangeTrigger(object instance)
+        private object get_85_SfComboBox_SelectionChangeTrigger(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.SelectionChangeTrigger;
         }
-        private void set_84_SfComboBox_SelectionChangeTrigger(object instance, object Value)
+        private void set_85_SfComboBox_SelectionChangeTrigger(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.SelectionChangeTrigger = (global::Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger)Value;
         }
-        private object get_85_SfComboBox_SelectedIndex(object instance)
+        private object get_86_SfComboBox_SelectedIndex(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.SelectedIndex;
         }
-        private void set_85_SfComboBox_SelectedIndex(object instance, object Value)
+        private void set_86_SfComboBox_SelectedIndex(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.SelectedIndex = (global::System.Int32)Value;
         }
-        private object get_86_SfComboBox_TextSearchMode(object instance)
+        private object get_87_SfComboBox_TextSearchMode(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.TextSearchMode;
         }
-        private void set_86_SfComboBox_TextSearchMode(object instance, object Value)
+        private void set_87_SfComboBox_TextSearchMode(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.TextSearchMode = (global::Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode)Value;
         }
-        private object get_87_SfComboBox_SelectionBoxItemTemplate(object instance)
+        private object get_88_SfComboBox_SelectionBoxItemTemplate(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.SelectionBoxItemTemplate;
         }
-        private void set_87_SfComboBox_SelectionBoxItemTemplate(object instance, object Value)
+        private void set_88_SfComboBox_SelectionBoxItemTemplate(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.SelectionBoxItemTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_88_SfComboBox_IsMultiSelectCheckBoxEnabled(object instance)
+        private object get_89_SfComboBox_IsMultiSelectCheckBoxEnabled(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.IsMultiSelectCheckBoxEnabled;
         }
-        private void set_88_SfComboBox_IsMultiSelectCheckBoxEnabled(object instance, object Value)
+        private void set_89_SfComboBox_IsMultiSelectCheckBoxEnabled(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.IsMultiSelectCheckBoxEnabled = (global::System.Boolean)Value;
         }
-        private object get_89_SfComboBox_ItemContainerStyle(object instance)
+        private object get_90_SfComboBox_ItemContainerStyle(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.ItemContainerStyle;
         }
-        private void set_89_SfComboBox_ItemContainerStyle(object instance, object Value)
+        private void set_90_SfComboBox_ItemContainerStyle(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.ItemContainerStyle = (global::Microsoft.UI.Xaml.Style)Value;
         }
-        private object get_90_SfComboBox_ItemContainerStyleSelector(object instance)
+        private object get_91_SfComboBox_ItemContainerStyleSelector(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.ItemContainerStyleSelector;
         }
-        private void set_90_SfComboBox_ItemContainerStyleSelector(object instance, object Value)
+        private void set_91_SfComboBox_ItemContainerStyleSelector(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.ItemContainerStyleSelector = (global::Microsoft.UI.Xaml.Controls.StyleSelector)Value;
         }
-        private object get_91_SfComboBox_FilterBehavior(object instance)
+        private object get_92_SfComboBox_FilterBehavior(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.FilterBehavior;
         }
-        private void set_91_SfComboBox_FilterBehavior(object instance, object Value)
+        private void set_92_SfComboBox_FilterBehavior(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.FilterBehavior = (global::Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior)Value;
         }
-        private object get_92_SfComboBox_SearchBehavior(object instance)
+        private object get_93_SfComboBox_SearchBehavior(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.SearchBehavior;
         }
-        private void set_92_SfComboBox_SearchBehavior(object instance, object Value)
+        private void set_93_SfComboBox_SearchBehavior(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.SearchBehavior = (global::Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior)Value;
         }
-        private object get_93_SfComboBox_TextHighlightMode(object instance)
+        private object get_94_SfComboBox_TextHighlightMode(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.TextHighlightMode;
         }
-        private void set_93_SfComboBox_TextHighlightMode(object instance, object Value)
+        private void set_94_SfComboBox_TextHighlightMode(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.TextHighlightMode = (global::Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode)Value;
         }
-        private object get_94_SfComboBox_AutoAppendType(object instance)
+        private object get_95_SfComboBox_AutoAppendType(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             return that.AutoAppendType;
         }
-        private void set_94_SfComboBox_AutoAppendType(object instance, object Value)
+        private void set_95_SfComboBox_AutoAppendType(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.SfComboBox)instance;
             that.AutoAppendType = (global::Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType)Value;
         }
-        private object get_95_DropDownListBase_Text(object instance)
+        private object get_96_DropDownListBase_Text(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.Text;
         }
-        private void set_95_DropDownListBase_Text(object instance, object Value)
+        private void set_96_DropDownListBase_Text(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.Text = (global::System.String)Value;
         }
-        private object get_96_DropDownListBase_TextMemberPath(object instance)
+        private object get_97_DropDownListBase_TextMemberPath(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TextMemberPath;
         }
-        private void set_96_DropDownListBase_TextMemberPath(object instance, object Value)
+        private void set_97_DropDownListBase_TextMemberPath(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TextMemberPath = (global::System.String)Value;
         }
-        private object get_97_DropDownListBase_TextBoxStyle(object instance)
+        private object get_98_DropDownListBase_TextBoxStyle(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TextBoxStyle;
         }
-        private void set_97_DropDownListBase_TextBoxStyle(object instance, object Value)
+        private void set_98_DropDownListBase_TextBoxStyle(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TextBoxStyle = (global::Microsoft.UI.Xaml.Style)Value;
         }
-        private object get_98_DropDownListBase_PlaceholderText(object instance)
+        private object get_99_DropDownListBase_PlaceholderText(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.PlaceholderText;
         }
-        private void set_98_DropDownListBase_PlaceholderText(object instance, object Value)
+        private void set_99_DropDownListBase_PlaceholderText(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.PlaceholderText = (global::System.String)Value;
         }
-        private object get_99_DropDownListBase_PlaceholderForeground(object instance)
+        private object get_100_DropDownListBase_PlaceholderForeground(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.PlaceholderForeground;
         }
-        private void set_99_DropDownListBase_PlaceholderForeground(object instance, object Value)
+        private void set_100_DropDownListBase_PlaceholderForeground(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.PlaceholderForeground = (global::Microsoft.UI.Xaml.Media.Brush)Value;
         }
-        private object get_100_DropDownListBase_Header(object instance)
+        private object get_101_DropDownListBase_Header(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.Header;
         }
-        private void set_100_DropDownListBase_Header(object instance, object Value)
+        private void set_101_DropDownListBase_Header(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.Header = (global::System.Object)Value;
         }
-        private object get_101_DropDownListBase_HeaderTemplate(object instance)
+        private object get_102_DropDownListBase_HeaderTemplate(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.HeaderTemplate;
         }
-        private void set_101_DropDownListBase_HeaderTemplate(object instance, object Value)
+        private void set_102_DropDownListBase_HeaderTemplate(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.HeaderTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_102_DropDownListBase_Description(object instance)
+        private object get_103_DropDownListBase_Description(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.Description;
         }
-        private void set_102_DropDownListBase_Description(object instance, object Value)
+        private void set_103_DropDownListBase_Description(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.Description = (global::System.Object)Value;
         }
-        private object get_103_DropDownListBase_ItemTemplate(object instance)
+        private object get_104_DropDownListBase_ItemTemplate(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.ItemTemplate;
         }
-        private void set_103_DropDownListBase_ItemTemplate(object instance, object Value)
+        private void set_104_DropDownListBase_ItemTemplate(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.ItemTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_104_DropDownListBase_ItemTemplateSelector(object instance)
+        private object get_105_DropDownListBase_ItemTemplateSelector(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.ItemTemplateSelector;
         }
-        private void set_104_DropDownListBase_ItemTemplateSelector(object instance, object Value)
+        private void set_105_DropDownListBase_ItemTemplateSelector(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.ItemTemplateSelector = (global::Microsoft.UI.Xaml.Controls.DataTemplateSelector)Value;
         }
-        private object get_105_DropDownListBase_DisplayMemberPath(object instance)
+        private object get_106_DropDownListBase_DisplayMemberPath(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.DisplayMemberPath;
         }
-        private void set_105_DropDownListBase_DisplayMemberPath(object instance, object Value)
+        private void set_106_DropDownListBase_DisplayMemberPath(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.DisplayMemberPath = (global::System.String)Value;
         }
-        private object get_106_DropDownListBase_SelectedItems(object instance)
+        private object get_107_DropDownListBase_SelectedItems(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.SelectedItems;
         }
-        private object get_107_DropDownListBase_GroupStyle(object instance)
+        private object get_108_DropDownListBase_GroupStyle(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.GroupStyle;
         }
-        private object get_108_DropDownListBase_IsDropDownOpen(object instance)
+        private object get_109_DropDownListBase_IsDropDownOpen(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.IsDropDownOpen;
         }
-        private void set_108_DropDownListBase_IsDropDownOpen(object instance, object Value)
+        private void set_109_DropDownListBase_IsDropDownOpen(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.IsDropDownOpen = (global::System.Boolean)Value;
         }
-        private object get_109_DropDownListBase_MaxDropDownHeight(object instance)
+        private object get_110_DropDownListBase_MaxDropDownHeight(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.MaxDropDownHeight;
         }
-        private void set_109_DropDownListBase_MaxDropDownHeight(object instance, object Value)
+        private void set_110_DropDownListBase_MaxDropDownHeight(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.MaxDropDownHeight = (global::System.Double)Value;
         }
-        private object get_110_DropDownListBase_TokenItemTemplate(object instance)
+        private object get_111_DropDownListBase_TokenItemTemplate(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TokenItemTemplate;
         }
-        private void set_110_DropDownListBase_TokenItemTemplate(object instance, object Value)
+        private void set_111_DropDownListBase_TokenItemTemplate(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TokenItemTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_111_DropDownListBase_TokenItemTemplateSelector(object instance)
+        private object get_112_DropDownListBase_TokenItemTemplateSelector(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TokenItemTemplateSelector;
         }
-        private void set_111_DropDownListBase_TokenItemTemplateSelector(object instance, object Value)
+        private void set_112_DropDownListBase_TokenItemTemplateSelector(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TokenItemTemplateSelector = (global::Microsoft.UI.Xaml.Controls.DataTemplateSelector)Value;
         }
-        private object get_112_DropDownListBase_TokenItemStyle(object instance)
+        private object get_113_DropDownListBase_TokenItemStyle(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TokenItemStyle;
         }
-        private void set_112_DropDownListBase_TokenItemStyle(object instance, object Value)
+        private void set_113_DropDownListBase_TokenItemStyle(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TokenItemStyle = (global::Microsoft.UI.Xaml.Style)Value;
         }
-        private object get_113_DropDownListBase_TokenItemStyleSelector(object instance)
+        private object get_114_DropDownListBase_TokenItemStyleSelector(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TokenItemStyleSelector;
         }
-        private void set_113_DropDownListBase_TokenItemStyleSelector(object instance, object Value)
+        private void set_114_DropDownListBase_TokenItemStyleSelector(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TokenItemStyleSelector = (global::Microsoft.UI.Xaml.Controls.StyleSelector)Value;
         }
-        private object get_114_DropDownListBase_SelectedValuePath(object instance)
+        private object get_115_DropDownListBase_SelectedValuePath(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.SelectedValuePath;
         }
-        private void set_114_DropDownListBase_SelectedValuePath(object instance, object Value)
+        private void set_115_DropDownListBase_SelectedValuePath(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.SelectedValuePath = (global::System.String)Value;
         }
-        private object get_115_DropDownListBase_SelectedValue(object instance)
+        private object get_116_DropDownListBase_SelectedValue(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.SelectedValue;
         }
-        private void set_115_DropDownListBase_SelectedValue(object instance, object Value)
+        private void set_116_DropDownListBase_SelectedValue(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.SelectedValue = (global::System.Object)Value;
         }
-        private object get_116_DropDownListBase_LeadingView(object instance)
+        private object get_117_DropDownListBase_LeadingView(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.LeadingView;
         }
-        private void set_116_DropDownListBase_LeadingView(object instance, object Value)
+        private void set_117_DropDownListBase_LeadingView(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.LeadingView = (global::System.Object)Value;
         }
-        private object get_117_DropDownListBase_TrailingView(object instance)
+        private object get_118_DropDownListBase_TrailingView(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.TrailingView;
         }
-        private void set_117_DropDownListBase_TrailingView(object instance, object Value)
+        private void set_118_DropDownListBase_TrailingView(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.TrailingView = (global::System.Object)Value;
         }
-        private object get_118_DropDownListBase_HighlightedTextForeground(object instance)
+        private object get_119_DropDownListBase_HighlightedTextForeground(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.HighlightedTextForeground;
         }
-        private void set_118_DropDownListBase_HighlightedTextForeground(object instance, object Value)
+        private void set_119_DropDownListBase_HighlightedTextForeground(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.HighlightedTextForeground = (global::Microsoft.UI.Xaml.Media.Brush)Value;
         }
-        private object get_119_DropDownListBase_HighlightedTextFontWeight(object instance)
+        private object get_120_DropDownListBase_HighlightedTextFontWeight(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.HighlightedTextFontWeight;
         }
-        private void set_119_DropDownListBase_HighlightedTextFontWeight(object instance, object Value)
+        private void set_120_DropDownListBase_HighlightedTextFontWeight(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.HighlightedTextFontWeight = (global::Windows.UI.Text.FontWeight)Value;
         }
-        private object get_120_DropDownListBase_HighlightedTextFontStyle(object instance)
+        private object get_121_DropDownListBase_HighlightedTextFontStyle(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.HighlightedTextFontStyle;
         }
-        private void set_120_DropDownListBase_HighlightedTextFontStyle(object instance, object Value)
+        private void set_121_DropDownListBase_HighlightedTextFontStyle(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.HighlightedTextFontStyle = (global::System.Nullable<global::Windows.UI.Text.FontStyle>)Value;
         }
-        private object get_121_DropDownListBase_HighlightedTextFontSize(object instance)
+        private object get_122_DropDownListBase_HighlightedTextFontSize(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.HighlightedTextFontSize;
         }
-        private void set_121_DropDownListBase_HighlightedTextFontSize(object instance, object Value)
+        private void set_122_DropDownListBase_HighlightedTextFontSize(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.HighlightedTextFontSize = (global::System.Nullable<global::System.Double>)Value;
         }
-        private object get_122_DropDownListBase_NoResultsFoundContent(object instance)
+        private object get_123_DropDownListBase_NoResultsFoundContent(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.NoResultsFoundContent;
         }
-        private void set_122_DropDownListBase_NoResultsFoundContent(object instance, object Value)
+        private void set_123_DropDownListBase_NoResultsFoundContent(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.NoResultsFoundContent = (global::System.Object)Value;
         }
-        private object get_123_DropDownListBase_NoResultsFoundTemplate(object instance)
+        private object get_124_DropDownListBase_NoResultsFoundTemplate(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.NoResultsFoundTemplate;
         }
-        private void set_123_DropDownListBase_NoResultsFoundTemplate(object instance, object Value)
+        private void set_124_DropDownListBase_NoResultsFoundTemplate(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.NoResultsFoundTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_124_DropDownListBase_singleSelectionSuggestionTextBlock(object instance)
+        private object get_125_DropDownListBase_singleSelectionSuggestionTextBlock(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.singleSelectionSuggestionTextBlock;
         }
-        private void set_124_DropDownListBase_singleSelectionSuggestionTextBlock(object instance, object Value)
+        private void set_125_DropDownListBase_singleSelectionSuggestionTextBlock(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.singleSelectionSuggestionTextBlock = (global::Microsoft.UI.Xaml.Controls.TextBlock)Value;
         }
-        private object get_125_DropDownListBase_multiSelectionSuggestionTextBlock(object instance)
+        private object get_126_DropDownListBase_multiSelectionSuggestionTextBlock(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             return that.multiSelectionSuggestionTextBlock;
         }
-        private void set_125_DropDownListBase_multiSelectionSuggestionTextBlock(object instance, object Value)
+        private void set_126_DropDownListBase_multiSelectionSuggestionTextBlock(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Editors.DropDownListBase)instance;
             that.multiSelectionSuggestionTextBlock = (global::Microsoft.UI.Xaml.Controls.TextBlock)Value;
         }
-        private object get_126_OrderDetailPage_ViewModel(object instance)
+        private object get_127_OrderDetailPage_ViewModel(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.OrderDetailPage)instance;
             return that.ViewModel;
         }
-        private void set_126_OrderDetailPage_ViewModel(object instance, object Value)
+        private void set_127_OrderDetailPage_ViewModel(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.OrderDetailPage)instance;
             that.ViewModel = (global::Books_Store_Management_App.ViewModels.OrderDetailViewModel)Value;
         }
-        private object get_127_OrderDetailPage_OrderViewModel(object instance)
+        private object get_128_OrderDetailPage_OrderViewModel(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.OrderDetailPage)instance;
             return that.OrderViewModel;
         }
-        private void set_127_OrderDetailPage_OrderViewModel(object instance, object Value)
+        private void set_128_OrderDetailPage_OrderViewModel(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.OrderDetailPage)instance;
             that.OrderViewModel = (global::Books_Store_Management_App.OrderPageViewModel)Value;
         }
-        private object get_128_OrderPage_AllOrdersDisplay(object instance)
+        private object get_129_OrderPage_AllOrdersDisplay(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.OrderPage)instance;
             return that.AllOrdersDisplay;
         }
-        private void set_128_OrderPage_AllOrdersDisplay(object instance, object Value)
+        private void set_129_OrderPage_AllOrdersDisplay(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.OrderPage)instance;
             that.AllOrdersDisplay = (global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>)Value;
         }
-        private object get_129_Order_ID(object instance)
+        private object get_130_Order_ID(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.ID;
         }
-        private void set_129_Order_ID(object instance, object Value)
+        private void set_130_Order_ID(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.ID = (global::System.Int32)Value;
         }
-        private object get_130_Order_Customer(object instance)
+        private object get_131_Order_Customer(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Customer;
         }
-        private void set_130_Order_Customer(object instance, object Value)
+        private void set_131_Order_Customer(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.Customer = (global::System.String)Value;
         }
-        private object get_131_Order_Date(object instance)
+        private object get_132_Order_Date(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Date;
         }
-        private void set_131_Order_Date(object instance, object Value)
+        private void set_132_Order_Date(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.Date = (global::System.String)Value;
         }
-        private object get_132_Order_Coupons(object instance)
+        private object get_133_Order_Coupons(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Coupons;
         }
-        private void set_132_Order_Coupons(object instance, object Value)
+        private void set_133_Order_Coupons(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.Coupons = (global::Books_Store_Management_App.Helpers.FullObservableCollection<global::Books_Store_Management_App.Models.Coupon>)Value;
         }
-        private object get_133_Coupon_Id(object instance)
+        private object get_134_Coupon_Id(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             return that.Id;
         }
-        private void set_133_Coupon_Id(object instance, object Value)
+        private void set_134_Coupon_Id(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             that.Id = (global::System.Int32)Value;
         }
-        private object get_134_Coupon_Name(object instance)
+        private object get_135_Coupon_Name(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             return that.Name;
         }
-        private void set_134_Coupon_Name(object instance, object Value)
+        private void set_135_Coupon_Name(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             that.Name = (global::System.String)Value;
         }
-        private object get_135_Coupon_Discount(object instance)
+        private object get_136_Coupon_Discount(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             return that.Discount;
         }
-        private void set_135_Coupon_Discount(object instance, object Value)
+        private void set_136_Coupon_Discount(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             that.Discount = (global::System.Double)Value;
         }
-        private object get_136_Coupon_ExpiryDate(object instance)
+        private object get_137_Coupon_ExpiryDate(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             return that.ExpiryDate;
         }
-        private void set_136_Coupon_ExpiryDate(object instance, object Value)
+        private void set_137_Coupon_ExpiryDate(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Coupon)instance;
             that.ExpiryDate = (global::System.DateTime)Value;
         }
-        private object get_137_Order_Discount(object instance)
+        private object get_138_Order_Discount(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Discount;
         }
-        private object get_138_Order_IsDelivered(object instance)
+        private object get_139_Order_IsDelivered(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.IsDelivered;
         }
-        private void set_138_Order_IsDelivered(object instance, object Value)
+        private void set_139_Order_IsDelivered(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.IsDelivered = (global::System.Boolean)Value;
         }
-        private object get_139_Order_OrderItems(object instance)
+        private object get_140_Order_OrderItems(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.OrderItems;
         }
-        private void set_139_Order_OrderItems(object instance, object Value)
+        private void set_140_Order_OrderItems(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.OrderItems = (global::System.Collections.Generic.List<global::Books_Store_Management_App.Models.OrderItem>)Value;
         }
-        private object get_140_OrderItem_Id(object instance)
+        private object get_141_OrderItem_Id(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             return that.Id;
         }
-        private void set_140_OrderItem_Id(object instance, object Value)
+        private void set_141_OrderItem_Id(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             that.Id = (global::System.Int32)Value;
         }
-        private object get_141_OrderItem_Book(object instance)
+        private object get_142_OrderItem_Book(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             return that.Book;
         }
-        private void set_141_OrderItem_Book(object instance, object Value)
+        private void set_142_OrderItem_Book(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             that.Book = (global::Books_Store_Management_App.Models.Book)Value;
         }
-        private object get_142_OrderItem_Quantity(object instance)
+        private object get_143_OrderItem_Quantity(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             return that.Quantity;
         }
-        private void set_142_OrderItem_Quantity(object instance, object Value)
+        private void set_143_OrderItem_Quantity(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             that.Quantity = (global::System.Int32)Value;
         }
-        private object get_143_OrderItem_SubTotal(object instance)
+        private object get_144_OrderItem_SubTotal(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.OrderItem)instance;
             return that.SubTotal;
         }
-        private object get_144_Order_Amount(object instance)
+        private object get_145_Order_Amount(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Amount;
         }
-        private object get_145_Order_Price(object instance)
+        private object get_146_Order_Price(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Price;
         }
-        private object get_146_Order_Index(object instance)
+        private object get_147_Order_Index(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.Index;
         }
-        private void set_146_Order_Index(object instance, object Value)
+        private void set_147_Order_Index(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             that.Index = (global::System.Int32)Value;
         }
-        private object get_147_Order_IsEven(object instance)
+        private object get_148_Order_IsEven(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Order)instance;
             return that.IsEven;
         }
-        private object get_148_OrderPage_DisplayedOrders(object instance)
+        private object get_149_OrderPage_DisplayedOrders(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.OrderPage)instance;
             return that.DisplayedOrders;
         }
-        private void set_148_OrderPage_DisplayedOrders(object instance, object Value)
+        private void set_149_OrderPage_DisplayedOrders(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.OrderPage)instance;
             that.DisplayedOrders = (global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Order>)Value;
         }
-        private object get_149_OrderPage_ViewModel(object instance)
+        private object get_150_OrderPage_ViewModel(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.OrderPage)instance;
             return that.ViewModel;
         }
-        private void set_149_OrderPage_ViewModel(object instance, object Value)
+        private void set_150_OrderPage_ViewModel(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.OrderPage)instance;
             that.ViewModel = (global::Books_Store_Management_App.OrderPageViewModel)Value;
         }
-        private object get_150_ReadOnlyOrderDetailPage_ViewModel(object instance)
+        private object get_151_ReadOnlyOrderDetailPage_ViewModel(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage)instance;
             return that.ViewModel;
         }
-        private void set_150_ReadOnlyOrderDetailPage_ViewModel(object instance, object Value)
+        private void set_151_ReadOnlyOrderDetailPage_ViewModel(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage)instance;
             that.ViewModel = (global::Books_Store_Management_App.ViewModels.OrderDetailViewModel)Value;
         }
-        private object get_151_ReadOnlyOrderDetailPage_OrderViewModel(object instance)
+        private object get_152_ReadOnlyOrderDetailPage_OrderViewModel(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage)instance;
             return that.OrderViewModel;
         }
-        private void set_151_ReadOnlyOrderDetailPage_OrderViewModel(object instance, object Value)
+        private void set_152_ReadOnlyOrderDetailPage_OrderViewModel(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.ReadOnlyOrderDetailPage)instance;
             that.OrderViewModel = (global::Books_Store_Management_App.OrderPageViewModel)Value;
         }
-        private object get_152_StockPage_AllBooksDisplay(object instance)
+        private object get_153_StockPage_AllBooksDisplay(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.StockPage)instance;
             return that.AllBooksDisplay;
         }
-        private void set_152_StockPage_AllBooksDisplay(object instance, object Value)
+        private void set_153_StockPage_AllBooksDisplay(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.StockPage)instance;
             that.AllBooksDisplay = (global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>)Value;
         }
-        private object get_153_Book_ImageSource(object instance)
+        private object get_154_Book_ImageSource(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.ImageSource;
         }
-        private void set_153_Book_ImageSource(object instance, object Value)
+        private void set_154_Book_ImageSource(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.ImageSource = (global::System.String)Value;
         }
-        private object get_154_Book_Title(object instance)
+        private object get_155_Book_Title(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Title;
         }
-        private void set_154_Book_Title(object instance, object Value)
+        private void set_155_Book_Title(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_155_Book_Publisher(object instance)
+        private object get_156_Book_Publisher(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Publisher;
         }
-        private void set_155_Book_Publisher(object instance, object Value)
+        private void set_156_Book_Publisher(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Publisher = (global::System.String)Value;
         }
-        private object get_156_Book_Author(object instance)
+        private object get_157_Book_Author(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Author;
         }
-        private void set_156_Book_Author(object instance, object Value)
+        private void set_157_Book_Author(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Author = (global::System.String)Value;
         }
-        private object get_157_Book_ISBN(object instance)
+        private object get_158_Book_ISBN(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.ISBN;
         }
-        private void set_157_Book_ISBN(object instance, object Value)
+        private void set_158_Book_ISBN(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.ISBN = (global::System.String)Value;
         }
-        private object get_158_Book_Year(object instance)
+        private object get_159_Book_Year(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Year;
         }
-        private void set_158_Book_Year(object instance, object Value)
+        private void set_159_Book_Year(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Year = (global::System.Int32)Value;
         }
-        private object get_159_Book_Price(object instance)
+        private object get_160_Book_Price(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Price;
         }
-        private void set_159_Book_Price(object instance, object Value)
+        private void set_160_Book_Price(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Price = (global::System.Double)Value;
         }
-        private object get_160_Book_PurchasePrice(object instance)
+        private object get_161_Book_PurchasePrice(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.PurchasePrice;
         }
-        private void set_160_Book_PurchasePrice(object instance, object Value)
+        private void set_161_Book_PurchasePrice(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.PurchasePrice = (global::System.Double)Value;
         }
-        private object get_161_Book_Genre(object instance)
+        private object get_162_Book_Genre(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Genre;
         }
-        private void set_161_Book_Genre(object instance, object Value)
+        private void set_162_Book_Genre(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Genre = (global::System.String)Value;
         }
-        private object get_162_Book_Quantity(object instance)
+        private object get_163_Book_Quantity(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Quantity;
         }
-        private void set_162_Book_Quantity(object instance, object Value)
+        private void set_163_Book_Quantity(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Quantity = (global::System.Int32)Value;
         }
-        private object get_163_Book_Description(object instance)
+        private object get_164_Book_Description(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Description;
         }
-        private void set_163_Book_Description(object instance, object Value)
+        private void set_164_Book_Description(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Description = (global::System.String)Value;
         }
-        private object get_164_Book_Index(object instance)
+        private object get_165_Book_Index(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.Index;
         }
-        private void set_164_Book_Index(object instance, object Value)
+        private void set_165_Book_Index(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             that.Index = (global::System.Int32)Value;
         }
-        private object get_165_Book_IsEven(object instance)
+        private object get_166_Book_IsEven(object instance)
         {
             var that = (global::Books_Store_Management_App.Models.Book)instance;
             return that.IsEven;
         }
-        private object get_166_StockPage_DisplayedBooks(object instance)
+        private object get_167_StockPage_DisplayedBooks(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.StockPage)instance;
             return that.DisplayedBooks;
         }
-        private void set_166_StockPage_DisplayedBooks(object instance, object Value)
+        private void set_167_StockPage_DisplayedBooks(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.StockPage)instance;
             that.DisplayedBooks = (global::System.Collections.ObjectModel.ObservableCollection<global::Books_Store_Management_App.Models.Book>)Value;
         }
-        private object get_167_StockPage_ViewModel(object instance)
+        private object get_168_StockPage_ViewModel(object instance)
         {
             var that = (global::Books_Store_Management_App.Views.StockPage)instance;
             return that.ViewModel;
         }
-        private void set_167_StockPage_ViewModel(object instance, object Value)
+        private void set_168_StockPage_ViewModel(object instance, object Value)
         {
             var that = (global::Books_Store_Management_App.Views.StockPage)instance;
             that.ViewModel = (global::Books_Store_Management_App.Views.StockPage.StockPageViewModel)Value;
         }
-        private object get_168_TreeViewNode_Children(object instance)
+        private object get_169_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_169_TreeViewNode_Content(object instance)
+        private object get_170_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_169_TreeViewNode_Content(object instance, object Value)
+        private void set_170_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_170_TreeViewNode_Depth(object instance)
+        private object get_171_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_171_TreeViewNode_HasChildren(object instance)
+        private object get_172_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_172_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_173_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_172_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_173_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_173_TreeViewNode_IsExpanded(object instance)
+        private object get_174_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_173_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_174_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_174_TreeViewNode_Parent(object instance)
+        private object get_175_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
         }
-        private object get_175_DoubleToObjectConverter_TrueValue(object instance)
+        private object get_176_DoubleToObjectConverter_TrueValue(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             return that.TrueValue;
         }
-        private void set_175_DoubleToObjectConverter_TrueValue(object instance, object Value)
+        private void set_176_DoubleToObjectConverter_TrueValue(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             that.TrueValue = (global::System.Object)Value;
         }
-        private object get_176_DoubleToObjectConverter_FalseValue(object instance)
+        private object get_177_DoubleToObjectConverter_FalseValue(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             return that.FalseValue;
         }
-        private void set_176_DoubleToObjectConverter_FalseValue(object instance, object Value)
+        private void set_177_DoubleToObjectConverter_FalseValue(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             that.FalseValue = (global::System.Object)Value;
         }
-        private object get_177_DoubleToObjectConverter_NullValue(object instance)
+        private object get_178_DoubleToObjectConverter_NullValue(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             return that.NullValue;
         }
-        private void set_177_DoubleToObjectConverter_NullValue(object instance, object Value)
+        private void set_178_DoubleToObjectConverter_NullValue(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             that.NullValue = (global::System.Object)Value;
         }
-        private object get_178_DoubleToObjectConverter_GreaterThan(object instance)
+        private object get_179_DoubleToObjectConverter_GreaterThan(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             return that.GreaterThan;
         }
-        private void set_178_DoubleToObjectConverter_GreaterThan(object instance, object Value)
+        private void set_179_DoubleToObjectConverter_GreaterThan(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             that.GreaterThan = (global::System.Double)Value;
         }
-        private object get_179_DoubleToObjectConverter_LessThan(object instance)
+        private object get_180_DoubleToObjectConverter_LessThan(object instance)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             return that.LessThan;
         }
-        private void set_179_DoubleToObjectConverter_LessThan(object instance, object Value)
+        private void set_180_DoubleToObjectConverter_LessThan(object instance, object Value)
         {
             var that = (global::Syncfusion.UI.Xaml.Core.DoubleToObjectConverter)instance;
             that.LessThan = (global::System.Double)Value;
@@ -3461,1049 +3508,1055 @@ namespace Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo
                 xamlMember.Getter = get_22_DashboardPage_ViewModel;
                 xamlMember.Setter = set_22_DashboardPage_ViewModel;
                 break;
+            case "Books_Store_Management_App.Views.InvoicePage.ViewModel":
+                userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.InvoicePage");
+                xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ViewModel", "Books_Store_Management_App.ViewModels.InvoiceViewModel");
+                xamlMember.Getter = get_23_InvoicePage_ViewModel;
+                xamlMember.Setter = set_23_InvoicePage_ViewModel;
+                break;
             case "Books_Store_Management_App.ViewModels.LoginViewModel.Username":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.ViewModels.LoginViewModel");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Username", "String");
-                xamlMember.Getter = get_23_LoginViewModel_Username;
-                xamlMember.Setter = set_23_LoginViewModel_Username;
+                xamlMember.Getter = get_24_LoginViewModel_Username;
+                xamlMember.Setter = set_24_LoginViewModel_Username;
                 break;
             case "Books_Store_Management_App.ViewModels.LoginViewModel.Password":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.ViewModels.LoginViewModel");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Password", "String");
-                xamlMember.Getter = get_24_LoginViewModel_Password;
-                xamlMember.Setter = set_24_LoginViewModel_Password;
+                xamlMember.Getter = get_25_LoginViewModel_Password;
+                xamlMember.Setter = set_25_LoginViewModel_Password;
                 break;
             case "Books_Store_Management_App.ViewModels.LoginViewModel.IsPasswordSaved":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.ViewModels.LoginViewModel");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsPasswordSaved", "Boolean");
-                xamlMember.Getter = get_25_LoginViewModel_IsPasswordSaved;
-                xamlMember.Setter = set_25_LoginViewModel_IsPasswordSaved;
+                xamlMember.Getter = get_26_LoginViewModel_IsPasswordSaved;
+                xamlMember.Setter = set_26_LoginViewModel_IsPasswordSaved;
                 break;
             case "Books_Store_Management_App.ViewModels.LoginViewModel.LoginCommand":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.ViewModels.LoginViewModel");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "LoginCommand", "System.Windows.Input.ICommand");
-                xamlMember.Getter = get_26_LoginViewModel_LoginCommand;
+                xamlMember.Getter = get_27_LoginViewModel_LoginCommand;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.ViewModels.LoginViewModel.SignupCommand":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.ViewModels.LoginViewModel");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SignupCommand", "System.Windows.Input.ICommand");
-                xamlMember.Getter = get_27_LoginViewModel_SignupCommand;
+                xamlMember.Getter = get_28_LoginViewModel_SignupCommand;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsBackButtonVisible":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsBackButtonVisible", "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_28_NavigationView_IsBackButtonVisible;
-                xamlMember.Setter = set_28_NavigationView_IsBackButtonVisible;
+                xamlMember.Getter = get_29_NavigationView_IsBackButtonVisible;
+                xamlMember.Setter = set_29_NavigationView_IsBackButtonVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsSettingsVisible":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsSettingsVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_29_NavigationView_IsSettingsVisible;
-                xamlMember.Setter = set_29_NavigationView_IsSettingsVisible;
+                xamlMember.Getter = get_30_NavigationView_IsSettingsVisible;
+                xamlMember.Setter = set_30_NavigationView_IsSettingsVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsPaneOpen":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsPaneOpen", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_30_NavigationView_IsPaneOpen;
-                xamlMember.Setter = set_30_NavigationView_IsPaneOpen;
+                xamlMember.Getter = get_31_NavigationView_IsPaneOpen;
+                xamlMember.Setter = set_31_NavigationView_IsPaneOpen;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.PaneDisplayMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PaneDisplayMode", "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_31_NavigationView_PaneDisplayMode;
-                xamlMember.Setter = set_31_NavigationView_PaneDisplayMode;
+                xamlMember.Getter = get_32_NavigationView_PaneDisplayMode;
+                xamlMember.Setter = set_32_NavigationView_PaneDisplayMode;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.PaneTitle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PaneTitle", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_32_NavigationView_PaneTitle;
-                xamlMember.Setter = set_32_NavigationView_PaneTitle;
+                xamlMember.Getter = get_33_NavigationView_PaneTitle;
+                xamlMember.Setter = set_33_NavigationView_PaneTitle;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.SelectionFollowsFocus":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectionFollowsFocus", "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_33_NavigationView_SelectionFollowsFocus;
-                xamlMember.Setter = set_33_NavigationView_SelectionFollowsFocus;
+                xamlMember.Getter = get_34_NavigationView_SelectionFollowsFocus;
+                xamlMember.Setter = set_34_NavigationView_SelectionFollowsFocus;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.MenuItems":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItems", "System.Collections.Generic.IList`1<Object>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_34_NavigationView_MenuItems;
+                xamlMember.Getter = get_35_NavigationView_MenuItems;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.AlwaysShowHeader":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "AlwaysShowHeader", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_35_NavigationView_AlwaysShowHeader;
-                xamlMember.Setter = set_35_NavigationView_AlwaysShowHeader;
+                xamlMember.Getter = get_36_NavigationView_AlwaysShowHeader;
+                xamlMember.Setter = set_36_NavigationView_AlwaysShowHeader;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.AutoSuggestBox":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "AutoSuggestBox", "Microsoft.UI.Xaml.Controls.AutoSuggestBox");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_36_NavigationView_AutoSuggestBox;
-                xamlMember.Setter = set_36_NavigationView_AutoSuggestBox;
+                xamlMember.Getter = get_37_NavigationView_AutoSuggestBox;
+                xamlMember.Setter = set_37_NavigationView_AutoSuggestBox;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.CompactModeThresholdWidth":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "CompactModeThresholdWidth", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_37_NavigationView_CompactModeThresholdWidth;
-                xamlMember.Setter = set_37_NavigationView_CompactModeThresholdWidth;
+                xamlMember.Getter = get_38_NavigationView_CompactModeThresholdWidth;
+                xamlMember.Setter = set_38_NavigationView_CompactModeThresholdWidth;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.CompactPaneLength":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "CompactPaneLength", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_38_NavigationView_CompactPaneLength;
-                xamlMember.Setter = set_38_NavigationView_CompactPaneLength;
+                xamlMember.Getter = get_39_NavigationView_CompactPaneLength;
+                xamlMember.Setter = set_39_NavigationView_CompactPaneLength;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.ContentOverlay":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ContentOverlay", "Microsoft.UI.Xaml.UIElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_39_NavigationView_ContentOverlay;
-                xamlMember.Setter = set_39_NavigationView_ContentOverlay;
+                xamlMember.Getter = get_40_NavigationView_ContentOverlay;
+                xamlMember.Setter = set_40_NavigationView_ContentOverlay;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.DisplayMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "DisplayMode", "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_40_NavigationView_DisplayMode;
+                xamlMember.Getter = get_41_NavigationView_DisplayMode;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.ExpandedModeThresholdWidth":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ExpandedModeThresholdWidth", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_41_NavigationView_ExpandedModeThresholdWidth;
-                xamlMember.Setter = set_41_NavigationView_ExpandedModeThresholdWidth;
+                xamlMember.Getter = get_42_NavigationView_ExpandedModeThresholdWidth;
+                xamlMember.Setter = set_42_NavigationView_ExpandedModeThresholdWidth;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.FooterMenuItems":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "FooterMenuItems", "System.Collections.Generic.IList`1<Object>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_42_NavigationView_FooterMenuItems;
+                xamlMember.Getter = get_43_NavigationView_FooterMenuItems;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.FooterMenuItemsSource":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "FooterMenuItemsSource", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_43_NavigationView_FooterMenuItemsSource;
-                xamlMember.Setter = set_43_NavigationView_FooterMenuItemsSource;
+                xamlMember.Getter = get_44_NavigationView_FooterMenuItemsSource;
+                xamlMember.Setter = set_44_NavigationView_FooterMenuItemsSource;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.Header":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Header", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_44_NavigationView_Header;
-                xamlMember.Setter = set_44_NavigationView_Header;
+                xamlMember.Getter = get_45_NavigationView_Header;
+                xamlMember.Setter = set_45_NavigationView_Header;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.HeaderTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_45_NavigationView_HeaderTemplate;
-                xamlMember.Setter = set_45_NavigationView_HeaderTemplate;
+                xamlMember.Getter = get_46_NavigationView_HeaderTemplate;
+                xamlMember.Setter = set_46_NavigationView_HeaderTemplate;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsBackEnabled":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsBackEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_46_NavigationView_IsBackEnabled;
-                xamlMember.Setter = set_46_NavigationView_IsBackEnabled;
+                xamlMember.Getter = get_47_NavigationView_IsBackEnabled;
+                xamlMember.Setter = set_47_NavigationView_IsBackEnabled;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsPaneToggleButtonVisible":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsPaneToggleButtonVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_47_NavigationView_IsPaneToggleButtonVisible;
-                xamlMember.Setter = set_47_NavigationView_IsPaneToggleButtonVisible;
+                xamlMember.Getter = get_48_NavigationView_IsPaneToggleButtonVisible;
+                xamlMember.Setter = set_48_NavigationView_IsPaneToggleButtonVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsPaneVisible":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsPaneVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_48_NavigationView_IsPaneVisible;
-                xamlMember.Setter = set_48_NavigationView_IsPaneVisible;
+                xamlMember.Getter = get_49_NavigationView_IsPaneVisible;
+                xamlMember.Setter = set_49_NavigationView_IsPaneVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.IsTitleBarAutoPaddingEnabled":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsTitleBarAutoPaddingEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_49_NavigationView_IsTitleBarAutoPaddingEnabled;
-                xamlMember.Setter = set_49_NavigationView_IsTitleBarAutoPaddingEnabled;
+                xamlMember.Getter = get_50_NavigationView_IsTitleBarAutoPaddingEnabled;
+                xamlMember.Setter = set_50_NavigationView_IsTitleBarAutoPaddingEnabled;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.MenuItemContainerStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItemContainerStyle", "Microsoft.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_50_NavigationView_MenuItemContainerStyle;
-                xamlMember.Setter = set_50_NavigationView_MenuItemContainerStyle;
+                xamlMember.Getter = get_51_NavigationView_MenuItemContainerStyle;
+                xamlMember.Setter = set_51_NavigationView_MenuItemContainerStyle;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.MenuItemContainerStyleSelector":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItemContainerStyleSelector", "Microsoft.UI.Xaml.Controls.StyleSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_51_NavigationView_MenuItemContainerStyleSelector;
-                xamlMember.Setter = set_51_NavigationView_MenuItemContainerStyleSelector;
+                xamlMember.Getter = get_52_NavigationView_MenuItemContainerStyleSelector;
+                xamlMember.Setter = set_52_NavigationView_MenuItemContainerStyleSelector;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.MenuItemTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItemTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_52_NavigationView_MenuItemTemplate;
-                xamlMember.Setter = set_52_NavigationView_MenuItemTemplate;
+                xamlMember.Getter = get_53_NavigationView_MenuItemTemplate;
+                xamlMember.Setter = set_53_NavigationView_MenuItemTemplate;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.MenuItemTemplateSelector":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItemTemplateSelector", "Microsoft.UI.Xaml.Controls.DataTemplateSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_53_NavigationView_MenuItemTemplateSelector;
-                xamlMember.Setter = set_53_NavigationView_MenuItemTemplateSelector;
+                xamlMember.Getter = get_54_NavigationView_MenuItemTemplateSelector;
+                xamlMember.Setter = set_54_NavigationView_MenuItemTemplateSelector;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.MenuItemsSource":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItemsSource", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_54_NavigationView_MenuItemsSource;
-                xamlMember.Setter = set_54_NavigationView_MenuItemsSource;
+                xamlMember.Getter = get_55_NavigationView_MenuItemsSource;
+                xamlMember.Setter = set_55_NavigationView_MenuItemsSource;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.OpenPaneLength":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "OpenPaneLength", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_55_NavigationView_OpenPaneLength;
-                xamlMember.Setter = set_55_NavigationView_OpenPaneLength;
+                xamlMember.Getter = get_56_NavigationView_OpenPaneLength;
+                xamlMember.Setter = set_56_NavigationView_OpenPaneLength;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.OverflowLabelMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "OverflowLabelMode", "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_56_NavigationView_OverflowLabelMode;
-                xamlMember.Setter = set_56_NavigationView_OverflowLabelMode;
+                xamlMember.Getter = get_57_NavigationView_OverflowLabelMode;
+                xamlMember.Setter = set_57_NavigationView_OverflowLabelMode;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.PaneCustomContent":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PaneCustomContent", "Microsoft.UI.Xaml.UIElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_57_NavigationView_PaneCustomContent;
-                xamlMember.Setter = set_57_NavigationView_PaneCustomContent;
+                xamlMember.Getter = get_58_NavigationView_PaneCustomContent;
+                xamlMember.Setter = set_58_NavigationView_PaneCustomContent;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.PaneFooter":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PaneFooter", "Microsoft.UI.Xaml.UIElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_58_NavigationView_PaneFooter;
-                xamlMember.Setter = set_58_NavigationView_PaneFooter;
+                xamlMember.Getter = get_59_NavigationView_PaneFooter;
+                xamlMember.Setter = set_59_NavigationView_PaneFooter;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.PaneHeader":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PaneHeader", "Microsoft.UI.Xaml.UIElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_59_NavigationView_PaneHeader;
-                xamlMember.Setter = set_59_NavigationView_PaneHeader;
+                xamlMember.Getter = get_60_NavigationView_PaneHeader;
+                xamlMember.Setter = set_60_NavigationView_PaneHeader;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.PaneToggleButtonStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PaneToggleButtonStyle", "Microsoft.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_60_NavigationView_PaneToggleButtonStyle;
-                xamlMember.Setter = set_60_NavigationView_PaneToggleButtonStyle;
+                xamlMember.Getter = get_61_NavigationView_PaneToggleButtonStyle;
+                xamlMember.Setter = set_61_NavigationView_PaneToggleButtonStyle;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.SelectedItem":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectedItem", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_61_NavigationView_SelectedItem;
-                xamlMember.Setter = set_61_NavigationView_SelectedItem;
+                xamlMember.Getter = get_62_NavigationView_SelectedItem;
+                xamlMember.Setter = set_62_NavigationView_SelectedItem;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.SettingsItem":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SettingsItem", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_62_NavigationView_SettingsItem;
+                xamlMember.Getter = get_63_NavigationView_SettingsItem;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.ShoulderNavigationEnabled":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ShoulderNavigationEnabled", "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_63_NavigationView_ShoulderNavigationEnabled;
-                xamlMember.Setter = set_63_NavigationView_ShoulderNavigationEnabled;
+                xamlMember.Getter = get_64_NavigationView_ShoulderNavigationEnabled;
+                xamlMember.Setter = set_64_NavigationView_ShoulderNavigationEnabled;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationView.TemplateSettings":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationView");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_64_NavigationView_TemplateSettings;
+                xamlMember.Getter = get_65_NavigationView_TemplateSettings;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.Icon":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Icon", "Microsoft.UI.Xaml.Controls.IconElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_65_NavigationViewItem_Icon;
-                xamlMember.Setter = set_65_NavigationViewItem_Icon;
+                xamlMember.Getter = get_66_NavigationViewItem_Icon;
+                xamlMember.Setter = set_66_NavigationViewItem_Icon;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItemBase.IsSelected":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItemBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsSelected", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_66_NavigationViewItemBase_IsSelected;
-                xamlMember.Setter = set_66_NavigationViewItemBase_IsSelected;
+                xamlMember.Getter = get_67_NavigationViewItemBase_IsSelected;
+                xamlMember.Setter = set_67_NavigationViewItemBase_IsSelected;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.CompactPaneLength":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "CompactPaneLength", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_67_NavigationViewItem_CompactPaneLength;
+                xamlMember.Getter = get_68_NavigationViewItem_CompactPaneLength;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.HasUnrealizedChildren":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_68_NavigationViewItem_HasUnrealizedChildren;
-                xamlMember.Setter = set_68_NavigationViewItem_HasUnrealizedChildren;
+                xamlMember.Getter = get_69_NavigationViewItem_HasUnrealizedChildren;
+                xamlMember.Setter = set_69_NavigationViewItem_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.InfoBadge":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "InfoBadge", "Microsoft.UI.Xaml.Controls.InfoBadge");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_69_NavigationViewItem_InfoBadge;
-                xamlMember.Setter = set_69_NavigationViewItem_InfoBadge;
+                xamlMember.Getter = get_70_NavigationViewItem_InfoBadge;
+                xamlMember.Setter = set_70_NavigationViewItem_InfoBadge;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.IsChildSelected":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsChildSelected", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_70_NavigationViewItem_IsChildSelected;
-                xamlMember.Setter = set_70_NavigationViewItem_IsChildSelected;
+                xamlMember.Getter = get_71_NavigationViewItem_IsChildSelected;
+                xamlMember.Setter = set_71_NavigationViewItem_IsChildSelected;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.IsExpanded":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_71_NavigationViewItem_IsExpanded;
-                xamlMember.Setter = set_71_NavigationViewItem_IsExpanded;
+                xamlMember.Getter = get_72_NavigationViewItem_IsExpanded;
+                xamlMember.Setter = set_72_NavigationViewItem_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.MenuItems":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItems", "System.Collections.Generic.IList`1<Object>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_72_NavigationViewItem_MenuItems;
+                xamlMember.Getter = get_73_NavigationViewItem_MenuItems;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.MenuItemsSource":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MenuItemsSource", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_73_NavigationViewItem_MenuItemsSource;
-                xamlMember.Setter = set_73_NavigationViewItem_MenuItemsSource;
+                xamlMember.Getter = get_74_NavigationViewItem_MenuItemsSource;
+                xamlMember.Setter = set_74_NavigationViewItem_MenuItemsSource;
                 break;
             case "Microsoft.UI.Xaml.Controls.NavigationViewItem.SelectsOnInvoked":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectsOnInvoked", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_74_NavigationViewItem_SelectsOnInvoked;
-                xamlMember.Setter = set_74_NavigationViewItem_SelectsOnInvoked;
+                xamlMember.Getter = get_75_NavigationViewItem_SelectsOnInvoked;
+                xamlMember.Setter = set_75_NavigationViewItem_SelectsOnInvoked;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.Items":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Items", "System.Collections.Generic.IList`1<Object>");
-                xamlMember.Getter = get_75_SfComboBox_Items;
+                xamlMember.Getter = get_76_SfComboBox_Items;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.SelectionMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectionMode", "Syncfusion.UI.Xaml.Editors.ComboBoxSelectionMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_76_SfComboBox_SelectionMode;
-                xamlMember.Setter = set_76_SfComboBox_SelectionMode;
+                xamlMember.Getter = get_77_SfComboBox_SelectionMode;
+                xamlMember.Setter = set_77_SfComboBox_SelectionMode;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.MultiSelectionDisplayMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MultiSelectionDisplayMode", "Syncfusion.UI.Xaml.Editors.ComboBoxMultiSelectionDisplayMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_77_SfComboBox_MultiSelectionDisplayMode;
-                xamlMember.Setter = set_77_SfComboBox_MultiSelectionDisplayMode;
+                xamlMember.Getter = get_78_SfComboBox_MultiSelectionDisplayMode;
+                xamlMember.Setter = set_78_SfComboBox_MultiSelectionDisplayMode;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.DelimiterText":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "DelimiterText", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_78_SfComboBox_DelimiterText;
-                xamlMember.Setter = set_78_SfComboBox_DelimiterText;
+                xamlMember.Getter = get_79_SfComboBox_DelimiterText;
+                xamlMember.Setter = set_79_SfComboBox_DelimiterText;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.ItemsSource":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ItemsSource", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_79_DropDownListBase_ItemsSource;
-                xamlMember.Setter = set_79_DropDownListBase_ItemsSource;
+                xamlMember.Getter = get_80_DropDownListBase_ItemsSource;
+                xamlMember.Setter = set_80_DropDownListBase_ItemsSource;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.SelectedItem":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectedItem", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_80_DropDownListBase_SelectedItem;
-                xamlMember.Setter = set_80_DropDownListBase_SelectedItem;
+                xamlMember.Getter = get_81_DropDownListBase_SelectedItem;
+                xamlMember.Setter = set_81_DropDownListBase_SelectedItem;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.IsEditable":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsEditable", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_81_SfComboBox_IsEditable;
-                xamlMember.Setter = set_81_SfComboBox_IsEditable;
+                xamlMember.Getter = get_82_SfComboBox_IsEditable;
+                xamlMember.Setter = set_82_SfComboBox_IsEditable;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.IsTextSearchEnabled":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsTextSearchEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_82_SfComboBox_IsTextSearchEnabled;
-                xamlMember.Setter = set_82_SfComboBox_IsTextSearchEnabled;
+                xamlMember.Getter = get_83_SfComboBox_IsTextSearchEnabled;
+                xamlMember.Setter = set_83_SfComboBox_IsTextSearchEnabled;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.IsFilteringEnabled":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsFilteringEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_83_SfComboBox_IsFilteringEnabled;
-                xamlMember.Setter = set_83_SfComboBox_IsFilteringEnabled;
+                xamlMember.Getter = get_84_SfComboBox_IsFilteringEnabled;
+                xamlMember.Setter = set_84_SfComboBox_IsFilteringEnabled;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.SelectionChangeTrigger":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectionChangeTrigger", "Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangeTrigger");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_84_SfComboBox_SelectionChangeTrigger;
-                xamlMember.Setter = set_84_SfComboBox_SelectionChangeTrigger;
+                xamlMember.Getter = get_85_SfComboBox_SelectionChangeTrigger;
+                xamlMember.Setter = set_85_SfComboBox_SelectionChangeTrigger;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.SelectedIndex":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectedIndex", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_85_SfComboBox_SelectedIndex;
-                xamlMember.Setter = set_85_SfComboBox_SelectedIndex;
+                xamlMember.Getter = get_86_SfComboBox_SelectedIndex;
+                xamlMember.Setter = set_86_SfComboBox_SelectedIndex;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.TextSearchMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TextSearchMode", "Syncfusion.UI.Xaml.Editors.ComboBoxTextSearchMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_86_SfComboBox_TextSearchMode;
-                xamlMember.Setter = set_86_SfComboBox_TextSearchMode;
+                xamlMember.Getter = get_87_SfComboBox_TextSearchMode;
+                xamlMember.Setter = set_87_SfComboBox_TextSearchMode;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.SelectionBoxItemTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectionBoxItemTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_87_SfComboBox_SelectionBoxItemTemplate;
-                xamlMember.Setter = set_87_SfComboBox_SelectionBoxItemTemplate;
+                xamlMember.Getter = get_88_SfComboBox_SelectionBoxItemTemplate;
+                xamlMember.Setter = set_88_SfComboBox_SelectionBoxItemTemplate;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.IsMultiSelectCheckBoxEnabled":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsMultiSelectCheckBoxEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_88_SfComboBox_IsMultiSelectCheckBoxEnabled;
-                xamlMember.Setter = set_88_SfComboBox_IsMultiSelectCheckBoxEnabled;
+                xamlMember.Getter = get_89_SfComboBox_IsMultiSelectCheckBoxEnabled;
+                xamlMember.Setter = set_89_SfComboBox_IsMultiSelectCheckBoxEnabled;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.ItemContainerStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ItemContainerStyle", "Microsoft.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_89_SfComboBox_ItemContainerStyle;
-                xamlMember.Setter = set_89_SfComboBox_ItemContainerStyle;
+                xamlMember.Getter = get_90_SfComboBox_ItemContainerStyle;
+                xamlMember.Setter = set_90_SfComboBox_ItemContainerStyle;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.ItemContainerStyleSelector":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ItemContainerStyleSelector", "Microsoft.UI.Xaml.Controls.StyleSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_90_SfComboBox_ItemContainerStyleSelector;
-                xamlMember.Setter = set_90_SfComboBox_ItemContainerStyleSelector;
+                xamlMember.Getter = get_91_SfComboBox_ItemContainerStyleSelector;
+                xamlMember.Setter = set_91_SfComboBox_ItemContainerStyleSelector;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.FilterBehavior":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "FilterBehavior", "Syncfusion.UI.Xaml.Editors.IComboBoxFilterBehavior");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_91_SfComboBox_FilterBehavior;
-                xamlMember.Setter = set_91_SfComboBox_FilterBehavior;
+                xamlMember.Getter = get_92_SfComboBox_FilterBehavior;
+                xamlMember.Setter = set_92_SfComboBox_FilterBehavior;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.SearchBehavior":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SearchBehavior", "Syncfusion.UI.Xaml.Editors.IComboBoxSearchBehavior");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_92_SfComboBox_SearchBehavior;
-                xamlMember.Setter = set_92_SfComboBox_SearchBehavior;
+                xamlMember.Getter = get_93_SfComboBox_SearchBehavior;
+                xamlMember.Setter = set_93_SfComboBox_SearchBehavior;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.TextHighlightMode":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TextHighlightMode", "Syncfusion.UI.Xaml.Editors.ComboBoxTextHighlightMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_93_SfComboBox_TextHighlightMode;
-                xamlMember.Setter = set_93_SfComboBox_TextHighlightMode;
+                xamlMember.Getter = get_94_SfComboBox_TextHighlightMode;
+                xamlMember.Setter = set_94_SfComboBox_TextHighlightMode;
                 break;
             case "Syncfusion.UI.Xaml.Editors.SfComboBox.AutoAppendType":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.SfComboBox");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "AutoAppendType", "Syncfusion.UI.Xaml.Editors.ComboBoxAutoAppendType");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_94_SfComboBox_AutoAppendType;
-                xamlMember.Setter = set_94_SfComboBox_AutoAppendType;
+                xamlMember.Getter = get_95_SfComboBox_AutoAppendType;
+                xamlMember.Setter = set_95_SfComboBox_AutoAppendType;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.Text":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Text", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_95_DropDownListBase_Text;
-                xamlMember.Setter = set_95_DropDownListBase_Text;
+                xamlMember.Getter = get_96_DropDownListBase_Text;
+                xamlMember.Setter = set_96_DropDownListBase_Text;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TextMemberPath":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TextMemberPath", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_96_DropDownListBase_TextMemberPath;
-                xamlMember.Setter = set_96_DropDownListBase_TextMemberPath;
+                xamlMember.Getter = get_97_DropDownListBase_TextMemberPath;
+                xamlMember.Setter = set_97_DropDownListBase_TextMemberPath;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TextBoxStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TextBoxStyle", "Microsoft.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_97_DropDownListBase_TextBoxStyle;
-                xamlMember.Setter = set_97_DropDownListBase_TextBoxStyle;
+                xamlMember.Getter = get_98_DropDownListBase_TextBoxStyle;
+                xamlMember.Setter = set_98_DropDownListBase_TextBoxStyle;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.PlaceholderText":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PlaceholderText", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_98_DropDownListBase_PlaceholderText;
-                xamlMember.Setter = set_98_DropDownListBase_PlaceholderText;
+                xamlMember.Getter = get_99_DropDownListBase_PlaceholderText;
+                xamlMember.Setter = set_99_DropDownListBase_PlaceholderText;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.PlaceholderForeground":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PlaceholderForeground", "Microsoft.UI.Xaml.Media.Brush");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_99_DropDownListBase_PlaceholderForeground;
-                xamlMember.Setter = set_99_DropDownListBase_PlaceholderForeground;
+                xamlMember.Getter = get_100_DropDownListBase_PlaceholderForeground;
+                xamlMember.Setter = set_100_DropDownListBase_PlaceholderForeground;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.Header":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Header", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_100_DropDownListBase_Header;
-                xamlMember.Setter = set_100_DropDownListBase_Header;
+                xamlMember.Getter = get_101_DropDownListBase_Header;
+                xamlMember.Setter = set_101_DropDownListBase_Header;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.HeaderTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_101_DropDownListBase_HeaderTemplate;
-                xamlMember.Setter = set_101_DropDownListBase_HeaderTemplate;
+                xamlMember.Getter = get_102_DropDownListBase_HeaderTemplate;
+                xamlMember.Setter = set_102_DropDownListBase_HeaderTemplate;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.Description":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Description", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_102_DropDownListBase_Description;
-                xamlMember.Setter = set_102_DropDownListBase_Description;
+                xamlMember.Getter = get_103_DropDownListBase_Description;
+                xamlMember.Setter = set_103_DropDownListBase_Description;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.ItemTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ItemTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_103_DropDownListBase_ItemTemplate;
-                xamlMember.Setter = set_103_DropDownListBase_ItemTemplate;
+                xamlMember.Getter = get_104_DropDownListBase_ItemTemplate;
+                xamlMember.Setter = set_104_DropDownListBase_ItemTemplate;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.ItemTemplateSelector":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ItemTemplateSelector", "Microsoft.UI.Xaml.Controls.DataTemplateSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_104_DropDownListBase_ItemTemplateSelector;
-                xamlMember.Setter = set_104_DropDownListBase_ItemTemplateSelector;
+                xamlMember.Getter = get_105_DropDownListBase_ItemTemplateSelector;
+                xamlMember.Setter = set_105_DropDownListBase_ItemTemplateSelector;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.DisplayMemberPath":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "DisplayMemberPath", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_105_DropDownListBase_DisplayMemberPath;
-                xamlMember.Setter = set_105_DropDownListBase_DisplayMemberPath;
+                xamlMember.Getter = get_106_DropDownListBase_DisplayMemberPath;
+                xamlMember.Setter = set_106_DropDownListBase_DisplayMemberPath;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.SelectedItems":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectedItems", "System.Collections.Generic.IList`1<Object>");
-                xamlMember.Getter = get_106_DropDownListBase_SelectedItems;
+                xamlMember.Getter = get_107_DropDownListBase_SelectedItems;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.GroupStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "GroupStyle", "Windows.Foundation.Collections.IObservableVector`1<Microsoft.UI.Xaml.Controls.GroupStyle>");
-                xamlMember.Getter = get_107_DropDownListBase_GroupStyle;
+                xamlMember.Getter = get_108_DropDownListBase_GroupStyle;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.IsDropDownOpen":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsDropDownOpen", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_108_DropDownListBase_IsDropDownOpen;
-                xamlMember.Setter = set_108_DropDownListBase_IsDropDownOpen;
+                xamlMember.Getter = get_109_DropDownListBase_IsDropDownOpen;
+                xamlMember.Setter = set_109_DropDownListBase_IsDropDownOpen;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.MaxDropDownHeight":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "MaxDropDownHeight", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_109_DropDownListBase_MaxDropDownHeight;
-                xamlMember.Setter = set_109_DropDownListBase_MaxDropDownHeight;
+                xamlMember.Getter = get_110_DropDownListBase_MaxDropDownHeight;
+                xamlMember.Setter = set_110_DropDownListBase_MaxDropDownHeight;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TokenItemTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TokenItemTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_110_DropDownListBase_TokenItemTemplate;
-                xamlMember.Setter = set_110_DropDownListBase_TokenItemTemplate;
+                xamlMember.Getter = get_111_DropDownListBase_TokenItemTemplate;
+                xamlMember.Setter = set_111_DropDownListBase_TokenItemTemplate;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TokenItemTemplateSelector":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TokenItemTemplateSelector", "Microsoft.UI.Xaml.Controls.DataTemplateSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_111_DropDownListBase_TokenItemTemplateSelector;
-                xamlMember.Setter = set_111_DropDownListBase_TokenItemTemplateSelector;
+                xamlMember.Getter = get_112_DropDownListBase_TokenItemTemplateSelector;
+                xamlMember.Setter = set_112_DropDownListBase_TokenItemTemplateSelector;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TokenItemStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TokenItemStyle", "Microsoft.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_112_DropDownListBase_TokenItemStyle;
-                xamlMember.Setter = set_112_DropDownListBase_TokenItemStyle;
+                xamlMember.Getter = get_113_DropDownListBase_TokenItemStyle;
+                xamlMember.Setter = set_113_DropDownListBase_TokenItemStyle;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TokenItemStyleSelector":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TokenItemStyleSelector", "Microsoft.UI.Xaml.Controls.StyleSelector");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_113_DropDownListBase_TokenItemStyleSelector;
-                xamlMember.Setter = set_113_DropDownListBase_TokenItemStyleSelector;
+                xamlMember.Getter = get_114_DropDownListBase_TokenItemStyleSelector;
+                xamlMember.Setter = set_114_DropDownListBase_TokenItemStyleSelector;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.SelectedValuePath":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectedValuePath", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_114_DropDownListBase_SelectedValuePath;
-                xamlMember.Setter = set_114_DropDownListBase_SelectedValuePath;
+                xamlMember.Getter = get_115_DropDownListBase_SelectedValuePath;
+                xamlMember.Setter = set_115_DropDownListBase_SelectedValuePath;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.SelectedValue":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SelectedValue", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_115_DropDownListBase_SelectedValue;
-                xamlMember.Setter = set_115_DropDownListBase_SelectedValue;
+                xamlMember.Getter = get_116_DropDownListBase_SelectedValue;
+                xamlMember.Setter = set_116_DropDownListBase_SelectedValue;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.LeadingView":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "LeadingView", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_116_DropDownListBase_LeadingView;
-                xamlMember.Setter = set_116_DropDownListBase_LeadingView;
+                xamlMember.Getter = get_117_DropDownListBase_LeadingView;
+                xamlMember.Setter = set_117_DropDownListBase_LeadingView;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.TrailingView":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TrailingView", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_117_DropDownListBase_TrailingView;
-                xamlMember.Setter = set_117_DropDownListBase_TrailingView;
+                xamlMember.Getter = get_118_DropDownListBase_TrailingView;
+                xamlMember.Setter = set_118_DropDownListBase_TrailingView;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.HighlightedTextForeground":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HighlightedTextForeground", "Microsoft.UI.Xaml.Media.Brush");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_118_DropDownListBase_HighlightedTextForeground;
-                xamlMember.Setter = set_118_DropDownListBase_HighlightedTextForeground;
+                xamlMember.Getter = get_119_DropDownListBase_HighlightedTextForeground;
+                xamlMember.Setter = set_119_DropDownListBase_HighlightedTextForeground;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.HighlightedTextFontWeight":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HighlightedTextFontWeight", "Windows.UI.Text.FontWeight");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_119_DropDownListBase_HighlightedTextFontWeight;
-                xamlMember.Setter = set_119_DropDownListBase_HighlightedTextFontWeight;
+                xamlMember.Getter = get_120_DropDownListBase_HighlightedTextFontWeight;
+                xamlMember.Setter = set_120_DropDownListBase_HighlightedTextFontWeight;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.HighlightedTextFontStyle":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HighlightedTextFontStyle", "System.Nullable`1<Windows.UI.Text.FontStyle>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_120_DropDownListBase_HighlightedTextFontStyle;
-                xamlMember.Setter = set_120_DropDownListBase_HighlightedTextFontStyle;
+                xamlMember.Getter = get_121_DropDownListBase_HighlightedTextFontStyle;
+                xamlMember.Setter = set_121_DropDownListBase_HighlightedTextFontStyle;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.HighlightedTextFontSize":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HighlightedTextFontSize", "System.Nullable`1<Double>");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_121_DropDownListBase_HighlightedTextFontSize;
-                xamlMember.Setter = set_121_DropDownListBase_HighlightedTextFontSize;
+                xamlMember.Getter = get_122_DropDownListBase_HighlightedTextFontSize;
+                xamlMember.Setter = set_122_DropDownListBase_HighlightedTextFontSize;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.NoResultsFoundContent":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "NoResultsFoundContent", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_122_DropDownListBase_NoResultsFoundContent;
-                xamlMember.Setter = set_122_DropDownListBase_NoResultsFoundContent;
+                xamlMember.Getter = get_123_DropDownListBase_NoResultsFoundContent;
+                xamlMember.Setter = set_123_DropDownListBase_NoResultsFoundContent;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.NoResultsFoundTemplate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "NoResultsFoundTemplate", "Microsoft.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_123_DropDownListBase_NoResultsFoundTemplate;
-                xamlMember.Setter = set_123_DropDownListBase_NoResultsFoundTemplate;
+                xamlMember.Getter = get_124_DropDownListBase_NoResultsFoundTemplate;
+                xamlMember.Setter = set_124_DropDownListBase_NoResultsFoundTemplate;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.singleSelectionSuggestionTextBlock":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "singleSelectionSuggestionTextBlock", "Microsoft.UI.Xaml.Controls.TextBlock");
-                xamlMember.Getter = get_124_DropDownListBase_singleSelectionSuggestionTextBlock;
-                xamlMember.Setter = set_124_DropDownListBase_singleSelectionSuggestionTextBlock;
+                xamlMember.Getter = get_125_DropDownListBase_singleSelectionSuggestionTextBlock;
+                xamlMember.Setter = set_125_DropDownListBase_singleSelectionSuggestionTextBlock;
                 break;
             case "Syncfusion.UI.Xaml.Editors.DropDownListBase.multiSelectionSuggestionTextBlock":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Editors.DropDownListBase");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "multiSelectionSuggestionTextBlock", "Microsoft.UI.Xaml.Controls.TextBlock");
-                xamlMember.Getter = get_125_DropDownListBase_multiSelectionSuggestionTextBlock;
-                xamlMember.Setter = set_125_DropDownListBase_multiSelectionSuggestionTextBlock;
+                xamlMember.Getter = get_126_DropDownListBase_multiSelectionSuggestionTextBlock;
+                xamlMember.Setter = set_126_DropDownListBase_multiSelectionSuggestionTextBlock;
                 break;
             case "Books_Store_Management_App.Views.OrderDetailPage.ViewModel":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.OrderDetailPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ViewModel", "Books_Store_Management_App.ViewModels.OrderDetailViewModel");
-                xamlMember.Getter = get_126_OrderDetailPage_ViewModel;
-                xamlMember.Setter = set_126_OrderDetailPage_ViewModel;
+                xamlMember.Getter = get_127_OrderDetailPage_ViewModel;
+                xamlMember.Setter = set_127_OrderDetailPage_ViewModel;
                 break;
             case "Books_Store_Management_App.Views.OrderDetailPage.OrderViewModel":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.OrderDetailPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "OrderViewModel", "Books_Store_Management_App.OrderPageViewModel");
-                xamlMember.Getter = get_127_OrderDetailPage_OrderViewModel;
-                xamlMember.Setter = set_127_OrderDetailPage_OrderViewModel;
+                xamlMember.Getter = get_128_OrderDetailPage_OrderViewModel;
+                xamlMember.Setter = set_128_OrderDetailPage_OrderViewModel;
                 break;
             case "Books_Store_Management_App.Views.OrderPage.AllOrdersDisplay":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.OrderPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "AllOrdersDisplay", "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Order>");
-                xamlMember.Getter = get_128_OrderPage_AllOrdersDisplay;
-                xamlMember.Setter = set_128_OrderPage_AllOrdersDisplay;
+                xamlMember.Getter = get_129_OrderPage_AllOrdersDisplay;
+                xamlMember.Setter = set_129_OrderPage_AllOrdersDisplay;
                 break;
             case "Books_Store_Management_App.Models.Order.ID":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ID", "Int32");
-                xamlMember.Getter = get_129_Order_ID;
-                xamlMember.Setter = set_129_Order_ID;
+                xamlMember.Getter = get_130_Order_ID;
+                xamlMember.Setter = set_130_Order_ID;
                 break;
             case "Books_Store_Management_App.Models.Order.Customer":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Customer", "String");
-                xamlMember.Getter = get_130_Order_Customer;
-                xamlMember.Setter = set_130_Order_Customer;
+                xamlMember.Getter = get_131_Order_Customer;
+                xamlMember.Setter = set_131_Order_Customer;
                 break;
             case "Books_Store_Management_App.Models.Order.Date":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Date", "String");
-                xamlMember.Getter = get_131_Order_Date;
-                xamlMember.Setter = set_131_Order_Date;
+                xamlMember.Getter = get_132_Order_Date;
+                xamlMember.Setter = set_132_Order_Date;
                 break;
             case "Books_Store_Management_App.Models.Order.Coupons":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Coupons", "Books_Store_Management_App.Helpers.FullObservableCollection`1<Books_Store_Management_App.Models.Coupon>");
-                xamlMember.Getter = get_132_Order_Coupons;
-                xamlMember.Setter = set_132_Order_Coupons;
+                xamlMember.Getter = get_133_Order_Coupons;
+                xamlMember.Setter = set_133_Order_Coupons;
                 break;
             case "Books_Store_Management_App.Models.Coupon.Id":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Coupon");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Id", "Int32");
-                xamlMember.Getter = get_133_Coupon_Id;
-                xamlMember.Setter = set_133_Coupon_Id;
+                xamlMember.Getter = get_134_Coupon_Id;
+                xamlMember.Setter = set_134_Coupon_Id;
                 break;
             case "Books_Store_Management_App.Models.Coupon.Name":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Coupon");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Name", "String");
-                xamlMember.Getter = get_134_Coupon_Name;
-                xamlMember.Setter = set_134_Coupon_Name;
+                xamlMember.Getter = get_135_Coupon_Name;
+                xamlMember.Setter = set_135_Coupon_Name;
                 break;
             case "Books_Store_Management_App.Models.Coupon.Discount":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Coupon");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Discount", "Double");
-                xamlMember.Getter = get_135_Coupon_Discount;
-                xamlMember.Setter = set_135_Coupon_Discount;
+                xamlMember.Getter = get_136_Coupon_Discount;
+                xamlMember.Setter = set_136_Coupon_Discount;
                 break;
             case "Books_Store_Management_App.Models.Coupon.ExpiryDate":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Coupon");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ExpiryDate", "System.DateTime");
-                xamlMember.Getter = get_136_Coupon_ExpiryDate;
-                xamlMember.Setter = set_136_Coupon_ExpiryDate;
+                xamlMember.Getter = get_137_Coupon_ExpiryDate;
+                xamlMember.Setter = set_137_Coupon_ExpiryDate;
                 break;
             case "Books_Store_Management_App.Models.Order.Discount":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Discount", "Double");
-                xamlMember.Getter = get_137_Order_Discount;
+                xamlMember.Getter = get_138_Order_Discount;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.Models.Order.IsDelivered":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsDelivered", "Boolean");
-                xamlMember.Getter = get_138_Order_IsDelivered;
-                xamlMember.Setter = set_138_Order_IsDelivered;
+                xamlMember.Getter = get_139_Order_IsDelivered;
+                xamlMember.Setter = set_139_Order_IsDelivered;
                 break;
             case "Books_Store_Management_App.Models.Order.OrderItems":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "OrderItems", "System.Collections.Generic.List`1<Books_Store_Management_App.Models.OrderItem>");
-                xamlMember.Getter = get_139_Order_OrderItems;
-                xamlMember.Setter = set_139_Order_OrderItems;
+                xamlMember.Getter = get_140_Order_OrderItems;
+                xamlMember.Setter = set_140_Order_OrderItems;
                 break;
             case "Books_Store_Management_App.Models.OrderItem.Id":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.OrderItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Id", "Int32");
-                xamlMember.Getter = get_140_OrderItem_Id;
-                xamlMember.Setter = set_140_OrderItem_Id;
+                xamlMember.Getter = get_141_OrderItem_Id;
+                xamlMember.Setter = set_141_OrderItem_Id;
                 break;
             case "Books_Store_Management_App.Models.OrderItem.Book":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.OrderItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Book", "Books_Store_Management_App.Models.Book");
-                xamlMember.Getter = get_141_OrderItem_Book;
-                xamlMember.Setter = set_141_OrderItem_Book;
+                xamlMember.Getter = get_142_OrderItem_Book;
+                xamlMember.Setter = set_142_OrderItem_Book;
                 break;
             case "Books_Store_Management_App.Models.OrderItem.Quantity":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.OrderItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Quantity", "Int32");
-                xamlMember.Getter = get_142_OrderItem_Quantity;
-                xamlMember.Setter = set_142_OrderItem_Quantity;
+                xamlMember.Getter = get_143_OrderItem_Quantity;
+                xamlMember.Setter = set_143_OrderItem_Quantity;
                 break;
             case "Books_Store_Management_App.Models.OrderItem.SubTotal":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.OrderItem");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "SubTotal", "Double");
-                xamlMember.Getter = get_143_OrderItem_SubTotal;
+                xamlMember.Getter = get_144_OrderItem_SubTotal;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.Models.Order.Amount":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Amount", "Int32");
-                xamlMember.Getter = get_144_Order_Amount;
+                xamlMember.Getter = get_145_Order_Amount;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.Models.Order.Price":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Price", "Double");
-                xamlMember.Getter = get_145_Order_Price;
+                xamlMember.Getter = get_146_Order_Price;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.Models.Order.Index":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Index", "Int32");
-                xamlMember.Getter = get_146_Order_Index;
-                xamlMember.Setter = set_146_Order_Index;
+                xamlMember.Getter = get_147_Order_Index;
+                xamlMember.Setter = set_147_Order_Index;
                 break;
             case "Books_Store_Management_App.Models.Order.IsEven":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Order");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsEven", "Boolean");
-                xamlMember.Getter = get_147_Order_IsEven;
+                xamlMember.Getter = get_148_Order_IsEven;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.Views.OrderPage.DisplayedOrders":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.OrderPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "DisplayedOrders", "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Order>");
-                xamlMember.Getter = get_148_OrderPage_DisplayedOrders;
-                xamlMember.Setter = set_148_OrderPage_DisplayedOrders;
+                xamlMember.Getter = get_149_OrderPage_DisplayedOrders;
+                xamlMember.Setter = set_149_OrderPage_DisplayedOrders;
                 break;
             case "Books_Store_Management_App.Views.OrderPage.ViewModel":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.OrderPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ViewModel", "Books_Store_Management_App.OrderPageViewModel");
-                xamlMember.Getter = get_149_OrderPage_ViewModel;
-                xamlMember.Setter = set_149_OrderPage_ViewModel;
+                xamlMember.Getter = get_150_OrderPage_ViewModel;
+                xamlMember.Setter = set_150_OrderPage_ViewModel;
                 break;
             case "Books_Store_Management_App.Views.ReadOnlyOrderDetailPage.ViewModel":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.ReadOnlyOrderDetailPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ViewModel", "Books_Store_Management_App.ViewModels.OrderDetailViewModel");
-                xamlMember.Getter = get_150_ReadOnlyOrderDetailPage_ViewModel;
-                xamlMember.Setter = set_150_ReadOnlyOrderDetailPage_ViewModel;
+                xamlMember.Getter = get_151_ReadOnlyOrderDetailPage_ViewModel;
+                xamlMember.Setter = set_151_ReadOnlyOrderDetailPage_ViewModel;
                 break;
             case "Books_Store_Management_App.Views.ReadOnlyOrderDetailPage.OrderViewModel":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.ReadOnlyOrderDetailPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "OrderViewModel", "Books_Store_Management_App.OrderPageViewModel");
-                xamlMember.Getter = get_151_ReadOnlyOrderDetailPage_OrderViewModel;
-                xamlMember.Setter = set_151_ReadOnlyOrderDetailPage_OrderViewModel;
+                xamlMember.Getter = get_152_ReadOnlyOrderDetailPage_OrderViewModel;
+                xamlMember.Setter = set_152_ReadOnlyOrderDetailPage_OrderViewModel;
                 break;
             case "Books_Store_Management_App.Views.StockPage.AllBooksDisplay":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.StockPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "AllBooksDisplay", "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Book>");
-                xamlMember.Getter = get_152_StockPage_AllBooksDisplay;
-                xamlMember.Setter = set_152_StockPage_AllBooksDisplay;
+                xamlMember.Getter = get_153_StockPage_AllBooksDisplay;
+                xamlMember.Setter = set_153_StockPage_AllBooksDisplay;
                 break;
             case "Books_Store_Management_App.Models.Book.ImageSource":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ImageSource", "String");
-                xamlMember.Getter = get_153_Book_ImageSource;
-                xamlMember.Setter = set_153_Book_ImageSource;
+                xamlMember.Getter = get_154_Book_ImageSource;
+                xamlMember.Setter = set_154_Book_ImageSource;
                 break;
             case "Books_Store_Management_App.Models.Book.Title":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.Getter = get_154_Book_Title;
-                xamlMember.Setter = set_154_Book_Title;
+                xamlMember.Getter = get_155_Book_Title;
+                xamlMember.Setter = set_155_Book_Title;
                 break;
             case "Books_Store_Management_App.Models.Book.Publisher":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Publisher", "String");
-                xamlMember.Getter = get_155_Book_Publisher;
-                xamlMember.Setter = set_155_Book_Publisher;
+                xamlMember.Getter = get_156_Book_Publisher;
+                xamlMember.Setter = set_156_Book_Publisher;
                 break;
             case "Books_Store_Management_App.Models.Book.Author":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Author", "String");
-                xamlMember.Getter = get_156_Book_Author;
-                xamlMember.Setter = set_156_Book_Author;
+                xamlMember.Getter = get_157_Book_Author;
+                xamlMember.Setter = set_157_Book_Author;
                 break;
             case "Books_Store_Management_App.Models.Book.ISBN":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ISBN", "String");
-                xamlMember.Getter = get_157_Book_ISBN;
-                xamlMember.Setter = set_157_Book_ISBN;
+                xamlMember.Getter = get_158_Book_ISBN;
+                xamlMember.Setter = set_158_Book_ISBN;
                 break;
             case "Books_Store_Management_App.Models.Book.Year":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Year", "Int32");
-                xamlMember.Getter = get_158_Book_Year;
-                xamlMember.Setter = set_158_Book_Year;
+                xamlMember.Getter = get_159_Book_Year;
+                xamlMember.Setter = set_159_Book_Year;
                 break;
             case "Books_Store_Management_App.Models.Book.Price":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Price", "Double");
-                xamlMember.Getter = get_159_Book_Price;
-                xamlMember.Setter = set_159_Book_Price;
+                xamlMember.Getter = get_160_Book_Price;
+                xamlMember.Setter = set_160_Book_Price;
                 break;
             case "Books_Store_Management_App.Models.Book.PurchasePrice":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "PurchasePrice", "Double");
-                xamlMember.Getter = get_160_Book_PurchasePrice;
-                xamlMember.Setter = set_160_Book_PurchasePrice;
+                xamlMember.Getter = get_161_Book_PurchasePrice;
+                xamlMember.Setter = set_161_Book_PurchasePrice;
                 break;
             case "Books_Store_Management_App.Models.Book.Genre":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Genre", "String");
-                xamlMember.Getter = get_161_Book_Genre;
-                xamlMember.Setter = set_161_Book_Genre;
+                xamlMember.Getter = get_162_Book_Genre;
+                xamlMember.Setter = set_162_Book_Genre;
                 break;
             case "Books_Store_Management_App.Models.Book.Quantity":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Quantity", "Int32");
-                xamlMember.Getter = get_162_Book_Quantity;
-                xamlMember.Setter = set_162_Book_Quantity;
+                xamlMember.Getter = get_163_Book_Quantity;
+                xamlMember.Setter = set_163_Book_Quantity;
                 break;
             case "Books_Store_Management_App.Models.Book.Description":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Description", "String");
-                xamlMember.Getter = get_163_Book_Description;
-                xamlMember.Setter = set_163_Book_Description;
+                xamlMember.Getter = get_164_Book_Description;
+                xamlMember.Setter = set_164_Book_Description;
                 break;
             case "Books_Store_Management_App.Models.Book.Index":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Index", "Int32");
-                xamlMember.Getter = get_164_Book_Index;
-                xamlMember.Setter = set_164_Book_Index;
+                xamlMember.Getter = get_165_Book_Index;
+                xamlMember.Setter = set_165_Book_Index;
                 break;
             case "Books_Store_Management_App.Models.Book.IsEven":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Models.Book");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsEven", "Boolean");
-                xamlMember.Getter = get_165_Book_IsEven;
+                xamlMember.Getter = get_166_Book_IsEven;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Books_Store_Management_App.Views.StockPage.DisplayedBooks":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.StockPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "DisplayedBooks", "System.Collections.ObjectModel.ObservableCollection`1<Books_Store_Management_App.Models.Book>");
-                xamlMember.Getter = get_166_StockPage_DisplayedBooks;
-                xamlMember.Setter = set_166_StockPage_DisplayedBooks;
+                xamlMember.Getter = get_167_StockPage_DisplayedBooks;
+                xamlMember.Setter = set_167_StockPage_DisplayedBooks;
                 break;
             case "Books_Store_Management_App.Views.StockPage.ViewModel":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Books_Store_Management_App.Views.StockPage");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "ViewModel", "Books_Store_Management_App.Views.StockPage.StockPageViewModel");
-                xamlMember.Getter = get_167_StockPage_ViewModel;
-                xamlMember.Setter = set_167_StockPage_ViewModel;
+                xamlMember.Getter = get_168_StockPage_ViewModel;
+                xamlMember.Setter = set_168_StockPage_ViewModel;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_168_TreeViewNode_Children;
+                xamlMember.Getter = get_169_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_169_TreeViewNode_Content;
-                xamlMember.Setter = set_169_TreeViewNode_Content;
+                xamlMember.Getter = get_170_TreeViewNode_Content;
+                xamlMember.Setter = set_170_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_170_TreeViewNode_Depth;
+                xamlMember.Getter = get_171_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_171_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_172_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_172_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_172_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_173_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_173_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_173_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_173_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_174_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_174_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_174_TreeViewNode_Parent;
+                xamlMember.Getter = get_175_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter.TrueValue":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Core.DoubleToObjectConverter");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "TrueValue", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_175_DoubleToObjectConverter_TrueValue;
-                xamlMember.Setter = set_175_DoubleToObjectConverter_TrueValue;
+                xamlMember.Getter = get_176_DoubleToObjectConverter_TrueValue;
+                xamlMember.Setter = set_176_DoubleToObjectConverter_TrueValue;
                 break;
             case "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter.FalseValue":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Core.DoubleToObjectConverter");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "FalseValue", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_176_DoubleToObjectConverter_FalseValue;
-                xamlMember.Setter = set_176_DoubleToObjectConverter_FalseValue;
+                xamlMember.Getter = get_177_DoubleToObjectConverter_FalseValue;
+                xamlMember.Setter = set_177_DoubleToObjectConverter_FalseValue;
                 break;
             case "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter.NullValue":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Core.DoubleToObjectConverter");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "NullValue", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_177_DoubleToObjectConverter_NullValue;
-                xamlMember.Setter = set_177_DoubleToObjectConverter_NullValue;
+                xamlMember.Getter = get_178_DoubleToObjectConverter_NullValue;
+                xamlMember.Setter = set_178_DoubleToObjectConverter_NullValue;
                 break;
             case "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter.GreaterThan":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Core.DoubleToObjectConverter");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "GreaterThan", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_178_DoubleToObjectConverter_GreaterThan;
-                xamlMember.Setter = set_178_DoubleToObjectConverter_GreaterThan;
+                xamlMember.Getter = get_179_DoubleToObjectConverter_GreaterThan;
+                xamlMember.Setter = set_179_DoubleToObjectConverter_GreaterThan;
                 break;
             case "Syncfusion.UI.Xaml.Core.DoubleToObjectConverter.LessThan":
                 userType = (global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Core.DoubleToObjectConverter");
                 xamlMember = new global::Books_Store_Management_App.Books_Store_Management_App_XamlTypeInfo.XamlMember(this, "LessThan", "Double");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_179_DoubleToObjectConverter_LessThan;
-                xamlMember.Setter = set_179_DoubleToObjectConverter_LessThan;
+                xamlMember.Getter = get_180_DoubleToObjectConverter_LessThan;
+                xamlMember.Setter = set_180_DoubleToObjectConverter_LessThan;
                 break;
             }
             return xamlMember;
