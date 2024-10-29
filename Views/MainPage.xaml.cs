@@ -35,6 +35,17 @@ namespace Books_Store_Management_App.Views
             {
                 content.Navigate(typeof(OrderPage));
             }
+<<<<<<< HEAD
+            else if (selectedTag == "Admin")
+            {
+                content.Navigate(typeof(AdminPage));
+            }
+            else if (selectedTag == "ClassificationPage")
+            {
+                content.Navigate(typeof(ClassificationPage));
+            }
+=======
+>>>>>>> 733b15e1e6f0378c5e4d1c2edc9446cfc142463e
 
 
             /* ====================================================
