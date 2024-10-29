@@ -2,7 +2,7 @@
 
 ## Set up
 
-## Để chạy được PslqDao cài thực hiện chọn Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
+## Để chạy được PslqDao thực hiện chọn Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
 ```bash
 Install-Package Npgsql -Version 5.0.4
 ```
