@@ -102,11 +102,11 @@ namespace Books_Store_Management_App.ViewModels
         // TODO
         public Dictionary<string, string> PaymentMethods { get; set; } = new Dictionary<string, string>
         {
-            { "Cash", "Cash" },
-            { "MoMo", "Credit Card" },
-            { "VNPay", "QR Code" }
+            { "Cash", "/Assets/cash.jpg" },
+            { "Momo", "/Assets/momo_qr.png" },
+            { "VNPay", "/Assets/vnpay_qr.jpg" }
         };
-        public string PaymentMethodQRCode { get; set; }
+        public string PaymentMethodQRCode { get; set; } = "/Assets/cash.jpg";
         // 
 
         public bool IsQrCodeVisible { get; set; } = false;

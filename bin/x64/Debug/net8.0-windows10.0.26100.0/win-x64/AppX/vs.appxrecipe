@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-10-29T12:02:15.324</Modified>
+      <Modified>2024-10-29T12:55:40.940</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-10-29T12:02:14.697</Modified>
+      <Modified>2024-10-29T12:53:48.800</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.runtimeconfig.json">
       <PackagePath>Books_Store_Management_App.runtimeconfig.json</PackagePath>
@@ -44,15 +44,19 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
-      <Modified>2024-10-29T12:02:14.509</Modified>
+      <Modified>2024-10-29T12:55:40.298</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\obj\x64\Debug\net8.0-windows10.0.26100.0\win-x64\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
-      <Modified>2024-10-29T12:02:14.525</Modified>
+      <Modified>2024-10-29T12:55:40.314</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x64\native\WebView2Loader.dll</PackagePath>
       <Modified>2024-07-20T08:33:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\cash.jpg">
+      <PackagePath>Assets\cash.jpg</PackagePath>
+      <Modified>2024-10-29T12:17:37.376</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\image1.jpg">
       <PackagePath>Assets\image1.jpg</PackagePath>
@@ -93,6 +97,14 @@
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\image9.jpg">
       <PackagePath>Assets\image9.jpg</PackagePath>
       <Modified>2024-10-28T13:11:15.362</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\momo_qr.png">
+      <PackagePath>Assets\momo_qr.png</PackagePath>
+      <Modified>2024-10-24T15:45:07.866</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\Assets\vnpay_qr.jpg">
+      <PackagePath>Assets\vnpay_qr.jpg</PackagePath>
+      <Modified>2024-10-29T12:14:31.241</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\questpdf\2024.10.2\LatoFont\Lato-Black.ttf">
       <PackagePath>LatoFont\Lato-Black.ttf</PackagePath>
@@ -2192,7 +2204,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\LEARN_DOCUMENTS\LTWindow\New folder\Books_Store_Management_App\bin\x64\Debug\net8.0-windows10.0.26100.0\win-x64\Books_Store_Management_App.deps.json">
       <PackagePath>Books_Store_Management_App.deps.json</PackagePath>
-      <Modified>2024-10-28T17:26:14.583</Modified>
+      <Modified>2024-10-29T12:26:01.044</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\HONG THUY\.nuget\packages\syncfusion.core.winui\27.1.56\lib\net8.0-windows10.0\Syncfusion.Core.WinUI.pri">
       <PackagePath>Syncfusion.Core.WinUI.pri</PackagePath>

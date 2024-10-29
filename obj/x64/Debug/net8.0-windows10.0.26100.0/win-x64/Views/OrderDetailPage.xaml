@@ -65,10 +65,10 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer Name:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                        <TextBox x:ConnectionId='22' x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0"                                                     PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
-                        <TextBlock x:ConnectionId='23'
+                        <TextBox x:ConnectionId='25' x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0"                                                     PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
+                        <TextBlock x:ConnectionId='26'
                             Grid.Column="1" Grid.Row="1"
                                                                                      Foreground="Red" 
                                                                                                                                             />
@@ -76,9 +76,9 @@
 
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Purchase Date:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  Margin="0, 10, 0, 0">
-                        <TextBox x:ConnectionId='18' IsReadOnly="True"                                                                                                              HorizontalAlignment="Stretch" />
+                        <TextBox x:ConnectionId='21' IsReadOnly="True"                                                                                                              HorizontalAlignment="Stretch" />
                         <Canvas HorizontalAlignment="Right">
-                            <Button x:ConnectionId='19' Width="45" Canvas.Left="-45" x:Name="ChooseDateTimeButton">
+                            <Button x:ConnectionId='22' Width="45" Canvas.Left="-45" x:Name="ChooseDateTimeButton">
                                 <SymbolIcon Symbol="Calendar" />
                                 <Button.Flyout>
                                     <!-- Nội dung của Popup khi nhấn vào Button -->
@@ -87,11 +87,11 @@
                                             <TextBlock Text="Select Date And Time" FontWeight="Bold" Margin="0,0,0,10" />
                                             <!-- DatePicker để chọn ngày -->
                                             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                                <CalendarDatePicker x:ConnectionId='20' 
+                                                <CalendarDatePicker x:ConnectionId='23' 
                                                                                            
                                                PlaceholderText="Pick a date" Header="Calendar" VerticalAlignment="Center"/>
                                                 <!-- TimePicker để chọn giờ -->
-                                                <TimePicker x:ConnectionId='21'
+                                                <TimePicker x:ConnectionId='24'
                                                                                    
                                                Header="Time" VerticalAlignment="Center" />
                                             </StackPanel>
@@ -104,7 +104,7 @@
                     <!--  <TextBox Grid.Column="1" Grid.Row="1" PlaceholderText="Purchase Date:" Margin="0, 10, 0, 0"/> -->
 
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="Coupon" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <editors:SfComboBox x:ConnectionId='15'
+                    <editors:SfComboBox x:ConnectionId='18'
                        Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0"
                        HorizontalAlignment="Stretch"
                        SelectionMode="Multiple"
@@ -119,7 +119,7 @@
 
                     <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0, 10, 0, 0">
                         <TextBlock Text="Books" />
-                        <editors:SfComboBox x:ConnectionId='16'
+                        <editors:SfComboBox x:ConnectionId='19'
                            Margin="0, 10, 0, 0"
                            x:Name="BookSelectionComboBox"
                            HorizontalAlignment="Stretch"
@@ -130,7 +130,7 @@
                                                                                        
                                                                            
                         />
-                        <TextBlock x:ConnectionId='17' 
+                        <TextBlock x:ConnectionId='20' 
                                                                                       Foreground="Red" 
                                                                                                                                              />
                     </StackPanel>
@@ -158,20 +158,19 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Payment Method:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <editors:SfComboBox x:ConnectionId='13'
+                    <editors:SfComboBox x:ConnectionId='16'
                        Grid.Column="1" Grid.Row="0" Margin="0, 10, 0, 0"
                        HorizontalAlignment="Stretch"
-                       SelectionMode="Multiple"
+                       SelectionMode="Single"
                        MultiSelectionDisplayMode="Token"
                        x:Name="PaymentMethodCombobox"
+                                                                                
                        DelimiterText=","
+                                                                           
                     >
-                        <x:String>MoMo</x:String>
-                        <x:String>CASH</x:String>
-                        <x:String>VNPAY</x:String>
                     </editors:SfComboBox>
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Delivery:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <CheckBox x:ConnectionId='14' Grid.Column="1" Grid.Row="1"
+                    <CheckBox x:ConnectionId='17' Grid.Column="1" Grid.Row="1"
                         x:Name="IsDeliveredCheckBox"
                                                                                    />
                 </Grid>
@@ -192,11 +191,11 @@
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="TOTAL" FontSize="35" FontWeight="Bold" Margin="0, 30, 0, 0"/>
                 <Canvas Grid.Column="1" Grid.Row="0">
-                    <TextBlock x:ConnectionId='11' Canvas.Top="-30" Canvas.Left="60" 
+                    <TextBlock x:ConnectionId='14' Canvas.Top="-30" Canvas.Left="60" 
                                                                                                                          
                                                                                                                                         
                                FontSize="35" FontWeight="Light" TextDecorations="Strikethrough" Margin="0, 30, 0, 0"/>
-                    <TextBlock x:ConnectionId='12'                                                                                                  FontSize="35" FontWeight="Bold" Margin="0, 30, 0, 0"/>
+                    <TextBlock x:ConnectionId='15'                                                                                                  FontSize="35" FontWeight="Bold" Margin="0, 30, 0, 0"/>
                 </Canvas>
                 <!-- Create Order Button -->
                 <Button x:ConnectionId='9' Grid.ColumnSpan="2" Grid.Row="1" Content="Create Order" x:Name="CreateOrderButton"                                 Margin="0, 10, 0 , 0" 
@@ -215,6 +214,37 @@
                         Foreground="Black"
                         Background="#8CB3ED" />
                 <!-- End Update Order Button -->
+
+                <!-- Pay Bill Order Button -->
+                <Grid x:ConnectionId='11' Name="PayBillOrderButtonGroup" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.Row="1" Margin="0, 10, 0 , 0" 
+                    HorizontalAlignment="Stretch"
+                    Height="40" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Command="{x:Bind ViewModel.ChangeToQRCodeCommand}" -->
+                    <Button x:ConnectionId='12' Grid.Column="0"
+                        Content="Pay"
+                        HorizontalAlignment="Stretch" 
+                        FontWeight="SemiBold"
+                        Foreground="Black"
+                        Background="#8CB3ED"
+                        
+                                                    />
+
+                    <Button x:ConnectionId='13' Grid.Column="1"
+                        Content="Bill"
+                        HorizontalAlignment="Stretch" 
+                        FontWeight="SemiBold"
+                        Foreground="Black"
+                        Background="#8CB3ED" 
+                        Margin="10, 0, 0, 0" 
+                                                     />
+                </Grid>
+                <!-- End Pay Bill Order Button -->
 
             </Grid>
             <!-- Kết thúc -->
@@ -317,7 +347,7 @@
                     <!-- Kết thúc Phần Cart -->
 
                     <!-- Phần QR -->
-                    <Image x:ConnectionId='4' Source="Assets/momo_qr.jpg"                                                                                                                 Stretch="Uniform" />
+                    <Image x:ConnectionId='4'                                                                                                                                                                              Stretch="Uniform" />
                     <!-- Kết thúc Phần QR -->
                 </Grid>
             </Border>

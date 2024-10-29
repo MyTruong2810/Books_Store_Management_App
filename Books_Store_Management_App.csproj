@@ -14,6 +14,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\cash.jpg" />
     <Content Remove="Assets\image1.jpg" />
     <Content Remove="Assets\image10.jpg" />
     <Content Remove="Assets\image2.jpg" />
@@ -24,6 +25,8 @@
     <Content Remove="Assets\image7.jpg" />
     <Content Remove="Assets\image8.jpg" />
     <Content Remove="Assets\image9.jpg" />
+    <Content Remove="Assets\momo_qr.png" />
+    <Content Remove="Assets\vnpay_qr.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="BookPopupControl.xaml" />
@@ -70,6 +73,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Assets\cash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\image1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -98,6 +104,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Assets\image9.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\momo_qr.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\vnpay_qr.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Page Update="Views\ReadOnlyOrderDetailPage.xaml">
