@@ -120,7 +120,9 @@ namespace Books_Store_Management_App.Views
         {
             var converter = new DateTimeToStringConverter();
 
-            if (ViewModel.CustomerName == null || ViewModel.CustomerName == "")
+            ViewModel.ValidateAll();
+
+            if (ViewModel.HasErrors)
             {
                 return;
             }
@@ -176,10 +178,26 @@ namespace Books_Store_Management_App.Views
 
         private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.ValidateAll();
 
+            if (ViewModel.HasErrors)
+            {
+                return;
+            }
+
+            ViewModel.Order.Customer = ViewModel.CustomerName;
+            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
+            ViewModel.Order.IsDelivered = ViewModel.IsDelivered;
+            ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
+            ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
+
+            Frame.Navigate(typeof(OrderPage), this.GetType().Name);
         }
 
+        private void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
+        {
 
+        }
     }
 
 }

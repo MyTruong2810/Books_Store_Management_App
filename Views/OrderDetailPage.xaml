@@ -16,6 +16,7 @@
         <local1:DateTimeToStringConverter x:Key="datetimeConverter" />
         <local1:BoolToVisibleConverter x:Key="boolToVisibleConverter" />
         <local1:DoubleToUsdCurrencyConverter x:Key="currencyConverter" />
+        <local1:StringToVisibableConverter x:Key="toVisibableConverter" />
     </Page.Resources>
 
     <Grid>
@@ -54,8 +55,24 @@
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer Name:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <TextBox x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0" Text="{x:Bind ViewModel.CustomerName, Mode=TwoWay}" PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer Name:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0" Text="{x:Bind ViewModel.CustomerName, Mode=TwoWay}" PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
+                        <TextBlock
+                            Grid.Column="1" Grid.Row="1"
+                            Text="{x:Bind ViewModel.CustomerNameError, Mode=OneWay}" Foreground="Red" 
+                            Visibility="{x:Bind ViewModel.CustomerNameError, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                    </Grid>
 
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Purchase Date:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  Margin="0, 10, 0, 0">
@@ -88,34 +105,34 @@
 
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="Coupon" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <editors:SfComboBox
-               Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0"
-               HorizontalAlignment="Stretch"
-               SelectionMode="Multiple"
-               MultiSelectionDisplayMode="Token"
-               DelimiterText=","
-               x:Name="CouponsComboBox"
-               ItemsSource="{x:Bind ViewModel.Coupons}"
-               SelectedItem="{x:Bind ViewModel.SelectedCoupons, Mode=TwoWay}"
-               SelectionChanged="couponComboBox_SelectionChanged"
-           >
-
-
+                       Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0"
+                       HorizontalAlignment="Stretch"
+                       SelectionMode="Multiple"
+                       MultiSelectionDisplayMode="Token"
+                       DelimiterText=","
+                       x:Name="CouponsComboBox"
+                       ItemsSource="{x:Bind ViewModel.Coupons}"
+                       SelectedItem="{x:Bind ViewModel.SelectedCoupons, Mode=TwoWay}"
+                       SelectionChanged="couponComboBox_SelectionChanged"
+                    >
                     </editors:SfComboBox>
 
                     <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0, 10, 0, 0">
                         <TextBlock Text="Books" />
                         <editors:SfComboBox
-                   Margin="0, 10, 0, 0"
-                   x:Name="BookSelectionComboBox"
-                   HorizontalAlignment="Stretch"
-                   SelectionMode="Multiple"
-                   MultiSelectionDisplayMode="Token"
-                   DelimiterText=","
-                   ItemsSource="{x:Bind ViewModel.Books}"
-                   SelectedItem="{x:Bind ViewModel.SelectedBooks, Mode=TwoWay}"
-                   SelectionChanged="bookComboBox_SelectionChanged"
-               />
-
+                           Margin="0, 10, 0, 0"
+                           x:Name="BookSelectionComboBox"
+                           HorizontalAlignment="Stretch"
+                           SelectionMode="Multiple"
+                           MultiSelectionDisplayMode="Token"
+                           DelimiterText=","
+                           ItemsSource="{x:Bind ViewModel.Books}"
+                           SelectedItem="{x:Bind ViewModel.SelectedBooks, Mode=TwoWay}"
+                           SelectionChanged="bookComboBox_SelectionChanged"
+                        />
+                        <TextBlock 
+                            Text="{x:Bind ViewModel.SelectedBooksError, Mode=OneWay}" Foreground="Red" 
+                            Visibility="{x:Bind ViewModel.SelectedBooksError, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -142,13 +159,14 @@
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Payment Method:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <editors:SfComboBox
-               Grid.Column="1" Grid.Row="0" Margin="0, 10, 0, 0"
-               HorizontalAlignment="Stretch"
-               SelectionMode="Multiple"
-               MultiSelectionDisplayMode="Token"
-               x:Name="PaymentMethodCombobox"
-               DelimiterText=","
-           >
+                       Grid.Column="1" Grid.Row="0" Margin="0, 10, 0, 0"
+                       HorizontalAlignment="Stretch"
+                       SelectionMode="Single"
+                       MultiSelectionDisplayMode="Token"
+                       x:Name="PaymentMethodCombobox"
+                       SelectionChanged="PaymentMethodCombobox_SelectionChanged"
+                       DelimiterText=","
+                    >
                         <x:String>MoMo</x:String>
                         <x:String>CASH</x:String>
                         <x:String>VNPAY</x:String>

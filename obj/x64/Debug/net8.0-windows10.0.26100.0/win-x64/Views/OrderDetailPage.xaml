@@ -16,6 +16,7 @@
         <local1:DateTimeToStringConverter x:Key="datetimeConverter" />
         <local1:BoolToVisibleConverter x:Key="boolToVisibleConverter" />
         <local1:DoubleToUsdCurrencyConverter x:Key="currencyConverter" />
+        <local1:StringToVisibableConverter x:Key="toVisibableConverter" />
     </Page.Resources>
 
     <Grid>
@@ -54,8 +55,24 @@
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer Name:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <TextBox x:ConnectionId='15' x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0"                                                     PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer Name:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                        <TextBox x:ConnectionId='22' x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0"                                                     PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
+                        <TextBlock x:ConnectionId='23'
+                            Grid.Column="1" Grid.Row="1"
+                                                                                     Foreground="Red" 
+                                                                                                                                            />
+                    </Grid>
 
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Purchase Date:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  Margin="0, 10, 0, 0">
@@ -87,35 +104,35 @@
                     <!--  <TextBox Grid.Column="1" Grid.Row="1" PlaceholderText="Purchase Date:" Margin="0, 10, 0, 0"/> -->
 
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="Coupon" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <editors:SfComboBox x:ConnectionId='16'
-               Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0"
-               HorizontalAlignment="Stretch"
-               SelectionMode="Multiple"
-               MultiSelectionDisplayMode="Token"
-               DelimiterText=","
-               x:Name="CouponsComboBox"
-                                                       
-                                                                             
-                                                                 
-           >
-
-
+                    <editors:SfComboBox x:ConnectionId='15'
+                       Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0"
+                       HorizontalAlignment="Stretch"
+                       SelectionMode="Multiple"
+                       MultiSelectionDisplayMode="Token"
+                       DelimiterText=","
+                       x:Name="CouponsComboBox"
+                                                               
+                                                                                     
+                                                                         
+                    >
                     </editors:SfComboBox>
 
                     <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0, 10, 0, 0">
                         <TextBlock Text="Books" />
-                        <editors:SfComboBox x:ConnectionId='17'
-                   Margin="0, 10, 0, 0"
-                   x:Name="BookSelectionComboBox"
-                   HorizontalAlignment="Stretch"
-                   SelectionMode="Multiple"
-                   MultiSelectionDisplayMode="Token"
-                   DelimiterText=","
-                                                         
-                                                                               
-                                                                   
-               />
-
+                        <editors:SfComboBox x:ConnectionId='16'
+                           Margin="0, 10, 0, 0"
+                           x:Name="BookSelectionComboBox"
+                           HorizontalAlignment="Stretch"
+                           SelectionMode="Multiple"
+                           MultiSelectionDisplayMode="Token"
+                           DelimiterText=","
+                                                                 
+                                                                                       
+                                                                           
+                        />
+                        <TextBlock x:ConnectionId='17' 
+                                                                                      Foreground="Red" 
+                                                                                                                                             />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -142,13 +159,13 @@
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Payment Method:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <editors:SfComboBox x:ConnectionId='13'
-               Grid.Column="1" Grid.Row="0" Margin="0, 10, 0, 0"
-               HorizontalAlignment="Stretch"
-               SelectionMode="Multiple"
-               MultiSelectionDisplayMode="Token"
-               x:Name="PaymentMethodCombobox"
-               DelimiterText=","
-           >
+                       Grid.Column="1" Grid.Row="0" Margin="0, 10, 0, 0"
+                       HorizontalAlignment="Stretch"
+                       SelectionMode="Multiple"
+                       MultiSelectionDisplayMode="Token"
+                       x:Name="PaymentMethodCombobox"
+                       DelimiterText=","
+                    >
                         <x:String>MoMo</x:String>
                         <x:String>CASH</x:String>
                         <x:String>VNPAY</x:String>

@@ -4,19 +4,25 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Collections;
+using System.Security.Policy;
 
 namespace Books_Store_Management_App.ViewModels
 {
-    public class OrderDetailViewModel : INotifyPropertyChanged
+    public class OrderDetailViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         //private readonly IDao<Book> _bookDao;
         public List<Book> Books { get; set; }
         public List<Coupon> Coupons { get; set; }
+
+        public string CustomerNameError { get; set; } = "";
+        [Required(ErrorMessage = "Customer name is required.")]
         public string CustomerName { get; set; }
         public DateTime PurchaseDate { get; set; }
         public Boolean IsDelivered { get; set; }
@@ -48,6 +54,9 @@ namespace Books_Store_Management_App.ViewModels
         public bool HasCoupon => (SelectedCoupons.Count > 0);
 
         private ObservableCollection<OrderItem> _selectedBooks;
+        public string SelectedBooksError { get; set; } = "";
+        [Required(ErrorMessage = "Please select at least one book.")]
+        [MinLength(1, ErrorMessage = "Please select at least one book.")]
         public ObservableCollection<OrderItem> SelectedBooks
         {
             get => _selectedBooks;
@@ -89,6 +98,16 @@ namespace Books_Store_Management_App.ViewModels
                 return total;
             }
         }
+
+        // TODO
+        public Dictionary<string, string> PaymentMethods { get; set; } = new Dictionary<string, string>
+        {
+            { "Cash", "Cash" },
+            { "MoMo", "Credit Card" },
+            { "VNPay", "QR Code" }
+        };
+        public string PaymentMethodQRCode { get; set; }
+        // 
 
         public bool IsQrCodeVisible { get; set; } = false;
         public bool IsBooksListViewVisible { get; set; } = true;
@@ -301,6 +320,53 @@ namespace Books_Store_Management_App.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // Triển khai INotifyDataErrorInfo
+
+        public void ValidateAll()
+        {
+            ValidateProperty(CustomerName, nameof(CustomerName));
+            CustomerNameError = GetErrorMessage(nameof(CustomerName));
+            ValidateProperty(SelectedBooks, nameof(SelectedBooks));
+            SelectedBooksError = GetErrorMessage(nameof(SelectedBooks));
+
+            // Kiểm tra thêm các thuộc tính khác nếu cần
+        }
+
+        private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public bool HasErrors => _errors.Any();
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _errors.ContainsKey(propertyName) ? _errors[propertyName] : null;
+        }
+
+        private void ValidateProperty(object value, string propertyName)
+        {
+            if (_errors.ContainsKey(propertyName))
+            {
+                _errors.Remove(propertyName);
+            }
+
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(this) { MemberName = propertyName };
+            bool isValid = Validator.TryValidateProperty(value, context, results);
+
+            if (!isValid)
+            {
+                _errors[propertyName] = results.Select(c => c.ErrorMessage).ToList();
+            }
+
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
+        public string GetErrorMessage(string propertyName)
+        {
+            return _errors.ContainsKey(propertyName) ? _errors[propertyName].First() : string.Empty;
         }
     }
 
