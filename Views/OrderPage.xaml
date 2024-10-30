@@ -106,6 +106,7 @@
 
                 <!-- ListView to display Orders -->
                 <ListView x:Name="OrderListView" Background="Transparent" ItemsSource="{x:Bind DisplayedOrders }"
+                      IsItemClickEnabled="True" ItemClick="OrderListView_ItemClick"
                       Height="500"
                       MinWidth="550">
                     <ListView.ItemTemplate>

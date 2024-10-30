@@ -16,21 +16,11 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Books_Store_Management_App.Models;
+using Books_Store_Management_App.ViewModels;
 namespace Books_Store_Management_App.Views
 {
     public sealed partial class DashboardPage : Page
     {
-        public class DashboardViewModel
-        {
-            public ObservableCollection<Book> Books { get; set; }
-
-            public void Init()
-            {
-                IDao dao = new MockDao();
-                Books = dao.GetAllBooks();
-            }
-        }
-
         public DashboardViewModel ViewModel { get; set; }
 
         public DashboardPage()

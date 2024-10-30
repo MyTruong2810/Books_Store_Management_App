@@ -8,45 +8,46 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Collections;
 
-namespace Books_Store_Management_App.Helpers;
-public sealed class FullObservableCollection<T> : ObservableCollection<T>
-    where T : INotifyPropertyChanged
+namespace Books_Store_Management_App.Helpers
 {
-    public FullObservableCollection()
+    public sealed class FullObservableCollection<T> : ObservableCollection<T>
+ where T : INotifyPropertyChanged
     {
-        CollectionChanged += FullObservableCollectionCollectionChanged;
-    }
-
-    public FullObservableCollection(IEnumerable<T> pItems) : this()
-    {
-        foreach (var item in pItems)
+        public FullObservableCollection()
         {
-            this.Add(item);
+            CollectionChanged += FullObservableCollectionCollectionChanged;
         }
-    }
 
-    private void FullObservableCollectionCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        if (e.NewItems != null)
+        public FullObservableCollection(IEnumerable<T> pItems) : this()
         {
-            foreach (Object item in e.NewItems)
+            foreach (var item in pItems)
             {
-                ((INotifyPropertyChanged)item).PropertyChanged += ItemPropertyChanged;
+                this.Add(item);
             }
         }
-        if (e.OldItems != null)
+
+        private void FullObservableCollectionCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach (Object item in e.OldItems)
+            if (e.NewItems != null)
             {
-                ((INotifyPropertyChanged)item).PropertyChanged -= ItemPropertyChanged;
+                foreach (Object item in e.NewItems)
+                {
+                    ((INotifyPropertyChanged)item).PropertyChanged += ItemPropertyChanged;
+                }
+            }
+            if (e.OldItems != null)
+            {
+                foreach (Object item in e.OldItems)
+                {
+                    ((INotifyPropertyChanged)item).PropertyChanged -= ItemPropertyChanged;
+                }
             }
         }
-    }
 
-    private void ItemPropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, sender, sender, IndexOf((T)sender));
-        OnCollectionChanged(args);
+        private void ItemPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, sender, sender, IndexOf((T)sender));
+            OnCollectionChanged(args);
+        }
     }
-
 }

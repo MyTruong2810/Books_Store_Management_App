@@ -1,93 +1,77 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Books_Store_Management_App.Helpers;
 
 namespace Books_Store_Management_App.Models
 {
+    public class OrderItem : INotifyPropertyChanged
+    {
+        public int Id { get; set; }
+        public Book Book { get; set; }
+        public int Quantity
+        {
+            get; set;
+        }
+
+        public double SubTotal
+        {
+            get
+            {
+                return Book.Price * Quantity;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+
     public class Order : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public int ID { get; set; }
+        public string Customer { get; set; }
+        public string Date { get; set; }
 
-        private string _id;
-        public string ID
+        public FullObservableCollection<Coupon> Coupons { get; set; }
+        public double Discount
         {
-            get => _id;
-            set
+            get
             {
-                if (_id != value)
+                double totalDiscount = 0;
+                foreach (Coupon coupon in Coupons)
                 {
-                    _id = value;
-                    OnPropertyChanged(nameof(ID));
+                    totalDiscount += coupon.Discount;
                 }
+
+
+                return totalDiscount;
             }
         }
 
-        private string _customer;
-        public string Customer
-        {
-            get => _customer;
-            set
-            {
-                if (_customer != value)
-                {
-                    _customer = value;
-                    OnPropertyChanged(nameof(Customer));
-                }
-            }
-        }
+        public Boolean IsDelivered { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
 
-        private string _date;
-        public string Date
-        {
-            get => _date;
-            set
-            {
-                if (_date != value)
-                {
-                    _date = value;
-                    OnPropertyChanged(nameof(Date));
-                }
-            }
-        }
-
-        private int _discount;
-        public int Discount
-        {
-            get => _discount;
-            set
-            {
-                if (_discount != value)
-                {
-                    _discount = value;
-                    OnPropertyChanged(nameof(Discount));
-                }
-            }
-        }
-
-        private int _amount;
         public int Amount
         {
-            get => _amount;
-            set
+            get
             {
-                if (_amount != value)
+                int totalQuantity = 0;
+                foreach (OrderItem item in OrderItems)
                 {
-                    _amount = value;
-                    OnPropertyChanged(nameof(Amount));
+                    totalQuantity += item.Quantity;
                 }
+                return totalQuantity;
             }
         }
-
-        private double _price;
         public double Price
         {
-            get => _price;
-            set
+            get
             {
-                if (_price != value)
+                double total = 0;
+                foreach (OrderItem item in OrderItems)
                 {
-                    _price = value;
-                    OnPropertyChanged(nameof(Price));
+                    total += item.SubTotal;
                 }
+                return Math.Ceiling(total - total * Discount);
             }
         }
 
@@ -107,19 +91,13 @@ namespace Books_Store_Management_App.Models
         }
 
         public bool IsEven => Index % 2 == 0;
-        public Order(string id, string customer, string date, int discount, int amount, double price, int index)
-        {
-            ID = id;
-            Customer = customer;
-            Date = date;
-            Discount = discount;
-            Amount = amount;
-            Price = price;
-            Index = index;
-        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
 }

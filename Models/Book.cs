@@ -105,6 +105,20 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        private double _purchasePrice;
+        public double PurchasePrice
+        {
+            get => _purchasePrice;
+            set
+            {
+                if (_purchasePrice != value)
+                {
+                    _purchasePrice = value;
+                    OnPropertyChanged(nameof(PurchasePrice));
+                }
+            }
+        }
+
         private string _genre;
         public string Genre
         {
@@ -133,6 +147,8 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        public string Description { get; set; }
+
         private int _index;
         public int Index
         {
@@ -149,18 +165,25 @@ namespace Books_Store_Management_App.Models
         }
 
         public bool IsEven => Index % 2 == 0;
-        public Book(string imageSource, string title, string publisher, string author, string isbn, int year, double price, string genre, int quantity, int index)
+
+        public override string ToString()
         {
-            ImageSource = imageSource;
-            Title = title;
-            Publisher = publisher;
-            Author = author;
-            ISBN = isbn;
-            Year = year;
-            Price = price;
-            Genre = genre;
-            Quantity = quantity;
-            Index = index;
+            return Title.Trim();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Book book)
+            {
+                return book.Index == Index;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Index;
         }
         protected void OnPropertyChanged(string propertyName)
         {
