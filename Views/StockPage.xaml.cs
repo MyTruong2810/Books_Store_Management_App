@@ -25,6 +25,7 @@ using System.ComponentModel;
 using static Books_Store_Management_App.Views.DashboardPage;
 using System.Drawing;
 using Books_Store_Management_App.Models;
+using Books_Store_Management_App.ViewModels;
 
 namespace Books_Store_Management_App.Views
 {
@@ -39,15 +40,7 @@ namespace Books_Store_Management_App.Views
         private int ItemsPerPage = 10;
         private int currentPage = 1;
         private int totalPages;
-        public class StockPageViewModel
-        {
-            public ObservableCollection<Book> AllBooks { get; set; }
-            public void Init()
-            {
-                IDao dao = new PsqlDao();
-                AllBooks = dao.GetAllBooks();
-            }
-        }
+
         public StockPageViewModel ViewModel { get; set; }
 
         public StockPage()

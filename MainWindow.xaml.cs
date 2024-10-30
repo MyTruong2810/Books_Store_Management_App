@@ -16,22 +16,12 @@ namespace Books_Store_Management_App
         public MainWindow()
         {
             this.InitializeComponent();
-            //Activated += Window_Activated;
             AppFrame = contentMain;
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzUzMTMxM0AzMjM3MmUzMDJlMzBVWE1MMzdGZ2kyMXkzSkdqUjZ1QTlLVWVJZmpaNHRYQllzUU1MdE1YMm5RPQ==");
 
-
             this.Title = "Book Store Management";
             contentMain.Navigate(typeof(Views.LoginPage));
         }
-
-        //public void Window_Activated(object sender, WindowActivatedEventArgs e)
-        //{
-        //    //Todo: Change the icon of app 
-        //    this.Title = "Book Store Management";
-        //    contentMain.Navigate(typeof(Views.LoginPage));
-
-        //}
     }
 }

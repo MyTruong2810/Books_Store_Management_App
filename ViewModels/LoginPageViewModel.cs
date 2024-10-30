@@ -50,9 +50,6 @@ namespace Books_Store_Management_App.ViewModels
 
         public LoginViewModel()
         {
-            //LoginCommand = new RelayCommand(async () => await LoginAsync());
-            //SignupCommand = new RelayCommand(Signup);
-
             LoginCommand = new RelayCommand(async _ => await LoginAsync());
             SignupCommand = new RelayCommand(_ => Signup());
             LoadSavedCredentials();
@@ -60,17 +57,49 @@ namespace Books_Store_Management_App.ViewModels
 
         private async Task LoginAsync()
         {
-            if (AuthenticateUser(Username, Password))
+            try
             {
-                if (IsPasswordSaved)
+                if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
                 {
-                    await SaveCredentialsAsync(Username, Password);
+                    await ShowLoginFailedDialog("Please enter both username and password.");
+                    return;
                 }
-                MainWindow.AppFrame.Navigate(typeof(MainPage));
+
+                if (AuthenticateUser(Username, Password))
+                {
+                    if (IsPasswordSaved)
+                    {
+                        await SaveCredentialsAsync(Username, Password);
+                    }
+                    MainWindow.AppFrame.Navigate(typeof(MainPage));
+                }
+                else
+                {
+                    await ShowLoginFailedDialog("Invalid username or password.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Todo: Show error message
+                System.Diagnostics.Debug.WriteLine($"Error during login: {ex.Message}");
+                await ShowLoginFailedDialog("An unexpected error occurred. Please try again.");
+            }
+        }
+
+        private async Task ShowLoginFailedDialog(string message)
+        {
+            try
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = "Login Failed",
+                    Content = message,
+                    CloseButtonText = "Ok"
+                };
+                await dialog.ShowAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error showing dialog: {ex.Message}");
             }
         }
 
@@ -114,7 +143,7 @@ namespace Books_Store_Management_App.ViewModels
 
         private void Signup()
         {
-           //Todo: Implement code later
+            // Todo: Implement signup functionality later
         }
 
         private void SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
