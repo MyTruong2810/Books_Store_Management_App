@@ -19,14 +19,8 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace Books_Store_Management_App
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     public partial class App : Application
     {
         /// <summary>
@@ -36,6 +30,9 @@ namespace Books_Store_Management_App
         /// 
         public IServiceProvider ServiceProvider { get; private set; }
 
+        // Sử dụng thuộc tính tĩnh MainWindow
+        public static Window MainWindow { get; private set; }
+        
         public App()
         {
             this.InitializeComponent();
@@ -54,16 +51,10 @@ namespace Books_Store_Management_App
             services.AddTransient<OrderDetailViewModel>();
         }
 
-        /// <summary>
-        /// Invoked when the application is launched.
-        /// </summary>
-        /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            MainWindow = new MainWindow();
+            MainWindow.Activate();
         }
-
-        private Window m_window;
     }
 }

@@ -50,5 +50,4 @@ namespace Books_Store_Management_App.Helpers
             OnCollectionChanged(args);
         }
     }
-
 }

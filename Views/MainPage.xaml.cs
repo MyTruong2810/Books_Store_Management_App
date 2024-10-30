@@ -35,7 +35,18 @@ namespace Books_Store_Management_App.Views
             {
                 content.Navigate(typeof(OrderPage));
             }
-
+            else if (selectedTag == "Admin")
+            {
+                content.Navigate(typeof(AdminPage));
+            }
+            else if (selectedTag == "ClassificationPage")
+            {
+                content.Navigate(typeof(ClassificationPage));
+            }
+            else if (selectedTag == "LogoutPage")
+            {
+                MainWindow.AppFrame.Navigate(typeof(Views.LoginPage));
+            }
 
             /* ====================================================
              * You: Implement code to change the navigation      ||

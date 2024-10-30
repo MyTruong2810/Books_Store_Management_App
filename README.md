@@ -2,7 +2,7 @@
 
 ## Set up
 
-## Để chạy được PslqDao cài thực hiện chọn Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
+## Để chạy được PslqDao thực hiện chọn Tools --> NuGet Package Manager --> Package Manager Console và gõ lệnh:
 ```bash
 Install-Package Npgsql -Version 5.0.4
 ```
@@ -23,9 +23,9 @@ Ngoài ra nếu code có bug thì có thể làm theo hướng dẫn Install ho�
 ## Code chưa cài đặt các Feature sau:
 1. Khi minimize cửa sổ ứng dụng tự reset? --> Đang tìm cách khắc phục.
 2. Phần search thì mới implement cho search theo tên sách và tên user --> Sẽ cài đặt tiếp search theo trường filter.
-3. Một số lớp ViewModels chưa cài hoàn chỉnh ==> Implement later.
+3. Một số lớp ViewModels chưa cài hoàn chỉnh --> Implement later.
 4. Các hiệu ứng về animation và transition chưa thực hiện --> Implement later --> Cái này cũng được xem là một advance hôm trước thầy có nói.
-5. Chưa đang kí các Service ==> Implement later.
+5. Chưa đang kí các Service --> Implement later.
 
 ## Yêu cầu code của mọi người cần đáp ứng:
 1. Bắt các Exception.
