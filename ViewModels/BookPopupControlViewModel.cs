@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// View model cho BookPopupControl
+    /// Dùng để xử lý dữ liệu và validate dữ liệu nhập vào
+    /// </summary>
     public class BookPopupControlViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         private Book _book;
@@ -38,7 +42,6 @@ namespace Books_Store_Management_App.ViewModels
         private string _quantity;
         private string _description;
         private string _imageSource;
-
         public string ImageSource
         {
             get => _imageSource;
@@ -205,6 +208,7 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        // Set dữ liệu cho các trường nhập liệu
         public void SetData(Book book)
         {
             Book = book;
@@ -221,6 +225,7 @@ namespace Books_Store_Management_App.ViewModels
             ImageSource = book.ImageSource;
         }
 
+        // Xóa dữ liệu của các trường nhập liệu
         public void ClearData()
         {
             Book = null;
@@ -237,6 +242,7 @@ namespace Books_Store_Management_App.ViewModels
             ImageSource = "ms-appx:///Assets/default_image.jpg";
         }
 
+        // Xóa thông báo lỗi
         public void ClearErrorMessage()
         {
             TitleErrorMessage = "";
@@ -248,6 +254,8 @@ namespace Books_Store_Management_App.ViewModels
             PurchasePriceErrorMessage = "";
             QuantityErrorMessage = "";
         }
+
+        // Đưa dữ liệu từ các trường nhập liệu vào Book
         public void MergeToBook()
         {
             if (Book == null)
@@ -269,9 +277,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         // Triển khai INotifyDataErrorInfo
-
-        //public ICommand ValidateAllCommand => new RelayCommand(ValidateAll);
-
+        // Sẽ tách ra thành một class riêng
         public void ValidateAll()
         {
             ValidateProperty(Title, nameof(Title));

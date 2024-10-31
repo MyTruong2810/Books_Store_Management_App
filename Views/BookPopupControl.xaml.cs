@@ -20,15 +20,20 @@ using Windows.Foundation.Collections;
 
 namespace Books_Store_Management_App
 {
+    /// <summary>
+    /// Một User Control dùng để hiển thị thông tin chi tiết của một cuốn sách
+    /// Gồm các trường thông tin như tên sách, tác giả, năm xuất bản, thể loại, giá bán, giá mua, số lượng, mô tả
+    /// </summary>
     public sealed partial class BookPopupControl : UserControl
     {
+        // Danh sách thể loại sách
         private List<Genre> genreList;
-
         public BookPopupControlViewModel ViewModel { get; set; }
         public BookPopupControl()
         {
             this.InitializeComponent();
 
+            // Lấy danh sách thể loại sách từ database
             IDao dao = new PsqlDao();
             genreList = dao.GetAllGenres().ToList();
             classifyComboBox.ItemsSource = genreList;
@@ -46,16 +51,23 @@ namespace Books_Store_Management_App
 
         //public static readonly DependencyProperty ViewModelProperty =
         //    DependencyProperty.Register("ViewModel", typeof(Book), typeof(BookPopupControl), new PropertyMetadata(null));
+
+        // Đặt tiêu đề cho popup
         public void SetPopupTitle(string title)
         {
             TitleTextBlock.Text = title;
         }
 
+        // Đặt chiều rộng cho popup
         public double RightDialogHeight
         {
             get => rightDialog.Height;
             set => rightDialog.Height = value;
         }
+
+        // Đặt trạng thái cho các trường nhập liệu
+        // Nếu isEditable = true thì các trường nhập liệu sẽ được phép chỉnh sửa
+        // Nếu isEditable = false thì các trường nhập liệu sẽ bị khóa
         public void SetEditable(bool isEditable)
         {
             //Console.WriteLine(ViewModel);
@@ -71,15 +83,19 @@ namespace Books_Store_Management_App
             // Các textbox khác cũng có thể được thiết lập tương tự
         }
 
+        // Đặt nội dung cho nút (Save, Edit)
         public void SetButton(string text)
         {
             SaveBtn.Content = text;
         }
+
+        // Lấy nội dung của nút (Save, Edit)
         public string GetButton()
         {
             return SaveBtn.Content.ToString();
         }
 
+        // Xóa nội dung của các trường nhập liệu
         public void ClearFields()
         {
             // Đặt giá trị các trường về rỗng
@@ -92,6 +108,9 @@ namespace Books_Store_Management_App
             desciptionTextBox.Text = string.Empty;
             // Reset các trường khác nếu cần
         }
+
+        // Xử lý xự kiện khi nút X được nhấn
+        // Đóng popup
         private void xBtn_Click(object sender, RoutedEventArgs e)
         {
             // Logic để đóng popup
@@ -100,6 +119,8 @@ namespace Books_Store_Management_App
 
         }
 
+        // Xử lý xự kiện khi nút Cancel được nhấn
+        // Đóng popup
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             // Logic để hủy
@@ -107,27 +128,39 @@ namespace Books_Store_Management_App
             if (parent.IsOpen) { parent.IsOpen = false; }
         }
 
+        // Xử lý xự kiện khi hover vào nút Save được nhấn
         private void Button_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
+            // Logic khi rê chuột vào nút
+            // Làm mờ nút
             xBtn.Background.Opacity = 0.5;
         }
 
+        // Xử lý xự kiện khi rời chuột khỏi nút Save
         private void Button_PointerExited(object sender, PointerRoutedEventArgs e)
         {
+            // Logic khi rời chuột khỏi nút
+            // Làm nút trở lại bình thường
             xBtn.Background.Opacity = 1;
         }
 
+        // Xử lý xự kiện khi nút Save được nhấn
+        // Lưu thông tin sách
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            // Validate dữ liệu
             ViewModel.ValidateAll();
 
+            // Nếu có lỗi thì không thực hiện lưu
             if (ViewModel.HasErrors)
             {
                 return;
             }
 
+            // Đưa dữ liệu từ comboxbox vào viewmodel
             ViewModel.Genre = classifyComboBox.SelectedItem.ToString();
 
+            // Lưu thông tin từ các trường nhập liệu vào ViewModel
             ViewModel.MergeToBook();
 
             var parent = this.Parent as Popup;
@@ -137,7 +170,7 @@ namespace Books_Store_Management_App
         }
 
         // Hiển thị dialog để chọn ảnh
-        // Note Chọn Ảnh trong Assets
+        // Note Chỉ chọn Ảnh trong Assets
         private void ChangeIcon_Tapped(object sender, TappedRoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -150,14 +183,17 @@ namespace Books_Store_Management_App
                 string selectedFilePath = openFileDialog.FileName;
                 Console.WriteLine("File đã chọn: " + selectedFilePath);
 
+                // Hiển thị ảnh đã chọn lên giao diện
                 ViewModel.ImageSource = selectedFilePath;
             }
         }
 
+        // Gán dữ liệu sách vào ViewModel
         public void setData(Book book)
         {
             ViewModel.SetData(book);
 
+            // Chuyển Genre từ string sang Genre và gán vào combobox
             classifyComboBox.SelectedItem = genreList.Find(x => x.Name == book.Genre);
 
             //bookNameTextBox.Text = book.Title;
@@ -170,6 +206,7 @@ namespace Books_Store_Management_App
             //desciptionTextBox.Text = book.Description;
         }
 
+        // Xóa dữ liệu sách
         public void clearData()
         {
             ViewModel.ClearData();
@@ -184,6 +221,7 @@ namespace Books_Store_Management_App
             //desciptionTextBox.Text = "";
         }
 
+        // Xóa thông báo lỗi
         public void ClearErrorMessage()
         {
             ViewModel.ClearErrorMessage();
