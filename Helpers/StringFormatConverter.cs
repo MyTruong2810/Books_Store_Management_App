@@ -10,6 +10,14 @@ namespace Books_Store_Management_App.Helpers
 
     public class StringFormatConverter : IValueConverter
     {
+        /// <summary>
+        /// Chuyển đổi hiển thị của một giá trị theo định dạng chuỗi được truyền vào
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="language"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value != null && parameter != null)
