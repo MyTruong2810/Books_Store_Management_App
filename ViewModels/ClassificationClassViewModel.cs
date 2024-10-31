@@ -14,71 +14,87 @@ using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    // ViewModel for managing ClassificationClass entities in the app.
     public class ClassificationClassViewModel : INotifyPropertyChanged
     {
-        public string Keyword { get; set; } = "";
-        public int CurrentPage { get; set; } = 1;
-        public int RowsPerPage { get; set; } = 10;
-        public int TypeOfSearch { get; set; } = 1;
-        public int TypeOfSort { get; set; } = 1;
-        public int TotalPages { get; set; } = 0;
-        public int TotalItems { get; set; } = 0;
+        // Properties for search, pagination, and sorting
+        public string Keyword { get; set; } = ""; // Search keyword
+        public int CurrentPage { get; set; } = 1; // Current page number in pagination
+        public int RowsPerPage { get; set; } = 10; // Rows per page
+        public int TypeOfSearch { get; set; } = 1; // Type of search criteria
+        public int TypeOfSort { get; set; } = 1; // Sorting criteria
+        public int TotalPages { get; set; } = 0; // Total number of pages
+        public int TotalItems { get; set; } = 0; // Total items found
 
+        // DAO interface to handle data operations
         private IDaos<ClassificationClass> _dao = null;
 
+        // Event to notify UI of property changes
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Property for the currently selected ClassificationClass
         private ClassificationClass _selectedClassificationClass;
 
+        // Collection to hold ClassificationClass items for binding
         public FullObservableCollection<ClassificationClass> ClassificationClasss { get; set; }
 
+        // Initializes the ViewModel, loads data from the database
         public void Init()
         {
-            _dao = new ClassificationClassDao();
-            _dao.loadDatafromDbList();
-            GetAllClassificationClasss();
+            _dao = new ClassificationClassDao(); // Initialize DAO with a concrete implementation
+            _dao.loadDatafromDbList(); // Load data into DAO's list
+            GetAllClassificationClasss(); // Fetch initial data for display
         }
 
+        // Fetches all ClassificationClass items based on current search, pagination, and sorting settings
         public void GetAllClassificationClasss()
         {
             var (totalItems, classificationClasss) = _dao.GetAll(
                 CurrentPage, RowsPerPage, Keyword, TypeOfSearch, TypeOfSort);
+
+            // Populate the observable collection with fetched items
             ClassificationClasss = new FullObservableCollection<ClassificationClass>(
                 classificationClasss
             );
 
+            // Update total items and calculate total pages
             TotalItems = totalItems;
             TotalPages = (TotalItems / RowsPerPage)
-                         + ((TotalItems % RowsPerPage == 0)
-                             ? 0 : 1);
+                         + ((TotalItems % RowsPerPage == 0) ? 0 : 1);
         }
 
+        // Inserts a new ClassificationClass entry
         public void InsertClassificationClass(ClassificationClass classificationClass)
         {
             _dao.Insert(classificationClass);
         }
 
+        // Deletes an existing ClassificationClass by its ID
         public void DeleteClassificationClass(string id)
         {
             _dao.Delete(id);
         }
 
+        // Updates an existing ClassificationClass with new data
         public void EditClassificationClass(ClassificationClass newClassificationClass)
         {
             _dao.Save(newClassificationClass);
         }
 
+        // Updates the current page and refreshes the ClassificationClass list for the new page
         public void LoadingPage(int page)
         {
             CurrentPage = page;
             GetAllClassificationClasss();
         }
 
+        // Raises a PropertyChanged event to notify the UI of a property update
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // Property for the selected ClassificationClass, notifying UI when changed
         public ClassificationClass SelectedClassificationClass
         {
             get => _selectedClassificationClass;
@@ -88,6 +104,5 @@ namespace Books_Store_Management_App.ViewModels
                 OnPropertyChanged(nameof(SelectedClassificationClass));
             }
         }
-
     }
 }

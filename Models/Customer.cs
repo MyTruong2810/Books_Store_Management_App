@@ -12,6 +12,9 @@ namespace Books_Store_Management_App.Models
     {
         public string ID { get; set; }
         public string Name { get; set; }
+
+        // BitmapImage used to store the customer's profile picture.
+        // This is an advanced technique allowing image display in the UI.
         private BitmapImage _avatar;
         public BitmapImage Avatar
         {
@@ -19,6 +22,7 @@ namespace Books_Store_Management_App.Models
             set
             {
                 _avatar = value;
+                // OnPropertyChanged ensures the UI updates when the profile picture changes.
                 OnPropertyChanged(nameof(Avatar));
             }
         }
@@ -30,11 +34,14 @@ namespace Books_Store_Management_App.Models
         public int CVV { get; set; }
         public string Address { get; set; }
 
+        // PropertyChanged event to update the UI when property values change
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        // Override of ToString method to return basic customer information
         public override string ToString()
         {
             return $"Customer: {ID} - {Name}";

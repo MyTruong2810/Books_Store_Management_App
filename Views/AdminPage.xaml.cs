@@ -21,29 +21,32 @@ using Books_Store_Management_App.ViewModels;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Represents the Admin page that displays and manages the admin profile.
     /// </summary>
     public sealed partial class AdminPage : Page
     {
         public AdminProfileViewModel ViewModel { get; }
+
         public AdminPage()
         {
             this.InitializeComponent();
 
-            // Injecting DAO vào ViewModel
-            var profileDao = new AdminProfileDao();  // Có thể thay đổi thành DAO khác nếu cần
+            // Injecting the DAO into the ViewModel.
+            var profileDao = new AdminProfileDao();  // Can be replaced with a different DAO if needed.
             ViewModel = new AdminProfileViewModel(profileDao);
 
-            this.DataContext = ViewModel;
+            this.DataContext = ViewModel; // Set the data context for data binding.
         }
 
+        // Event handler for the Edit Profile button click.
         private async void EditProfile_Click(object sender, RoutedEventArgs e)
         {
+            // Show the Edit Profile dialog and wait for the result.
             ContentDialogResult result = await EditProfileDialog.ShowAsync();
 
             if (result == ContentDialogResult.Primary)
             {
-                // Save button was clicked
+                // If the save button was clicked in the dialog, save the profile changes.
                 ViewModel.SaveProfile();
             }
         }

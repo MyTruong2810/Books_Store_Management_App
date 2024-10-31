@@ -7,4 +7,5 @@ Views\DashboardPage.xbf
 Views\LoginPage.xbf
 Views\MainPage.xbf
 Views\OrderPage.xbf
+Views\StatisticsPage.xbf
 Views\StockPage.xbf

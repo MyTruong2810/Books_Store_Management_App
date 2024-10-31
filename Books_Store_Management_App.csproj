@@ -34,6 +34,7 @@
     <None Remove="Views\LoginPage.xaml" />
     <None Remove="Views\MainPage.xaml" />
     <None Remove="Views\OrderPage.xaml" />
+    <None Remove="Views\StatisticsPage.xaml" />
     <None Remove="Views\StockPage.xaml" />
   </ItemGroup>
 
@@ -53,6 +54,9 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
     <PackageReference Include="Npgsql" Version="8.0.5" />
+    <PackageReference Include="OxyPlot.Core" Version="2.2.0" />
+    <PackageReference Include="OxyPlot.SkiaSharp" Version="2.2.0" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
     <PackageReference Include="Prism.Core" Version="9.0.537" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -93,6 +97,9 @@
     <None Update="Assets\image9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\StatisticsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ClassificationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

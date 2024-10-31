@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WD\\Project\\TM\\Books_Store_Management_App-main\\Books_Store_Management_App.csproj": {}
+    "D:\\WD\\Project\\Dev\\Books_Store_Management_App.csproj": {}
   },
   "projects": {
-    "D:\\WD\\Project\\TM\\Books_Store_Management_App-main\\Books_Store_Management_App.csproj": {
+    "D:\\WD\\Project\\Dev\\Books_Store_Management_App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WD\\Project\\TM\\Books_Store_Management_App-main\\Books_Store_Management_App.csproj",
+        "projectUniqueName": "D:\\WD\\Project\\Dev\\Books_Store_Management_App.csproj",
         "projectName": "Books_Store_Management_App",
-        "projectPath": "D:\\WD\\Project\\TM\\Books_Store_Management_App-main\\Books_Store_Management_App.csproj",
+        "projectPath": "D:\\WD\\Project\\Dev\\Books_Store_Management_App.csproj",
         "packagesPath": "C:\\Users\\pdlin\\.nuget\\packages\\",
-        "outputPath": "D:\\WD\\Project\\TM\\Books_Store_Management_App-main\\obj\\",
+        "outputPath": "D:\\WD\\Project\\Dev\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,6 +68,18 @@
             "Npgsql": {
               "target": "Package",
               "version": "[8.0.5, )"
+            },
+            "OxyPlot.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "OxyPlot.SkiaSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "OxyPlot.Wpf": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Prism.Core": {
               "target": "Package",
