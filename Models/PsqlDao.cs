@@ -7,6 +7,9 @@ using Books_Store_Management_App.Helpers;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Thực hiện các thao tác với database ở đây chỉ thực hiện kết nối và lấy dữ liệu
+    /// </summary>
     public class PsqlDao : IDao
     {
         private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
@@ -46,36 +49,6 @@ namespace Books_Store_Management_App.Models
 
             return books;
         }
-
-        //public ObservableCollection<Order> GetAllOrders()
-        //{
-        //    var orders = new ObservableCollection<Order>();
-
-        //    using (var connection = new NpgsqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        string query = "SELECT Id, Customer, Date, Discount, Amount, Price, OrderIndex FROM Order_Book";
-
-        //        using (var command = new NpgsqlCommand(query, connection))
-        //        using (var reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                orders.Add(new Order(
-        //                    reader.GetString(0),                   // ID
-        //                    reader.GetString(1),                   // Customer
-        //                    reader.GetDateTime(2).ToString(),      // Date as DateTime
-        //                    reader.GetInt32(3),                    // Discount
-        //                    reader.GetInt32(4),                    // Amount
-        //                    (double)reader.GetDecimal(5),          // Price
-        //                    reader.GetInt32(6)                     // Index
-        //                ));
-        //            }
-        //        }
-        //    }
-
-        //    return orders;
-        //}
 
         /* ===============================================================
          * You: Implement code the other methods for taking the database ||

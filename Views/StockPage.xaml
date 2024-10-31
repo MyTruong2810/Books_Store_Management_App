@@ -29,7 +29,7 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="40">
             <StackPanel>
-                <!-- Add Book Button -->
+                <!-- Khung hiện thị các thông số cần chọn bao gồm showentities, search, filter, add -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
                     <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
                     <TextBox Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" PlaceholderText="                             🔎"/>
@@ -37,7 +37,7 @@
                     <ComboBox ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 350 0"/>
                     <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Book" Click="AddBook_Click"/>
                 </StackPanel>
-
+                <!-- Các nút sắp xếp theo trên đầu mỗi cột -->
                 <Grid Margin="60 0 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -115,7 +115,7 @@
                     <Button Grid.Column="7" Content="Action" Background="White" FontWeight="Bold"/>
                 </Grid>
 
-                <!-- ListView to display books -->
+                <!-- Danh sách hiện thị sách -->
                 <ListView x:Name="BookListView" Background="Transparent" ItemsSource="{x:Bind DisplayedBooks }"
                       Height="500"
                       MinWidth="550">
@@ -159,8 +159,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-
+                
+                <!-- Paging -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                     <Button x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous" Click="PreviousPage_Click" IsEnabled="False" />
                     <TextBlock x:Name="PageInfo" Margin="10,0" />

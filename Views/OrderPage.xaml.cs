@@ -29,19 +29,30 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp OrderPage hiển thị danh sách các đơn hàng
+    /// </summary>
     public sealed partial class OrderPage : Page
     { 
-        public int[] ShowEntities = { 5, 10, 15, 20 };
-        public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>();
-        public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>();
-        public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        public string[] priceSearch = { "Greater than $100", "Smaller than $100" };
-        private int ItemsPerPage = 10;
-        private int currentPage = 1;
-        private int totalPages;
+        public int[] ShowEntities = { 5, 10, 15, 20 }; // Chọn hiển thị số đơn hàng trên mỗi trang
+        public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>(); // Danh sách tất cả các đơn hàng
+        public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>(); // Danh sách đơn hàng hiển thị
+        public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }; // Tìm kiếm theo tháng
+        public string[] priceSearch = { "Greater than $100", "Smaller than $100" }; // Tìm kiếm theo giá
+        private int ItemsPerPage = 10; // Số đơn hàng trên mỗi trang
+        private int currentPage = 1;  // Page hiện tại được gán giá trị đầu tiên bằng 1
+        private int totalPages; // Tổng số trang
 
+        /// <summary>
+        /// Lớp OrderPageViewModel được gọi để thực hiện các nghiệp vụ liên quan đến đơn hàng theo mô hình MVVM
+        /// </summary>
         public OrderPageViewModel ViewModel { get; set; }
 
+
+        /// <summary>
+        /// Cấp phát và khởi tạo các đối tượng trong lớp OrderPage, gọi tất cả các orders, 
+        /// thực hiện tình tổng số trang và hiện thị các trang  trên màn hình theo thông số đã cài đặt 
+        /// </summary>
         public OrderPage()
         {
             this.InitializeComponent();
@@ -62,14 +73,15 @@ namespace Books_Store_Management_App.Views
             
             if (previousPage == nameof(OrderDetailPage))
             {
-                //ViewModel.Init();
-                //AllOrdersDisplay = ViewModel.AllOrders;
                 AllOrdersDisplay = ViewModel.Orders;
                 totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
                 UpdateDisplayedOrders();
             }
 
         }
+        /// <summary>
+        /// Update các đơn hàng theo thông số được chọn bao gồm số đơn hàng trên mỗi trang, tính toán paging
+        /// </summary>
         private void UpdateDisplayedOrders()
         {
             var skip = (currentPage - 1) * ItemsPerPage;
@@ -89,6 +101,12 @@ namespace Books_Store_Management_App.Views
             PreviousButton.IsEnabled = currentPage > 1;
             NextButton.IsEnabled = currentPage < totalPages;
         }
+
+        /// <summary>
+        /// Chuyển sang page kế tiếp 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage < totalPages)
@@ -97,6 +115,12 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedOrders();
             }
         }
+
+        /// <summary>
+        /// Quay trở lại trang trước đó
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage > 1)
@@ -105,16 +129,23 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedOrders();
             }
         }
+
+        /// <summary>
+        /// Thêm đơn hàng mới
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
-            //var newOrder = new Order("#001", "Peter Pan", "12:00AM - 12/10/2024", 30, 3, 12.2, 0);
-            //AllOrdersDisplay.Add(newOrder);
-            //totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
-            //UpdateDisplayedOrders();
-
             //New add page
             Frame.Navigate(typeof(OrderDetailPage));
         }
+
+        /// <summary>
+        /// Xoá đơn hàng được chọn xoá
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
             var Order = (sender as Button).DataContext as Order;
@@ -124,11 +155,22 @@ namespace Books_Store_Management_App.Views
 
             UpdateDisplayedOrders();
         }
+
+        /// <summary>
+        /// Chỉnh sửa đơn hàng được chọn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditOrder_Click(object sender, RoutedEventArgs e)
         {
             //New edit page
             Frame.Navigate(typeof(OrderDetailPage), (sender as Button).DataContext);
         }
+        /// <summary>
+        /// Hàm này thực hiện lấy tên của cột được chọn (property) và chọn thứ tự sắp xếp tăng hay giảm (order)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuFlyoutItem;
@@ -141,6 +183,12 @@ namespace Books_Store_Management_App.Views
                 SortOrders(property, order);
             }
         }
+
+        /// <summary>
+        /// Hàm sắp xếp khi chọn button trên đầu mỗi cột theo 2 chế độ ASC, DES
+        /// </summary>
+        /// <param name="property">Tên của cột được chọn sẳp xếp</param>
+        /// <param name="order">Có 2 chế độ được chọn ASC, DES được truyển vào order</param>
         private void SortOrders(string property, string order)
         {
             if (order == "ASC")
@@ -175,6 +223,11 @@ namespace Books_Store_Management_App.Views
                 return;
             }
         }
+        /// <summary>
+        /// Hàm này nhận vào thông số yêu cầu hiện thị số lượng mỗi row trên 1 listview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
         {
             // Get the submitted text
@@ -186,6 +239,11 @@ namespace Books_Store_Management_App.Views
                 ItemsPerPage = itemsPerPage;
             }
         }
+        /// <summary>
+        /// Hàm thực hiện Search theo tên của khách hàng ứng với order và hàm này thực hiện autotextsearch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var searchText = (sender as TextBox).Text.Trim();
@@ -206,7 +264,11 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedOrders();
             }
         }
-
+        /// <summary>
+        /// Chọn một order để xem chi tiết
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrderListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var order = e.ClickedItem as Order;

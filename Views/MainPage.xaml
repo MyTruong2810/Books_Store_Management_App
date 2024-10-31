@@ -16,7 +16,8 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        
+        <!-- Chứa thông tin navigation view nằm bên trái màn hình-->
         <NavigationView x:Name="nvSample" CornerRadius="100" Grid.Column="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                   IsPaneOpen="True"
                   PaneDisplayMode="Left"

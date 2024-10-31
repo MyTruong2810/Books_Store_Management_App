@@ -28,7 +28,6 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="40">
             <StackPanel>
-                <!-- Add Order Button -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
                     <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
                     <TextBox Margin="0 0 50 0" Width="150" Height="30" PlaceholderText="                             🔎" TextChanged="SearchTextBox_TextChanged"/>
@@ -104,7 +103,7 @@
                     <Button Grid.Column="6" Content="Action" Background="White" FontWeight="Bold"/>
                 </Grid>
 
-                <!-- ListView to display Orders -->
+                <!-- Danh sách thể hiện orders -->
                 <ListView x:Name="OrderListView" Background="Transparent" ItemsSource="{x:Bind DisplayedOrders }"
                       IsItemClickEnabled="True" ItemClick="OrderListView_ItemClick"
                       Height="500"

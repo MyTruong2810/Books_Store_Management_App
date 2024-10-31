@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -14,7 +14,12 @@ namespace Books_Store_Management_App.Views
         {
             this.InitializeComponent();
         }
-
+        //Todo: Implement code to change the navigation withoit using the if else statement, hardcode
+        /// <summary>
+        /// Hàm chuyển page theo navigation view được chọn, ở đây đang thực hiện hardcode cần cải thiện
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)

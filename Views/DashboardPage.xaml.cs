@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -29,7 +29,11 @@ namespace Books_Store_Management_App.Views
             ViewModel = new DashboardViewModel();
             ViewModel.Init();
         }
-
+        /// <summary>
+        /// Hàm chuyển tab hiện thị các thông số về tổng sách, tổng khách hàng, tổng đơn hàng, tổng doanh thu ==> Cài đặt sau
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;

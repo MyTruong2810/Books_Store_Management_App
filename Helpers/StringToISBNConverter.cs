@@ -11,7 +11,15 @@ namespace Books_Store_Management_App.Helpers
     internal class StringToISBNConverter : IValueConverter
     {
         private static readonly Regex ISBN13Regex = new Regex(@"^\d{13}$", RegexOptions.Compiled);
-
+        /// <summary>
+        /// Chuyển đổi hiện thị của ISBN theo định đạng 13 chữ số 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="language"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             string stringValue = (string)value;
