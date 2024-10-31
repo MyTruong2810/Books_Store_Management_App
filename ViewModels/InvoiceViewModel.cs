@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    // Địa chỉ của một đơn vị
+    // Hiện tại dùng để giả lập địa chỉ của người bán và người mua
     public class Address
     {
         public string CompanyName { get; set; }
@@ -17,6 +19,12 @@ namespace Books_Store_Management_App.ViewModels
         public string Email { get; set; }
         public string Phone { get; set; }
     }
+
+    /// <summary>
+    /// ViewModel cho trang InvoicePage
+    /// Dùng để lưu trữ thông tin của một hóa đơn
+    /// Và xứ lý các logic liên quan đến hóa đơn
+    /// </summary>
     public class InvoiceViewModel
     {
         public Order Order { get; set; }
@@ -30,6 +38,8 @@ namespace Books_Store_Management_App.ViewModels
             var conveter = new DateTimeToStringConverter();
             InvoiceDate = (string)conveter.Convert(DateTime.Now, typeof(string), null, null);
         }
+
+        // Tính tổng tiền của các mặt hàng trong đơn hàng
         public double SubTotal
         {
             get
@@ -44,6 +54,7 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        // Tính tổng số tiền được giảm giá
         public double TotalDiscount
         {
             get
