@@ -9,8 +9,10 @@ using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    // ViewModel for managing admin profile data
     public class AdminProfileViewModel : INotifyPropertyChanged
     {
+        // Private fields for profile properties
         private string id;
         private string fullName;
         private string email;
@@ -18,14 +20,16 @@ namespace Books_Store_Management_App.ViewModels
         private string dateOfBirth;
         private string address;
 
+        // DAO interface to manage profile data persistence
         private readonly IDaos<AdminProfileViewModel> _profileDao;
 
+        // Constructor with DAO dependency injection
         public AdminProfileViewModel(IDaos<AdminProfileViewModel> profileDao)
         {
             _profileDao = profileDao;
 
-            // Load initial data from DAO
-            var loadedProfile = _profileDao.LoadProfile("0");
+            // Load initial data from DAO (example usage)
+            var loadedProfile = _profileDao.LoadProfile("0"); // "0" is example ID
             ID = loadedProfile.ID;
             FullName = loadedProfile.FullName;
             Email = loadedProfile.Email;
@@ -34,19 +38,19 @@ namespace Books_Store_Management_App.ViewModels
             Address = loadedProfile.Address;
         }
 
-        // Constructor (optional)
+        // Parameterless constructor (optional)
         public AdminProfileViewModel()
         {
         }
 
-        // Properties with INotifyPropertyChanged
+        // Properties with INotifyPropertyChanged to notify UI on change
 
         public string ID
         {
             get { return id; }
-            set { SetProperty(ref id, value); }
+            set { SetProperty(ref id, value); } // SetProperty to raise PropertyChanged
         }
-        
+
         public string FullName
         {
             get { return fullName; }
@@ -77,9 +81,10 @@ namespace Books_Store_Management_App.ViewModels
             set { SetProperty(ref address, value); }
         }
 
-        // INotifyPropertyChanged implementation
+        // INotifyPropertyChanged event to update bound UI elements
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Helper method to set property and raise PropertyChanged if value changes
         protected void SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (!Equals(field, value))
@@ -89,12 +94,10 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
-        // Save profile data
+        // Save method to persist profile changes using DAO
         public void SaveProfile()
         {
-            _profileDao.Save(this);  // Saving through DAO
+            _profileDao.Save(this);  // Saves the current profile to storage
         }
     }
-
-    // Example: Load data from database
 }

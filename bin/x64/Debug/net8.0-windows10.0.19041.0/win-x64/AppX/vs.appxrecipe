@@ -10,14 +10,14 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>6a667269-ad92-496d-9d8b-88544576e41d</PackageIdentityName>
     <PackageIdentityPublisher>CN=Admin</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\WD\Project\TM\Books_Store_Management_App-main\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\</IntermediateOutputPath>
+    <IntermediateOutputPath>D:\WD\Project\Dev\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
     </PackageRegistrationPath>
     <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>D:\WD\Project\TM\Books_Store_Management_App-main\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppX</LayoutDir>
+    <LayoutDir>D:\WD\Project\Dev\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppX</LayoutDir>
     <RegisteredManifestChecksum>C1F2C1DEAF1152058AD6514851894BB2D74A70FDC87C0ACA6DCE3CC186D52792</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>6a667269-ad92-496d-9d8b-88544576e41d_1.0.0.0_x64__5gyrq6psz227t</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>6a667269-ad92-496d-9d8b-88544576e41d_5gyrq6psz227t!App</RegisteredUserModeAppID>
@@ -26,72 +26,72 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\WD\Project\TM\Books_Store_Management_App-main\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
+    <AppXManifest Include="D:\WD\Project\Dev\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-10-28T05:41:44.572</Modified>
+      <Modified>2024-10-31T09:05:08.102</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\resources.pri">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-10-28T05:41:41.968</Modified>
+      <Modified>2024-10-31T09:05:06.994</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Books_Store_Management_App.runtimeconfig.json">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Books_Store_Management_App.runtimeconfig.json">
       <PackagePath>Books_Store_Management_App.runtimeconfig.json</PackagePath>
-      <Modified>2024-10-28T05:36:03.781</Modified>
+      <Modified>2024-10-31T09:05:05.353</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Books_Store_Management_App.dll">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Books_Store_Management_App.dll">
       <PackagePath>Books_Store_Management_App.dll</PackagePath>
-      <Modified>2024-10-28T05:41:41.397</Modified>
+      <Modified>2024-10-31T09:05:00.249</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\apphost.exe">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\apphost.exe">
       <PackagePath>Books_Store_Management_App.exe</PackagePath>
-      <Modified>2024-10-28T05:41:41.422</Modified>
+      <Modified>2024-10-31T09:05:00.331</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pdlin\.nuget\packages\microsoft.web.webview2\1.0.2651.64\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>runtimes\win-x64\native\WebView2Loader.dll</PackagePath>
       <Modified>2024-07-20T08:33:54.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image1.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image1.jpg">
       <PackagePath>Assets\image1.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.124</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image10.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image10.jpg">
       <PackagePath>Assets\image10.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.125</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image2.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image2.jpg">
       <PackagePath>Assets\image2.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.126</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image3.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image3.jpg">
       <PackagePath>Assets\image3.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.127</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image4.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image4.jpg">
       <PackagePath>Assets\image4.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.128</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image5.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image5.jpg">
       <PackagePath>Assets\image5.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.129</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image6.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image6.jpg">
       <PackagePath>Assets\image6.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.130</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image7.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image7.jpg">
       <PackagePath>Assets\image7.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.135</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image8.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image8.jpg">
       <PackagePath>Assets\image8.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.136</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\image9.jpg">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\image9.jpg">
       <PackagePath>Assets\image9.jpg</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pdlin\.nuget\packages\microsoft.netcore.app.runtime.win-x64\8.0.8\runtimes\win-x64\lib\net8.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -2089,37 +2089,37 @@
       <PackagePath>Microsoft.Web.WebView2.Core.Projection.dll</PackagePath>
       <Modified>2024-07-20T08:33:44.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Books_Store_Management_App.deps.json">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Books_Store_Management_App.deps.json">
       <PackagePath>Books_Store_Management_App.deps.json</PackagePath>
-      <Modified>2024-10-28T05:36:03.564</Modified>
+      <Modified>2024-10-31T09:05:04.995</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.118</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.120</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.120</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.121</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\WD\Project\TM\Books_Store_Management_App-main\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\WD\Project\Dev\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
-      <Modified>2024-10-27T04:10:21.000</Modified>
+      <Modified>2024-10-30T15:24:47.121</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

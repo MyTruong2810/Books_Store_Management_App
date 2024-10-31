@@ -10,7 +10,7 @@ namespace Books_Store_Management_App.Models
 {
     public class AdminProfileDao : IDaos<AdminProfileViewModel>
     {
-        // Giả lập nguồn dữ liệu, có thể là database, API, hoặc file
+        // Mock data source, simulating a database, API, or file storage
         private AdminProfileViewModel mockDatabase = new AdminProfileViewModel
         {
             FullName = "LTCuberik",
@@ -20,17 +20,17 @@ namespace Books_Store_Management_App.Models
             Address = "Dong Hoa, Di An, Binh Duong, Viet Nam"
         };
 
-        // Load profile data (giả lập)
+        // Load profile data (simulation)
         public AdminProfileViewModel LoadProfile(string id)
         {
-            // Trong thực tế, dữ liệu sẽ được lấy từ database
+            // In practice, data would be fetched from a database
             return mockDatabase;
         }
 
-        // Save or update profile data (giả lập)
+        // Save or update profile data (simulation)
         public void Save(AdminProfileViewModel profile)
         {
-            // Trong thực tế, dữ liệu sẽ được lưu vào database
+            // In practice, data would be saved to a database
             mockDatabase.FullName = profile.FullName;
             mockDatabase.Email = profile.Email;
             mockDatabase.DateOfBirth = profile.DateOfBirth;
@@ -38,7 +38,7 @@ namespace Books_Store_Management_App.Models
             mockDatabase.Address = profile.Address;
         }
 
-        // Delete profile by ID (optional implementation)
+        // Optional implementation to delete profile by ID
 
         public Tuple<int, List<AdminProfileViewModel>> GetAll(
             int page = 1, int rowsPerPage = 10, string keyword = "", bool nameAscending = false, bool IdAscending = false)
@@ -56,7 +56,6 @@ namespace Books_Store_Management_App.Models
             throw new NotImplementedException();
         }
 
-
         public void Delete(string id)
         {
             throw new NotImplementedException();
@@ -72,5 +71,4 @@ namespace Books_Store_Management_App.Models
             throw new NotImplementedException();
         }
     }
-
 }

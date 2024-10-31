@@ -26,23 +26,25 @@ using WinRT.Interop;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Represents the Customer Management page where customer data can be managed.
     /// </summary>
     public sealed partial class CustomerPage : Page
     {
-
         public CustomerViewModel CustomerVM { get; set; }
 
         private Customer editingCustomer = null;
+
         public CustomerPage()
         {
             this.InitializeComponent();
+            // Initialize the ViewModel and load initial data
             CustomerVM = new CustomerViewModel();
-            CustomerVM.Init();
-            UpdatePagingInfo_bootstrap();
-            UpdateRowPerPageIfo_bootstrap();
+            CustomerVM.Init(); // Load customer data
+            UpdatePagingInfo_bootstrap(); // Set up pagination
+            UpdateRowPerPageIfo_bootstrap(); // Set up rows per page
         }
 
+        // Initializes the pagination info for the ComboBox
         void UpdatePagingInfo_bootstrap()
         {
             var infoList = new List<object>();
@@ -55,172 +57,189 @@ namespace Books_Store_Management_App.Views
                 });
             }
 
-            pagesComboBox.ItemsSource = infoList;
-            pagesComboBox.SelectedIndex = 0;
+            pagesComboBox.ItemsSource = infoList; // Bind the ComboBox to the page list
+            pagesComboBox.SelectedIndex = 0; // Set default selected index
         }
 
+        // Initializes the rows per page info for the ComboBox
         void UpdateRowPerPageIfo_bootstrap()
         {
-
             var infoShow = new List<object>();
             for (int i = 1; i <= CustomerVM.TotalItems; i++)
             {
                 infoShow.Add(new { item = i });
             }
-            rowsPerPageComboBox.ItemsSource = infoShow;
-            rowsPerPageComboBox.SelectedIndex = 9;
+            rowsPerPageComboBox.ItemsSource = infoShow; // Bind the ComboBox to the row options
+            rowsPerPageComboBox.SelectedIndex = 9; // Set default selected index
         }
 
+        // Event handler for adding a new customer
         private async void addButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            var newCustomer = new Customer();
-            newCustomer.ID = $"#{CustomerVM.TotalItems + 1}";
-            // Lưu thông tin khách hàng vào CustomerVM.SelectedCustomer
+            var newCustomer = new Customer
+            {
+                ID = $"#{CustomerVM.TotalItems + 1}"
+            };
+            // Set the new customer as the selected one in ViewModel
             CustomerVM.SelectedCustomer = newCustomer;
 
-            // Hiển thị hộp thoại xác nhận
+            // Show the dialog for adding the new customer
             ContentDialogResult result = await AddCustomerDialog.ShowAsync();
 
-            if (result == ContentDialogResult.Primary)
+            if (result == ContentDialogResult.Primary) // If the user confirmed
             {
-                CustomerVM.InsertCustomer(CustomerVM.SelectedCustomer);
-                CustomerVM.GetAllCustomers();
+                CustomerVM.InsertCustomer(CustomerVM.SelectedCustomer); // Insert new customer
+                CustomerVM.GetAllCustomers(); // Refresh the customer list
             }
         }
 
+        // Event handler for updating an existing customer
         private async void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            // Lấy ID của khách hàng từ nút được nhấn
             var button = sender as Button;
-            var customerId = button?.Tag?.ToString();
+            var customerId = button?.Tag?.ToString(); // Get ID from button Tag
 
             if (customerId != null)
             {
-                // Tìm khách hàng dựa trên ID
+                // Find the customer by ID
                 var newCustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID == customerId);
 
                 if (newCustomer != null)
                 {
-                    // Lưu thông tin khách hàng vào CustomerVM.SelectedCustomer
-                    CustomerVM.SelectedCustomer = newCustomer;
-                    // Hiển thị hộp thoại xác nhận
+                    CustomerVM.SelectedCustomer = newCustomer; // Set selected customer
+                    // Show the dialog for editing
                     ContentDialogResult result = await EditCustomerDialog.ShowAsync();
 
-                    if (result == ContentDialogResult.Primary)
+                    if (result == ContentDialogResult.Primary) // If confirmed
                     {
-                        CustomerVM.EditCustomer(CustomerVM.SelectedCustomer);
-                        CustomerVM.GetAllCustomers();
+                        CustomerVM.EditCustomer(CustomerVM.SelectedCustomer); // Update customer
+                        CustomerVM.GetAllCustomers(); // Refresh the customer list
                     }
                 }
             }
         }
+
+        // Event handler for changing the customer's avatar image
         private async void ChangeImage_Click(object sender, RoutedEventArgs e)
         {
-            // Mở FileOpenPicker để chọn ảnh
-            var picker = new FileOpenPicker();
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            // Create and configure FileOpenPicker to select an image
+            var picker = new FileOpenPicker
+            {
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary
+            };
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".png");
 
-            // Gán picker với cửa sổ hiện tại
-            var hwnd = WindowHelper.GetWindowHandle(App.MainWindow);  
+            // IMPORTANT: Associate the picker with the current application window
+            // This allows the picker to open correctly as a modal dialog relative to the app window.
+            var hwnd = WindowHelper.GetWindowHandle(App.MainWindow);
             InitializeWithWindow.Initialize(picker, hwnd);
 
+            // Open the picker and wait for the user to select a file
             StorageFile file = await picker.PickSingleFileAsync();
 
-            if (file != null)
+            if (file != null) // If a file was selected
             {
-                // Tạo BitmapImage và cập nhật Avatar
+                // Create a BitmapImage and update the Avatar property
                 BitmapImage bitmapImage = new BitmapImage();
                 using (var stream = await file.OpenAsync(FileAccessMode.Read))
                 {
+                    // Set the image source for the BitmapImage
                     await bitmapImage.SetSourceAsync(stream);
                 }
 
+                // Update the customer's avatar in the ViewModel
                 CustomerVM.SelectedCustomer.Avatar = bitmapImage;
             }
         }
 
+        // Event handler for deleting a customer
         private async void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // Lấy ID của khách hàng từ nút được nhấn
             var button = sender as Button;
-            var customerId = button?.Tag?.ToString();
+            var customerId = button?.Tag?.ToString(); // Get ID from button Tag
 
             if (customerId != null)
             {
-                // Tìm khách hàng dựa trên ID
-                var delcustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID == customerId);
+                // Find the customer by ID
+                var delCustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID == customerId);
 
-                if (delcustomer != null)
+                if (delCustomer != null)
                 {
-                    // Lưu thông tin khách hàng vào CustomerVM.SelectedCustomer
-                    CustomerVM.SelectedCustomer = delcustomer;
+                    CustomerVM.SelectedCustomer = delCustomer; // Set selected customer
 
-                    // Hiển thị hộp thoại xác nhận
+                    // Show the dialog for confirmation
                     ContentDialogResult result = await DeleteCustomerDialog.ShowAsync();
 
-                    if (result == ContentDialogResult.Primary)
+                    if (result == ContentDialogResult.Primary) // If confirmed
                     {
-                        // Xóa khách hàng nếu người dùng chọn "Xóa"
-                        CustomerVM.DeleteCustomer(customerId);
-                        CustomerVM.GetAllCustomers();
+                        CustomerVM.DeleteCustomer(customerId); // Delete the customer
+                        CustomerVM.GetAllCustomers(); // Refresh the customer list
                     }
                 }
             }
         }
 
+        // Event handler for page selection change
         private void pagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             dynamic item = pagesComboBox.SelectedItem;
 
             if (item != null)
             {
-                CustomerVM.LoadingPage(item.Page);
+                CustomerVM.LoadingPage(item.Page); // Load selected page
             }
         }
 
+        // Event handler for sort selection change
         private void sortbyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CustomerVM.TypeOfSort = sortbyComboBox.SelectedIndex + 1;
-            CustomerVM.LoadingPage(1);
-        }
-        private void filterbyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CustomerVM.TypeOfSearch = filterSearchComboBox.SelectedIndex + 1;
-            CustomerVM.LoadingPage(1);
-        }
-        private void rowsPerPageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CustomerVM.RowsPerPage = rowsPerPageComboBox.SelectedIndex + 1;
-            CustomerVM.LoadingPage(1);
-            UpdatePagingInfo_bootstrap();
+            CustomerVM.TypeOfSort = sortbyComboBox.SelectedIndex + 1; // Get selected sort type
+            CustomerVM.LoadingPage(1); // Reload page with new sort
         }
 
+        // Event handler for filter selection change
+        private void filterbyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CustomerVM.TypeOfSearch = filterSearchComboBox.SelectedIndex + 1; // Get selected search type
+            CustomerVM.LoadingPage(1); // Reload page with new filter
+        }
+
+        // Event handler for rows per page selection change
+        private void rowsPerPageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CustomerVM.RowsPerPage = rowsPerPageComboBox.SelectedIndex + 1; // Get selected rows per page
+            CustomerVM.LoadingPage(1); // Reload page
+            UpdatePagingInfo_bootstrap(); // Update pagination info
+        }
+
+        // Event handler for next button click
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
             dynamic item = pagesComboBox.SelectedIndex;
-            if (item < pagesComboBox.Items.Count - 1)
+            if (item < pagesComboBox.Items.Count - 1) // Check if not the last page
             {
-                pagesComboBox.SelectedIndex += 1;
+                pagesComboBox.SelectedIndex += 1; // Go to next page
             }
         }
 
+        // Event handler for previous button click
         private void prevButton_Click(object sender, RoutedEventArgs e)
         {
             dynamic item = pagesComboBox.SelectedIndex;
-            if (item > 0)
+            if (item > 0) // Check if not the first page
             {
-                pagesComboBox.SelectedIndex -= 1;
+                pagesComboBox.SelectedIndex -= 1; // Go to previous page
             }
         }
 
+        // Event handler for search button click
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
-            CustomerVM.Keyword = keywordTextBox.Text;
-            CustomerVM.LoadingPage(1);
-            UpdatePagingInfo_bootstrap();
+            CustomerVM.Keyword = keywordTextBox.Text; // Set keyword for searching
+            CustomerVM.LoadingPage(1); // Reload page with search
+            UpdatePagingInfo_bootstrap(); // Update pagination info
         }
     }
 }
