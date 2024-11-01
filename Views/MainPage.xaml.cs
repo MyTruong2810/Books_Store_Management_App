@@ -35,12 +35,18 @@ namespace Books_Store_Management_App.Views
             {
                 content.Navigate(typeof(OrderPage));
             }
-
-
-            /* ====================================================
-             * You: Implement code to change the navigation      ||
-             * ====================================================
-             */
+            else if (selectedTag == "Admin")
+            {
+                content.Navigate(typeof(AdminPage));
+            }
+            else if (selectedTag == "ClassificationPage")
+            {
+                content.Navigate(typeof(ClassificationPage));
+            }
+            else if (selectedTag == "StatisticsPage")
+            {
+                content.Navigate(typeof(StatisticsPage));
+            }
         }
     }
 }
