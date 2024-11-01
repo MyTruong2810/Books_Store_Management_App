@@ -15,17 +15,30 @@ using System.Security.Policy;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// View model cho trang chi tiết đơn hàng
+    /// Dùng để lưu trữ thông tin của một đơn hàng
+    /// Và xử lý các logic liên quan đến đơn hàng
+    /// </summary>
     public class OrderDetailViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
-        //private readonly IDao<Book> _bookDao;
+        // Biến lưu trữ danh sách các sách hiện có trong cửa hàng
         public List<Book> Books { get; set; }
+
+        // Biến lưu trữ danh sách các mã giảm giá hiện có
         public List<Coupon> Coupons { get; set; }
 
+        // Chứa mã lỗi của thuộc tính CustomerName
         public string CustomerNameError { get; set; } = "";
+
+        // Điều kiện validate cho thuộc tính CustomerName
         [Required(ErrorMessage = "Customer name is required.")]
         public string CustomerName { get; set; }
+
         public DateTime PurchaseDate { get; set; }
         public Boolean IsDelivered { get; set; }
+
+        // Chứa danh sách các mã giảm giá được chọn
 
         private FullObservableCollection<Coupon> _selectedCoupons;
         public FullObservableCollection<Coupon> SelectedCoupons
@@ -46,13 +59,23 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi danh sách SelectedCoupons thay đổi
+        /// Thông báo thay đổi lại cho ActualTotal và HasCoupon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectedCoupons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(HasCoupon));
             OnPropertyChanged(nameof(ActualTotal));
         }
+
+        // Kiểm tra xem có mã giảm giá nào được chọn không
+        // Dùng để hiển thị thông báo trên giao diện (Phần Total có dấu gạch ngang)
         public bool HasCoupon => (SelectedCoupons.Count > 0);
 
+        // Chứa danh sách các sách được chọn
         private ObservableCollection<OrderItem> _selectedBooks;
         public string SelectedBooksError { get; set; } = "";
         [Required(ErrorMessage = "Please select at least one book.")]
@@ -69,6 +92,8 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
         public Order Order { get; set; }
+
+        // Tính tổng số tiền của các sách được chọn
         public double Total
         {
             get
@@ -82,6 +107,8 @@ namespace Books_Store_Management_App.ViewModels
                 return total;
             }
         }
+
+        // Tính tổng số tiền thực tế sau khi áp dụng mã giảm giá
         public double ActualTotal
         {
             get
@@ -109,23 +136,31 @@ namespace Books_Store_Management_App.ViewModels
         public string PaymentMethodQRCode { get; set; } = "/Assets/cash.jpg";
         // 
 
+        // Biến lưu trữ trạng thái hiển thị của QR Code
         public bool IsQrCodeVisible { get; set; } = false;
+
+        // Biến lưu trữ trạng thái hiển thị của ListView chứa sách
         public bool IsBooksListViewVisible { get; set; } = true;
 
+        // Khai báo các command
+        // Một số command chưa được triển khai
         public ICommand ChangeToQRCodeCommand { get; set; }
         public ICommand BookSelectionChangedCommand { get; set; }
         public ICommand BookSeletionDeleteCommand { get; set; }
         public ICommand HandleCreateNewOrderCommand { get; set; }
         public ICommand DateSelectedCommand { get; set; }
         public ICommand TimeSelectedCommand { get; set; }
+        // Kết thúc khai báo các command
 
         public OrderDetailViewModel()
         {
+            // Khởi tạo các biến
             SelectedBooks = new ObservableCollection<OrderItem>();
             SelectedCoupons = new FullObservableCollection<Coupon>();
             PurchaseDate = DateTime.Now;
             LoadBooks();
             LoadGenre();
+            // 
 
             // Initialize the command
             BookSelectionChangedCommand = new RelayCommand(OnBookSelectionChanged);
@@ -134,12 +169,14 @@ namespace Books_Store_Management_App.ViewModels
             DateSelectedCommand = new RelayCommand(HandleDateSelected);
             TimeSelectedCommand = new RelayCommand(HandleTimeSelected);
             ChangeToQRCodeCommand = new RelayCommand(ChangeToQRCode);
+            // End of command initialization
 
             SelectedCoupons.CollectionChanged += (s, e) =>
             {
                 OnPropertyChanged(nameof(ActualTotal)); // Cập nhật ActualTotal khi SelectedCoupons thay đổi
             };
 
+            // Xử lý sự kiện khi danh sách SelectedBooks thay đổi
             SelectedBooks.CollectionChanged += (s, e) =>
             {
                 if (e.NewItems != null)
@@ -164,6 +201,10 @@ namespace Books_Store_Management_App.ViewModels
 
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút chuyển đổi giữa QR Code và ListView
+        /// </summary>
+        /// <param name="obj"></param>
         private void ChangeToQRCode(object obj)
         {
             IsQrCodeVisible = !IsQrCodeVisible;
@@ -173,6 +214,11 @@ namespace Books_Store_Management_App.ViewModels
             OnPropertyChanged(nameof(IsBooksListViewVisible));
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn thời gian
+        /// Thêm thời gian vào ngày mua
+        /// </summary>
+        /// <param name="parameter"></param>
         private void HandleTimeSelected(object parameter)
         {
             var selectedTime = parameter as TimeSpan?;
@@ -183,6 +229,11 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn ngày
+        /// Thêm ngày vào ngày mua
+        /// </summary>
+        /// <param name="parameter"></param>
         private void HandleDateSelected(object parameter)
         {
             if (parameter != null)
@@ -206,11 +257,19 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        // TODO
         private void HandleCreateNewOrder(object obj)
         {
 
         }
+        //
 
+        /// <summary>
+        /// Xử lý sự kiện khi thuộc tính của OrderItem thay đổi
+        /// Cụ thể là Quantity và SubTotal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnOrderItemPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             // Cập nhật Total khi Quantity hoặc SubTotal của OrderItem thay đổi
@@ -221,6 +280,9 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Load dữ liệu sách từ cơ sở dữ liệu
+        /// </summary>
         private void LoadBooks()
         {
             //var books = await _bookDao.GetAllAsync();
@@ -228,6 +290,11 @@ namespace Books_Store_Management_App.ViewModels
             Books = Dao.GetAllBooks().ToList();
         }
 
+        /// <summary>
+        /// Load dữ liệu mã giảm giá
+        /// Hiện tại dùng dữ liệu cứng
+        /// Có thể thay thế bằng việc load từ cơ sở dữ liệu
+        /// </summary>
         private void LoadGenre()
         {
             var coupons = new List<Coupon>
@@ -240,6 +307,10 @@ namespace Books_Store_Management_App.ViewModels
             Coupons = coupons;
         }
 
+        /// <summary>
+        /// Thêm mã giảm được chọn vào danh sách SelectedCoupons
+        /// </summary>
+        /// <param name="coupons"></param>
         public void AddSelectedCoupons(FullObservableCollection<Coupon> coupons)
         {
             if (coupons != null)
@@ -254,6 +325,10 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Thêm sách được chọn vào danh sách SelectedBooks
+        /// </summary>
+        /// <param name="orderItems"></param>
         public void AddSelectedBooks(List<OrderItem> orderItems)
         {
             if (orderItems != null)
@@ -267,6 +342,12 @@ namespace Books_Store_Management_App.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Xử lý sự kiện khi sách được chọn hoặc bỏ chọn
+        /// Từ ComboBox chọn sách
+        /// </summary>
+        /// <param name="parameter"></param>
         private void OnBookSelectionChanged(object parameter)
         {
             var e = parameter as Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs;
@@ -307,6 +388,11 @@ namespace Books_Store_Management_App.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Xử lý sự kiện khi sách được xóa khỏi danh sách SelectedBooks
+        /// </summary>
+        /// <param name="obj"></param>
         private void OnBookSelectionDelete(object obj)
         {
             OrderItem orderItem = obj as OrderItem;
@@ -316,14 +402,20 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Triển khai INotifyPropertyChanged
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        // Kết thúc triển khai INotifyPropertyChanged
 
-        // Triển khai INotifyDataErrorInfo
-
+        /// <summary>
+        /// Triển khai INotifyDataErrorInfo
+        /// Sẽ tách phần này ra một class khác để quản lý lỗi
+        /// </summary>
         public void ValidateAll()
         {
             ValidateProperty(CustomerName, nameof(CustomerName));
@@ -368,6 +460,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             return _errors.ContainsKey(propertyName) ? _errors[propertyName].First() : string.Empty;
         }
+        // Kết thúc triển khai INotifyDataErrorInfo
     }
 
 }
