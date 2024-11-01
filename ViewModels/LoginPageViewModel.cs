@@ -12,12 +12,16 @@ using Windows.Storage;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// Lớp ViewModel của LoginPage chứa các thuộc tính và command để xử lý logic đăng nhập
+    /// </summary>
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private string _username;
-        private string _password;
-        private bool _isPasswordSaved;
+        private string _username; // Tên đăng nhập
+        private string _password; // Mật khẩu
+        private bool _isPasswordSaved; // Trạng thái lưu mật khẩu
 
+        // Database giả lập thông tin người dùng
         private readonly Dictionary<string, string> _usersDatabase = new Dictionary<string, string>
         {
             { "user1", "123" },
@@ -47,38 +51,86 @@ namespace Books_Store_Management_App.ViewModels
         public ICommand SignupCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// Khởi tạo lớp LoginViewModel, event được xử lý thông qua command giúp UI và code-behind được tách biệt
+        /// </summary>
         public LoginViewModel()
         {
-            //LoginCommand = new RelayCommand(async () => await LoginAsync());
-            //SignupCommand = new RelayCommand(Signup);
-
             LoginCommand = new RelayCommand(async _ => await LoginAsync());
             SignupCommand = new RelayCommand(_ => Signup());
             LoadSavedCredentials();
         }
-
+        /// <summary>
+        /// Hàm sử lý logic đăng nhập, thành công trả về trang dashboard, thất bại hiển thị thông báo lỗi
+        /// </summary>
+        /// <returns></returns>
         private async Task LoginAsync()
         {
-            if (AuthenticateUser(Username, Password))
+            try
             {
-                if (IsPasswordSaved)
+                if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
                 {
-                    await SaveCredentialsAsync(Username, Password);
+                    await ShowLoginFailedDialog("Please enter both username and password.");
+                    return;
                 }
-                MainWindow.AppFrame.Navigate(typeof(MainPage));
+
+                if (AuthenticateUser(Username, Password))
+                {
+                    if (IsPasswordSaved)
+                    {
+                        await SaveCredentialsAsync(Username, Password);
+                    }
+                    MainWindow.AppFrame.Navigate(typeof(MainPage));
+                }
+                else
+                {
+                    await ShowLoginFailedDialog("Invalid username or password.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Todo: Show error message
+                System.Diagnostics.Debug.WriteLine($"Error during login: {ex.Message}");
+                await ShowLoginFailedDialog("An unexpected error occurred. Please try again.");
             }
         }
-
+        /// <summary>
+        /// Thông tin báo lỗi thất bại khi đăng nhập
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        private async Task ShowLoginFailedDialog(string message)
+        {
+            try
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = "Login Failed",
+                    Content = message,
+                    CloseButtonText = "Ok"
+                };
+                await dialog.ShowAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error showing dialog: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Xác thực mật khẩu đăng nhập
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private bool AuthenticateUser(string username, string password)
         {
             return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == password;
         }
-
+        /// <summary>
+        /// Lưu thông tin đăng nhập nếu người dùng chọn lưu mật khẩu vào hệ thống local settings
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="passwordRaw"></param>
+        /// <returns></returns>
         private async Task SaveCredentialsAsync(string username, string passwordRaw)
         {
             var passwordInBytes = Encoding.UTF8.GetBytes(passwordRaw);
@@ -96,6 +148,9 @@ namespace Books_Store_Management_App.ViewModels
             localSettings.Values["EntropyInBase64"] = entropyInBase64;
         }
 
+        /// <summary>
+        /// Lấy thông tin đăng nhập được ghi nhớ từ hệ thống local settings
+        /// </summary>
         private void LoadSavedCredentials()
         {
             var localSettings = ApplicationData.Current.LocalSettings;
@@ -111,10 +166,12 @@ namespace Books_Store_Management_App.ViewModels
                 IsPasswordSaved = true;
             }
         }
-
+        /// <summary>
+        /// Hàm xử lý đăng ký tài khoản, nhóm đang phát triển chức năng này
+        /// </summary>
         private void Signup()
         {
-           //Todo: Implement code later
+            // Todo: Implement signup functionality later
         }
 
         private void SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)

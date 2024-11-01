@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Data;
-
 namespace Books_Store_Management_App.Helpers
 {
-
+    /// <summary>
+    /// Lớp convert dữ liệu sang chuỗi theo định dạng
+    /// </summary>
     public class StringFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

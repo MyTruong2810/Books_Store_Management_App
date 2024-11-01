@@ -23,33 +23,31 @@ using Windows.UI.Popups;
 using Microsoft.UI;
 using System.ComponentModel;
 using static Books_Store_Management_App.Views.DashboardPage;
+using Books_Store_Management_App.ViewModels;
 using System.Drawing;
 using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp StockPage hiển thị danh sách sách trong kho
+    /// </summary>
     public sealed partial class StockPage : Page
     {
-        public int[] ShowEntities = { 5, 10, 15, 20 };
+        public int[] ShowEntities = { 5, 10, 15, 20 }; // Số lượng sách hiển thị trên mỗi trang
 
         public string[] generSearch = { "Drama", "Novel", "Science" };
         public string[] priceSearch = { "Greater than $100", "Smaller than $100" };
-        public ObservableCollection<Book> AllBooksDisplay { get; set; } = new ObservableCollection<Book>();
-        public ObservableCollection<Book> DisplayedBooks { get; set; } = new ObservableCollection<Book>();
-        private int ItemsPerPage = 10;
-        private int currentPage = 1;
-        private int totalPages;
-        public class StockPageViewModel
-        {
-            public ObservableCollection<Book> AllBooks { get; set; }
-            public void Init()
-            {
-                IDao dao = new PsqlDao();
-                AllBooks = dao.GetAllBooks();
-            }
-        }
+        public ObservableCollection<Book> AllBooksDisplay { get; set; } = new ObservableCollection<Book>(); // Danh sách sách hiển thị
+        public ObservableCollection<Book> DisplayedBooks { get; set; } = new ObservableCollection<Book>();  // Danh sách sách được hiển thị trên mỗi trang
+        private int ItemsPerPage = 10; // Số lượng sách hiển thị trên mỗi trang
+        private int currentPage = 1; // Trang hiện tại
+        private int totalPages; // Tổng số trang
         public StockPageViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Khởi tạo trang StockPage, gọi ViewModel và danh sách sách
+        /// </summary>
         public StockPage()
         {
             this.InitializeComponent();
@@ -121,6 +119,12 @@ namespace Books_Store_Management_App.Views
             PreviousButton.IsEnabled = currentPage > 1;
             NextButton.IsEnabled = currentPage < totalPages;
         }
+
+        /// <summary>
+        /// Hiện thị trang tiếp theo của listview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage < totalPages)
@@ -129,6 +133,12 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedBooks();
             }
         }
+
+        /// <summary>
+        /// Hiện thị trang trước của listview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage > 1)
@@ -137,13 +147,14 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedBooks();
             }
         }
+
+        /// <summary>
+        /// Thêm sách mới vào trong kho hoặc danh sách
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
-            //var newBook = new Book("ms-appx:///Assets/image1.jpg", "New Book", "New Publisher", "New Author", "1234567890123", 2024, 9.99, "New Genre", 100, 0);
-            //AllBooksDisplay.Add(newBook);
-            //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-            //UpdateDisplayedBooks();
-
             // Open the popup to add a new book
             BookPopupControl.ViewModel.ClearData();
             BookPopupControl.ClearErrorMessage();
@@ -152,15 +163,14 @@ namespace Books_Store_Management_App.Views
             BookPopupControl.SetEditable(true);
             StandardPopup.IsOpen = true;
         }
+
+        /// <summary>
+        /// Xóa sách khỏi kho hoặc danh sách
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteBook_Click(object sender, RoutedEventArgs e)
         {
-            //var book = (sender as Button).DataContext as Book;
-            //AllBooksDisplay.Remove(book);
-            //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-            //if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
-
-            //UpdateDisplayedBooks();
-
             // Chỉ giả lập xóa sách, chưa đụng vào database
             var button = sender as Button;
             var book = button?.Tag as Book;
@@ -173,14 +183,14 @@ namespace Books_Store_Management_App.Views
             if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
             UpdateDisplayedBooks();
         }
+
+        /// <summary>
+        /// Chỉnh sửa thông tin sách
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditBook_Click(object sender, RoutedEventArgs e)
         {
-
-            /* ==========================================================
-             * You: Implement code to change the edit Page / edit Frame ||
-             * ==========================================================
-             */
-
             StandardPopup.IsOpen = true;
 
             var button = sender as Button;
@@ -195,6 +205,12 @@ namespace Books_Store_Management_App.Views
                 BookPopupControl.SetEditable(true);
             }
         }
+
+        /// <summary>
+        /// Lấy thông tin trường yêu cầu sắp xếp và tyêu cầu sắp xếp theo tăng hay giảm dần
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuFlyoutItem;
@@ -207,6 +223,12 @@ namespace Books_Store_Management_App.Views
                 SortBooks(property, order);
             }
         }
+
+        /// <summary>
+        /// Thực hiện sắp xếp sách theo trường yêu cầu
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="order"></param>
         private void SortBooks(string property, string order)
         {
             if (order == "ASC")
@@ -241,6 +263,12 @@ namespace Books_Store_Management_App.Views
                 return;
             }
         }
+
+        /// <summary>
+        /// Chọn số lượng sách hiển thị trên mỗi trang
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
         {
             // Get the submitted text
@@ -252,6 +280,12 @@ namespace Books_Store_Management_App.Views
                 ItemsPerPage = itemsPerPage;
             }
         }
+
+        /// <summary>
+        /// AutoTextSearch cho ô tìm kiếm sách
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var searchText = (sender as TextBox).Text.Trim();
@@ -273,6 +307,10 @@ namespace Books_Store_Management_App.Views
             }
         }
     }
+
+    /// <summary>
+    /// Lớp giúp hiển thị màu sách bảng xen kẽ màu, ứng dụng tính chẵn lẽ của index
+    /// </summary>
     public class AlternationIndexToBackgroundConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
