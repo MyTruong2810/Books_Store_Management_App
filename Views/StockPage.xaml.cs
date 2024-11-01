@@ -57,11 +57,17 @@ namespace Books_Store_Management_App.Views
             totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
             UpdateDisplayedBooks();
 
-            // Init BookPopupControl
+            // Khởi tạo thông số và vị trí hiển của popup
             StandardPopup.HorizontalOffset = this.ActualWidth - 730;
             BookPopupControl.RightDialogHeight = this.ActualHeight;
             BookPopupControl.SaveButtonClicked += BookPopupControl_SaveButtonClicked;
         }
+
+        /// <summary>
+        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookPopupControl_SaveButtonClicked(object sender, Book e)
         {
             if (BookPopupControl.GetButton() == "Add")
@@ -94,7 +100,11 @@ namespace Books_Store_Management_App.Views
             }
         }
 
-        // Dùng để thay đổi lại vị trí và chiều cao của popup khi thay đổi kích thước cửa sổ
+        /// <summary>
+        /// Dùng để thay đổi lại vị trí và chiều cao của popup khi thay đổi kích thước cửa sổ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             StandardPopup.HorizontalOffset = this.ActualWidth - 730;
@@ -155,7 +165,7 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
-            // Open the popup to add a new book
+            // Khởi tạo popup để thêm sách mới
             BookPopupControl.ViewModel.ClearData();
             BookPopupControl.ClearErrorMessage();
             BookPopupControl.SetPopupTitle("Add New Book");

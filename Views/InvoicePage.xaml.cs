@@ -26,7 +26,8 @@ using Books_Store_Management_App.Helpers;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Trang này được sử dụng để hiển thị chi tiết hóa đơn và cho phép người dùng in hóa đơn. 
+    /// Nó lấy dữ liệu từ trang Chi tiết Đơn hàng và sử dụng QuestPDF để tạo file PDF hóa đơn.
     /// </summary>
     public sealed partial class InvoicePage : Page
     {
@@ -38,16 +39,26 @@ namespace Books_Store_Management_App.Views
             ViewModel = new InvoiceViewModel();
         }
 
+        /// <summary>
+        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             if (e.Parameter is Order order)
             {
+                // Gán dữ liệu từ trang Order Detail vào ViewModel
                 ViewModel.Order = order;
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút Print Invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrintInvoice_Click(object sender, RoutedEventArgs e)
         {
             Settings.License = LicenseType.Community;
@@ -59,7 +70,8 @@ namespace Books_Store_Management_App.Views
             ViewModel.SellerAddress = new Address();
 
             //ViewModel.CustomerAddress.CompanyName = "Customer Company";
-            // Dữ liệu giả lập
+            // Dữ liệu giả lập cho địa chỉ của khách hàng và người bán
+            // Để test chức năng in hóa đơn
             ViewModel.CustomerAddress.Street = "Customer Street";
             ViewModel.CustomerAddress.City = "Customer City";
             ViewModel.CustomerAddress.State = "Customer State";
@@ -80,6 +92,11 @@ namespace Books_Store_Management_App.Views
             document.GeneratePdfAndShow();
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút Back để quay lại trang Order Detail
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();

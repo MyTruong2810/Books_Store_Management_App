@@ -11,9 +11,6 @@ namespace Books_Store_Management_App
 {
     public class OrderPageViewModel : INotifyPropertyChanged
     {
-        //Todo: Implement the OrderPageViewModel later
-        //private readonly IDao<Order> _orderDao;
-
         private ObservableCollection<Order> _orders;
         public ObservableCollection<Order> Orders
         {

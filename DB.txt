@@ -1,0 +1,138 @@
+CREATE TABLE IF NOT EXISTS public.book
+(
+    imageurl character varying(255) COLLATE pg_catalog."default",
+    title character varying(255) COLLATE pg_catalog."default",
+    publisher character varying(255) COLLATE pg_catalog."default",
+    author character varying(255) COLLATE pg_catalog."default",
+    isbn character varying(13) COLLATE pg_catalog."default",
+    year integer,
+    selling_price numeric(10,2),
+    purchase_price numeric(10,2),
+    genre character varying(50) COLLATE pg_catalog."default",
+    quantity integer,
+    index integer NOT NULL,
+    CONSTRAINT book_pkey PRIMARY KEY (index)
+) TABLESPACE pg_default;
+
+INSERT INTO public.book (imageurl,title,publisher,author,isbn,"year",selling_price, purchase_price,genre,quantity,"index") VALUES
+	 ('ms-appx:///Assets/image4.jpg','1984','George Orwell','George Orwell','9780451534852',1949,10.99, 9,'Dystopian',12,4),
+	 ('ms-appx:///Assets/image9.jpg','Animal Farm','George Orwell','George Orwell','9780451536050',1945,9.99, 8,'Allegory',11,9),
+	 ('ms-appx:///Assets/image1.jpg','The Lord
+','J.R.R. Tolkien','J.R.R. Tolkien','9780007567499',1954,29.99, 25,'Fantasy',10,1),
+	 ('ms-appx:///Assets/image2.jpg','Pride
+','Jane Austen','Jane Austen','9780140283204',1813,15.99, 12,'Classic',5,2),
+	 ('ms-appx:///Assets/image3.jpg','Killer','Harper Lee','Harper Lee','9780060735097',1960,12.99, 11,'Fiction',8,3),
+	 ('ms-appx:///Assets/image5.jpg','The Catcher','J.D. Salinger','J.D. Salinger','9780316769487',1951,14.99, 13,'Coming-of-age',7,5),
+	 ('ms-appx:///Assets/image6.jpg','Harry Potter','J.K. Rowling','J.K. Rowling','9780590353258',1997,19.99, 15,'Fantasy',15,6),
+	 ('ms-appx:///Assets/image7.jpg','Hitchhiker''s','Douglas Adams','Douglas Adams','9780345390827',1979,13.99, 12,'Science Fiction',9,7),
+	 ('ms-appx:///Assets/image8.jpg','The Great','F. Scott Fitzgerald','F. Scott Fitzgerald','9780743273563',1925,16.99, 15,'Classic',6,8),
+	 ('ms-appx:///Assets/image10.jpg','Little Prince','Antoine de Saint-Exupéry','Antoine de Saint-Exupéry','9780446315981',1943,11.99, 10,'Children''s',13,10);
+
+CREATE TABLE IF NOT EXISTS public.genre (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL COLLATE pg_catalog."default",
+    description TEXT
+) TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.genre
+    OWNER to postgres;
+
+INSERT INTO public.genre (id, name, description) VALUES
+(1, 'Science Fiction', 'A genre of speculative fiction that typically deals with imaginative and futuristic concepts.'),
+(2,'Fantasy', 'A genre of speculative fiction set in a fictional universe, often inspired by real world myth and folklore.'),
+(3,'Mystery', 'A genre of fiction that deals with the solution of a crime or the unraveling of secrets.'),
+(4,'Romance', 'A genre of fiction that places its primary focus on the relationship and romantic love between two people.'),
+(5,'Horror', 'A genre of fiction intended to, or has the capacity to frighten, scare, or disgust.'),
+(6,'Thriller', 'A genre of fiction that uses suspense, tension, and excitement as the main elements.'),
+(7,'Non-Fiction', 'A genre of writing that is based on facts, real events, and real people, such as biography or history.'),
+(8,'Dystopian', 'A genre of fiction that explores social and political structures in a dark, nightmare world.'),
+(9,'Allegory', 'A genre of fiction that uses symbolic figures, actions, imagery, and/or events to convey a message or teach a moral lesson.'),
+(10,'Classic', 'A genre of fiction that is regarded as having lasting literary merit.'),
+(11,'Fiction', 'A genre of literature that is based on imagination and not necessarily on fact.'),
+(12,'Coming-of-age', 'A genre of literature that focuses on the growth of a protagonist from youth to adulthood.'),
+(13,'Children''s', 'A genre of literature that is written for children.'),
+(14,'Young Adult', 'A genre of literature that is written for young adults.');
+
+CREATE TABLE IF NOT EXISTS public.order_item
+(
+    id SERIAL PRIMARY KEY COLLATE pg_catalog."default" NOT NULL,
+    order_id INT REFERENCES orders(id) ON DELETE CASCADE,
+    book_id INT REFERENCES book(index) ON DELETE CASCADE,
+    quantity INT NOT NULL
+) TABLESPACE pg_default;
+
+INSERT INTO public.order_item (order_id, book_id, quantity) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5),
+(6, 6, 6),
+(7, 7, 7),
+(8, 8, 8),
+(9, 9, 9),
+(10, 10, 10);
+
+CREATE TABLE IF NOT EXISTS public."order"
+(
+    id SERIAL PRIMARY KEY NOT NULL,
+    customer character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    date timestamp without time zone NOT NULL,
+    is_delivered BOOLEAN NOT NULL DEFAULT FALSE,
+    orderindex integer NOT NULL
+) TABLESPACE pg_default;
+
+INSERT INTO public."order" (id,customer,"date") VALUES
+	 (1,'Alice Johnson','2024-10-01 12:00:00'),
+	 (2,'Bob Smith','2024-10-02 13:30:00'),
+	 (3,'Charlie Brown','2024-10-03 14:45:00'),
+	 (4,'Diana Prince','2024-10-04 09:15:00'),
+	 (5,'Edward Elric','2024-10-05 16:20:00'),
+	 (6,'Fiona Gallagher','2024-10-06 08:10:00'),
+	 (7,'George Washington','2024-10-07 10:00:00'),
+	 (8,'Hannah Montana','2024-10-08 11:30:00'),
+	 (9,'Ian Malcolm','2024-10-09 15:00:00'),
+	 (10,'Julia Child','2024-10-10 17:30:00');
+
+CREATE TABLE IF NOT EXISTS public.coupon (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    discount NUMERIC(5, 2) NOT NULL,
+    expiry_date TIMESTAMP WITHOUT TIME ZONE NOT NULL
+) TABLESPACE pg_default;
+
+INSERT INTO public.coupon (id, name, discount, expiry_date) VALUES
+(1, 'SAVE 10%', 0.1, '2024-12-31 23:59:59'),
+(2, 'SAVE 20%', 0.2, '2024-06-30 23:59:59'),
+(3, 'SAVE 30%', 0.3, '2025-01-01 23:59:59');
+
+CREATE TABLE IF NOT EXISTS public.order_coupon
+(
+    order_id INT REFERENCES orders(id) ON DELETE CASCADE,
+    coupon_id INT REFERENCES coupon(id) ON DELETE CASCADE,
+    PRIMARY KEY (order_id, coupon_id)
+) TABLESPACE pg_default;
+
+INSERT INTO public.order_coupons (order_id, coupon_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 1),
+(5, 2),
+(6, 3),
+(7, 1),
+(8, 2),
+(9, 3),
+(10, 1);
+
+CREATE TABLE IF NOT EXISTS public.order_item
+(
+    id SERIAL PRIMARY KEY,
+    order_id INT REFERENCES orders(id) ON DELETE CASCADE,
+    book_id INT REFERENCES book(index) ON DELETE CASCADE,
+    quantity INT NOT NULL
+) TABLESPACE pg_default;
+
+-- SELECT oi.id, oi.quantity, b.* FROM public.order_items oi JOIN public.book b ON oi.book_id = b.index WHERE oi.order_id = 1;
+
+-- SELECT c.* FROM order_coupons oc JOIN coupon c ON oc.coupon_id = c.id WHERE order_id = 1;

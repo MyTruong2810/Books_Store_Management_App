@@ -5,7 +5,7 @@ using Books_Store_Management_App.Helpers;
 
 namespace Books_Store_Management_App.Models
 {
-    public class OrderItem : INotifyPropertyChanged
+    public class OrderItem : INotifyPropertyChanged, ICloneable
     {
         public int Id { get; set; }
         public Book Book { get; set; }
@@ -23,9 +23,19 @@ namespace Books_Store_Management_App.Models
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public object Clone()
+        {
+            return new OrderItem
+            {
+                Id = this.Id,
+                Book = this.Book,
+                Quantity = this.Quantity
+            };
+        }
     }
 
-    public class Order : INotifyPropertyChanged
+    public class Order : INotifyPropertyChanged, ICloneable
     {
         public int ID { get; set; }
         public string Customer { get; set; }
@@ -97,6 +107,26 @@ namespace Books_Store_Management_App.Models
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            var orderItemsClone = new List<OrderItem>();
+            foreach (var item in OrderItems)
+            {
+                orderItemsClone.Add((OrderItem)item.Clone());
+            }
+
+            return new Order
+            {
+                ID = this.ID,
+                Customer = this.Customer,
+                Date = this.Date,
+                Coupons = this.Coupons,
+                IsDelivered = this.IsDelivered,
+                OrderItems = orderItemsClone,
+                Index = this.Index
+            };
         }
     }
 

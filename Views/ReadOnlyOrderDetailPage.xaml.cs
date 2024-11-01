@@ -23,10 +23,8 @@ using Windows.Foundation.Collections;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Dùng để hiển thị thông tin chi tiết của một đơn hàng
     /// </summary>
-
-    // Dùng để hiển thị thông tin chi tiết của một đơn hàng
     public sealed partial class ReadOnlyOrderDetailPage : Page
     {
         public OrderDetailViewModel ViewModel { get; set; }
@@ -42,10 +40,15 @@ namespace Books_Store_Management_App.Views
             OrderViewModel = (Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
         }
 
+        /// <summary>
+        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
+            // Gán danh sách sách và mã giảm giá vào ComboBox
             CouponsComboBox.ItemsSource = ViewModel.Coupons;
 
             // Đoạn này bí quá làm dài dòng
@@ -76,11 +79,23 @@ namespace Books_Store_Management_App.Views
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút Back
+        /// Chuyển về trang OrderPage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(OrderPage));
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút Bill Order
+        /// Chuyển về trang InvoicePage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
