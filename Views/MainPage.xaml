@@ -16,7 +16,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        <!--- Hiển thị navagationview -->
         <NavigationView x:Name="nvSample" CornerRadius="100" Grid.Column="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                   IsPaneOpen="True"
                   PaneDisplayMode="Left"
@@ -65,6 +65,13 @@
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7BF;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Customer" Tag="CustomerPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE716;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

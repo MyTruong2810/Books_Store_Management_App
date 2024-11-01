@@ -29,7 +29,7 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="40">
             <StackPanel>
-                <!-- Add Book Button -->
+                <!-- Các trường thông tin theo yêu cầu bao gồm showentities, search, filter và thêm sách mới -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
                     <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
                     <TextBox Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" PlaceholderText="                             🔎"/>
@@ -115,7 +115,7 @@
                     <Button Grid.Column="7" Content="Action" Background="White" FontWeight="Bold"/>
                 </Grid>
 
-                <!-- ListView to display books -->
+                <!-- ListView to hiện thị books -->
                 <ListView x:Name="BookListView" Background="Transparent" ItemsSource="{x:Bind DisplayedBooks }"
                       Height="500"
                       MinWidth="550">

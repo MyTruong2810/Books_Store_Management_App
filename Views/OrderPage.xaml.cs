@@ -29,19 +29,25 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp hiển thị danh sách Order
+    /// </summary>
     public sealed partial class OrderPage : Page
     { 
-        public int[] ShowEntities = { 5, 10, 15, 20 };
-        public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>();
-        public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>();
-        public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        public string[] priceSearch = { "Greater than $100", "Smaller than $100" };
-        private int ItemsPerPage = 10;
-        private int currentPage = 1;
-        private int totalPages;
+        public int[] ShowEntities = { 5, 10, 15, 20 }; // Số lượng Order hiển thị trên mỗi trang
+        public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>(); // Danh order Order hiển thị
+        public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>(); // Danh order Order hiển thị trên mỗi trang
+        public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }; // Danh sách tháng trong trường filter
+        public string[] priceSearch = { "Greater than $100", "Smaller than $100" }; // Danh sách giá tiền trong trường filter
+        private int ItemsPerPage = 10; // Số lượng Order hiển thị trên mỗi trang
+        private int currentPage = 1; // Trang hiện tại
+        private int totalPages; // Tổng số trang
 
         public OrderPageViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Hàm khởi tạo, gọi vỉewmodel và khởi tạo dữ liệu, định dạng trang
+        /// </summary>
         public OrderPage()
         {
             this.InitializeComponent();
@@ -54,6 +60,10 @@ namespace Books_Store_Management_App.Views
             UpdateDisplayedOrders();
         }
 
+        /// <summary>
+        /// Chuyển trang theo các tính năng được chọn
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -70,6 +80,10 @@ namespace Books_Store_Management_App.Views
             }
 
         }
+
+        /// <summary>
+        /// Cập nhật lại các danh sách thông tin order theo yêu cầu định dạng trang được chọn
+        /// </summary>
         private void UpdateDisplayedOrders()
         {
             var skip = (currentPage - 1) * ItemsPerPage;
@@ -89,6 +103,12 @@ namespace Books_Store_Management_App.Views
             PreviousButton.IsEnabled = currentPage > 1;
             NextButton.IsEnabled = currentPage < totalPages;
         }
+
+        /// <summary>
+        /// Trang listview kế tiếp được chọn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage < totalPages)
@@ -97,6 +117,12 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedOrders();
             }
         }
+
+        /// <summary>
+        /// Quay lại trang listview trước đó
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage > 1)
@@ -105,6 +131,12 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedOrders();
             }
         }
+
+        /// <summary>
+        /// Thêm order mới 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
             //var newOrder = new Order("#001", "Peter Pan", "12:00AM - 12/10/2024", 30, 3, 12.2, 0);
@@ -115,6 +147,12 @@ namespace Books_Store_Management_App.Views
             //New add page
             Frame.Navigate(typeof(OrderDetailPage));
         }
+
+        /// <summary>
+        /// Xoá order ra khỏi trang
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
             var Order = (sender as Button).DataContext as Order;
@@ -124,11 +162,23 @@ namespace Books_Store_Management_App.Views
 
             UpdateDisplayedOrders();
         }
+
+        /// <summary>
+        /// Chỉnh sửa thông tin order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditOrder_Click(object sender, RoutedEventArgs e)
         {
             //New edit page
             Frame.Navigate(typeof(OrderDetailPage), (sender as Button).DataContext);
         }
+
+        /// <summary>
+        /// Thực hiện lấy trường và yêu cầu sắp xếp tăng hay giảm dần
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuFlyoutItem;
@@ -141,6 +191,12 @@ namespace Books_Store_Management_App.Views
                 SortOrders(property, order);
             }
         }
+
+        /// <summary>
+        /// Xử lý sắp xếp tăng hoặc giảm dần, xử lý trên nguyên tắc update lại danh sách order
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="order"></param>
         private void SortOrders(string property, string order)
         {
             if (order == "ASC")
@@ -175,6 +231,12 @@ namespace Books_Store_Management_App.Views
                 return;
             }
         }
+
+        /// <summary>
+        /// Chọn số lượng order hiển thị trên mỗi trang
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
         {
             // Get the submitted text
@@ -186,6 +248,12 @@ namespace Books_Store_Management_App.Views
                 ItemsPerPage = itemsPerPage;
             }
         }
+
+        /// <summary>
+        /// AutotextSearch, xử lý search theo tên khách hàng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var searchText = (sender as TextBox).Text.Trim();
@@ -207,6 +275,11 @@ namespace Books_Store_Management_App.Views
             }
         }
 
+        /// <summary>
+        /// Hiện thị thông tin chi tiết order khi chọn vào danh sách hiển thị
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrderListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var order = e.ClickedItem as Order;

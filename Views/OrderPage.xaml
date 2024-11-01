@@ -28,7 +28,7 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="40">
             <StackPanel>
-                <!-- Add Order Button -->
+                <!-- Thông tin các nút diều khiển bao gồm showentities, search, filter và add new order -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
                     <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
                     <TextBox Margin="0 0 50 0" Width="150" Height="30" PlaceholderText="                             🔎" TextChanged="SearchTextBox_TextChanged"/>
@@ -36,7 +36,7 @@
                     <ComboBox ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 350 0"/>
                     <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Order" Click="AddOrder_Click"/>
                 </StackPanel>
-
+                <!-- Grid chứa các nút sắp xếp -->
                 <Grid Margin="60 0 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -104,7 +104,7 @@
                     <Button Grid.Column="6" Content="Action" Background="White" FontWeight="Bold"/>
                 </Grid>
 
-                <!-- ListView to display Orders -->
+                <!-- ListView hiển thị Orders -->
                 <ListView x:Name="OrderListView" Background="Transparent" ItemsSource="{x:Bind DisplayedOrders }"
                       IsItemClickEnabled="True" ItemClick="OrderListView_ItemClick"
                       Height="500"

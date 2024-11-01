@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -14,7 +14,11 @@ namespace Books_Store_Management_App.Views
         {
             this.InitializeComponent();
         }
-
+        /// <summary>
+        /// Hàm chuyển trang khi chọn mục trong NavigationView, hardcode tên trang vào Tag của NavigationViewItem ===> Cần cải tiến
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
@@ -46,6 +50,14 @@ namespace Books_Store_Management_App.Views
             else if (selectedTag == "StatisticsPage")
             {
                 content.Navigate(typeof(StatisticsPage));
+            }
+            else if (selectedTag == "CustomerPage")
+            {
+                content.Navigate(typeof(CustomerPage));
+            }
+            else if (selectedTag == "LogoutPage")
+            {
+                MainWindow.AppFrame.Navigate(typeof(LoginPage));
             }
         }
     }
