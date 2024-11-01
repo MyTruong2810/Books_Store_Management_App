@@ -1,0 +1,11 @@
+App.xbf
+MainWindow.xbf
+Views\AdminPage.xbf
+Views\ClassificationPage.xbf
+Views\CustomerPage.xbf
+Views\DashboardPage.xbf
+Views\LoginPage.xbf
+Views\MainPage.xbf
+Views\OrderPage.xbf
+Views\StatisticsPage.xbf
+Views\StockPage.xbf
