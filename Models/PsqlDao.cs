@@ -47,41 +47,6 @@ namespace Books_Store_Management_App.Models
             return books;
         }
 
-        //public ObservableCollection<Order> GetAllOrders()
-        //{
-        //    var orders = new ObservableCollection<Order>();
-
-        //    using (var connection = new NpgsqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        string query = "SELECT Id, Customer, Date, Discount, Amount, Price, OrderIndex FROM Order_Book";
-
-        //        using (var command = new NpgsqlCommand(query, connection))
-        //        using (var reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                orders.Add(new Order(
-        //                    reader.GetString(0),                   // ID
-        //                    reader.GetString(1),                   // Customer
-        //                    reader.GetDateTime(2).ToString(),      // Date as DateTime
-        //                    reader.GetInt32(3),                    // Discount
-        //                    reader.GetInt32(4),                    // Amount
-        //                    (double)reader.GetDecimal(5),          // Price
-        //                    reader.GetInt32(6)                     // Index
-        //                ));
-        //            }
-        //        }
-        //    }
-
-        //    return orders;
-        //}
-
-        /* ===============================================================
-         * You: Implement code the other methods for taking the database ||
-         * ===============================================================
-         */
-
         public ObservableCollection<Genre> GetAllGenres()
         {
             var genres = new ObservableCollection<Genre>();
