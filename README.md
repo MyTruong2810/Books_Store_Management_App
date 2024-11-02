@@ -4,7 +4,7 @@
 - 22120217	Hoàng Lê Nam
 - 20120319	Phan Dương Linh
 ## Notice
-Ứng dụng có xử dụng một só theme hệ thống nên có thể sẽ ảnh hưởng đến font, color chính mà nhóm muốn thực hiện ==> Gây ra trãi nghiệm không trực quan ==> Vì tính chất thời gian nên nhóm sẽ giải quyết sau
+Ứng dụng có sử dụng một só theme hệ thống nên có thể sẽ ảnh hưởng đến font, color chính mà nhóm muốn thực hiện ==> Gây ra trãi nghiệm không trực quan ==> Vì tính chất thời gian nên nhóm sẽ giải quyết sau
 ## Phân chia thời gian và công việc trong milestone 1
 ** Với số giờ làm việc tối thiểu đê được nghiệm thu là **10h**
 ** Phân chia thời gian công việc như sau:
