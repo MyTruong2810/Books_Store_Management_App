@@ -7,7 +7,7 @@
 
 ## Notice - Set up 
 - Ứng dụng có sử dụng một số theme hệ thống nên có thể sẽ ảnh hưởng đến font, color chính mà nhóm muốn thực hiện. Điều này có thể gây ra trải nghiệm không trực quan và nhóm sẽ giải quyết sau do tính chất thời gian.
-- Tạo database mybookstore và chạy scripts file **Database.txt (Hard code: PORT: 5432, Password: 1234, Name: mybookstore)**
+- Tạo **database mybookstore** và chạy scripts file **Database.txt (Hard code: PORT: 5432, Password: 1234, Name: mybookstore)**
 
 ## Phân chia thời gian và công việc trong milestone 1
 **Với số giờ làm việc tối thiểu để được nghiệm thu là 10h**. Phân chia thời gian công việc như sau:
