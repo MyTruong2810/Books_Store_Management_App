@@ -10,7 +10,7 @@
 ** Phân chia thời gian công việc như sau:
   * **1h**: Cho các cuộc họp, thảo luận timeline, công việc cho từng gia đoạn xây dựng app ở milestone 1. (1)
   * **1h**: Cho việc thiết kế bảng design tổng thể cho app, đáp ứng đầy đủ các phần của milestone 1. (2)
-  * **1h**: Cho việc tìm hiểu kỹ về mô hình MVVM và các tính năng nâng cao được áp dụng vào app. (3)
+  * **1h**: Cho việc tìm hiểu kỹ về mô hình **MVVM** và các tính năng nâng cao được áp dụng vào app. (3)
   * **30'**: Cho việc tìm hiểu về cách làm việc trên môi trường **Github**. (4)
   * **30'**: Cho việc nghiên cứu và tìm hiểu về cách thức kiểm thử và đưa ra quyết định lựa chọn phương thức kiểm thử cho app ở milestone 1. (5)
   * **4h**: Cho việc implement code theo phân công ở milestone 1. (6)
