@@ -1,8 +1,8 @@
 # Books_Store_Management_App
 ## Thành viên nhóm 
-22120214	Trương Thị Tú My - Team Leader
-22120217	Hoàng Lê Nam
-20120319	Phan Dương Linh
+- 22120214	Trương Thị Tú My - Team Leader
+- 22120217	Hoàng Lê Nam
+- 20120319	Phan Dương Linh
 ## Notice
 Ứng dụng có xử dụng một só theme hệ thống nên có thể sẽ ảnh hưởng đến font, color chính mà nhóm muốn thực hiện ==> Gây ra trãi nghiệm không trực quan ==> Vì tính chất thời gian nên nhóm sẽ giải quyết sau
 ## Phân chia thời gian và công việc trong milestone 1
