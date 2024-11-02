@@ -64,7 +64,7 @@ Tổ chức app theo mô hình MVVM theo hướng đề ra.
   - **RelayCommand**: Sử dụng lớp RelayCommand để xử lý các sự kiện đơn giản không cần dùng đến các thành phần giao diện trên View.
   - **Quest PDF**: Tìm hiểu thư viện Quest PDF để tạo trang PDF cho Invoice.
 - **Thành viên Phan Dương Linh**:
-  - Sử dụng kỹ thuật BitmapImage và WindowHelper để nâng cao trải nghiệm người dùng và khả năng quản lý UI.
+  - Sử dụng kỹ thuật **BitmapImage** và **WindowHelper** để nâng cao trải nghiệm người dùng và khả năng quản lý UI.
 - **Thành viên Trương Thị Tú My**:
   - Đảm bảo chất lượng mô hình MVVM cho ứng dụng.
 
@@ -85,7 +85,6 @@ Các thành viên triển khai được những tính năng nâng cao và áp d�
 
 ![image](https://github.com/user-attachments/assets/f5c0eaf3-e66f-4038-92c3-2c8c27808ca9)
 ![image](https://github.com/user-attachments/assets/174f84e9-9778-4ae0-8853-39d1ec9b107b)
-![image](https://github.com/user-attachments/assets/f6b216ba-19b8-4ae2-9dd6-4473a22870d3)
 
 - Quản lý source trên **Github**:
   - Các Dev phát triển có nhánh **feature** riêng.
