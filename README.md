@@ -107,7 +107,7 @@ Thực hiện được mô hình team work đề ra.
 ### Quality assurance (Hoàn thành 100% tiêu chí đề ra)
 Để hoàn thành tiêu chí này nhóm thực hiện công việc như sau:
 - Ban đầu tập trung vào unit test và UI test tự động nhưng do thời gian hạn chế nhóm không đạt được tiêu chí đề ra.
-- Chuyển sang **manual test** có **TestDoc** kèm theo, thực hiện test trên 95% yêu cầu đề ra trong đó tỉ lệ đáp ứng thành công 90%.
+- Chuyển sang **manual test** có **TestDoc** kèm theo, thực hiện test trên 95% yêu cầu đề ra trong đó tỉ lệ đáp ứng thành công 80%.
 - Đối với những trường hợp test failed nhóm thực hiện chỉnh sửa ở milestone 2.
 
 **Kết quả đạt được:**
