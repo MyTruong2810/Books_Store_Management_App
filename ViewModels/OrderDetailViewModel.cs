@@ -59,6 +59,7 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+
         /// <summary>
         /// Xử lý sự kiện khi danh sách SelectedCoupons thay đổi
         /// Thông báo thay đổi lại cho ActualTotal và HasCoupon

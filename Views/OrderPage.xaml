@@ -121,7 +121,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Padding="50 0 0 0" Grid.Column="0" FontWeight="Bold" Foreground="White" Text="{x:Bind ID}"/>
+                                <TextBlock Padding="50 0 0 0" Grid.Column="0" FontWeight="Bold" Foreground="White" Text="{x:Bind Index}"/>
                                 <TextBlock Grid.Column="1" FontWeight="Bold" Foreground="White" Text="{x:Bind Customer}" />
                                 <TextBlock Grid.Column="2" FontWeight="Bold" Foreground="White" Text="{x:Bind Date}" />
                                 <TextBlock Padding="50 0 0 0" Grid.Column="3" FontWeight="Bold" Foreground="White" Text="{x:Bind Discount}" />

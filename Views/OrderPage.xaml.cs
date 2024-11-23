@@ -153,14 +153,28 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeleteOrder_Click(object sender, RoutedEventArgs e)
+        private async void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
             var Order = (sender as Button).DataContext as Order;
-            AllOrdersDisplay.Remove(Order);
-            totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
 
-            UpdateDisplayedOrders();
+            try
+            {
+                bool success = await new PsqlDao().DeleteOrderAsync(Order.ID);
+
+                if (!success)
+                {
+                    return;
+                }
+
+                AllOrdersDisplay.Remove(Order);
+                totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+                if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+
+                UpdateDisplayedOrders();
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>

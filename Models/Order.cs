@@ -39,7 +39,7 @@ namespace Books_Store_Management_App.Models
     {
         public string ID { get; set; }
         public string Customer { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         public FullObservableCollection<Coupon> Coupons { get; set; }
         public double Discount
