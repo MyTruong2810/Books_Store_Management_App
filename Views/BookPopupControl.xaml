@@ -59,6 +59,7 @@
                 <TextBlock Text="Book Name" />
                 <TextBox x:Name="bookNameTextBox" Text="{x:Bind ViewModel.Title, Mode=TwoWay}" PlaceholderText="Enter book name" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                 <TextBlock 
+                    TextWrapping="Wrap"
                     Text="{x:Bind ViewModel.TitleErrorMessage, Mode=OneWay}" Foreground="Red" 
                     Visibility="{x:Bind ViewModel.TitleErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
             </StackPanel>
@@ -67,6 +68,7 @@
                 <TextBlock Text="Author" />
                 <TextBox x:Name="authorTextBox" Text="{x:Bind ViewModel.Author, Mode=TwoWay}" PlaceholderText="Enter book's author" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                 <TextBlock 
+                    TextWrapping="Wrap"
                     Text="{x:Bind ViewModel.AuthorErrorMessage, Mode=OneWay}" Foreground="Red" 
                     Visibility="{x:Bind ViewModel.AuthorErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
             </StackPanel>
@@ -81,6 +83,7 @@
                     <TextBlock Text="Publisher" />
                     <TextBox x:Name="publisherTextBox" Text="{x:Bind ViewModel.Publisher, Mode=TwoWay}" PlaceholderText="Enter book's publisher" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                     <TextBlock 
+                        TextWrapping="Wrap"
                         Text="{x:Bind ViewModel.PublisherErrorMessage, Mode=OneWay}" Foreground="Red" 
                         Visibility="{x:Bind ViewModel.PublisherErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                 </StackPanel>
@@ -91,6 +94,7 @@
                             >
                     </TextBox>
                     <TextBlock 
+                         TextWrapping="Wrap"
                          Text="{x:Bind ViewModel.ISBNErrorMessage, Mode=OneWay}" Foreground="Red" 
                          Visibility="{x:Bind ViewModel.ISBNErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                 </StackPanel>
@@ -106,6 +110,7 @@
                     <TextBlock Text="Year" />
                     <NumberBox x:Name="yearTextBox" Text="{x:Bind ViewModel.Year, Mode=TwoWay}" PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                     <TextBlock 
+                        TextWrapping="Wrap"
                         Text="{x:Bind ViewModel.YearErrorMessage, Mode=OneWay}" Foreground="Red" 
                         Visibility="{x:Bind ViewModel.YearErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                 </StackPanel>
@@ -129,6 +134,7 @@
                         <TextBlock Text="Selling Prices" />
                         <NumberBox x:Name="sellingPricesTextBox" Text="{x:Bind ViewModel.SellingPrices, Mode=TwoWay}"  PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                         <TextBlock 
+                            TextWrapping="Wrap"
                             Text="{x:Bind ViewModel.SellingPricesErrorMessage, Mode=OneWay}" Foreground="Red" 
                             Visibility="{x:Bind ViewModel.SellingPricesErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                     </StackPanel>
@@ -137,6 +143,7 @@
                         <TextBlock Text="Purchase Price" />
                         <NumberBox x:Name="purchasePriceTextBox" Text="{x:Bind ViewModel.PurchasePrice, Mode=TwoWay}" PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                         <TextBlock 
+                            TextWrapping="Wrap"
                             Text="{x:Bind ViewModel.PurchasePriceErrorMessage, Mode=OneWay}" Foreground="Red" 
                             Visibility="{x:Bind ViewModel.PurchasePriceErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                     </StackPanel>
@@ -145,6 +152,7 @@
                         <TextBlock Text="Quantities" />
                         <NumberBox x:Name="quantityTextBox" Text="{x:Bind ViewModel.Quantity, Mode=TwoWay}" PlaceholderText="2024" Margin="0, 10, 0, 0" HorizontalAlignment="Stretch"/>
                         <TextBlock 
+                            TextWrapping="Wrap"
                             Text="{x:Bind ViewModel.QuantityErrorMessage, Mode=OneWay}"  Foreground="Red" 
                             Visibility="{x:Bind ViewModel.QuantityErrorMessage, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                     </StackPanel>
