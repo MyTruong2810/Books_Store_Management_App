@@ -13,6 +13,7 @@ namespace Books_Store_Management_App.Models
         ObservableCollection<Book> GetAllBooks();
         ObservableCollection<Order> GetAllOrders();
         ObservableCollection<Genre> GetAllGenres();
+        List<Coupon> GetAllCoupons();
 
     }
     public interface IDaos<T>

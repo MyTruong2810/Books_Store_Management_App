@@ -167,7 +167,33 @@ namespace Books_Store_Management_App.Models
 
             return orders;
         }
+        public List<Coupon> GetAllCoupons()
+        {
+            var coupons = new List<Coupon>();
 
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Coupon";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        coupons.Add(new Coupon
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Discount = (double)reader.GetDecimal(2),
+                            ExpiryDate = reader.GetDateTime(3)
+                        });
+                    }
+                }
+            }
+
+            return coupons;
+        }
         public async Task<bool> SaveBookAsync(Book book)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -224,7 +250,6 @@ namespace Books_Store_Management_App.Models
                 }
             }
         }
-
 
         public async Task<bool> DeleteBookAsync(string index)
         {

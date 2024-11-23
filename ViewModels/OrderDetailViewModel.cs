@@ -159,7 +159,7 @@ namespace Books_Store_Management_App.ViewModels
             SelectedCoupons = new FullObservableCollection<Coupon>();
             PurchaseDate = DateTime.Now;
             LoadBooks();
-            LoadGenre();
+            LoadCoupon();
             // 
 
             // Initialize the command
@@ -295,14 +295,9 @@ namespace Books_Store_Management_App.ViewModels
         /// Hiện tại dùng dữ liệu cứng
         /// Có thể thay thế bằng việc load từ cơ sở dữ liệu
         /// </summary>
-        private void LoadGenre()
+        private void LoadCoupon()
         {
-            var coupons = new List<Coupon>
-               {
-                   new Coupon { Id = 1, Name = "10% OFF", Discount = 0.1, ExpiryDate = new DateTime(2021, 12, 31) },
-                   new Coupon { Id = 2, Name = "20% OFF", Discount = 0.2, ExpiryDate = new DateTime(2021, 12, 31) },
-                   new Coupon { Id = 3, Name = "30% OFF", Discount = 0.3, ExpiryDate = new DateTime(2021, 12, 31) }
-               };
+            var coupons = new PsqlDao().GetAllCoupons();
 
             Coupons = coupons;
         }
