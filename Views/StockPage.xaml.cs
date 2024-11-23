@@ -75,7 +75,6 @@ namespace Books_Store_Management_App.Views
         {
             if (BookPopupControl.GetButton() == "Add")
             {
-
                 Guid id = Guid.NewGuid();
                 e.Index = id.ToString();
 

@@ -20,6 +20,11 @@ namespace Books_Store_Management_App.Models
             return result;
         }
 
+        public List<Coupon> GetAllCoupons()
+        {
+            throw new NotImplementedException();
+        }
+
         public ObservableCollection<Genre> GetAllGenres()
         {
             throw new NotImplementedException();
