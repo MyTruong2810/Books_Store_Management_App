@@ -68,7 +68,7 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BookPopupControl_SaveButtonClicked(object sender, Book e)
+        private async void BookPopupControl_SaveButtonClicked(object sender, Book e)
         {
             if (BookPopupControl.GetButton() == "Add")
             {
@@ -78,9 +78,28 @@ namespace Books_Store_Management_App.Views
 
                 // Update the displayed books
                 e.Index = AllBooksDisplay.Count + 1;
-                AllBooksDisplay.Add(e);
-                totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-                UpdateDisplayedBooks();
+
+                try
+                {
+                    bool success = await new PsqlDao().SaveBookAsync(e);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+
+                    AllBooksDisplay.Add(e);
+                    totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                    UpdateDisplayedBooks();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                //AllBooksDisplay.Add(e);
+                //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                //UpdateDisplayedBooks();
             }
             else if (BookPopupControl.GetButton() == "Edit")
             {
