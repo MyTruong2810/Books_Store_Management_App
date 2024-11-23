@@ -287,7 +287,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             //var books = await _bookDao.GetAllAsync();
             var Dao = new PsqlDao();
-            Books = Dao.GetAllBooks().ToList();
+            Books = Dao.GetAllAvailableBooks();
         }
 
         /// <summary>
