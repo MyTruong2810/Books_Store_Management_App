@@ -91,71 +91,78 @@ namespace Books_Store_Management_App.Models
                     {
                         var order = new Order()
                         {
-                            ID = reader.GetInt32(0),
+                            ID = reader.GetString(0),
                             Customer = reader.GetString(1),
                             Date = reader.GetDateTime(2).ToString(),
                             IsDelivered = reader.GetBoolean(3),
-                            Index = reader.GetInt32(0)
                         };
 
                         // Get Order_Items
                         List<OrderItem> OrderItems = new List<OrderItem>();
-                        string queryOrderItems = $"SELECT oi.id, oi.quantity, b.* FROM order_item oi JOIN book b ON oi.book_id = b.index WHERE oi.order_id = {order.ID}";
+                        string queryOrderItems = $"SELECT oi.id, oi.quantity, b.* FROM order_item oi JOIN book b ON oi.book_id = b.index WHERE oi.order_id = @OrderId";
                         using (var connectionOrderItems = new NpgsqlConnection(connectionString))
                         {
                             connectionOrderItems.Open();
                             using (var commandOrderItems = new NpgsqlCommand(queryOrderItems, connectionOrderItems))
-                            using (var readerOrderItems = commandOrderItems.ExecuteReader())
                             {
-                                while (readerOrderItems.Read())
+                                commandOrderItems.Parameters.AddWithValue("@OrderId", order.ID);
+                                using (var readerOrderItems = commandOrderItems.ExecuteReader())
                                 {
-                                    var orderItem = new OrderItem()
+                                    while (readerOrderItems.Read())
                                     {
-                                        Id = readerOrderItems.GetInt32(0),
-                                        Quantity = readerOrderItems.GetInt32(1),
-                                        Book = new Book()
+                                        var orderItem = new OrderItem()
                                         {
-                                            ImageSource = readerOrderItems.GetString(2),
-                                            Title = readerOrderItems.GetString(3),
-                                            Publisher = readerOrderItems.GetString(4),
-                                            Author = readerOrderItems.GetString(5),
-                                            ISBN = readerOrderItems.GetString(6),
-                                            Year = readerOrderItems.GetInt32(7),
-                                            Price = (double)readerOrderItems.GetDecimal(8),
-                                            PurchasePrice = (double)readerOrderItems.GetDecimal(9),
-                                            Genre = readerOrderItems.GetString(10),
-                                            Quantity = readerOrderItems.GetInt32(11),
-                                            Index = readerOrderItems.GetString(12)
-                                        }
-                                    };
+                                            Id = readerOrderItems.GetInt32(0),
+                                            Quantity = readerOrderItems.GetInt32(1),
+                                            Book = new Book()
+                                            {
+                                                ImageSource = readerOrderItems.GetString(2),
+                                                Title = readerOrderItems.GetString(3),
+                                                Publisher = readerOrderItems.GetString(4),
+                                                Author = readerOrderItems.GetString(5),
+                                                ISBN = readerOrderItems.GetString(6),
+                                                Year = readerOrderItems.GetInt32(7),
+                                                Price = (double)readerOrderItems.GetDecimal(8),
+                                                PurchasePrice = (double)readerOrderItems.GetDecimal(9),
+                                                Genre = readerOrderItems.GetString(10),
+                                                Quantity = readerOrderItems.GetInt32(11),
+                                                Index = readerOrderItems.GetString(12)
+                                            }
+                                        };
 
-                                    OrderItems.Add(orderItem);
+                                        OrderItems.Add(orderItem);
+                                    }
                                 }
+
                             }
                         }
                         order.OrderItems = OrderItems;
 
                         // Get Coupons
                         List<Coupon> Coupons = new List<Coupon>();
-                        string queryCoupons = $"SELECT c.* FROM order_coupon oc JOIN coupon c ON oc.coupon_id = c.id WHERE order_id = {order.ID}";
+                        string queryCoupons = $"SELECT c.* FROM order_coupon oc JOIN coupon c ON oc.coupon_id = c.id WHERE order_id = @OrderId";
                         using (var connectionCoupons = new NpgsqlConnection(connectionString))
                         {
                             connectionCoupons.Open();
                             using (var commandCoupons = new NpgsqlCommand(queryCoupons, connectionCoupons))
-                            using (var readerCoupons = commandCoupons.ExecuteReader())
                             {
-                                while (readerCoupons.Read())
+                                commandCoupons.Parameters.AddWithValue("@OrderId", order.ID);
+                                using (var readerCoupons = commandCoupons.ExecuteReader())
                                 {
-                                    var coupon = new Coupon()
+                                    while (readerCoupons.Read())
                                     {
-                                        Id = readerCoupons.GetInt32(0),
-                                        Name = readerCoupons.GetString(1),
-                                        Discount = (double)readerCoupons.GetDecimal(2),
-                                        ExpiryDate = readerCoupons.GetDateTime(3)
-                                    };
+                                        var coupon = new Coupon()
+                                        {
+                                            Id = readerCoupons.GetInt32(0),
+                                            Name = readerCoupons.GetString(1),
+                                            Discount = (double)readerCoupons.GetDecimal(2),
+                                            ExpiryDate = readerCoupons.GetDateTime(3)
+                                        };
 
-                                    Coupons.Add(coupon);
+                                        Coupons.Add(coupon);
+                                    }
                                 }
+
                             }
                         }
                         order.Coupons = new FullObservableCollection<Coupon>(Coupons);

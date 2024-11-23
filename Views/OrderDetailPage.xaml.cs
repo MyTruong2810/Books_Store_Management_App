@@ -176,9 +176,11 @@ namespace Books_Store_Management_App.Views
             }
 
             // Tạo đơn hàng mới
+            Guid id = Guid.NewGuid();
+
             Order order = new Order()
             {
-                ID = ViewModel.SelectedBooks.Count + 1,
+                ID = id.ToString(),
                 Customer = ViewModel.CustomerName,
                 Date = ViewModel.PurchaseDate.ToString(),
                 IsDelivered = ViewModel.IsDelivered,
@@ -329,7 +331,7 @@ namespace Books_Store_Management_App.Views
         {
             // Lấy thông tin đơn hàng từ ViewModel
             ViewModel.Order = new Order();
-            ViewModel.Order.ID = OrderViewModel.Orders.Count;
+            ViewModel.Order.ID = OrderViewModel.Orders.Count.ToString();
             ViewModel.Order.Customer = ViewModel.CustomerName;
             ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
