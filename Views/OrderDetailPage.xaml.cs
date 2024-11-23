@@ -287,6 +287,7 @@ namespace Books_Store_Management_App.Views
             ViewModel.Order.Customer = ViewModel.CustomerName;
             ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
             ViewModel.Order.IsDelivered = ViewModel.IsDelivered;
+
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
             ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 

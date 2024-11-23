@@ -70,6 +70,7 @@
                         <TextBox x:Name="CustomerNameTextBox" Grid.Column="1" Grid.Row="0" Text="{x:Bind ViewModel.CustomerName, Mode=TwoWay}" PlaceholderText="Customer Name" Margin="0, 10, 0, 0"/>
                         <TextBlock
                             Grid.Column="1" Grid.Row="1"
+                            TextWrapping="Wrap"
                             Text="{x:Bind ViewModel.CustomerNameError, Mode=OneWay}" Foreground="Red" 
                             Visibility="{x:Bind ViewModel.CustomerNameError, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                     </Grid>
@@ -131,6 +132,7 @@
                            SelectionChanged="bookComboBox_SelectionChanged"
                         />
                         <TextBlock 
+                            TextWrapping="Wrap"
                             Text="{x:Bind ViewModel.SelectedBooksError, Mode=OneWay}" Foreground="Red" 
                             Visibility="{x:Bind ViewModel.SelectedBooksError, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
                     </StackPanel>
