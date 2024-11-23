@@ -38,7 +38,7 @@ namespace Books_Store_Management_App.Models
                             PurchasePrice = (double)reader.GetDecimal(7),
                             Genre = reader.GetString(8),
                             Quantity = reader.GetInt32(9),
-                            Index = reader.GetInt32(10)
+                            Index = reader.GetString(10)
                         };
                         books.Add(book);
                     }
@@ -125,7 +125,7 @@ namespace Books_Store_Management_App.Models
                                             PurchasePrice = (double)readerOrderItems.GetDecimal(9),
                                             Genre = readerOrderItems.GetString(10),
                                             Quantity = readerOrderItems.GetInt32(11),
-                                            Index = readerOrderItems.GetInt32(12)
+                                            Index = readerOrderItems.GetString(12)
                                         }
                                     };
 
@@ -225,5 +225,23 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+
+        public async Task<bool> DeleteBookAsync(string index)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM Book WHERE index = @Index";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Index", index);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
     }
 }

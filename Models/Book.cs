@@ -149,8 +149,8 @@ namespace Books_Store_Management_App.Models
 
         public string Description { get; set; }
 
-        private int _index;
-        public int Index
+        private string _index;
+        public string Index
         {
             get => _index;
             set
@@ -159,12 +159,25 @@ namespace Books_Store_Management_App.Models
                 {
                     _index = value;
                     OnPropertyChanged(nameof(Index));
-                    OnPropertyChanged(nameof(IsEven)); // Notify when IsEven changes
                 }
             }
         }
 
-        public bool IsEven => Index % 2 == 0;
+        public int _currentRow;
+        public int CurrentRow
+        {
+            get => _currentRow;
+            set
+            {
+                if (_currentRow != value)
+                {
+                    _currentRow = value;
+                    OnPropertyChanged(nameof(IsEven));
+                    OnPropertyChanged(nameof(CurrentRow));
+                }
+            }
+        }
+        public bool IsEven => CurrentRow % 2 == 0;
 
         public override string ToString()
         {
@@ -179,11 +192,6 @@ namespace Books_Store_Management_App.Models
             }
 
             return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return Index;
         }
         protected void OnPropertyChanged(string propertyName)
         {
