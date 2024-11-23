@@ -194,6 +194,42 @@ namespace Books_Store_Management_App.Models
 
             return coupons;
         }
+
+        public List<Book> GetAllAvailableBooks()
+        {
+            var books = new List<Book>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT ImageUrl, Title, Publisher, Author, ISBN, Year, selling_price, purchase_price, Genre, Quantity, Index FROM Book WHERE Quantity > 0";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var book = new Book()
+                        {
+                            ImageSource = reader.GetString(0),
+                            Title = reader.GetString(1),
+                            Publisher = reader.GetString(2),
+                            Author = reader.GetString(3),
+                            ISBN = reader.GetString(4),
+                            Year = reader.GetInt32(5),
+                            Price = (double)reader.GetDecimal(6),
+                            PurchasePrice = (double)reader.GetDecimal(7),
+                            Genre = reader.GetString(8),
+                            Quantity = reader.GetInt32(9),
+                            Index = reader.GetString(10)
+                        };
+                        books.Add(book);
+                    }
+                }
+            }
+
+           return books;
+        }
         public async Task<bool> SaveBookAsync(Book book)
         {
             using (var connection = new NpgsqlConnection(connectionString))
