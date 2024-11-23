@@ -197,5 +197,33 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        public async Task<bool> UpdateBookAsync(Book book)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE Book SET imageurl = @ImageUrl, title = @Title, publisher = @Publisher, author = @Author, isbn = @ISBN, year = @Year, selling_price = @SellingPrice, purchase_price = @PurchasePrice, genre = @Genre, quantity = @Quantity WHERE index = @Index";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImageUrl", book.ImageSource);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Publisher", book.Publisher);
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@ISBN", book.ISBN);
+                    command.Parameters.AddWithValue("@Year", book.Year);
+                    command.Parameters.AddWithValue("@SellingPrice", book.Price);
+                    command.Parameters.AddWithValue("@PurchasePrice", book.PurchasePrice);
+                    command.Parameters.AddWithValue("@Genre", book.Genre);
+                    command.Parameters.AddWithValue("@Quantity", book.Quantity);
+                    command.Parameters.AddWithValue("@Index", book.Index);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
+
     }
 }
