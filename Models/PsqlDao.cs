@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Books_Store_Management_App.Helpers;
+using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Models
 {
@@ -165,6 +166,35 @@ namespace Books_Store_Management_App.Models
             }
 
             return orders;
+        }
+
+        public async Task<bool> SaveBookAsync(Book book)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO Book (imageurl, title, publisher, author, isbn, year, selling_price, purchase_price, genre, quantity, index) " +
+                               "VALUES (@ImageUrl, @Title, @Publisher, @Author, @ISBN, @Year, @SellingPrice, @PurchasePrice, @Genre, @Quantity, @Index)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImageUrl", book.ImageSource);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Publisher", book.Publisher);
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@ISBN", book.ISBN);
+                    command.Parameters.AddWithValue("@Year", book.Year);
+                    command.Parameters.AddWithValue("@SellingPrice", book.Price);
+                    command.Parameters.AddWithValue("@PurchasePrice", book.PurchasePrice);
+                    command.Parameters.AddWithValue("@Genre", book.Genre);
+                    command.Parameters.AddWithValue("@Quantity", book.Quantity);
+                    command.Parameters.AddWithValue("@Index", book.Index);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
         }
 
     }
