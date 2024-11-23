@@ -305,13 +305,14 @@
                                         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="20, 5, 5, 5" >
                                             <NumberBox
                                                 x:Name="QuantityBox"
-                                       Minimum="0"
-                                       Value="{Binding Quantity, Mode=TwoWay}"
-                                       SpinButtonPlacementMode="Compact"
-                                       SmallChange="1"
-                                       Width="100"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
+                                                Minimum="1"
+                                                Value="{Binding Quantity, Mode=TwoWay}"
+                                                SpinButtonPlacementMode="Compact"
+                                                SmallChange="1"
+                                                Width="100"
+                                                ValueChanged="QuantityBox_ValueChanged"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/> 
                                         </StackPanel>
 
                                         <!-- <TextBlock Grid.Row="4" Grid.Column="1" Text="123.123 đ" FontSize="20" Margin="20, 5, 5, 5"  /> -->
