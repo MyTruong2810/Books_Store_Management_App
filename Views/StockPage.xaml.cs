@@ -110,12 +110,28 @@ namespace Books_Store_Management_App.Views
                 //}
 
                 // Update the displayed books
-                var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
-                if (index != -1)
+
+                try
                 {
-                    AllBooksDisplay[index] = e;
+                    bool success = await new PsqlDao().UpdateBookAsync(e);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+
+
+                    var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
+                    if (index != -1)
+                    {
+                        AllBooksDisplay[index] = e;
+                    }
+                    UpdateDisplayedBooks();
                 }
-                UpdateDisplayedBooks();
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
