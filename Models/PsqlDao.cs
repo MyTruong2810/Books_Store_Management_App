@@ -93,7 +93,7 @@ namespace Books_Store_Management_App.Models
                         {
                             ID = reader.GetString(0),
                             Customer = reader.GetString(1),
-                            Date = reader.GetDateTime(2).ToString(),
+                            Date = reader.GetDateTime(2),
                             IsDelivered = reader.GetBoolean(3),
                         };
 
@@ -310,6 +310,220 @@ namespace Books_Store_Management_App.Models
                     return result > 0;
                 }
             }
+        }
+
+        public async Task<bool> SaveOrderAsync(Order order)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO \"order\" (id, customer, date, is_delivered) " +
+                               "VALUES (@Id, @Customer, @Date, @IsDelivered)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", order.ID);
+                    command.Parameters.AddWithValue("@Customer", order.Customer);
+                    command.Parameters.AddWithValue("@Date", order.Date);
+                    command.Parameters.AddWithValue("@IsDelivered", order.IsDelivered);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO order_item (order_id, book_id, quantity) " +
+                               "VALUES (@OrderId, @BookId, @Quantity)";
+
+                foreach (OrderItem item in order.OrderItems)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@BookId", item.Book.Index);
+                        command.Parameters.AddWithValue("@Quantity", item.Quantity);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                        if (result <= 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO order_coupon (order_id, coupon_id) " +
+                               "VALUES (@OrderId, @CouponId)";
+
+                foreach (Coupon coupon in order.Coupons)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@CouponId", coupon.Id);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                        if (result <= 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public async Task<bool> UpdateOrderAsync(Order order)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE \"order\" SET customer = @Customer, date = @Date, is_delivered = @IsDelivered WHERE id = @Id";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", order.ID);
+                    command.Parameters.AddWithValue("@Customer", order.Customer);
+                    command.Parameters.AddWithValue("@Date", order.Date);
+                    command.Parameters.AddWithValue("@IsDelivered", order.IsDelivered);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+
+                    }
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_item WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", order.ID);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+
+                query = "INSERT INTO order_item (order_id, book_id, quantity) " +
+                        "VALUES (@OrderId, @BookId, @Quantity)";
+
+                foreach (OrderItem item in order.OrderItems)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@BookId", item.Book.Index);
+                        command.Parameters.AddWithValue("@Quantity", item.Quantity);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                    }
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_coupon WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", order.ID);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+                    }
+                }
+
+                query = "INSERT INTO order_coupon (order_id, coupon_id) " +
+                        "VALUES (@OrderId, @CouponId)";
+
+                foreach (Coupon coupon in order.Coupons)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@CouponId", coupon.Id);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                        if (result <= 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public async Task<bool> DeleteOrderAsync(string id)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_item WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", id);
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_coupon WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", id);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM \"order\" WHERE id = @Id";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
