@@ -339,6 +339,30 @@ namespace Books_Store_Management_App.Views
             // Chuyển đến trang xuất hóa đơn
             Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
         }
+
+        /// <summary>
+        /// Xử lý sự kiện khi giá trị của NumberBox Quantity thay đổi.
+        /// Kiểm tra và giới hạn giá trị của Quantity để đảm bảo không vượt quá số lượng sách hiện có.
+        /// Nếu giá trị Quantity lớn hơn số lượng sách hiện có, thì giá trị của Quantity sẽ được giới hạn lại bằng số lượng sách hiện có.
+        /// Nếu giá trị Quantity nhỏ hơn hoặc bằng 0, thì giá trị của Quantity sẽ được giới hạn lại bằng 1.
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện</param>
+        /// <param name="args">Thông tin về sự kiện</param>
+        private void QuantityBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
+        {
+            var book = (sender.DataContext as OrderItem).Book;
+            var quantity = (int)sender.Value;
+
+            if (book != null && quantity > book.Quantity)
+            {
+                sender.Value = book.Quantity;
+            }
+
+            if (quantity <= 0)
+            {
+                sender.Value = 1;
+            }
+        }
     }
 
 }
