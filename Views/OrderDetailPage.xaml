@@ -127,6 +127,8 @@
                            SelectionMode="Multiple"
                            MultiSelectionDisplayMode="Token"
                            DelimiterText=","
+                           IsTextSearchEnabled="true"
+                           IsEditable="true"
                            ItemsSource="{x:Bind ViewModel.Books}"
                            SelectedItem="{x:Bind ViewModel.SelectedBooks, Mode=TwoWay}"
                            SelectionChanged="bookComboBox_SelectionChanged"

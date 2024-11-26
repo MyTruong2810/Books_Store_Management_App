@@ -30,6 +30,8 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        public dynamic ImageInfo { get; set; }
+
         // Các trường lấy thông tin để Validate xong mới đưa vào Book
         // Note: Sở dĩ không đưa trực tiếp vào Book vì khi nhập liệu có thể có lỗi,
         // nếu đưa vào Book ngay thì dữ liệu trong Book sẽ bị thay đổi ngay lập tức
@@ -284,7 +286,7 @@ namespace Books_Store_Management_App.ViewModels
             Book.PurchasePrice = double.Parse(PurchasePrice);
             Book.Quantity = int.Parse(Quantity);
             Book.Description = Description;
-            Book.ImageSource = ImageSource;
+            //Book.ImageSource = ImageSource;
         }
 
         // Triển khai INotifyDataErrorInfo

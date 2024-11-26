@@ -1,4 +1,5 @@
 ﻿using Books_Store_Management_App;
+using Books_Store_Management_App.Services;
 using Books_Store_Management_App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
@@ -46,6 +47,13 @@ namespace Books_Store_Management_App
             //services.AddSingleton<IDao<Order>, MockOrderDao>();
             //services.AddSingleton<IDao<Book>, MockBookDao>();
             //services.AddTransient<OrderViewModel>();
+
+            services.AddSingleton<IMinioService>(new MinioService(
+                "localhost:9000",
+                "ROOTUSER",
+                "CHANGEME123"
+            ));
+
             services.AddSingleton<OrderPageViewModel>();
             services.AddTransient<OrderDetailViewModel>();
         }

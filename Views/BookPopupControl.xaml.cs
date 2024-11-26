@@ -1,5 +1,7 @@
 using Books_Store_Management_App.Models;
+using Books_Store_Management_App.Services;
 using Books_Store_Management_App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -42,7 +44,7 @@ namespace Books_Store_Management_App
             ViewModel = new BookPopupControlViewModel();
         }
 
-        public event EventHandler<Book> SaveButtonClicked;
+        public event EventHandler<dynamic> SaveButtonClicked;
 
         /// <summary>
         /// Đặt tiêu đề cho popup
@@ -193,7 +195,13 @@ namespace Books_Store_Management_App
             var parent = this.Parent as Popup;
             if (parent.IsOpen) { parent.IsOpen = false; }
             //SaveButtonClicked.Invoke(this, ViewModel);
-            SaveButtonClicked.Invoke(this, ViewModel.Book);
+            var persist = new
+            {
+                Book = ViewModel.Book,
+                ImageInfo = ViewModel.ImageInfo,
+            };
+
+            SaveButtonClicked.Invoke(this, persist);
         }
 
         /// <summary>
@@ -202,20 +210,38 @@ namespace Books_Store_Management_App
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ChangeIcon_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void ChangeIcon_Tapped(object sender, TappedRoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
             openFileDialog.InitialDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}Assets"; // Thay đổi đường dẫn này thành thư mục bạn muốn
             openFileDialog.Filter = "All files (*.*)|*.*"; // Bạn có thể thay đổi bộ lọc file nếu cần
             openFileDialog.Title = "Chọn một file";
 
+
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string selectedFilePath = openFileDialog.FileName;
+                string fileName = openFileDialog.FileName;
+                string safeFileName = openFileDialog.SafeFileName;
+                // get image type like image/jpeg ...
+                string fileType = "image/" + System.IO.Path.GetExtension(fileName).Split(".")[1];
+
+                string selectedFilePath = "http://localhost:9000/bookstore/"+safeFileName;
+
                 Console.WriteLine("File đã chọn: " + selectedFilePath);
 
                 // Hiển thị ảnh đã chọn lên giao diện
-                ViewModel.ImageSource = selectedFilePath;
+                ViewModel.ImageSource = fileName;
+
+                // ViewModel.ImageInfo is dynamic type
+                ViewModel.ImageInfo = new
+                {
+                    ObjectName = safeFileName,
+                    FileName = fileName,
+                    ContentType = fileType
+                };
+
+
+                // Lưu đường dẫn ảnh vào ViewModel
             }
         }
 

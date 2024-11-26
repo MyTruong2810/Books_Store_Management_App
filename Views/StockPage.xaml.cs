@@ -26,6 +26,8 @@ using static Books_Store_Management_App.Views.DashboardPage;
 using Books_Store_Management_App.ViewModels;
 using System.Drawing;
 using Books_Store_Management_App.Models;
+using Books_Store_Management_App.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Books_Store_Management_App.Views
 {
@@ -71,23 +73,42 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BookPopupControl_SaveButtonClicked(object sender, Book e)
+        private async void BookPopupControl_SaveButtonClicked(object sender, dynamic e)
         {
+            var book = (Book)e.Book;
+            var imageInfo = e.ImageInfo;
+
             if (BookPopupControl.GetButton() == "Add")
             {
                 Guid id = Guid.NewGuid();
-                e.Index = id.ToString();
+                //e.Index = id.ToString();
+                book.Index = id.ToString();
+
+                // Lấy thông tin file ảnh từ popup
+
+                if (imageInfo != null)
+                {
+                    var minioService = (Microsoft.UI.Xaml.Application.Current as App).ServiceProvider.GetService<IMinioService>();
+                    await minioService.UploadFileAsync("bookstore", book.Index + imageInfo.ObjectName, imageInfo.FileName, imageInfo.ContentType);
+
+                    string selectedFilePath = "http://localhost:9000/bookstore/" + book.Index + imageInfo.ObjectName;
+                    book.ImageSource = selectedFilePath;
+                }
+                else
+                {
+                    book.ImageSource = "ms-appx:///Assets/default_image.jpg";
+                }
 
                 try
                 {
-                    bool success = await new PsqlDao().SaveBookAsync(e);
+                    bool success = await new PsqlDao().SaveBookAsync(book);
 
                     if (!success)
                     {
                         return;
                     }
 
-                    AllBooksDisplay.Add(e);
+                    AllBooksDisplay.Add(book);
                     totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
                     UpdateDisplayedBooks();
                 }
@@ -98,9 +119,26 @@ namespace Books_Store_Management_App.Views
             }
             else if (BookPopupControl.GetButton() == "Edit")
             {
+                var dao = new PsqlDao();
+
+                if (imageInfo != null)
+                {
+                    var minioService = (Microsoft.UI.Xaml.Application.Current as App).ServiceProvider.GetService<IMinioService>();
+                    
+                    var oldImage = book.ImageSource.Split("/").Last();
+
+                    await minioService.DeleteFileAsync("bookstore", oldImage);
+
+                    await minioService.UploadFileAsync("bookstore", book.Index + imageInfo.ObjectName, imageInfo.FileName, imageInfo.ContentType);
+
+                    string selectedFilePath = "http://localhost:9000/bookstore/" + book.Index + imageInfo.ObjectName;
+
+                    book.ImageSource = selectedFilePath;
+                }
+
                 try
                 {
-                    bool success = await new PsqlDao().UpdateBookAsync(e);
+                    bool success = await new PsqlDao().UpdateBookAsync(book);
 
                     if (!success)
                     {
@@ -108,10 +146,10 @@ namespace Books_Store_Management_App.Views
                     }
 
 
-                    var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
+                    var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == book.Index);
                     if (index != -1)
                     {
-                        AllBooksDisplay[index] = e;
+                        AllBooksDisplay[index] = book;
                     }
                     UpdateDisplayedBooks();
                 }
