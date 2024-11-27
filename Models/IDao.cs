@@ -12,14 +12,19 @@ namespace Books_Store_Management_App.Models
     {
         ObservableCollection<Book> GetAllBooks();
         ObservableCollection<Order> GetAllOrders();
-
         ObservableCollection<Genre> GetAllGenres();
+        ObservableCollection<ClassificationClass> GetClassificationClasses();
+        ObservableCollection<Customer> GetAllCustomers();
+        bool DeleteBook(Book book);
+        bool DeleteOrder(Order order);
+        bool DeleteClassificationClasses(ClassificationClass genre);
+        bool DeleteCustomer(Customer customer);
     }
     public interface IDaos<T>
     {
         // Load the data of a specific profile (could be by ID, username, etc.)
         T LoadProfile(string id);
-        Tuple<int, List<T>> GetAll(
+        Tuple<int, ObservableCollection<T>> GetAll(
             int page,
             int rowsPerPage,
             string keyword,

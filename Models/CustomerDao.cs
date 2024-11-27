@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,31 +13,18 @@ namespace Books_Store_Management_App.Models
     public class CustomerDao : IDaos<Customer>
     {
         // In-memory database of customers
-        public List<Customer> Db = new List<Customer>();
+        public ObservableCollection<Customer> Db { get; set; }
+        public PsqlDao PsqlDao { get; set; }
 
         // Loads sample data into the in-memory customer list
         public void loadDatafromDbList()
         {
-            for (int i = 0; i < 15; i++)
-            {
-                var newCustomer = new Customer
-                {
-                    ID = $"#{i}",
-                    Name = $"LTCuberik{i}",
-                    Phone = "0123 354 268",
-                    Avatar = new BitmapImage(new Uri("ms-appx:///Assets/avatar01.jpg")),
-                    Gender = "Male",
-                    DateofBirth = "01-Jan-2002",
-                    Payment = "Card - 0923 2358 2657",
-                    CVV = 448,
-                    Address = "Dong Hoa, Di An, Binh Duong, Viet Nam"
-                };
-                Db.Add(newCustomer); // Add each new customer to the list
-            }
+            PsqlDao = new PsqlDao();
+            Db = PsqlDao.GetAllCustomers();
         }
 
         // Retrieves paginated and filtered customers based on search and sort criteria
-        public Tuple<int, List<Customer>> GetAll(
+        public Tuple<int,ObservableCollection<Customer>> GetAll(
             int page, int rowsPerPage, string keyword, int typerOfSearch, int typerOfSort)
         {
             IEnumerable<Customer> origin;
@@ -54,13 +42,10 @@ namespace Books_Store_Management_App.Models
                     origin = Db.Where(e => e.Gender.Contains(keyword)); // Search by Gender
                     break;
                 case 5:
-                    origin = Db.Where(e => e.DateofBirth.Contains(keyword)); // Search by Date of Birth
-                    break;
-                case 6:
                     origin = Db.Where(e => e.Address.Contains(keyword)); // Search by Address
                     break;
                 default:
-                    origin = Db.Where(e => e.ID.Contains(keyword)); // Default search by ID
+                    origin = Db.Where(e => e.ID.ToString().Contains(keyword)); // Default search by ID
                     break;
             }
 
@@ -77,9 +62,6 @@ namespace Books_Store_Management_App.Models
                     origin = origin.OrderBy(e => e.Gender); // Sort by Gender
                     break;
                 case 5:
-                    origin = origin.OrderBy(e => e.DateofBirth); // Sort by Date of Birth
-                    break;
-                case 6:
                     origin = origin.OrderBy(e => e.Address); // Sort by Address
                     break;
                 default:
@@ -96,8 +78,10 @@ namespace Books_Store_Management_App.Models
                 .Take(rowsPerPage)
                 .ToList();
 
+
+            ObservableCollection<Customer> observableResult = new ObservableCollection<Customer>(result);
             // Return the total item count and the paginated list as a tuple
-            return new Tuple<int, List<Customer>>(totalItems, result);
+            return new Tuple<int, ObservableCollection<Customer>>(totalItems, observableResult);
         }
 
         // Inserts a new customer record into the in-memory database
@@ -112,7 +96,7 @@ namespace Books_Store_Management_App.Models
         // Retrieves a customer profile based on ID (simulates database retrieval)
         public Customer LoadProfile(string id)
         {
-            return Db.FirstOrDefault(e => e.ID == id);
+            return Db.FirstOrDefault(e => e.ID.ToString() == id);
         }
 
         // Updates an existing customer profile (simulates database update operation)
@@ -129,7 +113,7 @@ namespace Books_Store_Management_App.Models
         // Deletes a customer record by ID, throws exception if ID is not found
         public void Delete(string id)
         {
-            var itemToDelete = Db.FirstOrDefault(e => e.ID == id);
+            var itemToDelete = Db.FirstOrDefault(e => e.ID.ToString() == id);
 
             // Check if the item exists before deletion
             if (itemToDelete != null)

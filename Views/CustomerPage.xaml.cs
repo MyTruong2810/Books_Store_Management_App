@@ -19,6 +19,7 @@ using Books_Store_Management_App.Helpers;
 using Books_Store_Management_App.Models;
 using Microsoft.UI.Xaml.Media.Imaging;
 using WinRT.Interop;
+using OxyPlot.Axes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,6 +34,8 @@ namespace Books_Store_Management_App.Views
         public CustomerViewModel CustomerVM { get; set; }
 
         private Customer editingCustomer = null;
+
+        private PsqlDao psqlDao = new PsqlDao();
 
         public CustomerPage()
         {
@@ -76,21 +79,34 @@ namespace Books_Store_Management_App.Views
         // Event handler for adding a new customer
         private async void addButton_Click(object sender, RoutedEventArgs e)
         {
+
             var button = sender as Button;
+            //// Show the dialog for adding the new customer
             var newCustomer = new Customer
             {
-                ID = $"#{CustomerVM.TotalItems + 1}"
+                ID = CustomerVM.MaxId + 1,
+                Avatar = "ms-appx:///Assets/Avatar.jpg",
+                Name = "",
+                Address = "",
+                CVV = 0,
+                Gender = "",
+                Payment = "",
+                Phone = ""
             };
-            // Set the new customer as the selected one in ViewModel
-            CustomerVM.SelectedCustomer = newCustomer;
 
-            // Show the dialog for adding the new customer
-            ContentDialogResult result = await AddCustomerDialog.ShowAsync();
-
-            if (result == ContentDialogResult.Primary) // If the user confirmed
+            if (newCustomer != null)
             {
-                CustomerVM.InsertCustomer(CustomerVM.SelectedCustomer); // Insert new customer
-                CustomerVM.GetAllCustomers(); // Refresh the customer list
+                CustomerVM.SelectedCustomer = newCustomer; // Set selected customer
+                                                           // Show the dialog for editing
+                ContentDialogResult result = await AddCustomerDialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary) // If confirmed
+                {
+                    CustomerVM.InsertCustomer(CustomerVM.SelectedCustomer); // Insert customer
+                    CustomerVM.GetAllCustomers(); // Refresh the customer list
+                    PsqlDao psqlDao = new PsqlDao();
+                    psqlDao.InsertCustomer(CustomerVM.SelectedCustomer);
+                }
             }
         }
 
@@ -103,7 +119,7 @@ namespace Books_Store_Management_App.Views
             if (customerId != null)
             {
                 // Find the customer by ID
-                var newCustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID == customerId);
+                var newCustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID.ToString() == customerId);
 
                 if (newCustomer != null)
                 {
@@ -115,6 +131,7 @@ namespace Books_Store_Management_App.Views
                     {
                         CustomerVM.EditCustomer(CustomerVM.SelectedCustomer); // Update customer
                         CustomerVM.GetAllCustomers(); // Refresh the customer list
+                        psqlDao.UpdateCustomer(CustomerVM.SelectedCustomer); // Save to database
                     }
                 }
             }
@@ -141,16 +158,11 @@ namespace Books_Store_Management_App.Views
 
             if (file != null) // If a file was selected
             {
-                // Create a BitmapImage and update the Avatar property
-                BitmapImage bitmapImage = new BitmapImage();
-                using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                {
-                    // Set the image source for the BitmapImage
-                    await bitmapImage.SetSourceAsync(stream);
-                }
+                // Get the file path of the selected image
+                string filePath = file.Path;
 
-                // Update the customer's avatar in the ViewModel
-                CustomerVM.SelectedCustomer.Avatar = bitmapImage;
+                // Update the customer's avatar path in the ViewModel
+                CustomerVM.SelectedCustomer.Avatar = filePath;
             }
         }
 
@@ -163,7 +175,7 @@ namespace Books_Store_Management_App.Views
             if (customerId != null)
             {
                 // Find the customer by ID
-                var delCustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID == customerId);
+                var delCustomer = CustomerVM.Customers.FirstOrDefault(c => c.ID.ToString() == customerId);
 
                 if (delCustomer != null)
                 {
@@ -176,6 +188,7 @@ namespace Books_Store_Management_App.Views
                     {
                         CustomerVM.DeleteCustomer(customerId); // Delete the customer
                         CustomerVM.GetAllCustomers(); // Refresh the customer list
+                        psqlDao.DeleteCustomer(delCustomer); // Delete from database
                     }
                 }
             }
@@ -240,6 +253,20 @@ namespace Books_Store_Management_App.Views
             CustomerVM.Keyword = keywordTextBox.Text; // Set keyword for searching
             CustomerVM.LoadingPage(1); // Reload page with search
             UpdatePagingInfo_bootstrap(); // Update pagination info
+        }
+    }
+
+    public class AlternatingRowTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate? EvenTemplate { get; set; }
+        public DataTemplate? OddTemplate { get; set; }
+
+        protected override DataTemplate? SelectTemplateCore(object item, DependencyObject container)
+        {
+            var itemsControl = ItemsControl.ItemsControlFromItemContainer(container);
+            int index = itemsControl?.IndexFromContainer(container) ?? -1;
+
+            return index % 2 == 0 ? EvenTemplate : OddTemplate;
         }
     }
 }

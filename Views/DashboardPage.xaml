@@ -11,12 +11,14 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:transitions="using:Microsoft.UI.Xaml.Media.Animation"
     mc:Ignorable="d"
+     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <local1:StringToISBNConverter x:Key="StringToISBNConverter"/>
         <local1:StringFormatConverter x:Key="StringFormatConverter"/>
-        <DataTemplate x:Key="VerticalFormat" x:DataType="local2:Book">
+        <local1:DoubleToUsdCurrencyConverter x:Key="DoubleToUsdCurrencyConverter"/>
+        <DataTemplate x:Key="VerticalFormat_1" x:DataType="local2:Book">
             <Grid CornerRadius="10" Background="#3d4142" Margin="0,12,0,12" AutomationProperties.Name="{x:Bind Title}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" MinWidth="150"/>
@@ -31,6 +33,27 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{x:Bind Price, Converter={StaticResource StringFormatConverter}, ConverterParameter='${0:F2}'}" Foreground="Gray" HorizontalAlignment="Left" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,0"/>
                         <TextBlock Margin="200 0 0 0" Text="Out of Stock" HorizontalAlignment="Left" Foreground="Orange" FontWeight="Bold" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="VerticalFormat_2" x:DataType="local2:Book">
+            <Grid CornerRadius="10" Background="#3d4142" Margin="0,12,0,12" AutomationProperties.Name="{x:Bind Title}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="150"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{x:Bind ImageSource}" Margin="20" MaxHeight="80" MaxWidth="100" Stretch="Fill"/>
+                <StackPanel Margin="12,0,0,0" Grid.Column="1" >
+                    <TextBlock Text="{x:Bind Title}" FontSize="20" FontWeight="SemiBold" Foreground="White" Style="{ThemeResource BaseTextBlockStyle}"
+                        HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                    <TextBlock Text="{x:Bind ISBN, Converter={StaticResource StringToISBNConverter}}" Foreground="Gray" FontFamily="Segoe UI" FontWeight="Normal" Style="{ThemeResource BodyTextBlockStyle}" Margin="0 0 0 20"
+                        TextTrimming="CharacterEllipsis" Width="350" MaxLines="1"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Bind Price, Converter={StaticResource StringFormatConverter}, ConverterParameter='${0:F2}'}" Foreground="Gray" HorizontalAlignment="Left" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,0"/>
+                        <TextBlock Margin="200 0 0 0" Text="Top Selling Stock" HorizontalAlignment="Left" Foreground="LightGreen" FontWeight="Bold" Style="{ThemeResource CaptionTextBlockStyle}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -60,8 +83,8 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <RadioButton FontWeight="Bold" Content="Week" IsChecked="True" Checked="RadioButton_Checked" Grid.Column="0"/>
-                <RadioButton FontWeight="Bold" Content="Month" Checked="RadioButton_Checked" Grid.Column="1"/>
+                <RadioButton FontWeight="Bold" Content="Week" Checked="RadioButton_Checked_1" Grid.Column="0"/>
+                <RadioButton x:Name="monthStatistic" FontWeight="Bold" Content="Month" Checked="RadioButton_Checked_2" Grid.Column="1"/>
             </Grid>
         </StackPanel>
 
@@ -69,21 +92,25 @@
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="0">
             <TextBlock Text="Total Books" FontSize="20" Foreground="White" Margin="20 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xE736;" Foreground="White" Margin="10 0 0 100"/>
+            <TextBlock Text="{x:Bind ViewModel.totalBook}"  FontSize="35" Foreground="White" Margin="-90 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Total Customers" FontSize="20" Foreground="White" Margin="0 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xE716;" Foreground="White" Margin="10 0 0 100"/>
+            <TextBlock Text="{x:Bind ViewModel.totalCustomer}"  FontSize="35" Foreground="White" Margin="-100 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="2">
             <TextBlock Text="Total Orders" FontSize="20" Foreground="White" Margin="20 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xE7BF;" Foreground="White" Margin="10 0 0 100"/>
+            <TextBlock Text="{x:Bind ViewModel.totalOrder}"  FontSize="35" Foreground="White" Margin="-90 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="3">
             <TextBlock Text="Total Revenues" FontSize="20" Foreground="White" Margin="10 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xF156;" Foreground="White" Margin="10 0 0 100" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind ViewModel.totalRevenue, Converter={StaticResource DoubleToUsdCurrencyConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="35" Foreground="White" Margin="-145 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <!-- ListView Section -->
@@ -99,8 +126,8 @@
                       BorderThickness="1"
                       BorderBrush="{ThemeResource ControlStrongStrokeColorDefaultBrush}"
                       Grid.Row="1" Width="500"
-                      ItemsSource="{x:Bind ViewModel.Books}"
-                      ItemTemplate="{StaticResource VerticalFormat}">
+                      ItemsSource="{x:Bind ViewModel.OutStock}"
+                      ItemTemplate="{StaticResource VerticalFormat_1}">
             </ListView>
         </Grid>
 
@@ -117,8 +144,8 @@
                       BorderThickness="1"
                       BorderBrush="{ThemeResource ControlStrongStrokeColorDefaultBrush}"
                       Grid.Row="1" Width="500"
-                      ItemsSource="{x:Bind ViewModel.Books}"
-                      ItemTemplate="{StaticResource VerticalFormat}">
+                      ItemsSource="{x:Bind ViewModel.BestSeller}"
+                      ItemTemplate="{StaticResource VerticalFormat_2}">
             </ListView>
         </Grid>
     </Grid>
