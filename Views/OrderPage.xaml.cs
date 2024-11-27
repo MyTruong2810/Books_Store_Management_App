@@ -153,16 +153,49 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeleteOrder_Click(object sender, RoutedEventArgs e)
+        async private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
-            var Order = (sender as Button).DataContext as Order;
-            AllOrdersDisplay.Remove(Order);
-            totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+            // Chỉ giả lập xóa sách, chưa đụng vào database
+            var button = sender as Button;
+            var order = button?.Tag as Order;
 
-            UpdateDisplayedOrders();
+            if (order != null)
+            {
+                // Set the ISBN in the dialog dynamically
+                TextBlock IDOrder = new TextBlock
+                {
+                    Text = order.ID.ToString()
+                };
+
+                // Create StackPanel and add ISBN TextBlock and confirmation TextBlock
+                StackPanel stackPanel = new StackPanel
+                {
+                    Width = 500,
+                    Margin = new Thickness(0)
+                };
+
+                stackPanel.Children.Add(IDOrder);
+                stackPanel.Children.Add(new TextBlock { Text = "Do you want to delete this order?" });
+
+                // Set the content of the dialog
+                DeleteOrderDialog.Content = stackPanel;
+
+                // Show the dialog
+                ContentDialogResult result = await DeleteOrderDialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary) // If confirmed
+                {
+                    // Call the delete method on the ViewModel
+                    ViewModel.PsqlDao.DeleteOrder(order);
+                    AllOrdersDisplay.Remove(order);
+
+                    // Adjust the paging after deletion
+                    totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+                    if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+                    UpdateDisplayedOrders();
+                }
+            }
         }
-
         /// <summary>
         /// Chỉnh sửa thông tin order
         /// </summary>
@@ -237,15 +270,17 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
+        private void Combo3_Selected(object sender, SelectionChangedEventArgs e)
         {
-            // Get the submitted text
-            string submittedText = args.Text;
+            var comboBox = sender as ComboBox;
+            string submittedText = comboBox?.SelectedItem?.ToString() ?? string.Empty;
 
-            // Attempt to convert the submitted text to an integer
-            if (int.TryParse(submittedText, out int itemsPerPage))
+            if (int.TryParse(submittedText, out int itemsPerPage) && itemsPerPage > 0)
             {
                 ItemsPerPage = itemsPerPage;
+                totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+                currentPage = 1;
+                UpdateDisplayedOrders();
             }
         }
 

@@ -50,6 +50,8 @@ namespace Books_Store_Management_App.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand SignupCommand { get; }
 
+        public event Action LoginFailed;
+
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// Khởi tạo lớp LoginViewModel, event được xử lý thông qua command giúp UI và code-behind được tách biệt
@@ -70,7 +72,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
                 {
-                    await ShowLoginFailedDialog("Please enter both username and password.");
+                    LoginFailed?.Invoke();
                     return;
                 }
 
@@ -83,36 +85,14 @@ namespace Books_Store_Management_App.ViewModels
                     MainWindow.AppFrame.Navigate(typeof(MainPage));
                 }
                 else
-                {
-                    await ShowLoginFailedDialog("Invalid username or password.");
+                { 
+                    LoginFailed?.Invoke();
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error during login: {ex.Message}");
-                await ShowLoginFailedDialog("An unexpected error occurred. Please try again.");
-            }
-        }
-        /// <summary>
-        /// Thông tin báo lỗi thất bại khi đăng nhập
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        private async Task ShowLoginFailedDialog(string message)
-        {
-            try
-            {
-                var dialog = new ContentDialog
-                {
-                    Title = "Login Failed",
-                    Content = message,
-                    CloseButtonText = "Ok"
-                };
-                await dialog.ShowAsync();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error showing dialog: {ex.Message}");
+                LoginFailed?.Invoke();
             }
         }
         /// <summary>

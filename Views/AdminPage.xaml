@@ -8,20 +8,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel Background="#FFFFE1">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  
-                 CornerRadius="20"
-                 BorderBrush="DarkBlue" BorderThickness="1" Background="#ADD9E6" 
-                 Padding="10 0 " Margin=" 10 10 10 50 ">
-            <Button MaxWidth="50">
-                <FontIcon Glyph="&#xE72B;" />
-            </Button>
-            <TextBlock FontSize="18" FontWeight="Bold" Text="ADMIN" Margin="10,10"/>
-        </StackPanel>
+    <StackPanel Background="#C4C4FC">
 
+        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 100">
+            <TextBlock
+                Text="Admin" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
+        </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="700">
 
-            <Border Background="#DDB989" Padding="20" CornerRadius="10" Width="600" BorderBrush="DarkBlue" BorderThickness="1">
+            <Border Background="#292c2d" Padding="20" CornerRadius="10" Width="600" BorderBrush="DarkBlue" BorderThickness="1">
                 <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="80" ItemWidth="150">
 
                     <!-- Full Name -->
@@ -57,7 +52,7 @@
                 </VariableSizedWrapGrid>
             </Border>
 
-            <Button Background="DarkCyan" BorderBrush="DarkBlue" Content="Edit Profile" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20" Click="EditProfile_Click"/>
+            <Button Background="DarkGreen" BorderThickness="2" Foreground="White" FontWeight="Bold" BorderBrush="White" Content="Edit Profile" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20" Click="EditProfile_Click"/>
         </StackPanel>
 
         <!-- Popup Dialog -->

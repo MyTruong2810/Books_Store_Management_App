@@ -31,11 +31,17 @@
             <StackPanel>
                 <!-- Các trường thông tin theo yêu cầu bao gồm showentities, search, filter và thêm sách mới -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                    <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
-                    <TextBox Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" PlaceholderText="                             🔎"/>
-                    <ComboBox ItemsSource="{x:Bind generSearch}" Width="150" Margin="0 0 50 0"/>
-                    <ComboBox ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 350 0"/>
-                    <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Book" Click="AddBook_Click"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Show</TextBlock>
+                    <ComboBox PlaceholderText="10"  ItemsSource="{x:Bind ShowEntities}" Width="65" Margin="0 0 50 0" SelectionChanged="Combo3_Selected"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search</TextBlock>
+                    <TextBox PlaceholderText="Type here ..." Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" x:Name="SearchTextBox"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                    <ComboBox PlaceholderText="Choose genre ..." ItemsSource="{x:Bind genres}" Width="150" Margin="0 0 50 0" x:Name="SearchByGenres" SelectionChanged="SearchByGenres_SelectionChanged"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                    <ComboBox PlaceholderText="Choose price ..." ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 130 0" x:Name="SearchByPrices" SelectionChanged="SearchByPrices_SelectionChanged"/>
+                    <Button Width="70" BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold"  Click="AddBook_Click">
+                        <FontIcon Glyph="&#xE710;" DataContext="Add New ClassificationClass" Foreground="White" />
+                    </Button>
                 </StackPanel>
 
                 <Grid Margin="60 0 0 0">
@@ -168,6 +174,16 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+
+
+        <ContentDialog
+        x:Name="DeleteBookDialog"
+        Title="Delete book"
+        PrimaryButtonText="Yes"
+        CloseButtonText="No"
+        DefaultButton="Primary"
+        Background="Black">
+        </ContentDialog>
 
         <Popup VerticalOffset="0" x:Name="StandardPopup">
             <Popup.ChildTransitions>

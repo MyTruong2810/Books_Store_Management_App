@@ -39,11 +39,10 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Classification" Tag="ClassificationPage"
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Statistic" Tag="StatisticsPage"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8C8;" FontWeight="Bold" FontSize="16"/>
+                        <FontIcon Glyph="&#xE870;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
@@ -54,14 +53,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Statistics" Tag="StatisticsPage"
-                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE870;" FontWeight="Bold" FontSize="16"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Orders" Tag="OrderPage"
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Order" Tag="OrderPage"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7BF;" FontWeight="Bold" FontSize="16"/>
@@ -72,6 +64,14 @@
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE716;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Classification" Tag="ClassificationPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8C8;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

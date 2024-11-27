@@ -1,9 +1,12 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Books_Store_Management_App.Models;
+using Catel.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Books_Store_Management_App.Models
@@ -12,24 +15,22 @@ namespace Books_Store_Management_App.Models
     public class ClassificationClassDao : IDaos<ClassificationClass>
     {
         // In-memory list representing the database for ClassificationClass objects
-        public List<ClassificationClass> Db = new List<ClassificationClass>();
+        public ObservableCollection<ClassificationClass> Db = new ObservableCollection<ClassificationClass>();
+
 
         // Loads sample data into the in-memory database
         public void loadDatafromDbList()
         {
-            for (int i = 0; i < 15; i++)
+            PsqlDao psqlDao = new PsqlDao();
+            psqlDao.GetClassificationClasses();
+            foreach (var item in psqlDao.GetClassificationClasses())
             {
-                var newClassificationClass = new ClassificationClass
-                {
-                    ID = $"#{i}",
-                    Tags = $"LTCuberik{i}",
-                };
-                Db.Add(newClassificationClass); // Add each new ClassificationClass to Db list
+                Db.Add(item);
             }
         }
 
         // Retrieves paginated and filtered ClassificationClass items based on search and sort parameters
-        public Tuple<int, List<ClassificationClass>> GetAll(
+        public Tuple<int, ObservableCollection<ClassificationClass>> GetAll(
             int page, int rowsPerPage, string keyword, int typerOfSearch, int typerOfSort)
         {
             IEnumerable<ClassificationClass> origin;
@@ -66,7 +67,9 @@ namespace Books_Store_Management_App.Models
                 .ToList();
 
             // Return the total item count and the paginated list as a tuple
-            return new Tuple<int, List<ClassificationClass>>(totalItems, result);
+
+            ObservableCollection<ClassificationClass> observableResult = new ObservableCollection<ClassificationClass>(result);
+            return new Tuple<int, ObservableCollection<ClassificationClass>>(totalItems, observableResult);
         }
 
         // Inserts a new ClassificationClass item into the in-memory database
