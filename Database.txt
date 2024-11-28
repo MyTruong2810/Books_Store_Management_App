@@ -121,3 +121,54 @@ INSERT INTO public.order_item (order_id, book_id, quantity) VALUES
 (8, 8, 8),
 (9, 9, 9),
 (10, 10, 10);
+
+-- Bảng classification
+CREATE TABLE IF NOT EXISTS public.classification (
+    code SERIAL PRIMARY KEY,
+    ten VARCHAR(255) NOT NULL,
+    description TEXT
+) TABLESPACE pg_default;
+
+INSERT INTO public.classification (code, ten, description) VALUES
+(1, 'Science Fiction', 'A genre of speculative fiction that typically deals with imaginative and futuristic concepts.'),
+(2, 'Fantasy', 'A genre of speculative fiction set in a fictional universe, often inspired by real world myth and folklore.'),
+(3, 'Mystery', 'A genre of fiction that deals with the solution of a crime or the unraveling of secrets.'),
+(4, 'Romance', 'A genre of fiction that places its primary focus on the relationship and romantic love between two people.'),
+(5, 'Horror', 'A genre of fiction intended to, or has the capacity to frighten, scare, or disgust.'),
+(6, 'Thriller', 'A genre of fiction that uses suspense, tension, and excitement as the main elements.'),
+(7, 'Non-Fiction', 'A genre of writing that is based on facts, real events, and real people, such as biography or history.'),
+(8, 'Dystopian', 'A genre of fiction that explores social and political structures in a dark, nightmare world.'),
+(9, 'Allegory', 'A genre of fiction that uses symbolic figures, actions, imagery, and/or events to convey a message or teach a moral lesson.'),
+(10, 'Classic', 'A genre of fiction that is regarded as having lasting literary merit.'),
+(11, 'Fiction', 'A genre of literature that is based on imagination and not necessarily on fact.'),
+(12, 'Coming-of-age', 'A genre of literature that focuses on the growth of a protagonist from youth to adulthood.'),
+(13, 'Children''s', 'A genre of literature that is written for children.'),
+(14, 'Young Adult', 'A genre of literature that is written for young adults.');
+
+CREATE TABLE IF NOT EXISTS public.customer (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    gender VARCHAR(50),
+    phone VARCHAR(20),
+    address TEXT,
+    avatarlink TEXT,
+    cvv INT,
+    paymentmethod VARCHAR(50)
+) TABLESPACE pg_default;
+
+INSERT INTO public.customer (id, name, gender, phone, address, avatarlink, cvv, paymentmethod) VALUES
+(7, 'George White', 'Male', '4455667788', '159 Spruce St, Metropolis', 'ms-appx:///Assets/Male.jpg', 123, 'Credit Card'),
+(8, 'Hannah Adams', 'Female', '3344556677', '753 Cedar St, Urbanville', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
+(9, 'Ian Black', 'Male', '2233445566', '951 Redwood St, Cosmopolis', 'ms-appx:///Assets/Male.jpg', 789, 'PayPal'),
+(11, 'Kevin Brown', 'Male', '9988775544', '753 Sycamore St, Ridgeville', 'ms-appx:///Assets/Male.jpg', 567, 'Debit Card'),
+(12, 'Laura Taylor', 'Female', '5566771122', '357 Chestnut St, Hilltown', 'ms-appx:///Assets/Female.jpg', 890, 'PayPal'),
+(13, 'Michael Scott', 'Male', '4455669900', '789 Willow St, Greenfield', 'ms-appx:///Assets/Male.jpg', 123, 'Credit Card'),
+(14, 'Nina Williams', 'Female', '2233447788', '951 Aspen St, Lakeview', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
+(15, 'Oscar Martinez', 'Male', '1122336677', '123 Beech St, Rivertown', 'ms-appx:///Assets/Male.jpg', 789, 'PayPal'),
+(17, 'Quincy Jones', 'Male', '6677885566', '654 Fir St, Forestville', 'ms-appx:///Assets/Male.jpg', 567, 'Debit Card'),
+(18, 'Rachel Green', 'Female', '3344557788', '789 Cypress St, Springtown', 'ms-appx:///Assets/Female.jpg', 890, 'PayPal'),
+(20, 'Tina Davis', 'Female', '5566779900', '951 Alder St, Valleycity', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
+(21, 'My', 'Male', '6677889900', '654 Pine St, Villagetown', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 567, 'Debit Card'),
+(23, 'My', 'Female', '0353844003', 'ABCD', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Female.jpg', 101, 'Momo'),
+(19, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo'),
+(22, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo');
