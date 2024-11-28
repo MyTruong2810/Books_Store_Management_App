@@ -57,7 +57,7 @@ namespace Books_Store_Management_App.Views
                 // Gán thông tin của đơn hàng vào ViewModel, để hiển thị lên giao diện
                 ViewModel.Order = order;
                 ViewModel.CustomerName = order.Customer;
-                ViewModel.PurchaseDate = DateTime.Parse(order.Date);
+                ViewModel.PurchaseDate = order.Date;
                 ViewModel.IsDelivered = order.IsDelivered;
 
                 // Thêm sách và mã giảm giá đã chọn vào SelectedBooks và SelectedCoupons
@@ -98,7 +98,7 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
+            ViewModel.Order.Date = ViewModel.PurchaseDate;
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
             ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 

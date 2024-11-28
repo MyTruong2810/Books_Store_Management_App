@@ -19,6 +19,7 @@ namespace Books_Store_Management_App.Models
         bool DeleteOrder(Order order);
         bool DeleteClassificationClasses(ClassificationClass genre);
         bool DeleteCustomer(Customer customer);
+        List<Coupon> GetAllCoupons();
     }
     public interface IDaos<T>
     {

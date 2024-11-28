@@ -69,7 +69,7 @@ namespace Books_Store_Management_App.Views
                 // Hiển thị thông tin đơn hàng cần sửa
                 ViewModel.Order = orderClone;
                 ViewModel.CustomerName = orderClone.Customer;
-                ViewModel.PurchaseDate = DateTime.Parse(orderClone.Date);
+                ViewModel.PurchaseDate = orderClone.Date;
                 ViewModel.IsDelivered = orderClone.IsDelivered;
 
                 ViewModel.AddSelectedBooks(orderClone.OrderItems);
@@ -162,7 +162,7 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CreateOrderButton_Click(object sender, RoutedEventArgs e)
+        private async void CreateOrderButton_Click(object sender, RoutedEventArgs e)
         {
             var converter = new DateTimeToStringConverter();
 
@@ -176,26 +176,44 @@ namespace Books_Store_Management_App.Views
             }
 
             // Tạo đơn hàng mới
+            Guid id = Guid.NewGuid();
+
             Order order = new Order()
             {
-                ID = ViewModel.SelectedBooks.Count + 1,
+                ID = id.ToString(),
                 Customer = ViewModel.CustomerName,
-                Date = ViewModel.PurchaseDate.ToString(),
+                Date = ViewModel.PurchaseDate,
                 IsDelivered = ViewModel.IsDelivered,
                 OrderItems = ViewModel.SelectedBooks.ToList(),
                 Coupons = ViewModel.SelectedCoupons,
                 Index = OrderViewModel.Orders.Count
             };
 
-            // Thêm đơn hàng mới vào danh sách đơn hàng
-            this.OrderViewModel.Orders.Add(order);
+            try
+            {
+                bool success = await new PsqlDao().SaveOrderAsync(order);
 
-            // Payment giả lập
-            PayBillOrderButtonGroup.Visibility = Visibility.Visible;
-            CreateOrderButton.Visibility = Visibility.Collapsed;
+                if (!success)
+                {
+                    return;
+                }
 
-            ViewModel.IsQrCodeVisible = true;
-            ViewModel.IsBooksListViewVisible = false;
+                // Thêm đơn hàng mới vào danh sách đơn hàng
+                this.OrderViewModel.Orders.Add(order);
+                this.ViewModel.Order = order;
+
+                // Payment giả lập
+                PayBillOrderButtonGroup.Visibility = Visibility.Visible;
+                CreateOrderButton.Visibility = Visibility.Collapsed;
+
+                ViewModel.IsQrCodeVisible = true;
+                ViewModel.IsBooksListViewVisible = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -272,7 +290,7 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
+        private async void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
         {
             // Validate thông tin đơn hàng
             ViewModel.ValidateAll();
@@ -285,17 +303,31 @@ namespace Books_Store_Management_App.Views
 
             // Lấy thông tin đơn hàng cần cập nhật từ ViewModel và cập nhật thông tin đơn hàng
             ViewModel.Order.Customer = ViewModel.CustomerName;
-            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
+            ViewModel.Order.Date = ViewModel.PurchaseDate;
             ViewModel.Order.IsDelivered = ViewModel.IsDelivered;
 
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
             ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 
-            // Câp nhật thông tin đơn hàng vào danh sách đơn hàng
-            OrderViewModel.Orders[ViewModel.Order.Index] = ViewModel.Order;
+            try
+            {
+                bool success = await new PsqlDao().UpdateOrderAsync(ViewModel.Order);
 
-            // Chuyển về trang Order
-            Frame.Navigate(typeof(OrderPage), this.GetType().Name);
+                if (!success)
+                {
+                    return;
+                }
+
+                // Câp nhật thông tin đơn hàng vào danh sách đơn hàng
+                OrderViewModel.Orders[ViewModel.Order.Index] = ViewModel.Order;
+
+                // Chuyển về trang Order
+                Frame.Navigate(typeof(OrderPage), this.GetType().Name);
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+   
         }
 
         /// <summary>
@@ -327,15 +359,6 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            // Lấy thông tin đơn hàng từ ViewModel
-            ViewModel.Order = new Order();
-            ViewModel.Order.ID = OrderViewModel.Orders.Count;
-            ViewModel.Order.Customer = ViewModel.CustomerName;
-            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
-            ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
-            ViewModel.Order.IsDelivered = ViewModel.IsDelivered;
-            ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
-
             // Chuyển đến trang xuất hóa đơn
             Frame.Navigate(typeof(InvoicePage), ViewModel.Order);
         }
@@ -350,14 +373,25 @@ namespace Books_Store_Management_App.Views
         /// <param name="args">Thông tin về sự kiện</param>
         private void QuantityBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
         {
-            var book = (sender.DataContext as OrderItem).Book;
+            // Kiểm tra xem sender.DataContext có phải là OrderItem hay không
+            var orderItem = sender.DataContext as OrderItem;
+
+            if (orderItem == null)
+            {
+                // Xử lý trường hợp DataContext không phải là OrderItem hoặc là null
+                return; // Hoặc thực hiện xử lý phù hợp
+            }
+
+            var book = orderItem.Book;
             var quantity = (int)sender.Value;
 
+            // Kiểm tra số lượng với số lượng trong book
             if (book != null && quantity > book.Quantity)
             {
                 sender.Value = book.Quantity;
             }
 
+            // Đảm bảo số lượng không dưới 1
             if (quantity <= 0)
             {
                 sender.Value = 1;
