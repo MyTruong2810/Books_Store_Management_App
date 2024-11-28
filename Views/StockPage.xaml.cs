@@ -68,35 +68,54 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BookPopupControl_SaveButtonClicked(object sender, Book e)
+        private async void BookPopupControl_SaveButtonClicked(object sender, Book e)
         {
             if (BookPopupControl.GetButton() == "Add")
             {
-                // Todo in view model
-                //e.Index = ViewModel.Books.Count + 1;
-                //ViewModel.Books.Add(e);
+                Guid id = Guid.NewGuid();
+                e.Index = id.ToString();
 
-                // Update the displayed books
-                e.Index = AllBooksDisplay.Count + 1;
-                AllBooksDisplay.Add(e);
-                totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-                UpdateDisplayedBooks();
+                try
+                {
+                    bool success = await new PsqlDao().SaveBookAsync(e);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+
+                    AllBooksDisplay.Add(e);
+                    totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                    UpdateDisplayedBooks();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             else if (BookPopupControl.GetButton() == "Edit")
             {
-                //var index = ViewModel.Books.ToList().FindIndex(x => x.Id == e.Id);
-                //if (index != -1)
-                //{
-                //    ViewModel.Books[index] = e;
-                //}
-
-                // Update the displayed books
-                var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
-                if (index != -1)
+                try
                 {
-                    AllBooksDisplay[index] = e;
+                    bool success = await new PsqlDao().UpdateBookAsync(e);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+
+
+                    var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
+                    if (index != -1)
+                    {
+                        AllBooksDisplay[index] = e;
+                    }
+                    UpdateDisplayedBooks();
                 }
-                UpdateDisplayedBooks();
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -117,7 +136,7 @@ namespace Books_Store_Management_App.Views
             int cnt = 0;
             foreach (var book in AllBooksDisplay)
             {
-                book.Index = cnt;
+                book.CurrentRow= cnt;
                 cnt++;
             }
 
@@ -212,7 +231,7 @@ namespace Books_Store_Management_App.Views
                 if (result == ContentDialogResult.Primary) // If confirmed
                 {
                     // Call the delete method on the ViewModel
-                    ViewModel.Dao.DeleteBook(book);
+                    bool success = await new PsqlDao().DeleteBookAsync(book.Index);
                     AllBooksDisplay.Remove(book);
 
                     // Adjust the paging after deletion
@@ -278,7 +297,7 @@ namespace Books_Store_Management_App.Views
                 int cnt = 0;
                 foreach (var book in sortedBooks)
                 {
-                    book.Index = cnt;
+                    book.CurrentRow = cnt;
                     AllBooksDisplay.Add(book);
                     cnt++;
                 }
@@ -292,7 +311,7 @@ namespace Books_Store_Management_App.Views
                 int cnt = 0;
                 foreach (var book in sortedBooks)
                 {
-                    book.Index = cnt;
+                    book.CurrentRow = cnt;
                     AllBooksDisplay.Add(book);
                     cnt++;
                 }

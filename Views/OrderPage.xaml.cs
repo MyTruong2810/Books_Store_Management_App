@@ -186,7 +186,7 @@ namespace Books_Store_Management_App.Views
                 if (result == ContentDialogResult.Primary) // If confirmed
                 {
                     // Call the delete method on the ViewModel
-                    ViewModel.PsqlDao.DeleteOrder(order);
+                    await new PsqlDao().DeleteOrderAsync(order.ID);
                     AllOrdersDisplay.Remove(order);
 
                     // Adjust the paging after deletion
