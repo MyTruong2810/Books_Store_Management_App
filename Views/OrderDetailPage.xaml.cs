@@ -230,6 +230,16 @@ namespace Books_Store_Management_App.Views
                     return;
                 }
 
+                if (IsMemberCheckbox.IsChecked == true)
+                {
+                    success = await new PsqlDao().SaveOrderCustomer(order.ID, CustomerPhoneNumberTextBox.Text);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+                } 
+
                 // Thêm đơn hàng mới vào danh sách đơn hàng
                 this.OrderViewModel.Orders.Add(order);
                 this.ViewModel.Order = order;
@@ -442,6 +452,8 @@ namespace Books_Store_Management_App.Views
             {
                 CustomerPhoneNumberGroup.Visibility = Visibility.Visible;
             }
+
+            CustomerNameTextBox.IsEnabled = false;
         }
 
         /// <summary>
@@ -455,7 +467,11 @@ namespace Books_Store_Management_App.Views
         private void IsMemberCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             CustomerPhoneNumberGroup.Visibility = Visibility.Collapsed;
+            CustomerPhoneNumberTextBox.Text = "";
+
+            CustomerNameTextBox.Text = "";
             CustomerNameTextBox.IsEnabled = true;
+
             CustomerTotalOrderTextBlock.Visibility = Visibility.Collapsed;
         }
 
@@ -488,6 +504,7 @@ namespace Books_Store_Management_App.Views
                 {
                     CustomerNameTextBox.Text = customerInfo.Item1;
                     CustomerNameTextBox.IsEnabled = false;
+                    ViewModel.CustomerName = customerInfo.Item1.ToString();
 
                     CustomerTotalOrderTextBlock.Visibility = Visibility.Visible;
                     CustomerTotelOrderRun.Text = customerInfo.Item2.ToString();
@@ -509,7 +526,6 @@ namespace Books_Store_Management_App.Views
                 }
                 else
                 {
-                    CustomerNameTextBox.IsEnabled = true;
                     CustomerNameTextBox.Text = "";
 
                     CustomerTotalOrderTextBlock.Visibility = Visibility.Collapsed;

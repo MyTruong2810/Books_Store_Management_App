@@ -731,6 +731,20 @@ namespace Books_Store_Management_App.Models
                 }
             }
 
+            // Delete in order_customer
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_customer WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", id);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+            }
+
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -750,6 +764,52 @@ namespace Books_Store_Management_App.Models
             }
 
             return true;
+        }
+
+        public async Task<bool> SaveOrderCustomer(string orderId, string customerPhone)
+        {
+            int customerId = -1;
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "SELECT id FROM customer WHERE phone = @Phone";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Phone", customerPhone);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            customerId = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+
+            if (customerId == -1)
+            {
+                return false;
+            }
+
+            // save order_customer
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO order_customer (order_id, customer_id) " +
+                               "VALUES (@OrderId, @CustomerId)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+                    command.Parameters.AddWithValue("@CustomerId", customerId);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
         }
 
         public async Task<Tuple<string, int>> GetCustomerOrderCountByPhoneAsync(string customerPhoneNumber)
