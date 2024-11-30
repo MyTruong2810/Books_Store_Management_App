@@ -79,7 +79,6 @@ namespace Books_Store_Management_App.Views
                 totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
                 UpdateDisplayedOrders();
             }
-
         }
 
         /// <summary>
