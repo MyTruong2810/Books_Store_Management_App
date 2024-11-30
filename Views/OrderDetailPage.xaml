@@ -188,6 +188,8 @@
                            ItemsSource="{x:Bind ViewModel.Books}"
                            SelectedItem="{x:Bind ViewModel.SelectedBooks, Mode=TwoWay}"
                            SelectionChanged="bookComboBox_SelectionChanged"
+                           IsTextSearchEnabled="true"
+                           IsEditable="true"
                         />
                         <TextBlock 
                             TextWrapping="Wrap"
