@@ -454,6 +454,8 @@ namespace Books_Store_Management_App.Views
             }
 
             CustomerNameTextBox.IsEnabled = false;
+            CustomerNameTextBox.Text = "";
+            ViewModel.CustomerName = "";
         }
 
         /// <summary>
