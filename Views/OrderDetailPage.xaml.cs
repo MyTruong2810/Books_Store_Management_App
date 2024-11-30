@@ -48,7 +48,6 @@ namespace Books_Store_Management_App.Views
             // Lấy dữ liệu từ OrderPageViewModel
             OrderViewModel = (Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
 
-
             // Khởi tạo đối tượng _typingTimer với thời gian trễ là TypingDelay
             _typingTimer = new System.Timers.Timer(TypingDelay);
             // Gán sự kiện OnTypingTimerElapsed cho sự kiện Elapsed của _typingTimer
@@ -63,7 +62,7 @@ namespace Books_Store_Management_App.Views
         /// Nếu không có dữ liệu chuyển đến thì hiển thị trang để tạo mới đơn hàng
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -72,6 +71,8 @@ namespace Books_Store_Management_App.Views
             // Đoạn này bí quá
             if (e.Parameter is Order order)
             {
+                IsMemberCheckbox.IsEnabled = false;
+
                 Order orderClone = (Order)order.Clone();
 
                 // Nếu đang sửa thông tin đơn hàng
@@ -102,6 +103,23 @@ namespace Books_Store_Management_App.Views
                     .Where(book => ViewModel.SelectedBooks.Any(selected => selected.Book.Index == book.Index))
                     .ToList();
                 selectedBooks.ForEach(book => BookSelectionComboBox.SelectedItems.Add(book));
+
+                // Kiểm tra xem khách hàng có phải là thành viên hay không
+                PsqlDao dao = new PsqlDao();
+                var customerInfo = await dao.GetCustomerOrderCountByOrderIdAsync(orderClone.ID);
+
+                if (customerInfo != null)
+                {
+                    IsMemberCheckbox.IsChecked = true;
+
+                    CustomerPhoneNumberTextBox.Text = customerInfo.Item1;
+                    CustomerPhoneNumberTextBox.IsEnabled = false;
+
+                    CustomerNameTextBox.IsEnabled = false;
+
+                    CustomerTotalOrderTextBlock.Visibility = Visibility.Visible;
+                    CustomerTotelOrderRun.Text = customerInfo.Item2.ToString();
+                }
             }
         }
 
