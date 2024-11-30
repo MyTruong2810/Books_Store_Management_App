@@ -765,7 +765,8 @@ namespace Books_Store_Management_App.Models
 
             return true;
 
-        }
+        }
+
 
         /// <summary>
         /// Xóa một đơn hàng theo ID.
@@ -948,6 +949,45 @@ namespace Books_Store_Management_App.Models
                         if (await reader.ReadAsync())
                         {
                             return new Tuple<string, int>(reader.GetString(0), reader.GetInt32(1));
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<Customer> GetCustomerByOrderId(string orderId)
+        {
+            const string query = @"
+            SELECT c.*
+            FROM customer c
+            JOIN order_customer oc ON c.id = oc.customer_id
+            WHERE oc.order_id = @OrderId";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Customer
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Gender = reader.GetString(2),
+                                Phone = reader.GetString(3),
+                                Address = reader.GetString(4),
+                                Avatar = reader.GetString(5),
+                                CVV = reader.GetInt32(6),
+                                Payment = reader.GetString(7)
+                            };
                         }
                     }
                 }

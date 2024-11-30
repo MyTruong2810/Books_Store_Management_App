@@ -43,7 +43,7 @@ namespace Books_Store_Management_App.Views
         /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -51,6 +51,19 @@ namespace Books_Store_Management_App.Views
             {
                 // Gán dữ liệu từ trang Order Detail vào ViewModel
                 ViewModel.Order = order;
+
+                // Kiểm tra xem đơn hàng có thông tin khách hàng không
+                PsqlDao psqlDao = new PsqlDao();
+                ViewModel.CustomerInfo = await psqlDao.GetCustomerByOrderId(order.ID);
+
+                if (ViewModel.CustomerInfo != null)
+                {
+                    CustomerAddressGroup.Visibility = Visibility.Visible;
+                    CustomerAddress.Text = ViewModel.CustomerInfo.Address;
+
+                    CustomerPhoneGroup.Visibility = Visibility.Visible;
+                    CustomerPhone.Text = ViewModel.CustomerInfo.Phone;
+                }    
             }
         }
 
@@ -69,21 +82,18 @@ namespace Books_Store_Management_App.Views
             ViewModel.CustomerAddress = new Address();
             ViewModel.SellerAddress = new Address();
 
-            //ViewModel.CustomerAddress.CompanyName = "Customer Company";
-            // Dữ liệu giả lập cho địa chỉ của khách hàng và người bán
-            // Để test chức năng in hóa đơn
-            ViewModel.CustomerAddress.Street = "Customer Street";
-            ViewModel.CustomerAddress.City = "Customer City";
-            ViewModel.CustomerAddress.State = "Customer State";
-            ViewModel.CustomerAddress.Email = "Customer Email";
-            ViewModel.CustomerAddress.Phone = "Customer Phone";
+            ViewModel.CustomerAddress.CompanyName = ViewModel.Order.Customer;
+            if (ViewModel.CustomerInfo != null)
+            {
+                ViewModel.CustomerAddress.CompanyName = ViewModel.CustomerInfo.Name;
+                ViewModel.CustomerAddress.Phone = ViewModel.CustomerInfo.Phone;
+                ViewModel.CustomerAddress.FullAddress = ViewModel.CustomerInfo.Address;
+            }    
 
-            ViewModel.SellerAddress.CompanyName = "Seller Company";
-            ViewModel.SellerAddress.Street = "Seller Street";
-            ViewModel.SellerAddress.City = "Seller City";
-            ViewModel.SellerAddress.State = "Seller State";
-            ViewModel.SellerAddress.Email = "Seller Email";
-            ViewModel.SellerAddress.Phone = "Seller Phone";
+            ViewModel.SellerAddress.CompanyName = "Book Store";
+            ViewModel.SellerAddress.FullAddress = "FIT HCMUS";
+            ViewModel.SellerAddress.Email = "fit123@gmail.com";
+            ViewModel.SellerAddress.Phone = "2134123123";
             //
 
             var document = new InvoiceDocument(ViewModel);
