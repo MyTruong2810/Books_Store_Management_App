@@ -500,6 +500,13 @@ namespace Books_Store_Management_App.Models
 
            return books;
         }
+
+
+        /// <summary>
+        /// Lưu thông tin đơn hàng xuống cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="book">Đối tượng book chứa thông tin đơn hàng cần lưu.</param>
+        /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false.</returns>
         public async Task<bool> SaveBookAsync(Book book)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -529,6 +536,11 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        /// <summary>
+        /// Cập nhật thông tin sách trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="book">Đối tượng book chứa thông tin sách cần cập nhật.</param>
+        /// <returns>Trả về true nếu cập nhật thành công, ngược lại trả về false.</returns>
         public async Task<bool> UpdateBookAsync(Book book)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -557,6 +569,11 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        /// <summary>
+        /// Xóa đơn hàng trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="index">Đối tượng index chứa id của đơn hàng cần xóa.</param>
+        /// <returns>Trả về true nếu xóa thành công, ngược lại trả về false.</returns>
         public async Task<bool> DeleteBookAsync(string index)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -575,6 +592,11 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        /// <summary>
+        /// Lưu thông tin đơn hàng xuống cơ sở dữ liệu
+        /// </summary>
+        /// <param name="order">Đối tượng Order chứa thông tin đơn hàng cần lưu.</param>
+        /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false.</returns>
         public async Task<bool> SaveOrderAsync(Order order)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -649,11 +671,17 @@ namespace Books_Store_Management_App.Models
             return true;
         }
 
+        /// <summary>
+        /// Cập nhật thông tin đơn hàng trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="order">Đối tượng Order chứa thông tin đơn hàng cần cập nhật.</param>
+        /// <returns>Trả về true nếu cập nhật thành công, ngược lại trả về false.</returns>
         public async Task<bool> UpdateOrderAsync(Order order)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
+
                 string query = "UPDATE \"order\" SET customer = @Customer, date = @Date, is_delivered = @IsDelivered WHERE id = @Id";
 
                 using (var command = new NpgsqlCommand(query, connection))
@@ -697,7 +725,6 @@ namespace Books_Store_Management_App.Models
                         command.Parameters.AddWithValue("@Quantity", item.Quantity);
 
                         int result = await command.ExecuteNonQueryAsync();
-
                     }
                 }
             }
@@ -705,6 +732,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
+
                 string query = "DELETE FROM order_coupon WHERE order_id = @OrderId";
 
                 using (var command = new NpgsqlCommand(query, connection))
@@ -712,11 +740,6 @@ namespace Books_Store_Management_App.Models
                     command.Parameters.AddWithValue("@OrderId", order.ID);
 
                     int result = await command.ExecuteNonQueryAsync();
-
-                    if (result <= 0)
-                    {
-                        return false;
-                    }
                 }
 
                 query = "INSERT INTO order_coupon (order_id, coupon_id) " +
@@ -724,6 +747,7 @@ namespace Books_Store_Management_App.Models
 
                 foreach (Coupon coupon in order.Coupons)
                 {
+
                     using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@OrderId", order.ID);
@@ -740,8 +764,14 @@ namespace Books_Store_Management_App.Models
             }
 
             return true;
-        }
 
+        }
+
+        /// <summary>
+        /// Xóa một đơn hàng theo ID.
+        /// </summary>
+        /// <param name="id">ID của đơn hàng cần xóa.</param>
+        /// <returns>Trả về true nếu xóa thành công, ngược lại trả về false.</returns>
         public async Task<bool> DeleteOrderAsync(string id)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -803,8 +833,15 @@ namespace Books_Store_Management_App.Models
             return true;
         }
 
+        /// <summary>
+        /// Lấy thông tin khách hàng và lưu thông tin đơn hàng vào bảng order_customer trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="orderId">Mã đơn hàng</param>
+        /// <param name="customerPhone">Số điện thoại khách hàng</param>
+        /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false</returns>
         public async Task<bool> SaveOrderCustomer(string orderId, string customerPhone)
         {
+            // Lấy id của khách hàng dựa trên số điện thoại
             int customerId = -1;
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -825,12 +862,13 @@ namespace Books_Store_Management_App.Models
                 }
             }
 
+            // Nếu không tìm thấy khách hàng, trả về false
             if (customerId == -1)
             {
                 return false;
             }
 
-            // save order_customer
+            // Lưu thông tin đơn hàng vào bảng order_customer
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -849,6 +887,11 @@ namespace Books_Store_Management_App.Models
             }
         }
 
+        /// <summary>
+        /// Lấy số lượng đơn hàng của khách hàng dựa trên số điện thoại.
+        /// </summary>
+        /// <param name="customerPhoneNumber">Số điện thoại của khách hàng.</param>
+        /// <returns>Tuple chứa tên khách hàng và số lượng đơn hàng.</returns>
         public async Task<Tuple<string, int>> GetCustomerOrderCountByPhoneAsync(string customerPhoneNumber)
         {
             const string query = @"
@@ -878,6 +921,11 @@ namespace Books_Store_Management_App.Models
             return null;
         }
 
+        /// <summary>
+        /// Lấy số lượng đơn hàng của khách hàng dựa trên mã đơn hàng.
+        /// </summary>
+        /// <param name="orderId">Mã đơn hàng</param>
+        /// <returns>Tuple chứa số điện thoại khách hàng và số lượng đơn hàng</returns>
         public async Task<Tuple<string, int>> GetCustomerOrderCountByOrderIdAsync(string orderId)
         {
             const string query = @"
