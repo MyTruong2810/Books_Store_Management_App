@@ -307,7 +307,6 @@ namespace Books_Store_Management_App.Models
                 return false;
             }
         }
-
         public bool DeleteClassificationClasses(ClassificationClass genre)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -326,6 +325,20 @@ namespace Books_Store_Management_App.Models
         }
         public bool DeleteCustomer(Customer customer)
         {
+            // Delete in order_customer
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM order_customer WHERE customer_id = @CustomerId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerId", customer.ID);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
@@ -362,10 +375,13 @@ namespace Books_Store_Management_App.Models
         }
         public bool UpdateCustomer(Customer customer)
         {
+            int rowsAffected;
+            string query;
+
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "UPDATE Customer SET Name = @Name, Gender = @Gender, Phone = @Phone, Address = @Address, AvatarLink = @Avatar, CVV = @CVV, PaymentMethod = @Payment WHERE Id = @ID";
+                query = "UPDATE Customer SET Name = @Name, Gender = @Gender, Phone = @Phone, Address = @Address, AvatarLink = @Avatar, CVV = @CVV, PaymentMethod = @Payment WHERE Id = @ID";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 {
@@ -378,10 +394,31 @@ namespace Books_Store_Management_App.Models
                     command.Parameters.AddWithValue("@CVV", customer.CVV);
                     command.Parameters.AddWithValue("@Payment", customer.Payment);
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    rowsAffected = command.ExecuteNonQuery();
                 }
             }
+
+            if (rowsAffected > 0)
+            {
+                query = @"
+                    UPDATE public.""order"" o
+                    SET customer = c.name
+                    FROM customer c
+                    JOIN order_customer oc ON oc.customer_id = c.id
+                    WHERE oc.order_id = o.id AND c.id = @CustomerId";
+
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@CustomerId", customer.ID);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            return rowsAffected > 0;
         }
 
 
