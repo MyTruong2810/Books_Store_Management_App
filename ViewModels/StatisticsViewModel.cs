@@ -164,7 +164,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             StockItems.Clear();
 
-            string connectionString = "Host=localhost;Username=postgres;Password=28102004;Database=mybookstore";
+            string connectionString = "Host=localhost;Username=postgres;Password=1234;Database=mybookstore";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
