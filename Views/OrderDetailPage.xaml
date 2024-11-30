@@ -48,6 +48,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -55,8 +57,53 @@
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                    <!-- Checkout nếu check thì sẽ hiển thị ô nhập SĐT -->
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Is Member:" Margin="0, 0, 0, 0" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Column="1" Grid.Row="0"
+                            x:Name="IsMemberCheckbox"
+                            IsChecked="True"
+                            Checked="IsMemberCheckbox_Checked"
+                            Unchecked="IsMemberCheckbox_Unchecked" />
+                    </Grid>
+
+                    <!--  -->
+                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                        VerticalAlignment="Center"
+                        Visibility="Collapsed" 
+                        x:Name="CustomerPhoneNumberGroup" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Phone Number:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="CustomerPhoneNumberTextBox" 
+                                 Grid.Column="1" 
+                                 Grid.Row="0" 
+                                 Text=""
+                                 TextChanged="CustomerPhoneNumberTextBox_TextChanged"
+                                 PlaceholderText="Phone Number" Margin="0, 10, 0, 0"/>
+                    </Grid>
+
+                    <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
@@ -73,10 +120,22 @@
                             TextWrapping="Wrap"
                             Text="{x:Bind ViewModel.CustomerNameError, Mode=OneWay}" Foreground="Red" 
                             Visibility="{x:Bind ViewModel.CustomerNameError, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+
+                        <!-- Nếu là thành viên thì sẽ hiển thị tổng số order -->
+                        <TextBlock
+                            Grid.Column="1" Grid.Row="2"
+                            TextAlignment="End"
+                            Foreground="LightGray"
+                            x:Name="CustomerTotalOrderTextBlock"
+                            Visibility="Collapsed"
+                        >
+                            Totel order: 2
+                        </TextBlock>
+                        <!--  -->
                     </Grid>
 
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Purchase Date:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  Margin="0, 10, 0, 0">
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Purchase Date:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                    <Grid Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  Margin="0, 10, 0, 0">
                         <TextBox IsReadOnly="True" PlaceholderText="{x:Bind ViewModel.PurchaseDate, Mode=OneWay, Converter={StaticResource datetimeConverter}}" HorizontalAlignment="Stretch" />
                         <Canvas HorizontalAlignment="Right">
                             <Button Width="45" Canvas.Left="-45" x:Name="ChooseDateTimeButton">
@@ -104,9 +163,9 @@
                     </Grid>
                     <!--  <TextBox Grid.Column="1" Grid.Row="1" PlaceholderText="Purchase Date:" Margin="0, 10, 0, 0"/> -->
 
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Coupon" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Coupon" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
                     <editors:SfComboBox
-                       Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0"
+                       Grid.Column="1" Grid.Row="4" Margin="0, 10, 0, 0"
                        HorizontalAlignment="Stretch"
                        SelectionMode="Multiple"
                        MultiSelectionDisplayMode="Token"
@@ -118,7 +177,7 @@
                     >
                     </editors:SfComboBox>
 
-                    <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0, 10, 0, 0">
+                    <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0, 10, 0, 0">
                         <TextBlock Text="Books" />
                         <editors:SfComboBox
                            Margin="0, 10, 0, 0"

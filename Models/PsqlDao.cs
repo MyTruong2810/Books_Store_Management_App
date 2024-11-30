@@ -17,7 +17,7 @@ namespace Books_Store_Management_App.Models
 {
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=28102004;Database=mybookstore";
+        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
 
         public ObservableCollection<Book> GetAllBooks()
         {
@@ -61,7 +61,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT id, Name, Description FROM Genre";
+                string query = "SELECT * FROM classification";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())

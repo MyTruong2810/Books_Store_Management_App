@@ -14,9 +14,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Threading;
+using System.Timers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,6 +33,11 @@ namespace Books_Store_Management_App.Views
     {
         public OrderDetailViewModel ViewModel { get; set; }
         public OrderPageViewModel OrderViewModel { get; set; }
+
+        private System.Timers.Timer _typingTimer; 
+        private const int TypingDelay = 500;
+
+
         public OrderDetailPage()
         {
             this.InitializeComponent();
@@ -41,6 +47,11 @@ namespace Books_Store_Management_App.Views
 
             // Lấy dữ liệu từ OrderPageViewModel
             OrderViewModel = (Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
+
+
+            _typingTimer = new System.Timers.Timer(TypingDelay); 
+            _typingTimer.Elapsed += OnTypingTimerElapsed; 
+            _typingTimer.AutoReset = false;
         }
 
         /// <summary>
@@ -397,6 +408,35 @@ namespace Books_Store_Management_App.Views
                 sender.Value = 1;
             }
         }
-    }
 
+        private void IsMemberCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (CustomerPhoneNumberGroup != null) 
+            { 
+                CustomerPhoneNumberGroup.Visibility = Visibility.Visible;
+            }
+
+        }
+
+        private void IsMemberCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CustomerPhoneNumberGroup.Visibility = Visibility.Collapsed;
+        }
+
+        private void CustomerPhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _typingTimer.Stop();
+            _typingTimer.Start();
+        }
+
+        private void OnTypingTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            // Ensure this runs on the UI thread
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                // Your logic here, e.g., validate the input or update the ViewModel
+                Console.WriteLine("");
+            });
+        }
+    }
 }
