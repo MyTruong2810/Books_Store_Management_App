@@ -72,7 +72,6 @@
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Is Member:" Margin="0, 0, 0, 0" VerticalAlignment="Center"/>
                         <CheckBox Grid.Column="1" Grid.Row="0"
                             x:Name="IsMemberCheckbox"
-                            IsChecked="True"
                             Checked="IsMemberCheckbox_Checked"
                             Unchecked="IsMemberCheckbox_Unchecked" />
                     </Grid>
@@ -129,7 +128,7 @@
                             x:Name="CustomerTotalOrderTextBlock"
                             Visibility="Collapsed"
                         >
-                            Totel order: 2
+                            Totel order: <Run x:Name="CustomerTotelOrderRun" Text="" />
                         </TextBlock>
                         <!--  -->
                     </Grid>

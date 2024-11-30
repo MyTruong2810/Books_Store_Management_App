@@ -12,6 +12,7 @@ using Windows.Gaming.Input;
 using Books_Store_Management_App.ViewModels;
 using System.Xml.Linq;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Books_Store_Management_App.Models
 {
@@ -749,6 +750,65 @@ namespace Books_Store_Management_App.Models
             }
 
             return true;
+        }
+
+        public async Task<Tuple<string, int>> GetCustomerOrderCountByPhoneAsync(string customerPhoneNumber)
+        {
+            const string query = @"
+            SELECT c.name, 
+                   (SELECT COUNT(*) FROM order_customer WHERE customer_id = c.id) AS order_count 
+            FROM customer c 
+            WHERE c.phone = @CustomerPhone";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerPhone", customerPhoneNumber);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Tuple<string, int>(reader.GetString(0), reader.GetInt32(1));
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<Tuple<string, int>> GetCustomerOrderCountByOrderIdAsync(string orderId)
+        {
+            const string query = @"
+            SELECT c.phone, 
+                   (SELECT COUNT(*) FROM order_customer WHERE customer_id = c.id) AS order_count 
+            FROM customer c 
+            JOIN order_customer oc ON c.id = oc.customer_id 
+            WHERE oc.order_id = @OrderId";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Tuple<string, int>(reader.GetString(0), reader.GetInt32(1));
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
