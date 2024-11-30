@@ -35,8 +35,8 @@ namespace Books_Store_Management_App.Views
         public OrderPageViewModel OrderViewModel { get; set; }
 
         private System.Timers.Timer _typingTimer; 
+        // Biến đếm thời gian trễ khi gõ phím
         private const int TypingDelay = 500;
-
 
         public OrderDetailPage()
         {
@@ -49,8 +49,11 @@ namespace Books_Store_Management_App.Views
             OrderViewModel = (Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
 
 
-            _typingTimer = new System.Timers.Timer(TypingDelay); 
-            _typingTimer.Elapsed += OnTypingTimerElapsed; 
+            // Khởi tạo đối tượng _typingTimer với thời gian trễ là TypingDelay
+            _typingTimer = new System.Timers.Timer(TypingDelay);
+            // Gán sự kiện OnTypingTimerElapsed cho sự kiện Elapsed của _typingTimer
+            _typingTimer.Elapsed += OnTypingTimerElapsed;
+            // Thiết lập _typingTimer không tự động reset sau khi kích hoạt
             _typingTimer.AutoReset = false;
         }
 
@@ -409,33 +412,106 @@ namespace Books_Store_Management_App.Views
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi checkbox "IsMember" được chọn.
+        /// Hiển thị nhóm điện thoại khách hàng nếu tồn tại.
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện</param>
+        /// <param name="e">Đối tượng chứa thông tin về sự kiện</param>
         private void IsMemberCheckbox_Checked(object sender, RoutedEventArgs e)
         {
-            if (CustomerPhoneNumberGroup != null) 
-            { 
+            if (CustomerPhoneNumberGroup != null)
+            {
                 CustomerPhoneNumberGroup.Visibility = Visibility.Visible;
             }
-
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi checkbox "IsMember" không được chọn
+        /// Ẩn nhóm hiển thị số điện thoại khách hàng
+        /// Kích hoạt trường nhập tên khách hàng
+        /// Ẩn hiển thị số đơn hàng của khách hàng
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện</param>
+        /// <param name="e">Đối tượng chứa thông tin sự kiện</param>
         private void IsMemberCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             CustomerPhoneNumberGroup.Visibility = Visibility.Collapsed;
+            CustomerNameTextBox.IsEnabled = true;
+            CustomerTotalOrderTextBlock.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi thay đổi nội dung của ô nhập số điện thoại khách hàng.
+        /// Dừng và khởi động lại đếm thời gian gõ phím.
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện</param>
+        /// <param name="e">Thông tin về sự kiện</param>
         private void CustomerPhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             _typingTimer.Stop();
             _typingTimer.Start();
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi hết thời gian chờ sau khi gõ xong số điện thoại khách hàng.
+        /// Kiểm tra thông tin khách hàng và cập nhật giao diện tương ứng.
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện</param>
+        /// <param name="e">Thông tin về sự kiện</param>
         private void OnTypingTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            // Ensure this runs on the UI thread
-            DispatcherQueue.TryEnqueue(() =>
+            DispatcherQueue.TryEnqueue(async () =>
             {
-                // Your logic here, e.g., validate the input or update the ViewModel
-                Console.WriteLine("");
+                PsqlDao dao = new PsqlDao();
+                var customerInfo = await dao.GetCustomerOrderCountByPhoneAsync(CustomerPhoneNumberTextBox.Text.ToString());
+
+                if (customerInfo != null)
+                {
+                    CustomerNameTextBox.Text = customerInfo.Item1;
+                    CustomerNameTextBox.IsEnabled = false;
+
+                    CustomerTotalOrderTextBlock.Visibility = Visibility.Visible;
+                    CustomerTotelOrderRun.Text = customerInfo.Item2.ToString();
+
+                    if (customerInfo.Item2 >= 10)
+                    {
+                        var coupon = ViewModel.Coupons.FirstOrDefault(c => c.Discount == 0.5);
+
+                        // Thêm coupon vào danh sách coupon đã chọn
+                        if (!ViewModel.SelectedCoupons.Contains(coupon))
+                        {
+                            ViewModel.SelectedCoupons.Add(coupon);
+                            // Thêm coupon vào combobox
+                            CouponsComboBox.SelectedItems.Add(coupon);
+
+                            ViewModel.HasMemberDiscount = true;
+                        }
+                    }
+                }
+                else
+                {
+                    CustomerNameTextBox.IsEnabled = true;
+                    CustomerNameTextBox.Text = "";
+
+                    CustomerTotalOrderTextBlock.Visibility = Visibility.Collapsed;
+                    CustomerTotelOrderRun.Text = "";
+
+                    if (ViewModel.HasMemberDiscount == true)
+                    {
+                        var coupon = ViewModel.Coupons.FirstOrDefault(c => c.Discount == 0.5);
+
+                        // Xóa coupon khỏi danh sách coupon đã chọn
+                        if (ViewModel.SelectedCoupons.Contains(coupon))
+                        {
+                            ViewModel.SelectedCoupons.Remove(coupon);
+                            // Xóa coupon khỏi combobox
+                            CouponsComboBox.SelectedItems.Remove(coupon);
+                        }
+
+                        ViewModel.HasMemberDiscount = false;
+                    }
+                }
             });
         }
     }
