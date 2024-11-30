@@ -54,6 +54,7 @@ namespace Books_Store_Management_App.Views
 
             // ViewModel dùng chung
             ViewModel = (Microsoft.UI.Xaml.Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
+            ViewModel.LoadOrders();
 
             AllOrdersDisplay = ViewModel.Orders;
             totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
@@ -69,7 +70,7 @@ namespace Books_Store_Management_App.Views
             base.OnNavigatedTo(e);
 
             string previousPage = e.Parameter as string;
-            
+
             if (previousPage == nameof(OrderDetailPage))
             {
                 //ViewModel.Init();
