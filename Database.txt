@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS public.coupon (
 INSERT INTO public.coupon (name, discount, expiry_date) VALUES
 ('SAVE 10%', 0.1, '2024-12-31 23:59:59'),
 ('SAVE 20%', 0.2, '2024-06-30 23:59:59'),
-('SAVE 30%', 0.3, '2025-01-01 23:59:59');
+('SAVE 30%', 0.3, '2025-01-01 23:59:59')
+('SAVE 50%', 0.5, '2025-01-01 23:59:59');
 
 -- Bảng order_coupon
     CREATE TABLE IF NOT EXISTS public.order_coupon (
