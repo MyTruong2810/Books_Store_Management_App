@@ -599,6 +599,7 @@ namespace Books_Store_Management_App.Models
         /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false.</returns>
         public async Task<bool> SaveOrderAsync(Order order)
         {
+            // Thêm order vào bảng order
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -621,6 +622,7 @@ namespace Books_Store_Management_App.Models
                 }
             }
 
+            // Thêm order_item vào bảng order_item
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -645,6 +647,7 @@ namespace Books_Store_Management_App.Models
                 }
             }
 
+            // Thêm order_coupon vào bảng order_coupon
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -657,6 +660,24 @@ namespace Books_Store_Management_App.Models
                     {
                         command.Parameters.AddWithValue("@OrderId", order.ID);
                         command.Parameters.AddWithValue("@CouponId", coupon.Id);
+
+                        int result = await command.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+
+            // Giảm số lượng sách trong kho
+            foreach (OrderItem item in order.OrderItems)
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    string query = "UPDATE book SET quantity = quantity - @Quantity WHERE index = @Index";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Quantity", item.Quantity);
+                        command.Parameters.AddWithValue("@Index", item.Book.Index);
 
                         int result = await command.ExecuteNonQueryAsync();
 
