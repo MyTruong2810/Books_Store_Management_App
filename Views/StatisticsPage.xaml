@@ -18,7 +18,7 @@
         <local1:DoubleToUsdCurrencyConverter x:Key="currencyConverter" />
         <local1:StringToVisibableConverter x:Key="toVisibableConverter" />
     </Page.Resources>
-    <Grid>
+    <Grid Background="#C4C4FC">
         <!-- Biểu đồ -->
         <lvc:CartesianChart Series="{Binding LineChartSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" />
 
