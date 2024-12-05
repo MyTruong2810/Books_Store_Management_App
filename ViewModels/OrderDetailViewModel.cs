@@ -59,6 +59,8 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        // Biến lưu trữ trạng thái có áp dụng mã giảm giá của Customer là Member
+        public bool HasMemberDiscount { get; set; } = false;
 
         /// <summary>
         /// Xử lý sự kiện khi danh sách SelectedCoupons thay đổi

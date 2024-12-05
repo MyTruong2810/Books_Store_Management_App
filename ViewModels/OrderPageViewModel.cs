@@ -30,7 +30,7 @@ namespace Books_Store_Management_App
             LoadOrders();
         }
 
-        private void LoadOrders()
+        public void LoadOrders()
         {
             var orders = new PsqlDao().GetAllOrders();
             Orders = new ObservableCollection<Order>(orders);
