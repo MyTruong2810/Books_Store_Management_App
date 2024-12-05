@@ -200,10 +200,21 @@ namespace Books_Store_Management_App.Helpers
                 column.Item().PaddingBottom(5).LineHorizontal(1);
 
                 column.Item().Text(Address.CompanyName);
-                column.Item().Text(Address.Street);
-                column.Item().Text($"{Address.City}, {Address.State}");
-                column.Item().Text(Address.Email);
-                column.Item().Text(Address.Phone);
+
+                if (!string.IsNullOrWhiteSpace(Address.FullAddress))
+                {
+                    column.Item().Text($"Address: {Address.FullAddress}");
+                }
+
+                if (!string.IsNullOrWhiteSpace(Address.Email))
+                {
+                    column.Item().Text($"Email: {Address.Email}");
+                }
+
+                if (!string.IsNullOrWhiteSpace(Address.Phone))
+                {
+                    column.Item().Text($"Phone: {Address.Phone}");
+                }
             });
         }
     }
