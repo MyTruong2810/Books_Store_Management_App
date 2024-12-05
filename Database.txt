@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS public.book (
     genre character varying(50),
     quantity integer,
     index VARCHAR(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT book_pkey PRIMARY KEY (index)
 ) TABLESPACE pg_default;
 
@@ -55,6 +56,7 @@ CREATE TABLE IF NOT EXISTS public."order" (
     customer character varying(100) NOT NULL,
     date timestamp without time zone NOT NULL,
     is_delivered BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at timestamp without time zone NOT NULL DEFAULT now(),
     PRIMARY KEY (id)
 ) TABLESPACE pg_default;
 

@@ -21,7 +21,7 @@
     </Page.Resources>
     <Grid Background="#C4C4FC">
         <!-- Biểu đồ -->
-        <lvc:CartesianChart Series="{Binding LineChartSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}"/>
+        <lvc:CartesianChart Series="{Binding LineChartSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" />
 
         <!-- Buttons for changing chart view mode (Daily, Monthly, Yearly) -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
