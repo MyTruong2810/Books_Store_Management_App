@@ -27,7 +27,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT ImageUrl, Title, Publisher, Author, ISBN, Year, selling_price, purchase_price, Genre, Quantity, Index FROM Book";
+                string query = "SELECT ImageUrl, Title, Publisher, Author, ISBN, Year, selling_price, purchase_price, Genre, Quantity, Index FROM Book ORDER BY created_at";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
@@ -115,7 +115,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM \"order\"";
+                string query = "SELECT * FROM \"order\" ORDER BY created_at";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
