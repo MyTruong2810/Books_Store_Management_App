@@ -11,6 +11,9 @@
 
     <UserControl.Resources>
         <local1:StringToVisibableConverter x:Key="toVisibableConverter" />
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
     </UserControl.Resources>
 
 
