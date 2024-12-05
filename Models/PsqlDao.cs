@@ -18,7 +18,7 @@ namespace Books_Store_Management_App.Models
 {
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=28102004;Database=mybookstore";
+        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
 
         public ObservableCollection<Book> GetAllBooks()
         {
@@ -27,7 +27,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT ImageUrl, Title, Publisher, Author, ISBN, Year, selling_price, purchase_price, Genre, Quantity, Index FROM Book ORDER BY created_at";
+                string query = "SELECT ImageUrl, Title, Publisher, Author, ISBN, Year, selling_price, purchase_price, Genre, Quantity, Index FROM Book ORDER BY index";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
@@ -46,7 +46,7 @@ namespace Books_Store_Management_App.Models
                             PurchasePrice = (double)reader.GetDecimal(7),
                             Genre = reader.GetString(8),
                             Quantity = reader.GetInt32(9),
-                            Index = reader.GetString(10)
+                            Index = reader.GetInt32(10)
                         };
                         books.Add(book);
                     }
@@ -115,7 +115,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM \"order\" ORDER BY created_at";
+                string query = "SELECT * FROM \"order\" ORDER BY id";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
@@ -124,7 +124,7 @@ namespace Books_Store_Management_App.Models
                     {
                         var order = new Order()
                         {
-                            ID = reader.GetString(0),
+                            ID = reader.GetInt32(0),
                             Customer = reader.GetString(1),
                             Date = reader.GetDateTime(2),
                             IsDelivered = reader.GetBoolean(3),
@@ -159,7 +159,7 @@ namespace Books_Store_Management_App.Models
                                                 PurchasePrice = (double)readerOrderItems.GetDecimal(9),
                                                 Genre = readerOrderItems.GetString(10),
                                                 Quantity = readerOrderItems.GetInt32(11),
-                                                Index = readerOrderItems.GetString(12)
+                                                Index = readerOrderItems.GetInt32(12)
                                             }
                                         };
 
@@ -491,7 +491,7 @@ namespace Books_Store_Management_App.Models
                             PurchasePrice = (double)reader.GetDecimal(7),
                             Genre = reader.GetString(8),
                             Quantity = reader.GetInt32(9),
-                            Index = reader.GetString(10)
+                            Index = reader.GetInt32(10)
                         };
                         books.Add(book);
                     }
@@ -574,7 +574,7 @@ namespace Books_Store_Management_App.Models
         /// </summary>
         /// <param name="index">Đối tượng index chứa id của đơn hàng cần xóa.</param>
         /// <returns>Trả về true nếu xóa thành công, ngược lại trả về false.</returns>
-        public async Task<bool> DeleteBookAsync(string index)
+        public async Task<bool> DeleteBookAsync(int index)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -794,7 +794,7 @@ namespace Books_Store_Management_App.Models
         /// </summary>
         /// <param name="id">ID của đơn hàng cần xóa.</param>
         /// <returns>Trả về true nếu xóa thành công, ngược lại trả về false.</returns>
-        public async Task<bool> DeleteOrderAsync(string id)
+        public async Task<bool> DeleteOrderAsync(int id)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
@@ -861,7 +861,7 @@ namespace Books_Store_Management_App.Models
         /// <param name="orderId">Mã đơn hàng</param>
         /// <param name="customerPhone">Số điện thoại khách hàng</param>
         /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false</returns>
-        public async Task<bool> SaveOrderCustomer(string orderId, string customerPhone)
+        public async Task<bool> SaveOrderCustomer(int orderId, string customerPhone)
         {
             // Lấy id của khách hàng dựa trên số điện thoại
             int customerId = -1;
@@ -948,7 +948,7 @@ namespace Books_Store_Management_App.Models
         /// </summary>
         /// <param name="orderId">Mã đơn hàng</param>
         /// <returns>Tuple chứa số điện thoại khách hàng và số lượng đơn hàng</returns>
-        public async Task<Tuple<string, int>> GetCustomerOrderCountByOrderIdAsync(string orderId)
+        public async Task<Tuple<string, int>> GetCustomerOrderCountByOrderIdAsync(int orderId)
         {
             const string query = @"
             SELECT c.phone, 
@@ -978,7 +978,7 @@ namespace Books_Store_Management_App.Models
             return null;
         }
 
-        public async Task<Customer> GetCustomerByOrderId(string orderId)
+        public async Task<Customer> GetCustomerByOrderId(int orderId)
         {
             const string query = @"
             SELECT c.*

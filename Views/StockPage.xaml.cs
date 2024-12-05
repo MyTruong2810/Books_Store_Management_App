@@ -72,8 +72,9 @@ namespace Books_Store_Management_App.Views
         {
             if (BookPopupControl.GetButton() == "Add")
             {
-                Guid id = Guid.NewGuid();
-                e.Index = id.ToString();
+                // id is max id + 1
+                var id = AllBooksDisplay.Max(x => x.Index) + 1;
+                e.Index = id;
 
                 try
                 {
