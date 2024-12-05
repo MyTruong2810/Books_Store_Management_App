@@ -7,48 +7,45 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Books_Store_Management_App.Models"
+    xmlns:local3="using:Books_Store_Management_App.Views"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
+        <local3:AlternationIndexToBackgroundConverter x:Key="AlternationIndexToBackgroundConverter"/>
         <DataTemplate x:Key="HorizontalFormat" x:DataType="models:Customer">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="5" BorderBrush="DarkCyan" Background="AntiqueWhite" CornerRadius="10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="5" BorderBrush="DarkCyan" Background="{Binding IsEven, Converter={StaticResource AlternationIndexToBackgroundConverter}}" CornerRadius="10">
                 <Border CornerRadius="20" Margin="3" >
                     <Image Source="{x:Bind Avatar}" Width="40" Height="40" Stretch="UniformToFill" />
                 </Border>
 
-                <StackPanel Orientation="Horizontal" Margin="5 0 0 0" Height="20" >
-                    <TextBlock Width="70" Margin="10 0" Foreground="Blue" >ID: <Run Text="{x:Bind ID}" Foreground="Red"/></TextBlock>
-                    <TextBlock Width="210" Margin="5 0" Foreground="Gray">Name: <Run Text="{x:Bind Name}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
-                    <TextBlock Width="100" Margin="5 0" Foreground="Gray">Gender: <Run Text="{x:Bind Gender}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
-                    <TextBlock Width="135" Margin="5 0" Foreground="Gray">Phone: <Run Text="{x:Bind Phone}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
-                    <TextBlock Width="135" Margin="5 0" Foreground="Gray">Date: <Run Text="{x:Bind DateofBirth}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
-                    <TextBlock Width="370" Margin="5 0" Foreground="Gray">Address: <Run Text="{x:Bind Address}" Foreground="Blue" FontWeight="Bold"/></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="20 0 0 0" Height="20">
+                    <TextBlock Width="100" Margin="10 0" Foreground="White"><Run Text="{x:Bind ID}" Foreground="White" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="200" Margin="5 0" Foreground="White"><Run Text="{x:Bind Name}" Foreground="White" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="150" Margin="5 0" Foreground="White"><Run Text="{x:Bind Gender}" Foreground="White" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="170" Margin="5 0" Foreground="White"><Run Text="{x:Bind Phone}" Foreground="White" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="370" Margin="5 0" Foreground="White"><Run Text="{x:Bind Address}" Foreground="White" FontWeight="Bold"/></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="deleteButton" Click="deleteButton_Click" Tag="{x:Bind ID}" Foreground="DarkBlue">
-                        <FontIcon Glyph="&#xE74D;" />
+                    <Button Name="updateButton" Click="updateButton_Click" Tag="{x:Bind ID}" Background="Transparent">
+                        <FontIcon Glyph="&#xE70F;" Foreground="Violet"/>
                     </Button>
-                    <Button Name="updateButton" Click="updateButton_Click" Tag="{x:Bind ID}" Foreground="DarkBlue">
-                        <FontIcon Glyph="&#xE70F;" />
+                    <Button Name="deleteButton" Click="deleteButton_Click" Tag="{x:Bind ID}" Background="Transparent">
+                        <FontIcon Glyph="&#xE74D;" Foreground="Red"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
 
-    <StackPanel Background="#FFFFE1">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  
-                CornerRadius="20"
-                BorderBrush="DarkBlue" BorderThickness="1" Background="#ADD9E6" 
-                Padding="10 0 " Margin=" 10 10 10 20 ">
-            <Button MaxWidth="50">
-                <FontIcon Glyph="&#xE72B;" />
-            </Button>
-            <TextBlock FontSize="18" FontWeight="Bold" Text="CUSTOMER" Margin="10,10"/>
+    <StackPanel Background="#C4C4FC">
+
+        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 0">
+            <TextBlock
+            Text="Customer" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
         </StackPanel>
 
         <StackPanel Margin="10" BorderBrush="DarkBlue" CornerRadius="15">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Background="#DDB989" Padding="10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Background="Transparent" Padding="10">
                 <TextBlock Margin="10 0" VerticalAlignment="Center">Show</TextBlock>
                 <ComboBox x:Name="rowsPerPageComboBox" Height="30" SelectionChanged="rowsPerPageComboBox_SelectionChanged">
                     <ComboBox.ItemTemplate>
@@ -60,7 +57,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <TextBox Margin="100 0 5 0" HorizontalAlignment="Center" x:Name="keywordTextBox" Width="300" Height="30"/>
+                <TextBox Margin="100 0 5 0" HorizontalAlignment="Center" x:Name="keywordTextBox" Width="250" Height="30"/>
 
                 <Button Name="searchButton" Width="80" Height="30" Content="Search" Click="searchButton_Click"/>
 
@@ -71,27 +68,25 @@
                     <TextBlock>Name</TextBlock>
                     <TextBlock>Phone</TextBlock>
                     <TextBlock>Gender</TextBlock>
-                    <TextBlock>DateOfBirth</TextBlock>
                     <TextBlock>Address</TextBlock>
                 </ComboBox>
 
                 <TextBlock Margin="50 0  10 0" VerticalAlignment="Center">Sort by</TextBlock>
-                <ComboBox x:Name="sortbyComboBox" Width="150" SelectionChanged="sortbyComboBox_SelectionChanged" PlaceholderText="Sort by..." Margin="0 0 100 0">
+                <ComboBox x:Name="sortbyComboBox" Width="150" SelectionChanged="sortbyComboBox_SelectionChanged" PlaceholderText="Sort by..." Margin="0 0 50 0">
                     <TextBlock>ID</TextBlock>
                     <TextBlock>Name</TextBlock>
                     <TextBlock>Phone</TextBlock>
                     <TextBlock>Gender</TextBlock>
-                    <TextBlock>DateOfBirth</TextBlock>
                     <TextBlock>Address</TextBlock>
                 </ComboBox>
 
 
-                <Button  Name="addButton" Width="60" HorizontalAlignment="Right" Height="30" Background="DarkBlue" Click="addButton_Click">
-                    <FontIcon Glyph="&#xE710;" DataContext="Add New Customer" />
+                <Button  Name="addButton" Width="60" HorizontalAlignment="Right" Height="30" Background="#624DE3" Click="addButton_Click" BorderBrush="White" BorderThickness="2">
+                    <FontIcon Glyph="&#xE710;" DataContext="Add New Customer" Foreground="White" />
                 </Button>
             </StackPanel>
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-                <ListView Name="employeesComboBox" Background="AliceBlue" Height="570"
+                <ListView Name="employeesComboBox" Background="Transparent" Height="570"
                       ItemsSource="{x:Bind CustomerVM.Customers, Mode=OneWay}"
                       ItemTemplate="{StaticResource HorizontalFormat}">
                 </ListView>
@@ -138,7 +133,6 @@
                         <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
                     </Border>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" PlaceholderText="Fullname"/>
-                    <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Date of Birth" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.DateofBirth, Mode=TwoWay}" PlaceholderText="Date of Birth : (dd/mm/yyyy)"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="1" HorizontalAlignment="Center" >
@@ -166,7 +160,6 @@
                         <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
                     </Border>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" PlaceholderText="Fullname"/>
-                    <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Date of Birth" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.DateofBirth, Mode=TwoWay}" PlaceholderText="Date of Birth : (dd/mm/yyyy)"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="1" HorizontalAlignment="Center" >

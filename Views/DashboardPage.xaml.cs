@@ -17,6 +17,8 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Books_Store_Management_App.Models;
 using Books_Store_Management_App.ViewModels;
+using Windows.ApplicationModel.Appointments;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Books_Store_Management_App.Views
 {
@@ -24,23 +26,23 @@ namespace Books_Store_Management_App.Views
     {
         public DashboardViewModel ViewModel { get; set; }
 
+        private double temp;
         public DashboardPage()
         {
             this.InitializeComponent();
             ViewModel = new DashboardViewModel();
             ViewModel.Init();
+            temp = ViewModel.totalRevenue;
         }
 
-        public void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            RadioButton rb = sender as RadioButton;
-            if (rb != null)
-            {
-                if (rb.IsChecked == true)
-                {
-                    // Todo: Implement code later
-                }
-            }
+            ViewModel.totalRevenue = temp;
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            ViewModel.totalRevenue = 300;
         }
     }
 }

@@ -24,7 +24,7 @@
             <TextBox Text="{Binding Username, Mode=TwoWay}" FontFamily="Times New Roman" PlaceholderText="Enter your username" VerticalAlignment="Center" Height="35" Width="300"/>
 
             <TextBlock FontWeight="Bold" Text="Password:" Foreground="White" FontSize="20" FontFamily="Times New Roman" Margin="0, 20, 0, 5" />
-            <PasswordBox Password="{Binding Password, Mode=TwoWay}" Width="300" Height="35"/>
+            <PasswordBox Password="{Binding Password, Mode=TwoWay}" Width="300" Height="35"  FontFamily="Times New Roman" PlaceholderText="Enter your password"/>
 
             <CheckBox FontWeight="Bold" Content="Save login information" IsChecked="{Binding IsPasswordSaved, Mode=TwoWay}" Foreground="White" FontStyle="Italic" FontFamily="Times New Roman" Margin="0, 20, 0, 10"/>
 
@@ -33,5 +33,16 @@
                 <Button Content="Sign up" FontWeight="Bold" FontSize="20" FontFamily="Times New Roman" Width="150" Height="40" Background="black" Foreground="White" Command="{Binding SignupCommand}"/>
             </StackPanel>
         </StackPanel>
+        <ContentDialog
+            x:Name="ShowLoginFailedDialog"
+            Title="Login Failed!"
+            CloseButtonText="Close"
+            Background="Black"
+            HorizontalAlignment="Center">
+
+            <StackPanel Width="500" Margin="0">
+                <TextBlock Text="Invalid username or password, please enter again!" />
+            </StackPanel>
+        </ContentDialog>
     </Grid>
 </Page>

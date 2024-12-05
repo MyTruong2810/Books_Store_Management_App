@@ -15,10 +15,13 @@ namespace Books_Store_Management_App.ViewModels
     public class StockPageViewModel
     {
         public ObservableCollection<Book> AllBooks { get; set; }
+        public ObservableCollection<Genre> AllGenres { get; set; }
+        public PsqlDao Dao { get; set; }
         public void Init()
         {
-            IDao dao = new PsqlDao();
-            AllBooks = dao.GetAllBooks();
+            Dao = new PsqlDao();
+            AllBooks = Dao.GetAllBooks();
+            AllGenres = Dao.GetAllGenres();
         }
     }
 }

@@ -151,7 +151,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public string SellingPricesErrorMessage { get; set; } = "";
         [Required(ErrorMessage = "Selling price is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Selling price must be greater than 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Selling price must be greater than 0.")]
         public string SellingPrices
         {
             get => _sellingPrices;
@@ -167,7 +167,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public string PurchasePriceErrorMessage { get; set; } = "";
         [Required(ErrorMessage = "Purchase price is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Purchase price must be greater than 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Purchase price must be greater than 0.")]
         public string PurchasePrice
         {
             get => _purchasePrice;
@@ -183,7 +183,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public string QuantityErrorMessage { get; set; } = "";
         [Required(ErrorMessage = "Quantity is required.")]
-        [Range(0, int.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1.")]
         public string Quantity
         {
             get => _quantity;

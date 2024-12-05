@@ -44,7 +44,7 @@ namespace Books_Store_Management_App.Views
         /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -54,10 +54,12 @@ namespace Books_Store_Management_App.Views
             // Đoạn này bí quá làm dài dòng
             if (e.Parameter is Order order)
             {
+                IsMemberCheckbox.IsEnabled = false;
+
                 // Gán thông tin của đơn hàng vào ViewModel, để hiển thị lên giao diện
                 ViewModel.Order = order;
                 ViewModel.CustomerName = order.Customer;
-                ViewModel.PurchaseDate = DateTime.Parse(order.Date);
+                ViewModel.PurchaseDate = order.Date;
                 ViewModel.IsDelivered = order.IsDelivered;
 
                 // Thêm sách và mã giảm giá đã chọn vào SelectedBooks và SelectedCoupons
@@ -76,6 +78,21 @@ namespace Books_Store_Management_App.Views
                     .Where(book => ViewModel.SelectedBooks.Any(selected => selected.Book.Index == book.Index))
                     .ToList();
                 selectedBooks.ForEach(book => BookSelectionComboBox.SelectedItems.Add(book));
+
+                // Kiểm tra xem khách hàng có phải là thành viên hay không
+                PsqlDao dao = new PsqlDao();
+                var customerInfo = await dao.GetCustomerOrderCountByOrderIdAsync(order.ID);
+
+                if (customerInfo != null)
+                {
+                    IsMemberCheckbox.IsChecked = true;
+
+                    CustomerPhoneNumberTextBox.Text = customerInfo.Item1;
+                    CustomerPhoneNumberGroup.Visibility = Visibility.Visible;
+
+                    CustomerTotalOrderTextBlock.Visibility = Visibility.Visible;
+                    CustomerTotelOrderRun.Text = customerInfo.Item2.ToString();
+                }
             }
         }
 
@@ -98,7 +115,7 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private void BillOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.Order.Date = ViewModel.PurchaseDate.ToString();
+            ViewModel.Order.Date = ViewModel.PurchaseDate;
             ViewModel.Order.OrderItems = ViewModel.SelectedBooks.ToList();
             ViewModel.Order.Coupons = ViewModel.SelectedCoupons;
 

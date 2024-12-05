@@ -12,6 +12,8 @@ namespace Books_Store_Management_App
     public class OrderPageViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Order> _orders;
+
+        public PsqlDao PsqlDao { get; set; }
         public ObservableCollection<Order> Orders
         {
             get => _orders;
@@ -28,10 +30,11 @@ namespace Books_Store_Management_App
             LoadOrders();
         }
 
-        private void LoadOrders()
+        public void LoadOrders()
         {
             var orders = new PsqlDao().GetAllOrders();
             Orders = new ObservableCollection<Order>(orders);
+            PsqlDao = new PsqlDao();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

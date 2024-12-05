@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 using Windows.Storage;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace Book_Store_Management
 {
@@ -24,7 +25,7 @@ namespace Book_Store_Management
         public int TypeOfSort { get; set; } = 1; // Sort order for results
         public int TotalPages { get; set; } = 0; // Total number of pages for pagination
         public int TotalItems { get; set; } = 0; // Total items in the current search
-
+        private int _maxId;
         // DAO for interacting with the Customer data source
         private IDaos<Customer> _dao = null;
 
@@ -53,10 +54,22 @@ namespace Book_Store_Management
 
             // Update the observable collection with fetched customers
             Customers = new FullObservableCollection<Customer>(customers);
+            int cnt = 0;
+            foreach (var item in (new PsqlDao().GetAllCustomers()))
+            {
+                cnt++;
+                _maxId = _maxId < item.ID ? item.ID : _maxId;
+            }
 
             // Update total items and calculate total pages for pagination
             TotalItems = totalItems;
             TotalPages = (TotalItems / RowsPerPage) + ((TotalItems % RowsPerPage == 0) ? 0 : 1);
+            int cnt1 = 0;
+            foreach (var item in Customers)
+            {
+                cnt1++;
+                item.Index = cnt1;
+            }
         }
 
         // Inserts a new customer record into the database
@@ -98,6 +111,17 @@ namespace Book_Store_Management
             {
                 _selectedCustomer = value;
                 OnPropertyChanged(nameof(SelectedCustomer));
+            }
+        }
+
+        public int MaxId
+        {
+            get => _maxId;
+            set
+            {
+                _maxId = value;
+
+                OnPropertyChanged(nameof(MaxId));
             }
         }
     }
