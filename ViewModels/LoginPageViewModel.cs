@@ -13,7 +13,7 @@ using Windows.Storage;
 namespace Books_Store_Management_App.ViewModels
 {
     /// <summary>
-    /// Lớp ViewModel của LoginPage chứa các thuộc tính và command để xử lý logic đăng nhập
+    /// Lớp ViewModel của LoginPage chứa các thuộc tính và command để xử lý logic đăng nhập.
     /// </summary>
     public class LoginViewModel : INotifyPropertyChanged
     {
@@ -54,7 +54,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
-        /// Khởi tạo lớp LoginViewModel, event được xử lý thông qua command giúp UI và code-behind được tách biệt
+        /// Khởi tạo lớp LoginViewModel, event được xử lý thông qua command giúp UI và code-behind được tách biệt.
         /// </summary>
         public LoginViewModel()
         {
@@ -63,7 +63,7 @@ namespace Books_Store_Management_App.ViewModels
             LoadSavedCredentials();
         }
         /// <summary>
-        /// Hàm sử lý logic đăng nhập, thành công trả về trang dashboard, thất bại hiển thị thông báo lỗi
+        /// Hàm sử lý logic đăng nhập, thành công trả về trang dashboard, thất bại hiển thị thông báo lỗi.
         /// </summary>
         /// <returns></returns>
         private async Task LoginAsync()
@@ -96,7 +96,7 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
         /// <summary>
-        /// Xác thực mật khẩu đăng nhập
+        /// Xác thực mật khẩu đăng nhập.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -106,7 +106,7 @@ namespace Books_Store_Management_App.ViewModels
             return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == password;
         }
         /// <summary>
-        /// Lưu thông tin đăng nhập nếu người dùng chọn lưu mật khẩu vào hệ thống local settings
+        /// Lưu thông tin đăng nhập nếu người dùng chọn lưu mật khẩu vào hệ thống local settings.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="passwordRaw"></param>
@@ -129,7 +129,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Lấy thông tin đăng nhập được ghi nhớ từ hệ thống local settings
+        /// Lấy thông tin đăng nhập được ghi nhớ từ hệ thống local settings.
         /// </summary>
         private void LoadSavedCredentials()
         {
@@ -147,7 +147,7 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
         /// <summary>
-        /// Hàm xử lý đăng ký tài khoản, nhóm đang phát triển chức năng này
+        /// Hàm xử lý đăng ký tài khoản, nhóm đang phát triển chức năng này.
         /// </summary>
         private void Signup()
         {

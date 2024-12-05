@@ -9,7 +9,9 @@ using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Books_Store_Management_App.Models
 {
-    // Data Access Object (DAO) for managing Customer entities in an in-memory list
+    /// <summary>
+    /// Lớp đại diện việc thực hiện các thao tác với khách hàng.
+    /// </summary>
     public class CustomerDao : IDaos<Customer>
     {
         // In-memory database of customers

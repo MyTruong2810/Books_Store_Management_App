@@ -5,6 +5,9 @@ using Books_Store_Management_App.Helpers;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp OrderItem chứa thông tin về một mặt hàng trong đơn hàng.
+    /// </summary>
     public class OrderItem : INotifyPropertyChanged, ICloneable
     {
         public int Id { get; set; }

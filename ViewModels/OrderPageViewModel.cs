@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App
 {
+
+    /// <summary>
+    /// Lớp ViewModel cho trang OrderPage để hiển thị danh sách đơn hàng, nhưng chưa thực hiện logic theo mô hình.
+    /// </summary>
     public class OrderPageViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Order> _orders;

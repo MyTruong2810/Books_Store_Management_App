@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// Lớp ViewModel cho trang Dashboard để hiển thị thông tin tổng quan.
+    /// </summary>
     public class DashboardViewModel : INotifyPropertyChanged
     {
         public int totalBook { get; set; }

@@ -4,39 +4,40 @@ using System.Globalization;
 
 namespace Books_Store_Management_App.Helpers
 {
-    // This class implements the IValueConverter interface, which is used for converting data
-    // between the source (ViewModel) and the target (UI) in a XAML binding. 
+    /// <summary>
+    /// Lớp này triển khai giao diện IValueConverter, được sử dụng để chuyển đổi dữ liệu giữa nguồn (ViewModel) và đích (UI) trong một liên kết XAML.
+    /// </summary>
     public class DateTimeToStringConverter : IValueConverter
     {
-        // The Convert method is called when the data binding is evaluated. 
-        // It converts a DateTime value into a formatted string for display.
+        // Phương thức Convert được gọi khi đánh giá liên kết dữ liệu.
+        // Nó chuyển đổi giá trị DateTime thành chuỗi định dạng để hiển thị.
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            // Check if the value is of type DateTime
+            // Kiểm tra nếu giá trị là kiểu DateTime
             if (value is DateTime dateTime)
             {
-                // Convert the DateTime to a formatted string.
-                // The format used is "MM/dd/yyyy - dddd hh:mm tt", which represents:
-                // - MM/dd/yyyy for the date in month/day/year format
-                // - dddd for the full name of the day of the week
-                // - hh:mm tt for the time in 12-hour format with AM/PM
+                // Chuyển đổi DateTime thành chuỗi định dạng.
+                // Định dạng sử dụng là "MM/dd/yyyy - dddd hh:mm tt", đại diện cho:
+                // - MM/dd/yyyy cho ngày theo định dạng tháng/ngày/năm
+                // - dddd cho tên đầy đủ của ngày trong tuần
+                // - hh:mm tt cho thời gian theo định dạng 12 giờ với AM/PM
                 return dateTime.ToString("MM/dd/yyyy - dddd hh:mm tt", CultureInfo.InvariantCulture);
             }
-            return null; // If value is not a DateTime, return null
+            return null; // Nếu giá trị không phải là DateTime, trả về null
         }
 
-        // The ConvertBack method is not implemented because this converter is only intended 
-        // for one-way conversion (from DateTime to String). 
+        // Phương thức ConvertBack không được triển khai vì bộ chuyển đổi này chỉ dành cho
+        // chuyển đổi một chiều (từ DateTime sang String).
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            // This is not implemented because it’s not needed in this case.
-            // If bidirectional conversion was required (e.g., from String to DateTime), 
-            // you would implement this method.
+            // Điều này không được triển khai vì không cần thiết trong trường hợp này.
+            // Nếu cần chuyển đổi hai chiều (ví dụ: từ String sang DateTime),
+            // bạn sẽ triển khai phương thức này.
             throw new NotImplementedException();
         }
 
-        // This internal method seems unnecessary as it is not used in the converter implementation.
-        // It seems to be a placeholder for some other functionality that might not have been implemented yet.
+        // Phương thức nội bộ này có vẻ không cần thiết vì nó không được sử dụng trong triển khai bộ chuyển đổi.
+        // Nó dường như là một chỗ giữ chỗ cho một số chức năng khác có thể chưa được triển khai.
         internal string Convert(Func<string> toString)
         {
             throw new NotImplementedException();

@@ -12,9 +12,11 @@ using Windows.Storage.Pickers;
 using Windows.Storage;
 using Microsoft.UI.Xaml.Media.Animation;
 
-namespace Book_Store_Management
+namespace Books_Store_Management_App.ViewModels
 {
-    // ViewModel for managing Customer entities in the Book Store Management app
+    /// <summary>
+    /// Lớp ViewModel cho trang CustomerPage để hiển thị danh sách khách hàng.
+    ///
     public class CustomerViewModel : INotifyPropertyChanged
     {
         // Properties for search, pagination, and sorting

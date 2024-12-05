@@ -5,12 +5,12 @@ using WinRT.Interop;
 namespace Books_Store_Management_App.Helpers
 {
     /// <summary>
-    /// A helper class to provide utility methods related to Windows handling in WinUI applications.
+    /// Lớp giúp lấy handle của cửa sổ WinUI.
     /// </summary>
     public static class WindowHelper
     {
         /// <summary>
-        /// Retrieves the window handle (IntPtr) for the specified WinUI Window.
+        /// Hàm lấy handle của cửa sổ WinUI.
         /// </summary>
         /// <param name="window">The WinUI Window for which to get the handle.</param>
         /// <returns>The window handle as an IntPtr.</returns>

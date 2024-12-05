@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp đại diện cho một cuốn sách.
+    /// </summary>
     public class Book : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

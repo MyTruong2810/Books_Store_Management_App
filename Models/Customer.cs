@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp đại diện cho một khách hàng.
+    /// </summary>
     public partial class Customer : INotifyPropertyChanged
     {
         public int _index;

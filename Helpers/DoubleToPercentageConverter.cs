@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Helpers
 {
+    /// <summary>
+    /// Chuyển đổi số thực thành định dạng phần trăm.
+    /// </summary>
     public class DoubleToPercentageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

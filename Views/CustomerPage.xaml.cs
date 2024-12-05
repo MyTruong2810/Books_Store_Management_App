@@ -14,7 +14,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Book_Store_Management;
+using Books_Store_Management_App.ViewModels;
 using Books_Store_Management_App.Helpers;
 using Books_Store_Management_App.Models;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -27,7 +27,7 @@ using OxyPlot.Axes;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// Represents the Customer Management page where customer data can be managed.
+    /// Lớp xử lý các sự kiện của trang Customer.
     /// </summary>
     public sealed partial class CustomerPage : Page
     {

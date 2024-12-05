@@ -1,5 +1,4 @@
-﻿using Book_Store_Management;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,9 @@ using System.Collections.ObjectModel;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp DAO cho dữ liệu hồ sơ quản trị viên.
+    /// </summary>
     public class AdminProfileDao : IDaos<AdminProfileViewModel>
     {
         // Mock data source, simulating a database, API, or file storage

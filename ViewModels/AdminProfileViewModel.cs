@@ -9,7 +9,9 @@ using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.ViewModels
 {
-    // ViewModel for managing admin profile data
+    /// <summary>
+    /// Lớp ViewModel cho trang AdminProfile để hiển thị và quản lý thông tin cá nhân của Admin.
+    /// </summary>
     public class AdminProfileViewModel : INotifyPropertyChanged
     {
         // Private fields for profile properties

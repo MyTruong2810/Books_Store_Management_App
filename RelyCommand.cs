@@ -6,7 +6,7 @@ namespace Books_Store_Management_App
 {
 
     /// <summary>
-    /// Lớp giúp cho việc xử lý UI và code-behind tách biệt nhau, mọi xử lý điều chuyển qua cho VỉewModel đảm nhiệm
+    /// Lớp giúp cho việc xử lý UI và code-behind tách biệt nhau, mọi xử lý điều chuyển qua cho VỉewModel đảm nhiệm.
     /// </summary>
     public class RelayCommand : ICommand
     {

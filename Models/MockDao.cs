@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp MockDao chứa dữ liệu mẫu.
+    /// </summary>
     public class MockDao : IDao
     {
         public ObservableCollection<Book> GetAllBooks()

@@ -3,6 +3,9 @@
 
 namespace Books_Store_Management_App.Helpers
 {
+    /// <summary>
+    /// Lớp giúp mở kết nối đến database PostgreSQL.
+    /// </summary>
     public class DatabaseHelper
     {
         private string _connectionString = "Host=localhost;Username=yourusername;Password=yourpassword;Database=yourdatabase";

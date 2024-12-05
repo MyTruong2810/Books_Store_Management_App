@@ -16,6 +16,9 @@ using System.Data;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp thực thi các phương thức truy cập cơ sở dữ liệu PostgreSQL.
+    /// </summary>
     public class PsqlDao : IDao
     {
         private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=28102004;Database=mybookstore";

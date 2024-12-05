@@ -14,7 +14,9 @@ using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.ViewModels
 {
-    // ViewModel for managing ClassificationClass entities in the app.
+    /// <summary>
+    /// Lớp ViewModel cho trang ClassificationClass để hiển thị danh sách ClassificationClass.
+    /// </summary>
     public class ClassificationClassViewModel : INotifyPropertyChanged
     {
         // Properties for search, pagination, and sorting

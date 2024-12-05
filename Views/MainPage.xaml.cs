@@ -15,7 +15,7 @@ namespace Books_Store_Management_App.Views
             this.InitializeComponent();
         }
         /// <summary>
-        /// Hàm chuyển trang khi chọn mục trong NavigationView
+        /// Hàm chuyển trang khi chọn mục trong NavigationView.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
