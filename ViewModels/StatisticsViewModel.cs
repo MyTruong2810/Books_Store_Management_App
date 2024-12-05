@@ -7,6 +7,9 @@ using System.Linq;
 using System.Windows.Input;
 using System.Collections.Generic;
 using Npgsql;
+using Catel.Data;
+using Books_Store_Management_App.Models;
+using Windows.Devices.Geolocation;
 
 namespace Books_Store_Management_App.ViewModels
 {
@@ -17,11 +20,14 @@ namespace Books_Store_Management_App.ViewModels
         public Axis[] XAxes { get; set; }
         public Axis[] YAxes { get; set; }
 
+        // Command properties for setting charts
         public ICommand SetDailyChartCommand { get; }
         public ICommand SetMonthlyChartCommand { get; }
         public ICommand SetYearlyChartCommand { get; }
 
-        private readonly List<RevenueData> _dailyRevenue;
+        // Private fields
+        private readonly OrderPageViewModel _orderPageViewModel;
+        private List<RevenueData> _dailyRevenue; // Daily revenue data
 
         // Stock alert properties
         public ObservableCollection<StockItem> StockItems { get; set; }
@@ -29,51 +35,75 @@ namespace Books_Store_Management_App.ViewModels
         public ICommand OpenStockAlertCommand { get; }
         public ICommand CloseStockAlertCommand { get; }
 
-        public StatisticsViewModel()
+        // Constructor to initialize commands and load initial data
+        public StatisticsViewModel(OrderPageViewModel orderPageViewModel)
         {
-            // Chart data
-            _dailyRevenue = new List<RevenueData>
-            {
-                new RevenueData { Date = new DateTime(2024, 11, 20), TotalRevenue = 1000 },
-                new RevenueData { Date = new DateTime(2024, 11, 21), TotalRevenue = 2000 },
-                new RevenueData { Date = new DateTime(2024, 11, 22), TotalRevenue = 1500 },
-                new RevenueData { Date = new DateTime(2024, 12, 01), TotalRevenue = 2500 },
-                new RevenueData { Date = new DateTime(2024, 12, 02), TotalRevenue = 3000 }
-            };
+            _orderPageViewModel = orderPageViewModel;
 
-            // Commands for chart
+            // Calculate daily revenue based on order data
+            _dailyRevenue = CalculateDailyRevenue();
+
+            // Initialize commands for chart changes
             SetDailyChartCommand = new Command(SetDailyChart);
             SetMonthlyChartCommand = new Command(SetMonthlyChart);
             SetYearlyChartCommand = new Command(SetYearlyChart);
-            SetDailyChart(); // Default mode
+            SetDailyChart(); // Default chart set to daily
 
-            // Stock alert data
+            // Initialize stock alert data and visibility
             StockItems = new ObservableCollection<StockItem>();
             IsStockAlertVisible = false;
 
+            // Commands to open and close stock alerts
             OpenStockAlertCommand = new RelayCommand(OpenStockAlert);
             CloseStockAlertCommand = new RelayCommand(CloseStockAlert);
-
         }
 
-        // Chart methods
+        #region Revenue Calculation Methods
+
+        // Method to calculate daily revenue from orders
+        private List<RevenueData> CalculateDailyRevenue()
+        {
+            return _orderPageViewModel.Orders
+                .GroupBy(order => DateTime.Parse(order.Date).Date) // Group by date
+                .Select(group => new RevenueData
+                {
+                    Date = group.Key, // Store the date
+                    TotalRevenue = group.Sum(order => order.Price) // Total revenue for the day
+                })
+                .ToList();
+        }
+
+        // Method to refresh the daily revenue data and update the chart
+        public void RefreshDailyRevenue()
+        {
+            _dailyRevenue = CalculateDailyRevenue(); // Recalculate daily revenue
+            SetDailyChart(); // Update the daily chart with new data
+        }
+
+        #endregion
+
+        #region Chart Methods
+
+        // Method to set the daily revenue chart
         private void SetDailyChart()
         {
+            // Define line chart for daily revenue
             LineChartSeries = new ObservableCollection<ISeries>
             {
                 new LineSeries<double>
                 {
-                    Name = "Doanh thu theo ngày",
-                    Values = _dailyRevenue.Select(d => (double)d.TotalRevenue).ToArray()
+                    Name = "Doanh thu theo ngày", // Chart title
+                    Values = _dailyRevenue.Select(d => (double)d.TotalRevenue).ToArray() // Revenue data
                 }
             };
 
+            // Set the X and Y axes labels
             XAxes = new[]
             {
                 new Axis
                 {
-                    Name = "Ngày",
-                    Labels = _dailyRevenue.Select(d => d.Date.ToShortDateString()).ToArray()
+                    Name = "Ngày", // X-axis label (Date)
+                    Labels = _dailyRevenue.Select(d => d.Date.ToShortDateString()).ToArray() // Labels for each day
                 }
             };
 
@@ -81,119 +111,124 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
-                    Name = "Doanh thu (VNĐ)"
+                    Name = "Doanh thu (VNĐ)" // Y-axis label (Revenue in VND)
                 }
             };
 
+            // Notify the view to update the chart
             RaisePropertyChanged(nameof(LineChartSeries));
             RaisePropertyChanged(nameof(XAxes));
             RaisePropertyChanged(nameof(YAxes));
         }
 
+        // Method to set the monthly revenue chart
         private void SetMonthlyChart()
         {
             var monthlyRevenue = _dailyRevenue
-                .GroupBy(d => new { d.Date.Year, d.Date.Month })
-                .Select(g => new { Month = $"{g.Key.Month}/{g.Key.Year}", Total = g.Sum(d => d.TotalRevenue) })
+                .GroupBy(d => new { d.Date.Year, d.Date.Month }) // Group by year and month
+                .Select(g => new { Month = $"{g.Key.Month}/{g.Key.Year}", Total = g.Sum(d => d.TotalRevenue) }) // Sum revenue per month
                 .ToList();
 
+            // Define line chart for monthly revenue
             LineChartSeries = new ObservableCollection<ISeries>
             {
                 new LineSeries<double>
                 {
-                    Name = "Doanh thu theo tháng",
-                    Values = monthlyRevenue.Select(m => (double)m.Total).ToArray()
+                    Name = "Doanh thu theo tháng", // Chart title
+                    Values = monthlyRevenue.Select(m => (double)m.Total).ToArray() // Revenue data
                 }
             };
 
+            // Set the X and Y axes labels for monthly chart
             XAxes = new[]
             {
                 new Axis
                 {
-                    Name = "Tháng",
-                    Labels = monthlyRevenue.Select(m => m.Month).ToArray()
+                    Name = "Tháng", // X-axis label (Month)
+                    Labels = monthlyRevenue.Select(m => m.Month).ToArray() // Labels for each month
                 }
             };
 
+            // Notify the view to update the chart
             RaisePropertyChanged(nameof(LineChartSeries));
             RaisePropertyChanged(nameof(XAxes));
         }
 
+        // Method to set the yearly revenue chart
         private void SetYearlyChart()
         {
             var yearlyRevenue = _dailyRevenue
-                .GroupBy(d => d.Date.Year)
-                .Select(g => new { Year = g.Key, Total = g.Sum(d => d.TotalRevenue) })
+                .GroupBy(d => d.Date.Year) // Group by year
+                .Select(g => new { Year = g.Key, Total = g.Sum(d => d.TotalRevenue) }) // Sum revenue per year
                 .ToList();
 
+            // Define line chart for yearly revenue
             LineChartSeries = new ObservableCollection<ISeries>
             {
                 new LineSeries<double>
                 {
-                    Name = "Doanh thu theo năm",
-                    Values = yearlyRevenue.Select(y => (double)y.Total).ToArray()
+                    Name = "Doanh thu theo năm", // Chart title
+                    Values = yearlyRevenue.Select(y => (double)y.Total).ToArray() // Revenue data
                 }
             };
 
+            // Set the X and Y axes labels for yearly chart
             XAxes = new[]
             {
                 new Axis
                 {
-                    Name = "Năm",
-                    Labels = yearlyRevenue.Select(y => y.Year.ToString()).ToArray()
+                    Name = "Năm", // X-axis label (Year)
+                    Labels = yearlyRevenue.Select(y => y.Year.ToString()).ToArray() // Labels for each year
                 }
             };
 
+            // Notify the view to update the chart
             RaisePropertyChanged(nameof(LineChartSeries));
             RaisePropertyChanged(nameof(XAxes));
         }
 
-        // Stock alert methods
+        #endregion
+
+        #region Stock Alert Methods
+
+        // Method to open the stock alert and load stock data
         private void OpenStockAlert()
         {
-            LoadStockData();
-            IsStockAlertVisible = true;
+            LoadStockData(); // Load data for stock items
+            IsStockAlertVisible = true; // Show the stock alert
         }
 
+        // Method to close the stock alert
         private void CloseStockAlert()
         {
-            IsStockAlertVisible = false;
+            IsStockAlertVisible = false; // Hide the stock alert
         }
 
+        // Method to load stock data from the database
         private void LoadStockData()
         {
-            StockItems.Clear();
+            StockItems.Clear(); // Clear any existing stock data
 
             string connectionString = "Host=localhost;Username=postgres;Password=28102004;Database=mybookstore";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT title, quantity FROM public.\"book\" WHERE quantity < 20";
+                string query = "SELECT title, quantity FROM public.\"book\" WHERE quantity < 20"; // Query to find low stock items
                 using (var cmd = new NpgsqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while (reader.Read()) // Read each stock item
                     {
                         StockItems.Add(new StockItem
                         {
-                            ProductName = reader.GetString(0),
-                            RemainingQuantity = $"{reader.GetInt32(1)} Packet"
+                            ProductName = reader.GetString(0), // Product name
+                            RemainingQuantity = $"{reader.GetInt32(1)} Packet" // Remaining quantity
                         });
                     }
                 }
             }
         }
-    }
 
-    public class StockItem
-    {
-        public string ProductName { get; set; }
-        public string RemainingQuantity { get; set; }
-    }
-
-    public class RevenueData
-    {
-        public DateTime Date { get; set; }
-        public decimal TotalRevenue { get; set; }
+        #endregion
     }
 }

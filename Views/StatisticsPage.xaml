@@ -10,7 +10,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
+    <!-- Resources for converters -->
     <Page.Resources>
         <local1:StringToISBNConverter x:Key="conveter" />
         <local1:DateTimeToStringConverter x:Key="datetimeConverter" />
@@ -22,23 +23,24 @@
         <!-- Biểu đồ -->
         <lvc:CartesianChart Series="{Binding LineChartSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" />
 
-        <!-- Nút chuyển chế độ -->
+        <!-- Buttons for changing chart view mode (Daily, Monthly, Yearly) -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
             <Button Content="Daily" Command="{Binding SetDailyChartCommand}" Margin="5" />
             <Button Content="Monthly" Command="{Binding SetMonthlyChartCommand}" Margin="5" />
             <Button Content="Yearly" Command="{Binding SetYearlyChartCommand}" Margin="5" />
         </StackPanel>
 
-        <!-- Nút Stock Alert -->
-        <Button Content="Stock Alert"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Margin="10"
-                Width="100"
-                Height="40"
-                Command="{Binding OpenStockAlertCommand}" />
+        <!-- Button to open Stock Alert Modal -->
+        <Button 
+            Content="Stock Alert"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="10"
+            Width="100"
+            Height="40"
+            Command="{Binding OpenStockAlertCommand}" />
 
-        <!-- Modal Stock Alert -->
+        <!-- Modal for Stock Alerts, shown when IsStockAlertVisible is true -->
         <Border Name="StockAlertModal"
                 Background="White"
                 BorderBrush="Gray"
@@ -51,17 +53,24 @@
                 Width="450">
             <StackPanel>
                 <TextBlock Text="Stock Alerts" FontSize="20" FontWeight="Bold" Foreground="Black" Margin="0,0,0,10"/>
+
+                <!-- List of stock items with low quantity -->
                 <ItemsControl ItemsSource="{Binding StockItems}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <!-- Display product name and remaining quantity -->
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold" Foreground="Black" Width="200"/>
-                                <TextBlock Text="{Binding RemainingQuantity}" Foreground="Black" Width="100"/>
-                                <Button Content="Reorder" Background="Red" Foreground="White" Width="80"/>
+                                <!-- Editable quantity input -->
+                                <TextBox Text="{Binding RemainingQuantity, Mode=TwoWay}" Foreground="Black" Width="100" HorizontalAlignment="Center"/>
+                                <!-- Button for reordering items -->
+                                <Button Content="Reorder" Background="Red" Foreground="White" Width="80" Command="{Binding ReorderCommand}" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <!-- Button to close the Stock Alert modal -->
                 <Button Content="Close"
                         HorizontalAlignment="Center"
                         Margin="10"
