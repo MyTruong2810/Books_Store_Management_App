@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace Books_Store_Management_App.ViewModels
 {
     /// <summary>
-    /// Địa chỉ của một đơn vị
-    /// Hiện tại dùng để giả lập địa chỉ của người bán và người mua
+    /// Địa chỉ của một đơn vị,
+    /// hiện tại dùng để giả lập địa chỉ của người bán và người mua.
     /// </summary>
     public class Address
     {
@@ -22,8 +22,8 @@ namespace Books_Store_Management_App.ViewModels
 
     /// <summary>
     /// ViewModel cho trang InvoicePage
-    /// Dùng để lưu trữ thông tin của một hóa đơn
-    /// Và xứ lý các logic liên quan đến hóa đơn
+    /// dùng để lưu trữ thông tin của một hóa đơn
+    /// và xứ lý các logic liên quan đến hóa đơn.
     /// </summary>
     public class InvoiceViewModel
     {

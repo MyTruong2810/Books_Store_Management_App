@@ -4,6 +4,9 @@ using System.Globalization;
 
 namespace Books_Store_Management_App.Helpers
 {
+    /// <summary>
+    /// Lớp chuyển đổi giữa kiểu dữ liệu double thành chuỗi định dạng tiền tệ USD.
+    /// </summary>
     public class DoubleToUsdCurrencyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

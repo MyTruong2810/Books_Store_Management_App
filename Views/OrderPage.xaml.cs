@@ -30,7 +30,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// Lớp hiển thị danh sách Order
+    /// Lớp hiển thị danh sách Order.
     /// </summary>
     public sealed partial class OrderPage : Page
     { 
@@ -46,7 +46,7 @@ namespace Books_Store_Management_App.Views
         public OrderPageViewModel ViewModel { get; set; }
 
         /// <summary>
-        /// Hàm khởi tạo, gọi vỉewmodel và khởi tạo dữ liệu, định dạng trang
+        /// Hàm khởi tạo, gọi vỉewmodel và khởi tạo dữ liệu, định dạng trang.
         /// </summary>
         public OrderPage()
         {
@@ -62,7 +62,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Chuyển trang theo các tính năng được chọn
+        /// Chuyển trang theo các tính năng được chọn.
         /// </summary>
         /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -82,7 +82,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Cập nhật lại các danh sách thông tin order theo yêu cầu định dạng trang được chọn
+        /// Cập nhật lại các danh sách thông tin order theo yêu cầu định dạng trang được chọn.
         /// </summary>
         private void UpdateDisplayedOrders()
         {
@@ -105,7 +105,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Trang listview kế tiếp được chọn
+        /// Trang listview kế tiếp được chọn.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -119,7 +119,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Quay lại trang listview trước đó
+        /// Quay lại trang listview trước đó.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -133,7 +133,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Thêm order mới 
+        /// Thêm order mới.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -149,7 +149,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xoá order ra khỏi trang
+        /// Xoá order ra khỏi trang.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -197,7 +197,7 @@ namespace Books_Store_Management_App.Views
             }
         }
         /// <summary>
-        /// Chỉnh sửa thông tin order
+        /// Chỉnh sửa thông tin order.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -208,7 +208,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Thực hiện lấy trường và yêu cầu sắp xếp tăng hay giảm dần
+        /// Thực hiện lấy trường và yêu cầu sắp xếp tăng hay giảm dần.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -226,7 +226,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sắp xếp tăng hoặc giảm dần, xử lý trên nguyên tắc update lại danh sách order
+        /// Xử lý sắp xếp tăng hoặc giảm dần, xử lý trên nguyên tắc update lại danh sách order.
         /// </summary>
         /// <param name="property"></param>
         /// <param name="order"></param>
@@ -266,7 +266,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Chọn số lượng order hiển thị trên mỗi trang
+        /// Chọn số lượng order hiển thị trên mỗi trang.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -285,7 +285,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// AutotextSearch, xử lý search theo tên khách hàng
+        /// AutotextSearch, xử lý search theo tên khách hàng.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -311,7 +311,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Hiện thị thông tin chi tiết order khi chọn vào danh sách hiển thị
+        /// Hiện thị thông tin chi tiết order khi chọn vào danh sách hiển thị.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

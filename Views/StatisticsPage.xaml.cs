@@ -9,8 +9,9 @@ using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.Views
 {
-    // This is the code-behind for the StatisticsPage.
-    // It initializes the page and sets up the DataContext for binding.
+    /// <summary>
+    /// Lớp chứa các thành phần của trang Thống kê.
+    /// </summary>
     public sealed partial class StatisticsPage : Page
     {
         // Constructor for StatisticsPage.

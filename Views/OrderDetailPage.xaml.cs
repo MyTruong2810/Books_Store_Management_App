@@ -57,9 +57,9 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiên khi trang được chuyển đến (từ trang Order)
-        /// Nếu có dữ liệu chuyển đến là 1 đơn hàng thì lấy thông tin đơn hàng đó là hiển thị lên trang
-        /// Nếu không có dữ liệu chuyển đến thì hiển thị trang để tạo mới đơn hàng
+        /// Xử lý sự kiên khi trang được chuyển đến (từ trang Order).
+        /// Nếu có dữ liệu chuyển đến là 1 đơn hàng thì lấy thông tin đơn hàng đó là hiển thị lên trang.
+        /// Nếu không có dữ liệu chuyển đến thì hiển thị trang để tạo mới đơn hàng.
         /// </summary>
         /// <param name="e"></param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -124,7 +124,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi thêm sách từ combobox vào danh sách sách đã chọn
+        /// Xử lý sự kiện khi thêm sách từ combobox vào danh sách sách đã chọn.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -138,7 +138,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút xóa sách khỏi danh sách sách đã chọn
+        /// Xử lý sự kiện khi nhấn nút xóa sách khỏi danh sách sách đã chọn.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -158,7 +158,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi thêm coupon từ combobox vào danh sách coupon đã chọn
+        /// Xử lý sự kiện khi thêm coupon từ combobox vào danh sách coupon đã chọn.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -187,10 +187,10 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút tạo đơn hàng
-        /// Validate thông tin đơn hàng
-        /// Nếu thông tin không hợp lệ thì hiển thị thông báo lỗi
-        /// Nếu thông tin hợp lệ thì tạo đơn hàng mới
+        /// Xử lý sự kiện khi nhấn nút tạo đơn hàng.
+        /// Validate thông tin đơn hàng.
+        /// Nếu thông tin không hợp lệ thì hiển thị thông báo lỗi.
+        /// Nếu thông tin hợp lệ thì tạo đơn hàng mới.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -259,8 +259,8 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Hiển thị dialog thông báo thanh toán thành công
-        /// Nếu người dùng chọn "Yes", chuyển đến trang xuất hóa đơn
+        /// Hiển thị dialog thông báo thanh toán thành công.
+        /// Nếu người dùng chọn "Yes", chuyển đến trang xuất hóa đơn.
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
@@ -292,7 +292,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi chọn ngày mua
+        /// Xử lý sự kiện khi chọn ngày mua.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -307,7 +307,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi chọn giờ mua
+        /// Xử lý sự kiện khi chọn giờ mua.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -318,7 +318,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        ///  Xử lý sự kiện khi nhấn nút quay lại trang Order
+        ///  Xử lý sự kiện khi nhấn nút quay lại trang Order.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -328,7 +328,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút cập nhật thông tin đơn hàng
+        /// Xử lý sự kiện khi nhấn nút cập nhật thông tin đơn hàng.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -373,7 +373,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi chọn phương thức thanh toán
+        /// Xử lý sự kiện khi chọn phương thức thanh toán.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -383,7 +383,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Giả lập thanh toán
+        /// Giả lập thanh toán.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -395,7 +395,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút xuất hóa đơn
+        /// Xử lý sự kiện khi nhấn nút xuất hóa đơn.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -459,10 +459,10 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi checkbox "IsMember" không được chọn
-        /// Ẩn nhóm hiển thị số điện thoại khách hàng
-        /// Kích hoạt trường nhập tên khách hàng
-        /// Ẩn hiển thị số đơn hàng của khách hàng
+        /// Xử lý sự kiện khi checkbox "IsMember" không được chọn.
+        /// Ẩn nhóm hiển thị số điện thoại khách hàng.
+        /// Kích hoạt trường nhập tên khách hàng.
+        /// Ẩn hiển thị số đơn hàng của khách hàng.
         /// </summary>
         /// <param name="sender">Đối tượng gửi sự kiện</param>
         /// <param name="e">Đối tượng chứa thông tin sự kiện</param>

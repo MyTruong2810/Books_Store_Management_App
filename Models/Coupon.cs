@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp đại diện cho một mã giảm giá.
+    /// </summary>
     public class Coupon : INotifyPropertyChanged
     {
         public int Id { get; set; }

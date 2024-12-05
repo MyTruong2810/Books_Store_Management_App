@@ -21,7 +21,7 @@ using Windows.Foundation.Collections;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// Represents the Classification Management page where classification classes can be managed.
+    ///Lớp xử lý các sự kiện của trang Classification.
     /// </summary>
     public sealed partial class ClassificationPage : Page
     {

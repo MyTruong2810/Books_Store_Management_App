@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp đại diện cho thể loại sách 1.
+    /// </summary>
     public class ClassificationClass : INotifyPropertyChanged
     {
         public int _index;

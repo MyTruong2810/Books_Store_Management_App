@@ -21,7 +21,7 @@ using Books_Store_Management_App.ViewModels;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// Represents the Admin page that displays and manages the admin profile.
+    /// Lớp xử lý các sự kiện của trang Admin.
     /// </summary>
     public sealed partial class AdminPage : Page
     {

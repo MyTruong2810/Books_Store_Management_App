@@ -30,7 +30,7 @@ using Books_Store_Management_App.Models;
 namespace Books_Store_Management_App.Views
 {
     /// <summary>
-    /// Lớp StockPage hiển thị danh sách sách trong kho
+    /// Lớp StockPage hiển thị danh sách sách trong kho.
     /// </summary>
     public sealed partial class StockPage : Page
     {
@@ -45,7 +45,7 @@ namespace Books_Store_Management_App.Views
         public StockPageViewModel ViewModel { get; set; }
 
         /// <summary>
-        /// Khởi tạo trang StockPage, gọi ViewModel và danh sách sách
+        /// Khởi tạo trang StockPage, gọi ViewModel và danh sách sách.
         /// </summary>
         public StockPage()
         {
@@ -64,7 +64,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
+        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -120,7 +120,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Dùng để thay đổi lại vị trí và chiều cao của popup khi thay đổi kích thước cửa sổ
+        /// Dùng để thay đổi lại vị trí và chiều cao của popup khi thay đổi kích thước cửa sổ.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -150,7 +150,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Hiện thị trang tiếp theo của listview
+        /// Hiện thị trang tiếp theo của listview.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -164,7 +164,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Hiện thị trang trước của listview
+        /// Hiện thị trang trước của listview.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -178,7 +178,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Thêm sách mới vào trong kho hoặc danh sách
+        /// Thêm sách mới vào trong kho hoặc danh sách.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -194,7 +194,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xóa sách khỏi kho hoặc danh sách
+        /// Xóa sách khỏi kho hoặc danh sách.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -244,7 +244,7 @@ namespace Books_Store_Management_App.Views
 
 
         /// <summary>
-        /// Chỉnh sửa thông tin sách
+        /// Chỉnh sửa thông tin sách.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -266,7 +266,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Lấy thông tin trường yêu cầu sắp xếp và tyêu cầu sắp xếp theo tăng hay giảm dần
+        /// Lấy thông tin trường yêu cầu sắp xếp và tyêu cầu sắp xếp theo tăng hay giảm dần.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -284,7 +284,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Thực hiện sắp xếp sách theo trường yêu cầu
+        /// Thực hiện sắp xếp sách theo trường yêu cầu.
         /// </summary>
         /// <param name="property"></param>
         /// <param name="order"></param>
@@ -324,7 +324,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Chọn số lượng sách hiển thị trên mỗi trang
+        /// Chọn số lượng sách hiển thị trên mỗi trang.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -343,7 +343,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// AutoTextSearch cho ô tìm kiếm sách
+        /// AutoTextSearch cho ô tìm kiếm sách.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -398,7 +398,7 @@ namespace Books_Store_Management_App.Views
         }
     }
     /// <summary>
-    /// Lớp giúp hiển thị màu sách bảng xen kẽ màu, ứng dụng tính chẵn lẽ của index
+    /// Lớp giúp hiển thị màu sách bảng xen kẽ màu, ứng dụng tính chẵn lẽ của index.
     /// </summary>
     public class AlternationIndexToBackgroundConverter : IValueConverter
     {

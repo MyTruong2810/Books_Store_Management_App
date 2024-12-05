@@ -13,6 +13,10 @@ using Windows.Devices.Geolocation;
 
 namespace Books_Store_Management_App.ViewModels
 {
+
+    /// <summary>
+    /// Lớp ViewModel cho trang Statistics để hiển thị biểu đồ doanh thu và cảnh báo hàng tồn kho.
+    /// </summary>
     public class StatisticsViewModel : ViewModelBase
     {
         // Chart properties

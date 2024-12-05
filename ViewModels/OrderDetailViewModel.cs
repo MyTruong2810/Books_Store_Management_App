@@ -17,8 +17,8 @@ namespace Books_Store_Management_App.ViewModels
 {
     /// <summary>
     /// View model cho trang chi tiết đơn hàng
-    /// Dùng để lưu trữ thông tin của một đơn hàng
-    /// Và xử lý các logic liên quan đến đơn hàng
+    /// dùng để lưu trữ thông tin của một đơn hàng.
+    /// Và xử lý các logic liên quan đến đơn hàng.
     /// </summary>
     public class OrderDetailViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
@@ -63,8 +63,8 @@ namespace Books_Store_Management_App.ViewModels
         public bool HasMemberDiscount { get; set; } = false;
 
         /// <summary>
-        /// Xử lý sự kiện khi danh sách SelectedCoupons thay đổi
-        /// Thông báo thay đổi lại cho ActualTotal và HasCoupon
+        /// Xử lý sự kiện khi danh sách SelectedCoupons thay đổi.
+        /// Thông báo thay đổi lại cho ActualTotal và HasCoupon.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -205,7 +205,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút chuyển đổi giữa QR Code và ListView
+        /// Xử lý sự kiện khi nhấn nút chuyển đổi giữa QR Code và ListView.
         /// </summary>
         /// <param name="obj"></param>
         private void ChangeToQRCode(object obj)
@@ -218,8 +218,8 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi chọn thời gian
-        /// Thêm thời gian vào ngày mua
+        /// Xử lý sự kiện khi chọn thời gian.
+        /// Thêm thời gian vào ngày mua.
         /// </summary>
         /// <param name="parameter"></param>
         private void HandleTimeSelected(object parameter)
@@ -233,8 +233,8 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi chọn ngày
-        /// Thêm ngày vào ngày mua
+        /// Xử lý sự kiện khi chọn ngày.
+        /// Thêm ngày vào ngày mua.
         /// </summary>
         /// <param name="parameter"></param>
         private void HandleDateSelected(object parameter)
@@ -268,8 +268,8 @@ namespace Books_Store_Management_App.ViewModels
         //
 
         /// <summary>
-        /// Xử lý sự kiện khi thuộc tính của OrderItem thay đổi
-        /// Cụ thể là Quantity và SubTotal
+        /// Xử lý sự kiện khi thuộc tính của OrderItem thay đổi,
+        /// cụ thể là Quantity và SubTotal.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -284,7 +284,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Load dữ liệu sách từ cơ sở dữ liệu
+        /// Load dữ liệu sách từ cơ sở dữ liệu.
         /// </summary>
         private void LoadBooks()
         {
@@ -294,9 +294,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Load dữ liệu mã giảm giá
-        /// Hiện tại dùng dữ liệu cứng
-        /// Có thể thay thế bằng việc load từ cơ sở dữ liệu
+        /// Load dữ liệu mã giảm giá.
         /// </summary>
         private void LoadCoupon()
         {
@@ -306,7 +304,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Thêm mã giảm được chọn vào danh sách SelectedCoupons
+        /// Thêm mã giảm được chọn vào danh sách SelectedCoupons.
         /// </summary>
         /// <param name="coupons"></param>
         public void AddSelectedCoupons(FullObservableCollection<Coupon> coupons)
@@ -324,7 +322,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Thêm sách được chọn vào danh sách SelectedBooks
+        /// Thêm sách được chọn vào danh sách SelectedBooks.
         /// </summary>
         /// <param name="orderItems"></param>
         public void AddSelectedBooks(List<OrderItem> orderItems)
@@ -343,7 +341,7 @@ namespace Books_Store_Management_App.ViewModels
 
         /// <summary>
         /// Xử lý sự kiện khi sách được chọn hoặc bỏ chọn
-        /// Từ ComboBox chọn sách
+        /// từ ComboBox chọn sách.
         /// </summary>
         /// <param name="parameter"></param>
         private void OnBookSelectionChanged(object parameter)
@@ -388,7 +386,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi sách được xóa khỏi danh sách SelectedBooks
+        /// Xử lý sự kiện khi sách được xóa khỏi danh sách SelectedBooks.
         /// </summary>
         /// <param name="obj"></param>
         private void OnBookSelectionDelete(object obj)
@@ -401,7 +399,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Triển khai INotifyPropertyChanged
+        /// Triển khai INotifyPropertyChanged.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -411,8 +409,8 @@ namespace Books_Store_Management_App.ViewModels
         // Kết thúc triển khai INotifyPropertyChanged
 
         /// <summary>
-        /// Triển khai INotifyDataErrorInfo
-        /// Sẽ tách phần này ra một class khác để quản lý lỗi
+        /// Triển khai INotifyDataErrorInfo,
+        /// sẽ tách phần này ra một class khác để quản lý lỗi.
         /// </summary>
         public void ValidateAll()
         {

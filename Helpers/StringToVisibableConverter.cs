@@ -4,9 +4,9 @@ using System;
 
 namespace Books_Store_Management_App.Helpers
 {
-    // A converter that converts a string to a Visibility value.
-    // If the string is null or empty, it returns Visibility.Collapsed.
-    // Otherwise, it returns Visibility.Visible.
+    /// <summary>
+    /// Lớp chuyển đổi giữa kiểu dữ liệu string và kiểu dữ liệu Visibility.
+    /// </summary>
     public class StringToVisibableConverter : IValueConverter
     {
         // Converts a string to a Visibility value.

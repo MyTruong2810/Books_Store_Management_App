@@ -10,7 +10,7 @@ namespace Books_Store_Management_App.ViewModels
 {
     /// <summary>
     /// Lớp ViewModel cho trang StockPage để hiển thị danh sách sách trong kho, nhưng chưa thực hiện logic theo mô hình
-    /// MVVM hoàn chỉnh
+    /// MVVM hoàn chỉnh.
     /// </summary>
     public class StockPageViewModel
     {

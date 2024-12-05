@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp interface cho các đối tượng DAO.
+    /// </summary>
     public interface IDao
     {
         ObservableCollection<Book> GetAllBooks();

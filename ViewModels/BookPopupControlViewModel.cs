@@ -12,7 +12,7 @@ namespace Books_Store_Management_App.ViewModels
 {
     /// <summary>
     /// View model cho BookPopupControl
-    /// Dùng để xử lý dữ liệu và validate dữ liệu nhập vào
+    /// dùng để xử lý dữ liệu và validate dữ liệu nhập vào.
     /// </summary>
     public class BookPopupControlViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
@@ -211,7 +211,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Set dữ liệu cho các trường nhập liệu
+        /// Set dữ liệu cho các trường nhập liệu.
         /// </summary>
         /// <param name="book"></param>
         public void SetData(Book book)
@@ -231,7 +231,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Xóa dữ liệu của các trường nhập liệu
+        /// Xóa dữ liệu của các trường nhập liệu.
         /// </summary>
         public void ClearData()
         {
@@ -250,7 +250,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Xóa thông báo lỗi
+        /// Xóa thông báo lỗi.
         /// </summary>
         public void ClearErrorMessage()
         {
@@ -265,7 +265,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         /// <summary>
-        /// Đưa dữ liệu từ các trường nhập liệu vào Book
+        /// Đưa dữ liệu từ các trường nhập liệu vào Book.
         /// </summary>
         public void MergeToBook()
         {

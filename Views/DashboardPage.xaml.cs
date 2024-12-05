@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -22,6 +22,9 @@ using System.Diagnostics.Eventing.Reader;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp xử lý các sự kiện của trang Dashboard.
+    /// </summary>
     public sealed partial class DashboardPage : Page
     {
         public DashboardViewModel ViewModel { get; set; }

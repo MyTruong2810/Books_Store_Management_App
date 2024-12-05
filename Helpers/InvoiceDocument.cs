@@ -10,6 +10,9 @@ using QuestPDF.Fluent;
 
 namespace Books_Store_Management_App.Helpers
 {
+    /// <summary>
+    /// Lớp tạo hóa đơn.
+    /// </summary>
     public class InvoiceDocument : IDocument
     {
         public static Image LogoImage { get; } = Image.FromFile($"{AppDomain.CurrentDomain.BaseDirectory}Assets\\logo.png");

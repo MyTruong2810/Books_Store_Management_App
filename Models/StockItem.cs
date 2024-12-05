@@ -9,7 +9,9 @@ namespace Books_Store_Management_App.Models
 {
     public class StockItem : ModelBase
     {
-        // Properties for product name and remaining quantity
+        /// <summary>
+        /// Lớp StockItem chứa thông tin của một mặt hàng trong kho.
+        /// </summary>
         public string ProductName { get; set; }
 
         private string _remainingQuantity;

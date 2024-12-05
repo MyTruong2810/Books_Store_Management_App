@@ -7,7 +7,7 @@ using Microsoft.UI.Xaml.Data;
 namespace Books_Store_Management_App.Helpers
 {
     /// <summary>
-    /// Lớp convert dữ liệu sang chuỗi theo định dạng
+    /// Lớp convert dữ liệu sang chuỗi theo định dạng.
     /// </summary>
     public class StringFormatConverter : IValueConverter
     {

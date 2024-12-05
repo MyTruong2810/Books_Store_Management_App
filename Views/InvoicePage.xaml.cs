@@ -40,7 +40,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua
+        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua.
         /// </summary>
         /// <param name="e"></param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -68,7 +68,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút Print Invoice
+        /// Xử lý sự kiện khi nhấn nút Print Invoice.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,7 +103,7 @@ namespace Books_Store_Management_App.Views
         }
 
         /// <summary>
-        /// Xử lý sự kiện khi nhấn nút Back để quay lại trang Order Detail
+        /// Xử lý sự kiện khi nhấn nút Back để quay lại trang Order Detail.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

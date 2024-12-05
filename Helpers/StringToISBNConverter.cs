@@ -9,14 +9,14 @@ using System.Text.RegularExpressions;
 namespace Books_Store_Management_App.Helpers
 {
     /// <summary>
-    /// Lớp chuyển dữ liệu 13 chữ số thành định dạng ISBN-13
+    /// Lớp chuyển dữ liệu 13 chữ số thành định dạng ISBN-13.
     /// </summary>
     internal class StringToISBNConverter : IValueConverter
     {
         private static readonly Regex ISBN13Regex = new Regex(@"^\d{13}$", RegexOptions.Compiled);
 
         /// <summary>
-        /// Chuyển dữ liệu từ chuỗi 13 chữ số sang định dạng ISBN-13
+        /// Chuyển dữ liệu từ chuỗi 13 chữ số sang định dạng ISBN-13.
         /// </summary>
         /// <param name="value">Chuỗi cần định dạng</param>
         /// <param name="targetType">Định dạng cần đổi</param>
@@ -38,7 +38,7 @@ namespace Books_Store_Management_App.Helpers
             return $"{isbn13.Substring(0, 3)}-{isbn13.Substring(3, 3)}-{isbn13.Substring(6, 2)}-{isbn13.Substring(8, 4)}-{isbn13.Substring(12, 1)}";
         }
         /// <summary>
-        /// Hàm chuyển ngược lại định dạng ban đầu, chưa sử dụng
+        /// Hàm chuyển ngược lại định dạng ban đầu, chưa sử dụng.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>

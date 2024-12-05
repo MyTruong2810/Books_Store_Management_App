@@ -11,7 +11,9 @@ using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Books_Store_Management_App.Models
 {
-    // Data Access Object (DAO) for managing ClassificationClass entities in memory
+    /// <summary>
+    /// Lớp đại diện cho việc thực hiện các thao tác với thể loại sách.
+    /// </summary>
     public class ClassificationClassDao : IDaos<ClassificationClass>
     {
         // In-memory list representing the database for ClassificationClass objects
