@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS public.coupon (
 INSERT INTO public.coupon (name, discount, expiry_date) VALUES
 ('SAVE 10%', 0.1, '2024-12-31 23:59:59'),
 ('SAVE 20%', 0.2, '2024-06-30 23:59:59'),
-('SAVE 30%', 0.3, '2025-01-01 23:59:59');
+('SAVE 30%', 0.3, '2025-01-01 23:59:59')
+('SAVE 50%', 0.5, '2025-01-01 23:59:59');
 
 -- Bảng order_coupon
     CREATE TABLE IF NOT EXISTS public.order_coupon (
@@ -172,3 +173,12 @@ INSERT INTO public.customer (id, name, gender, phone, address, avatarlink, cvv, 
 (23, 'My', 'Female', '0353844003', 'ABCD', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Female.jpg', 101, 'Momo'),
 (19, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo'),
 (22, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo');
+
+-- Bang order_customer
+CREATE TABLE IF NOT EXISTS public.order_customer (
+    order_id VARCHAR(255) UNIQUE REFERENCES public."order"(id) ON DELETE CASCADE,
+    customer_id INT REFERENCES public.customer(id) ON DELETE CASCADE,
+    PRIMARY KEY (order_id)
+) TABLESPACE pg_default;
+
+

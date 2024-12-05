@@ -126,15 +126,16 @@
                         <TextBlock
                        Text="Bill To" />
                         <TextBlock>
-                       <Run Text="Customer: " /><Run Text="{x:Bind ViewModel.Order.Customer}" />
+                        <Run Text="Customer: " /><Run Text="{x:Bind ViewModel.Order.Customer}" />
                         </TextBlock>
-                        <!--  
-                        Chưa có thông tin khách hàng
+                        <TextBlock x:Name="CustomerAddressGroup" Visibility="Collapsed">
+                            Address: <Run Text="" x:Name="CustomerAddress"/>
+                        </TextBlock>
                         <TextBlock
-                            Text="Address: 123 Main St, New York, NY 10001" />
-                        <TextBlock
-                            Text="Phone: 123-456-7890" /> 
-                        -->
+                            x:Name="CustomerPhoneGroup"
+                            Visibility="Collapsed" >
+                            Phone: <Run Text="" x:Name="CustomerPhone"/>
+                        </TextBlock>
                     </StackPanel>
 
                     <StackPanel 
