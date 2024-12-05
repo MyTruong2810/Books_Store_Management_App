@@ -1,4 +1,4 @@
-﻿using Books_Store_Management_App.Helpers;
+﻿﻿using Books_Store_Management_App.Helpers;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml;
 using System;
@@ -25,6 +25,8 @@ namespace Books_Store_Management_App.ViewModels
         public int TypeOfSort { get; set; } = 1; // Sorting criteria
         public int TotalPages { get; set; } = 0; // Total number of pages
         public int TotalItems { get; set; } = 0; // Total items found
+
+        public int MaxId { get; set; } = 0; // Maximum ID value for new items
 
         // DAO interface to handle data operations
         private IDaos<ClassificationClass> _dao = null;
@@ -61,6 +63,14 @@ namespace Books_Store_Management_App.ViewModels
             TotalItems = totalItems;
             TotalPages = (TotalItems / RowsPerPage)
                          + ((TotalItems % RowsPerPage == 0) ? 0 : 1);
+            int cnt = 0;
+            foreach (var item in ClassificationClasss)
+            {
+                cnt++;
+                item.Index = cnt;
+                MaxId = MaxId < Convert.ToInt32(item.ID) ? Convert.ToInt32(item.ID) : MaxId;
+            }
+
         }
 
         // Inserts a new ClassificationClass entry

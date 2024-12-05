@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Books_Store_Management_App.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace Books_Store_Management_App.Models
 {
@@ -40,7 +41,7 @@ namespace Books_Store_Management_App.Models
 
         // Optional implementation to delete profile by ID
 
-        public Tuple<int, List<AdminProfileViewModel>> GetAll(
+        public Tuple<int, ObservableCollection<AdminProfileViewModel>> GetAll(
             int page = 1, int rowsPerPage = 10, string keyword = "", bool nameAscending = false, bool IdAscending = false)
         {
             throw new NotImplementedException();
@@ -51,7 +52,7 @@ namespace Books_Store_Management_App.Models
             throw new NotImplementedException();
         }
 
-        public Tuple<int, List<AdminProfileViewModel>> GetSearch(int page = 1, int rowsPerPage = 10, string keyword = "", string typeofSearch = "", bool nameAscending = false, bool IdAscending = false)
+        public Tuple<int, ObservableCollection<AdminProfileViewModel>> GetSearch(int page = 1, int rowsPerPage = 10, string keyword = "", string typeofSearch = "", bool nameAscending = false, bool IdAscending = false)
         {
             throw new NotImplementedException();
         }
@@ -66,7 +67,7 @@ namespace Books_Store_Management_App.Models
             throw new NotImplementedException();
         }
 
-        public Tuple<int, List<AdminProfileViewModel>> GetAll(int page, int rowsPerPage, string keyword, int typerOfSearch, int typerOfSort)
+        public Tuple<int, ObservableCollection<AdminProfileViewModel>> GetAll(int page, int rowsPerPage, string keyword, int typerOfSearch, int typerOfSort)
         {
             throw new NotImplementedException();
         }

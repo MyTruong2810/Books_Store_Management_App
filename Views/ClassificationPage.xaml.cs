@@ -74,7 +74,7 @@ namespace Books_Store_Management_App.Views
             var button = sender as Button;
             var newClassificationClass = new ClassificationClass
             {
-                ID = $"#{ClassificationClassVM.TotalItems + 1}"
+                ID = (ClassificationClassVM.MaxId + 1).ToString()
             };
             // Set the new classification class as the selected one in ViewModel
             ClassificationClassVM.SelectedClassificationClass = newClassificationClass;
@@ -86,6 +86,8 @@ namespace Books_Store_Management_App.Views
             {
                 ClassificationClassVM.InsertClassificationClass(ClassificationClassVM.SelectedClassificationClass); // Insert new class
                 ClassificationClassVM.GetAllClassificationClasss(); // Refresh the list
+                PsqlDao psqlDao = new PsqlDao();
+                psqlDao.InsertClassification(ClassificationClassVM.SelectedClassificationClass);
             }
         }
 
@@ -110,6 +112,8 @@ namespace Books_Store_Management_App.Views
                     {
                         ClassificationClassVM.EditClassificationClass(ClassificationClassVM.SelectedClassificationClass); // Update class
                         ClassificationClassVM.GetAllClassificationClasss(); // Refresh the list
+                        PsqlDao psqlDao = new PsqlDao();
+                        psqlDao.UpdateClassification(newClassificationClass);
                     }
                 }
             }
@@ -137,6 +141,8 @@ namespace Books_Store_Management_App.Views
                     {
                         ClassificationClassVM.DeleteClassificationClass(classificationClassId); // Delete the class
                         ClassificationClassVM.GetAllClassificationClasss(); // Refresh the list
+                        PsqlDao psqlDao = new PsqlDao();
+                        psqlDao.DeleteClassificationClasses(delClassificationClass);
                     }
                 }
             }

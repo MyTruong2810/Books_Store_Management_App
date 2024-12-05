@@ -10,21 +10,21 @@ CREATE TABLE IF NOT EXISTS public.book (
     purchase_price numeric(10,2),
     genre character varying(50),
     quantity integer,
-    index integer NOT NULL,
+    index VARCHAR(255) NOT NULL,
     CONSTRAINT book_pkey PRIMARY KEY (index)
 ) TABLESPACE pg_default;
 
 INSERT INTO public.book (imageurl, title, publisher, author, isbn, year, selling_price, purchase_price, genre, quantity, index) VALUES
-    ('ms-appx:///Assets/image4.jpg', '1984', 'George Orwell', 'George Orwell', '9780451534852', 1949, 10.99, 9, 'Dystopian', 12, 4),
-    ('ms-appx:///Assets/image9.jpg', 'Animal Farm', 'George Orwell', 'George Orwell', '9780451536050', 1945, 9.99, 8, 'Allegory', 11, 9),
-    ('ms-appx:///Assets/image1.jpg', 'The Lord', 'J.R.R. Tolkien', 'J.R.R. Tolkien', '9780007567499', 1954, 29.99, 25, 'Fantasy', 10, 1),
-    ('ms-appx:///Assets/image2.jpg', 'Pride', 'Jane Austen', 'Jane Austen', '9780140283204', 1813, 15.99, 12, 'Classic', 5, 2),
-    ('ms-appx:///Assets/image3.jpg', 'Killer', 'Harper Lee', 'Harper Lee', '9780060735097', 1960, 12.99, 11, 'Fiction', 8, 3),
-    ('ms-appx:///Assets/image5.jpg', 'The Catcher', 'J.D. Salinger', 'J.D. Salinger', '9780316769487', 1951, 14.99, 13, 'Coming-of-age', 7, 5),
-    ('ms-appx:///Assets/image6.jpg', 'Harry Potter', 'J.K. Rowling', 'J.K. Rowling', '9780590353258', 1997, 19.99, 15, 'Fantasy', 15, 6),
-    ('ms-appx:///Assets/image7.jpg', 'Hitchhiker''s', 'Douglas Adams', 'Douglas Adams', '9780345390827', 1979, 13.99, 12, 'Science Fiction', 9, 7),
-    ('ms-appx:///Assets/image8.jpg', 'The Great', 'F. Scott Fitzgerald', 'F. Scott Fitzgerald', '9780743273563', 1925, 16.99, 15, 'Classic', 6, 8),
-    ('ms-appx:///Assets/image10.jpg', 'Little Prince', 'Antoine de Saint-Exupéry', 'Antoine de Saint-Exupéry', '9780446315981', 1943, 11.99, 10, 'Children''s', 13, 10);
+    ('ms-appx:///Assets/image4.jpg', '1984', 'George Orwell', 'George Orwell', '9780451534852', 1949, 10.99, 9, 'Dystopian', 12, '4'),
+    ('ms-appx:///Assets/image9.jpg', 'Animal Farm', 'George Orwell', 'George Orwell', '9780451536050', 1945, 9.99, 8, 'Allegory', 11, '9'),
+    ('ms-appx:///Assets/image1.jpg', 'The Lord', 'J.R.R. Tolkien', 'J.R.R. Tolkien', '9780007567499', 1954, 29.99, 25, 'Fantasy', 10, '1'),
+    ('ms-appx:///Assets/image2.jpg', 'Pride', 'Jane Austen', 'Jane Austen', '9780140283204', 1813, 15.99, 12, 'Classic', 5, '2'),
+    ('ms-appx:///Assets/image3.jpg', 'Killer', 'Harper Lee', 'Harper Lee', '9780060735097', 1960, 12.99, 11, 'Fiction', 8, '3'),
+    ('ms-appx:///Assets/image5.jpg', 'The Catcher', 'J.D. Salinger', 'J.D. Salinger', '9780316769487', 1951, 14.99, 13, 'Coming-of-age', 7, '5'),
+    ('ms-appx:///Assets/image6.jpg', 'Harry Potter', 'J.K. Rowling', 'J.K. Rowling', '9780590353258', 1997, 19.99, 15, 'Fantasy', 15, '6'),
+    ('ms-appx:///Assets/image7.jpg', 'Hitchhiker''s', 'Douglas Adams', 'Douglas Adams', '9780345390827', 1979, 13.99, 12, 'Science Fiction', 9, '7'),
+    ('ms-appx:///Assets/image8.jpg', 'The Great', 'F. Scott Fitzgerald', 'F. Scott Fitzgerald', '9780743273563', 1925, 16.99, 15, 'Classic', 6, '8'),
+    ('ms-appx:///Assets/image10.jpg', 'Little Prince', 'Antoine de Saint-Exupéry', 'Antoine de Saint-Exupéry', '9780446315981', 1943, 11.99, 10, 'Children''s', 13, '10');
 
 -- Bảng genre
 CREATE TABLE IF NOT EXISTS public.genre (
@@ -51,24 +51,24 @@ INSERT INTO public.genre (id, name, description) VALUES
 
 -- Bảng order
 CREATE TABLE IF NOT EXISTS public."order" (
-    id SERIAL PRIMARY KEY NOT NULL,
+    id VARCHAR(255) NOT NULL,
     customer character varying(100) NOT NULL,
     date timestamp without time zone NOT NULL,
     is_delivered BOOLEAN NOT NULL DEFAULT FALSE,
-    orderindex integer NOT NULL
+    PRIMARY KEY (id)
 ) TABLESPACE pg_default;
 
-INSERT INTO public."order" (customer, date, orderindex) VALUES
-    ('Alice Johnson', '2024-10-01 12:00:00', 1),
-    ('Bob Smith', '2024-10-02 13:30:00', 2),
-    ('Charlie Brown', '2024-10-03 14:45:00', 3),
-    ('Diana Prince', '2024-10-04 09:15:00', 4),
-    ('Edward Elric', '2024-10-05 16:20:00', 5),
-    ('Fiona Gallagher', '2024-10-06 08:10:00', 6),
-    ('George Washington', '2024-10-07 10:00:00', 7),
-    ('Hannah Montana', '2024-10-08 11:30:00', 8),
-    ('Ian Malcolm', '2024-10-09 15:00:00', 9),
-    ('Julia Child', '2024-10-10 17:30:00', 10);
+INSERT INTO public."order" (id, customer, date) VALUES
+    (1, 'Alice Johnson', '2024-10-01 12:00:00'),
+    (2, 'Bob Smith', '2024-10-02 13:30:00'),
+    (3, 'Charlie Brown', '2024-10-03 14:45:00'),
+    (4, 'Diana Prince', '2024-10-04 09:15:00'),
+    (5, 'Edward Elric', '2024-10-05 16:20:00'),
+    (6, 'Fiona Gallagher', '2024-10-06 08:10:00'),
+    (7, 'George Washington', '2024-10-07 10:00:00'),
+    (8, 'Hannah Montana', '2024-10-08 11:30:00'),
+    (9,'Ian Malcolm', '2024-10-09 15:00:00'),
+    (10,'Julia Child', '2024-10-10 17:30:00');
 
 -- Bảng coupon
 CREATE TABLE IF NOT EXISTS public.coupon (
@@ -81,11 +81,12 @@ CREATE TABLE IF NOT EXISTS public.coupon (
 INSERT INTO public.coupon (name, discount, expiry_date) VALUES
 ('SAVE 10%', 0.1, '2024-12-31 23:59:59'),
 ('SAVE 20%', 0.2, '2024-06-30 23:59:59'),
-('SAVE 30%', 0.3, '2025-01-01 23:59:59');
+('SAVE 30%', 0.3, '2025-01-01 23:59:59'),
+('SAVE 50%', 0.5, '2025-01-01 23:59:59');
 
 -- Bảng order_coupon
-CREATE TABLE IF NOT EXISTS public.order_coupon (
-    order_id INT REFERENCES public."order"(id) ON DELETE CASCADE,
+    CREATE TABLE IF NOT EXISTS public.order_coupon (
+    order_id VARCHAR(255) REFERENCES public."order"(id) ON DELETE CASCADE,
     coupon_id INT REFERENCES public.coupon(id) ON DELETE CASCADE,
     PRIMARY KEY (order_id, coupon_id)
 ) TABLESPACE pg_default;
@@ -105,8 +106,8 @@ INSERT INTO public.order_coupon (order_id, coupon_id) VALUES
 -- Bảng order_item
 CREATE TABLE IF NOT EXISTS public.order_item (
     id SERIAL PRIMARY KEY,
-    order_id INT REFERENCES public."order"(id) ON DELETE CASCADE,
-    book_id INT REFERENCES public.book(index) ON DELETE CASCADE,
+    order_id VARCHAR(255) REFERENCES public."order"(id) ON DELETE CASCADE,
+    book_id VARCHAR(255) REFERENCES public.book(index) ON DELETE CASCADE,
     quantity INT NOT NULL
 ) TABLESPACE pg_default;
 
@@ -122,13 +123,62 @@ INSERT INTO public.order_item (order_id, book_id, quantity) VALUES
 (9, 9, 9),
 (10, 10, 10);
 
--- Truy vấn mẫu
-SELECT oi.id, oi.quantity, b.* 
-FROM public.order_item oi 
-JOIN public.book b ON oi.book_id = b.index 
-WHERE oi.order_id = 1;
+-- Bảng classification
+CREATE TABLE IF NOT EXISTS public.classification (
+    code SERIAL PRIMARY KEY,
+    ten VARCHAR(255) NOT NULL,
+    description TEXT
+) TABLESPACE pg_default;
 
-SELECT c.* 
-FROM public.order_coupon oc 
-JOIN public.coupon c ON oc.coupon_id = c.id 
-WHERE oc.order_id = 1;
+INSERT INTO public.classification (code, ten, description) VALUES
+(1, 'Science Fiction', 'A genre of speculative fiction that typically deals with imaginative and futuristic concepts.'),
+(2, 'Fantasy', 'A genre of speculative fiction set in a fictional universe, often inspired by real world myth and folklore.'),
+(3, 'Mystery', 'A genre of fiction that deals with the solution of a crime or the unraveling of secrets.'),
+(4, 'Romance', 'A genre of fiction that places its primary focus on the relationship and romantic love between two people.'),
+(5, 'Horror', 'A genre of fiction intended to, or has the capacity to frighten, scare, or disgust.'),
+(6, 'Thriller', 'A genre of fiction that uses suspense, tension, and excitement as the main elements.'),
+(7, 'Non-Fiction', 'A genre of writing that is based on facts, real events, and real people, such as biography or history.'),
+(8, 'Dystopian', 'A genre of fiction that explores social and political structures in a dark, nightmare world.'),
+(9, 'Allegory', 'A genre of fiction that uses symbolic figures, actions, imagery, and/or events to convey a message or teach a moral lesson.'),
+(10, 'Classic', 'A genre of fiction that is regarded as having lasting literary merit.'),
+(11, 'Fiction', 'A genre of literature that is based on imagination and not necessarily on fact.'),
+(12, 'Coming-of-age', 'A genre of literature that focuses on the growth of a protagonist from youth to adulthood.'),
+(13, 'Children''s', 'A genre of literature that is written for children.'),
+(14, 'Young Adult', 'A genre of literature that is written for young adults.');
+
+CREATE TABLE IF NOT EXISTS public.customer (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    gender VARCHAR(50),
+    phone VARCHAR(20),
+    address TEXT,
+    avatarlink TEXT,
+    cvv INT,
+    paymentmethod VARCHAR(50)
+) TABLESPACE pg_default;
+
+INSERT INTO public.customer (id, name, gender, phone, address, avatarlink, cvv, paymentmethod) VALUES
+(7, 'George White', 'Male', '4455667788', '159 Spruce St, Metropolis', 'ms-appx:///Assets/Male.jpg', 123, 'Credit Card'),
+(8, 'Hannah Adams', 'Female', '3344556677', '753 Cedar St, Urbanville', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
+(9, 'Ian Black', 'Male', '2233445566', '951 Redwood St, Cosmopolis', 'ms-appx:///Assets/Male.jpg', 789, 'PayPal'),
+(11, 'Kevin Brown', 'Male', '9988775544', '753 Sycamore St, Ridgeville', 'ms-appx:///Assets/Male.jpg', 567, 'Debit Card'),
+(12, 'Laura Taylor', 'Female', '5566771122', '357 Chestnut St, Hilltown', 'ms-appx:///Assets/Female.jpg', 890, 'PayPal'),
+(13, 'Michael Scott', 'Male', '4455669900', '789 Willow St, Greenfield', 'ms-appx:///Assets/Male.jpg', 123, 'Credit Card'),
+(14, 'Nina Williams', 'Female', '2233447788', '951 Aspen St, Lakeview', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
+(15, 'Oscar Martinez', 'Male', '1122336677', '123 Beech St, Rivertown', 'ms-appx:///Assets/Male.jpg', 789, 'PayPal'),
+(17, 'Quincy Jones', 'Male', '6677885566', '654 Fir St, Forestville', 'ms-appx:///Assets/Male.jpg', 567, 'Debit Card'),
+(18, 'Rachel Green', 'Female', '3344557788', '789 Cypress St, Springtown', 'ms-appx:///Assets/Female.jpg', 890, 'PayPal'),
+(20, 'Tina Davis', 'Female', '5566779900', '951 Alder St, Valleycity', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
+(21, 'My', 'Male', '6677889900', '654 Pine St, Villagetown', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 567, 'Debit Card'),
+(23, 'My', 'Female', '0353844003', 'ABCD', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Female.jpg', 101, 'Momo'),
+(19, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo'),
+(22, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo');
+
+-- Bang order_customer
+CREATE TABLE IF NOT EXISTS public.order_customer (
+    order_id VARCHAR(255) UNIQUE REFERENCES public."order"(id) ON DELETE CASCADE,
+    customer_id INT REFERENCES public.customer(id) ON DELETE CASCADE,
+    PRIMARY KEY (order_id)
+) TABLESPACE pg_default;
+
+

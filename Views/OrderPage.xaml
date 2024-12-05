@@ -16,6 +16,7 @@
     <Page.Resources>
         <local1:StringToISBNConverter x:Key="StringToISBNConverter"/>
         <local3:AlternationIndexToBackgroundConverter x:Key="AlternationIndexToBackgroundConverter"/>
+        <local1:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
     </Page.Resources>
 
     <Grid Background="#C4C4FC">
@@ -30,11 +31,17 @@
             <StackPanel>
                 <!-- Thông tin các nút diều khiển bao gồm showentities, search, filter và add new order -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                    <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
-                    <TextBox Margin="0 0 50 0" Width="150" Height="30" PlaceholderText="                             🔎" TextChanged="SearchTextBox_TextChanged"/>
-                    <ComboBox ItemsSource="{x:Bind monthSearch}" Width="150" Margin="0 0 50 0"/>
-                    <ComboBox ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 350 0"/>
-                    <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Order" Click="AddOrder_Click"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center">Show</TextBlock>
+                    <ComboBox PlaceholderText="10" ItemsSource="{x:Bind ShowEntities}" Width="65" Margin="0 0 50 0" SelectionChanged="Combo3_Selected"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center">Search</TextBlock>
+                    <TextBox PlaceholderText="Type here ..." Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                    <ComboBox PlaceholderText="Choose month ..." ItemsSource="{x:Bind monthSearch}" Width="150" Margin="0 0 50 0"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                    <ComboBox PlaceholderText="Choose price ..." ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 140 0"/>
+                    <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Click="AddOrder_Click" Width="60" Height="30">
+                        <FontIcon Glyph="&#xE710;" DataContext="Add New ClassificationClass" Foreground="White" />
+                    </Button>
                 </StackPanel>
                 <!-- Grid chứa các nút sắp xếp -->
                 <Grid Margin="60 0 0 0">
@@ -121,17 +128,17 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Padding="50 0 0 0" Grid.Column="0" FontWeight="Bold" Foreground="White" Text="{x:Bind ID}"/>
+                                <TextBlock Padding="50 0 0 0" Grid.Column="0" FontWeight="Bold" Foreground="White" Text="{x:Bind Index}"/>
                                 <TextBlock Grid.Column="1" FontWeight="Bold" Foreground="White" Text="{x:Bind Customer}" />
                                 <TextBlock Grid.Column="2" FontWeight="Bold" Foreground="White" Text="{x:Bind Date}" />
-                                <TextBlock Padding="50 0 0 0" Grid.Column="3" FontWeight="Bold" Foreground="White" Text="{x:Bind Discount}" />
+                                <TextBlock Padding="50 0 0 0" Grid.Column="3" FontWeight="Bold" Foreground="White" Text="{x:Bind Discount, Converter={StaticResource DoubleToPercentageConverter}}" />
                                 <TextBlock Padding="50 0 0 0" Grid.Column="4" FontWeight="Bold" Foreground="White" Text="{x:Bind Amount}" />
                                 <TextBlock Padding="50 0 0 0" Grid.Column="5" FontWeight="Bold" Foreground="White" Text="{x:Bind Price}" />
-                                <Button Background="Transparent" Grid.Column="6" Click="DeleteOrder_Click" Margin="40 0 0 0">
+                                <Button Background="Transparent" Grid.Column="6" Click="DeleteOrder_Click" Tag="{x:Bind}" Margin="40 0 0 0">
                                     <FontIcon FontWeight="Bold" Foreground="Red" Glyph="&#xE74D;"/>
 
                                 </Button>
-                                <Button Background="Transparent" Grid.Column="7" Click="EditOrder_Click">
+                                <Button Background="Transparent" Grid.Column="7" Click="EditOrder_Click" Tag="{x:Bind}">
                                     <FontIcon FontWeight="Bold" Foreground="Violet" Glyph="&#xE70F;" />
                                 </Button>
                             </Grid>
@@ -147,5 +154,13 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <ContentDialog
+        x:Name="DeleteOrderDialog"
+        Title="Delete order"
+        PrimaryButtonText="Yes"
+        CloseButtonText="No"
+        DefaultButton="Primary"
+        Background="Black">
+        </ContentDialog>
     </Grid>
 </Page> 

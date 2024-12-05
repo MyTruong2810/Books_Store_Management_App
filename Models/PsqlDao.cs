@@ -4,12 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Books_Store_Management_App.Helpers;
+using Microsoft.UI.Xaml.Media.Imaging;
+using System.Security.Policy;
+using System.Windows.Media.Imaging;
+using BitmapImage = Microsoft.UI.Xaml.Media.Imaging.BitmapImage;
+using Windows.Gaming.Input;
+using Books_Store_Management_App.ViewModels;
+using System.Xml.Linq;
+using System.Threading.Tasks;
+using System.Data;
 
 namespace Books_Store_Management_App.Models
 {
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=mybookstore";
+        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=28102004;Database=mybookstore";
 
         public ObservableCollection<Book> GetAllBooks()
         {
@@ -37,7 +46,7 @@ namespace Books_Store_Management_App.Models
                             PurchasePrice = (double)reader.GetDecimal(7),
                             Genre = reader.GetString(8),
                             Quantity = reader.GetInt32(9),
-                            Index = reader.GetInt32(10)
+                            Index = reader.GetString(10)
                         };
                         books.Add(book);
                     }
@@ -46,7 +55,6 @@ namespace Books_Store_Management_App.Models
 
             return books;
         }
-
         public ObservableCollection<Genre> GetAllGenres()
         {
             var genres = new ObservableCollection<Genre>();
@@ -54,7 +62,7 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT id, Name, Description FROM Genre";
+                string query = "SELECT * FROM classification";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
@@ -73,7 +81,33 @@ namespace Books_Store_Management_App.Models
 
             return genres;
         }
+        public ObservableCollection<ClassificationClass> GetClassificationClasses()
+        {
+            var genres = new ObservableCollection<ClassificationClass>();
 
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT code, ten, description FROM classification";
+                int cnt = 0;
+                using (var command = new NpgsqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var classification = new ClassificationClass
+                        {
+                            ID = reader.GetInt32(0).ToString(),
+                            Tags = reader.GetString(1),
+                            Description = reader.GetString(2)
+                        };
+                        genres.Add(classification);
+                    }
+                }
+            }
+
+            return genres;
+        }
         public ObservableCollection<Order> GetAllOrders()
         {
             var orders = new ObservableCollection<Order>();
@@ -90,71 +124,78 @@ namespace Books_Store_Management_App.Models
                     {
                         var order = new Order()
                         {
-                            ID = reader.GetInt32(0),
+                            ID = reader.GetString(0),
                             Customer = reader.GetString(1),
-                            Date = reader.GetDateTime(2).ToString(),
+                            Date = reader.GetDateTime(2),
                             IsDelivered = reader.GetBoolean(3),
-                            Index = reader.GetInt32(0)
                         };
 
                         // Get Order_Items
                         List<OrderItem> OrderItems = new List<OrderItem>();
-                        string queryOrderItems = $"SELECT oi.id, oi.quantity, b.* FROM order_item oi JOIN book b ON oi.book_id = b.index WHERE oi.order_id = {order.ID}";
+                        string queryOrderItems = $"SELECT oi.id, oi.quantity, b.* FROM order_item oi JOIN book b ON oi.book_id = b.index WHERE oi.order_id = @OrderId";
                         using (var connectionOrderItems = new NpgsqlConnection(connectionString))
                         {
                             connectionOrderItems.Open();
                             using (var commandOrderItems = new NpgsqlCommand(queryOrderItems, connectionOrderItems))
-                            using (var readerOrderItems = commandOrderItems.ExecuteReader())
                             {
-                                while (readerOrderItems.Read())
+                                commandOrderItems.Parameters.AddWithValue("@OrderId", order.ID);
+                                using (var readerOrderItems = commandOrderItems.ExecuteReader())
                                 {
-                                    var orderItem = new OrderItem()
+                                    while (readerOrderItems.Read())
                                     {
-                                        Id = readerOrderItems.GetInt32(0),
-                                        Quantity = readerOrderItems.GetInt32(1),
-                                        Book = new Book()
+                                        var orderItem = new OrderItem()
                                         {
-                                            ImageSource = readerOrderItems.GetString(2),
-                                            Title = readerOrderItems.GetString(3),
-                                            Publisher = readerOrderItems.GetString(4),
-                                            Author = readerOrderItems.GetString(5),
-                                            ISBN = readerOrderItems.GetString(6),
-                                            Year = readerOrderItems.GetInt32(7),
-                                            Price = (double)readerOrderItems.GetDecimal(8),
-                                            PurchasePrice = (double)readerOrderItems.GetDecimal(9),
-                                            Genre = readerOrderItems.GetString(10),
-                                            Quantity = readerOrderItems.GetInt32(11),
-                                            Index = readerOrderItems.GetInt32(12)
-                                        }
-                                    };
+                                            Id = readerOrderItems.GetInt32(0),
+                                            Quantity = readerOrderItems.GetInt32(1),
+                                            Book = new Book()
+                                            {
+                                                ImageSource = readerOrderItems.GetString(2),
+                                                Title = readerOrderItems.GetString(3),
+                                                Publisher = readerOrderItems.GetString(4),
+                                                Author = readerOrderItems.GetString(5),
+                                                ISBN = readerOrderItems.GetString(6),
+                                                Year = readerOrderItems.GetInt32(7),
+                                                Price = (double)readerOrderItems.GetDecimal(8),
+                                                PurchasePrice = (double)readerOrderItems.GetDecimal(9),
+                                                Genre = readerOrderItems.GetString(10),
+                                                Quantity = readerOrderItems.GetInt32(11),
+                                                Index = readerOrderItems.GetString(12)
+                                            }
+                                        };
 
-                                    OrderItems.Add(orderItem);
+                                        OrderItems.Add(orderItem);
+                                    }
                                 }
+
                             }
                         }
                         order.OrderItems = OrderItems;
 
                         // Get Coupons
                         List<Coupon> Coupons = new List<Coupon>();
-                        string queryCoupons = $"SELECT c.* FROM order_coupon oc JOIN coupon c ON oc.coupon_id = c.id WHERE order_id = {order.ID}";
+                        string queryCoupons = $"SELECT c.* FROM order_coupon oc JOIN coupon c ON oc.coupon_id = c.id WHERE order_id = @OrderId";
                         using (var connectionCoupons = new NpgsqlConnection(connectionString))
                         {
                             connectionCoupons.Open();
                             using (var commandCoupons = new NpgsqlCommand(queryCoupons, connectionCoupons))
-                            using (var readerCoupons = commandCoupons.ExecuteReader())
                             {
-                                while (readerCoupons.Read())
+                                commandCoupons.Parameters.AddWithValue("@OrderId", order.ID);
+                                using (var readerCoupons = commandCoupons.ExecuteReader())
                                 {
-                                    var coupon = new Coupon()
+                                    while (readerCoupons.Read())
                                     {
-                                        Id = readerCoupons.GetInt32(0),
-                                        Name = readerCoupons.GetString(1),
-                                        Discount = (double)readerCoupons.GetDecimal(2),
-                                        ExpiryDate = readerCoupons.GetDateTime(3)
-                                    };
+                                        var coupon = new Coupon()
+                                        {
+                                            Id = readerCoupons.GetInt32(0),
+                                            Name = readerCoupons.GetString(1),
+                                            Discount = (double)readerCoupons.GetDecimal(2),
+                                            ExpiryDate = readerCoupons.GetDateTime(3)
+                                        };
 
-                                    Coupons.Add(coupon);
+                                        Coupons.Add(coupon);
+                                    }
                                 }
+
                             }
                         }
                         order.Coupons = new FullObservableCollection<Coupon>(Coupons);
@@ -166,6 +207,814 @@ namespace Books_Store_Management_App.Models
 
             return orders;
         }
+        public List<Coupon> GetAllCoupons()
+        {
+            var coupons = new List<Coupon>();
 
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Coupon";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        coupons.Add(new Coupon
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Discount = (double)reader.GetDecimal(2),
+                            ExpiryDate = reader.GetDateTime(3)
+                        });
+                    }
+                }
+            }
+
+            return coupons;
+        }
+        public ObservableCollection<Customer> GetAllCustomers()
+        {
+            var customers = new ObservableCollection<Customer>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Id, Name, Gender, Phone, Address, AvatarLink, CVV, PaymentMethod FROM Customer";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var customer = new Customer()
+                        {
+                            ID = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Gender = reader.GetString(2),
+                            Phone = reader.GetString(3),
+                            Address = reader.GetString(4),
+                            Avatar = reader.GetString(5),
+                            CVV = reader.GetInt32(6),
+                            Payment = reader.GetString(7)
+                        };
+                        customers.Add(customer);
+                    }
+                }
+            }
+            return customers;
+        }
+        public bool DeleteBook(Book book)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM Book WHERE Title = @BookId"; // Đảm bảo tên bảng và cột đúng với cơ sở dữ liệu
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    // Thêm tham số để tránh SQL Injection
+                    command.Parameters.AddWithValue("@BookId", book.Title);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Trả về true nếu có bản ghi bị xóa
+                }
+            }
+        }
+        public bool DeleteOrder(Order order)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "DELETE FROM \"Order\" WHERE Id = @OrderId"; // Bọc tên bảng bằng ngoặc kép
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        // Thêm tham số để tránh SQL Injection
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0; // Trả về true nếu có bản ghi bị xóa
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi log hoặc thông báo lỗi (tùy thuộc vào yêu cầu dự án)
+                Console.WriteLine($"Error while deleting order: {ex.Message}");
+                return false;
+            }
+        }
+        public bool DeleteClassificationClasses(ClassificationClass genre)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM Classification WHERE Code = @GenreId"; // Đảm bảo tên bảng và cột đúng với cơ sở dữ liệu
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    // Thêm tham số để tránh SQL Injection
+                    command.Parameters.AddWithValue("@GenreId", Convert.ToInt32(genre.ID));
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Trả về true nếu có bản ghi bị xóa
+                }
+            }
+        }
+        public bool DeleteCustomer(Customer customer)
+        {
+            // Delete in order_customer
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM order_customer WHERE customer_id = @CustomerId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerId", customer.ID);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM Customer WHERE Id = @CustomerId"; // Đảm bảo tên bảng và cột đúng với cơ sở dữ liệu
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    // Thêm tham số để tránh SQL Injection
+                    command.Parameters.AddWithValue("@CustomerId", customer.ID);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Trả về true nếu có bản ghi bị xóa
+                }
+            }
+        }
+
+        public bool UpdateClassification(ClassificationClass classification)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Classification SET Ten = @Name, Description = @Description WHERE Code = @ID";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", Convert.ToInt32(classification.ID)); 
+                    command.Parameters.AddWithValue("@Name", classification.Tags); 
+                    command.Parameters.AddWithValue("@Description", classification.Description);  
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;  
+                }
+            }
+        }
+        public bool UpdateCustomer(Customer customer)
+        {
+            int rowsAffected;
+            string query;
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                query = "UPDATE Customer SET Name = @Name, Gender = @Gender, Phone = @Phone, Address = @Address, AvatarLink = @Avatar, CVV = @CVV, PaymentMethod = @Payment WHERE Id = @ID";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", customer.ID);
+                    command.Parameters.AddWithValue("@Name", customer.Name);
+                    command.Parameters.AddWithValue("@Gender", customer.Gender);
+                    command.Parameters.AddWithValue("@Phone", customer.Phone);
+                    command.Parameters.AddWithValue("@Address", customer.Address);
+                    command.Parameters.AddWithValue("@Avatar", customer.Avatar);
+                    command.Parameters.AddWithValue("@CVV", customer.CVV);
+                    command.Parameters.AddWithValue("@Payment", customer.Payment);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+
+            if (rowsAffected > 0)
+            {
+                query = @"
+                    UPDATE public.""order"" o
+                    SET customer = c.name
+                    FROM customer c
+                    JOIN order_customer oc ON oc.customer_id = c.id
+                    WHERE oc.order_id = o.id AND c.id = @CustomerId";
+
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@CustomerId", customer.ID);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            return rowsAffected > 0;
+        }
+
+
+        public bool InsertClassification(ClassificationClass genre)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Classification (Code, Ten, Description) VALUES (@ID, @Name, @Description)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@ID", Convert.ToInt32(genre.ID));
+                    command.Parameters.AddWithValue("@Name", genre.Tags);
+                    command.Parameters.AddWithValue("@Description", genre.Description);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Return true if a record is added
+                }
+            }
+        }
+        public bool InsertCustomer(Customer customer)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Customer (Name, Gender, Phone, Address, AvatarLink, CVV, PaymentMethod) " +
+                               "VALUES (@Name, @Gender, @Phone, @Address, @Avatar, @CVV, @Payment)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", customer.Name);
+                    command.Parameters.AddWithValue("@Gender", customer.Gender);
+                    command.Parameters.AddWithValue("@Phone", customer.Phone);
+                    command.Parameters.AddWithValue("@Address", customer.Address);
+                    command.Parameters.AddWithValue("@Avatar", customer.Avatar);
+                    command.Parameters.AddWithValue("@CVV", customer.CVV);
+                    command.Parameters.AddWithValue("@Payment", customer.Payment);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Return true if a record is added
+                }
+            }
+        }
+
+        public List<Book> GetAllAvailableBooks()
+        {
+            var books = new List<Book>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT ImageUrl, Title, Publisher, Author, ISBN, Year, selling_price, purchase_price, Genre, Quantity, Index FROM Book WHERE Quantity > 0";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var book = new Book()
+                        {
+                            ImageSource = reader.GetString(0),
+                            Title = reader.GetString(1),
+                            Publisher = reader.GetString(2),
+                            Author = reader.GetString(3),
+                            ISBN = reader.GetString(4),
+                            Year = reader.GetInt32(5),
+                            Price = (double)reader.GetDecimal(6),
+                            PurchasePrice = (double)reader.GetDecimal(7),
+                            Genre = reader.GetString(8),
+                            Quantity = reader.GetInt32(9),
+                            Index = reader.GetString(10)
+                        };
+                        books.Add(book);
+                    }
+                }
+            }
+
+           return books;
+        }
+
+
+        /// <summary>
+        /// Lưu thông tin đơn hàng xuống cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="book">Đối tượng book chứa thông tin đơn hàng cần lưu.</param>
+        /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false.</returns>
+        public async Task<bool> SaveBookAsync(Book book)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO Book (imageurl, title, publisher, author, isbn, year, selling_price, purchase_price, genre, quantity, index) " +
+                               "VALUES (@ImageUrl, @Title, @Publisher, @Author, @ISBN, @Year, @SellingPrice, @PurchasePrice, @Genre, @Quantity, @Index)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImageUrl", book.ImageSource);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Publisher", book.Publisher);
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@ISBN", book.ISBN);
+                    command.Parameters.AddWithValue("@Year", book.Year);
+                    command.Parameters.AddWithValue("@SellingPrice", book.Price);
+                    command.Parameters.AddWithValue("@PurchasePrice", book.PurchasePrice);
+                    command.Parameters.AddWithValue("@Genre", book.Genre);
+                    command.Parameters.AddWithValue("@Quantity", book.Quantity);
+                    command.Parameters.AddWithValue("@Index", book.Index);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cập nhật thông tin sách trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="book">Đối tượng book chứa thông tin sách cần cập nhật.</param>
+        /// <returns>Trả về true nếu cập nhật thành công, ngược lại trả về false.</returns>
+        public async Task<bool> UpdateBookAsync(Book book)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE Book SET imageurl = @ImageUrl, title = @Title, publisher = @Publisher, author = @Author, isbn = @ISBN, year = @Year, selling_price = @SellingPrice, purchase_price = @PurchasePrice, genre = @Genre, quantity = @Quantity WHERE index = @Index";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ImageUrl", book.ImageSource);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Publisher", book.Publisher);
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@ISBN", book.ISBN);
+                    command.Parameters.AddWithValue("@Year", book.Year);
+                    command.Parameters.AddWithValue("@SellingPrice", book.Price);
+                    command.Parameters.AddWithValue("@PurchasePrice", book.PurchasePrice);
+                    command.Parameters.AddWithValue("@Genre", book.Genre);
+                    command.Parameters.AddWithValue("@Quantity", book.Quantity);
+                    command.Parameters.AddWithValue("@Index", book.Index);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Xóa đơn hàng trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="index">Đối tượng index chứa id của đơn hàng cần xóa.</param>
+        /// <returns>Trả về true nếu xóa thành công, ngược lại trả về false.</returns>
+        public async Task<bool> DeleteBookAsync(string index)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM Book WHERE index = @Index";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Index", index);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Lưu thông tin đơn hàng xuống cơ sở dữ liệu
+        /// </summary>
+        /// <param name="order">Đối tượng Order chứa thông tin đơn hàng cần lưu.</param>
+        /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false.</returns>
+        public async Task<bool> SaveOrderAsync(Order order)
+        {
+            // Thêm order vào bảng order
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO \"order\" (id, customer, date, is_delivered) " +
+                               "VALUES (@Id, @Customer, @Date, @IsDelivered)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", order.ID);
+                    command.Parameters.AddWithValue("@Customer", order.Customer);
+                    command.Parameters.AddWithValue("@Date", order.Date);
+                    command.Parameters.AddWithValue("@IsDelivered", order.IsDelivered);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            // Thêm order_item vào bảng order_item
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO order_item (order_id, book_id, quantity) " +
+                               "VALUES (@OrderId, @BookId, @Quantity)";
+
+                foreach (OrderItem item in order.OrderItems)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@BookId", item.Book.Index);
+                        command.Parameters.AddWithValue("@Quantity", item.Quantity);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                        if (result <= 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            // Thêm order_coupon vào bảng order_coupon
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO order_coupon (order_id, coupon_id) " +
+                               "VALUES (@OrderId, @CouponId)";
+
+                foreach (Coupon coupon in order.Coupons)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@CouponId", coupon.Id);
+
+                        int result = await command.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+
+            // Giảm số lượng sách trong kho
+            foreach (OrderItem item in order.OrderItems)
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    string query = "UPDATE book SET quantity = quantity - @Quantity WHERE index = @Index";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Quantity", item.Quantity);
+                        command.Parameters.AddWithValue("@Index", item.Book.Index);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                        if (result <= 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Cập nhật thông tin đơn hàng trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="order">Đối tượng Order chứa thông tin đơn hàng cần cập nhật.</param>
+        /// <returns>Trả về true nếu cập nhật thành công, ngược lại trả về false.</returns>
+        public async Task<bool> UpdateOrderAsync(Order order)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                string query = "UPDATE \"order\" SET customer = @Customer, date = @Date, is_delivered = @IsDelivered WHERE id = @Id";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", order.ID);
+                    command.Parameters.AddWithValue("@Customer", order.Customer);
+                    command.Parameters.AddWithValue("@Date", order.Date);
+                    command.Parameters.AddWithValue("@IsDelivered", order.IsDelivered);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+
+                    }
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_item WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", order.ID);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+
+                query = "INSERT INTO order_item (order_id, book_id, quantity) " +
+                        "VALUES (@OrderId, @BookId, @Quantity)";
+
+                foreach (OrderItem item in order.OrderItems)
+                {
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@BookId", item.Book.Index);
+                        command.Parameters.AddWithValue("@Quantity", item.Quantity);
+
+                        int result = await command.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                string query = "DELETE FROM order_coupon WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", order.ID);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+
+                query = "INSERT INTO order_coupon (order_id, coupon_id) " +
+                        "VALUES (@OrderId, @CouponId)";
+
+                foreach (Coupon coupon in order.Coupons)
+                {
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", order.ID);
+                        command.Parameters.AddWithValue("@CouponId", coupon.Id);
+
+                        int result = await command.ExecuteNonQueryAsync();
+
+                        if (result <= 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+
+        }
+
+
+        /// <summary>
+        /// Xóa một đơn hàng theo ID.
+        /// </summary>
+        /// <param name="id">ID của đơn hàng cần xóa.</param>
+        /// <returns>Trả về true nếu xóa thành công, ngược lại trả về false.</returns>
+        public async Task<bool> DeleteOrderAsync(string id)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_item WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", id);
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_coupon WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", id);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+            }
+
+            // Delete in order_customer
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM order_customer WHERE order_id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", id);
+
+                    int result = await command.ExecuteNonQueryAsync();
+                }
+            }
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM \"order\" WHERE id = @Id";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    if (result <= 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Lấy thông tin khách hàng và lưu thông tin đơn hàng vào bảng order_customer trong cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="orderId">Mã đơn hàng</param>
+        /// <param name="customerPhone">Số điện thoại khách hàng</param>
+        /// <returns>Trả về true nếu lưu thành công, ngược lại trả về false</returns>
+        public async Task<bool> SaveOrderCustomer(string orderId, string customerPhone)
+        {
+            // Lấy id của khách hàng dựa trên số điện thoại
+            int customerId = -1;
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "SELECT id FROM customer WHERE phone = @Phone";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Phone", customerPhone);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            customerId = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+
+            // Nếu không tìm thấy khách hàng, trả về false
+            if (customerId == -1)
+            {
+                return false;
+            }
+
+            // Lưu thông tin đơn hàng vào bảng order_customer
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "INSERT INTO order_customer (order_id, customer_id) " +
+                               "VALUES (@OrderId, @CustomerId)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+                    command.Parameters.AddWithValue("@CustomerId", customerId);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Lấy số lượng đơn hàng của khách hàng dựa trên số điện thoại.
+        /// </summary>
+        /// <param name="customerPhoneNumber">Số điện thoại của khách hàng.</param>
+        /// <returns>Tuple chứa tên khách hàng và số lượng đơn hàng.</returns>
+        public async Task<Tuple<string, int>> GetCustomerOrderCountByPhoneAsync(string customerPhoneNumber)
+        {
+            const string query = @"
+            SELECT c.name, 
+                   (SELECT COUNT(*) FROM order_customer WHERE customer_id = c.id) AS order_count 
+            FROM customer c 
+            WHERE c.phone = @CustomerPhone";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerPhone", customerPhoneNumber);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Tuple<string, int>(reader.GetString(0), reader.GetInt32(1));
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Lấy số lượng đơn hàng của khách hàng dựa trên mã đơn hàng.
+        /// </summary>
+        /// <param name="orderId">Mã đơn hàng</param>
+        /// <returns>Tuple chứa số điện thoại khách hàng và số lượng đơn hàng</returns>
+        public async Task<Tuple<string, int>> GetCustomerOrderCountByOrderIdAsync(string orderId)
+        {
+            const string query = @"
+            SELECT c.phone, 
+                   (SELECT COUNT(*) FROM order_customer WHERE customer_id = c.id) AS order_count 
+            FROM customer c 
+            JOIN order_customer oc ON c.id = oc.customer_id 
+            WHERE oc.order_id = @OrderId";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Tuple<string, int>(reader.GetString(0), reader.GetInt32(1));
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<Customer> GetCustomerByOrderId(string orderId)
+        {
+            const string query = @"
+            SELECT c.*
+            FROM customer c
+            JOIN order_customer oc ON c.id = oc.customer_id
+            WHERE oc.order_id = @OrderId";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new Customer
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Gender = reader.GetString(2),
+                                Phone = reader.GetString(3),
+                                Address = reader.GetString(4),
+                                Avatar = reader.GetString(5),
+                                CVV = reader.GetInt32(6),
+                                Payment = reader.GetString(7)
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

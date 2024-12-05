@@ -29,6 +29,8 @@ namespace Books_Store_Management_App
         // Danh sách thể loại sách
         private List<Genre> genreList;
 
+       private List<ClassificationClass> classList;
+
         public BookPopupControlViewModel ViewModel { get; set; }
         public BookPopupControl()
         {
