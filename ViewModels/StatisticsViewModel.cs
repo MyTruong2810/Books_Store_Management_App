@@ -64,7 +64,7 @@ namespace Books_Store_Management_App.ViewModels
         private List<RevenueData> CalculateDailyRevenue()
         {
             return _orderPageViewModel.Orders
-                .GroupBy(order => DateTime.Parse(order.Date).Date) // Group by date
+                .GroupBy(order => DateTime.Parse(order.Date.ToString()).Date) // Group by date
                 .Select(group => new RevenueData
                 {
                     Date = group.Key, // Store the date
