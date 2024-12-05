@@ -446,11 +446,12 @@ namespace Books_Store_Management_App.Models
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "INSERT INTO Customer (Name, Gender, Phone, Address, AvatarLink, CVV, PaymentMethod) " +
-                               "VALUES (@Name, @Gender, @Phone, @Address, @Avatar, @CVV, @Payment)";
+                string query = "INSERT INTO Customer (Id, Name, Gender, Phone, Address, AvatarLink, CVV, PaymentMethod) " +
+                               "VALUES (@Id, @Name, @Gender, @Phone, @Address, @Avatar, @CVV, @Payment)";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@Id", customer.ID);
                     command.Parameters.AddWithValue("@Name", customer.Name);
                     command.Parameters.AddWithValue("@Gender", customer.Gender);
                     command.Parameters.AddWithValue("@Phone", customer.Phone);

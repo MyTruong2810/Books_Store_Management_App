@@ -106,6 +106,8 @@ namespace Books_Store_Management_App.Views
                     CustomerVM.GetAllCustomers(); // Refresh the customer list
                     PsqlDao psqlDao = new PsqlDao();
                     psqlDao.InsertCustomer(CustomerVM.SelectedCustomer);
+                    CustomerVM.MaxId++;
+                    CustomerVM.Init();
                 }
             }
         }
@@ -189,6 +191,9 @@ namespace Books_Store_Management_App.Views
                         CustomerVM.DeleteCustomer(customerId); // Delete the customer
                         CustomerVM.GetAllCustomers(); // Refresh the customer list
                         psqlDao.DeleteCustomer(delCustomer); // Delete from database
+                        if (CustomerVM.MaxId == int.Parse(customerId)){
+                            CustomerVM.MaxId--;
+                        }
                     }
                 }
             }
