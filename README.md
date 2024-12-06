@@ -119,6 +119,7 @@ Thực hiện được mô hình team work đề ra.
 Đảm bảo được quy trình đảm bảo chất lượng đề ra.
 
 ### Link video Demo (Hoàn thành 100% tiêu chí đề ra)
+  https://youtu.be/dsaxlmxxtjU
 
 ## Tổng kết
 Nhìn chung nhóm thực hiện tốt những tiêu chí nghiệm thu đề ra, ở milestone 2 nhóm gần như hoàn thiện cac tính năng của ứng dụng, trong milestone tiếp theo với các công việc dự kiến như sau:
