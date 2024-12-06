@@ -152,8 +152,8 @@ namespace Books_Store_Management_App.Models
 
         public string Description { get; set; }
 
-        private string _index;
-        public string Index
+        private int _index;
+        public int Index
         {
             get => _index;
             set
