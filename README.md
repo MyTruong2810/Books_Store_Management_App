@@ -105,19 +105,20 @@ Các thành viên triển khai được những tính năng nâng cao và áp d�
     + Tiếp tục chỉnh sửa UI của AdminPage.
     + Phụ trách toàn bộ hiển thị và xử lý StatisticPage.
     + Viết các testcase trên các page đảm nhận.
+
 **Kết quả đạt được:**
 Thực hiện được mô hình team work đề ra.
 
 ### Quality assurance (Hoàn thành 100% tiêu chí đề ra)
 Để hoàn thành tiêu chí này nhóm thực hiện công việc như sau:
 - **Manual test**, giảng viên xem **TestDoc2** kèm theo, thực hiện test trên 95% yêu cầu đề ra trong đó tỉ lệ đáp ứng thành công 80%.
-     --> Đối với những trường hợp test failed nhóm thực hiện chỉnh sửa ở milestone 3.
+--> Đối với những trường hợp test failed nhóm thực hiện chỉnh sửa ở milestone 3.
 - **Về Docs**: Nhóm thực hiện summary các Object và function, sau đó sử dụng Doxychen tạo Docs, giảng viên xem thư mục **html_docs**.
 
 **Kết quả đạt được:**
 Đảm bảo được quy trình đảm bảo chất lượng đề ra.
 
-### Link video Demo (Hoàn thành 100% tiêu chí đề ra):
+### Link video Demo (Hoàn thành 100% tiêu chí đề ra)
 
 ## Tổng kết
 Nhìn chung nhóm thực hiện tốt những tiêu chí nghiệm thu đề ra, ở milestone 2 nhóm gần như hoàn thiện cac tính năng của ứng dụng, trong milestone tiếp theo với các công việc dự kiến như sau:
@@ -126,4 +127,5 @@ Nhìn chung nhóm thực hiện tốt những tiêu chí nghiệm thu đề ra, 
 - Giả lập hệ thống thanh toán.
 - Thống nhất UI 100%.
 - Tập trung phần test tổng thể cho ứng dụng.
-    **--> Điểm đánh giá 10.**
+
+  **--> Điểm đánh giá 10.**
