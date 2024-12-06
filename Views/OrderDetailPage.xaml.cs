@@ -116,6 +116,7 @@ namespace Books_Store_Management_App.Views
                     CustomerPhoneNumberTextBox.IsEnabled = false;
 
                     CustomerNameTextBox.IsEnabled = false;
+                    ViewModel.CustomerName = orderClone.Customer;
 
                     CustomerTotalOrderTextBlock.Visibility = Visibility.Visible;
                     CustomerTotelOrderRun.Text = customerInfo.Item2.ToString();
@@ -207,12 +208,12 @@ namespace Books_Store_Management_App.Views
                 return;
             }
 
-            // Tạo đơn hàng mới
-            Guid id = Guid.NewGuid();
+            // get max id
+            int id = OrderViewModel.Orders.Count > 0 ? OrderViewModel.Orders.Max(o => o.ID) + 1 : 1;
 
             Order order = new Order()
             {
-                ID = id.ToString(),
+                ID = id,
                 Customer = ViewModel.CustomerName,
                 Date = ViewModel.PurchaseDate,
                 IsDelivered = ViewModel.IsDelivered,

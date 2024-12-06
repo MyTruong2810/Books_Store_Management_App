@@ -45,7 +45,7 @@ namespace Books_Store_Management_App.Views
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
-            ViewModel.totalRevenue = 300;
+            ViewModel.totalRevenue = 678;
         }
     }
 }

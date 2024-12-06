@@ -75,13 +75,6 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Setting" Tag="SettingPage"
-                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE713;" FontWeight="Bold" FontSize="16"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
                 <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Log out" Tag="LogoutPage"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>

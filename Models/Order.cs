@@ -40,7 +40,7 @@ namespace Books_Store_Management_App.Models
 
     public class Order : INotifyPropertyChanged, ICloneable
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Customer { get; set; }
         public DateTime Date { get; set; }
 

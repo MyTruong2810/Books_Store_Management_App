@@ -10,22 +10,21 @@ CREATE TABLE IF NOT EXISTS public.book (
     purchase_price numeric(10,2),
     genre character varying(50),
     quantity integer,
-    index VARCHAR(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL DEFAULT now(),
+    index INT NOT NULL,
     CONSTRAINT book_pkey PRIMARY KEY (index)
 ) TABLESPACE pg_default;
 
 INSERT INTO public.book (imageurl, title, publisher, author, isbn, year, selling_price, purchase_price, genre, quantity, index) VALUES
-    ('ms-appx:///Assets/image4.jpg', '1984', 'George Orwell', 'George Orwell', '9780451534852', 1949, 10.99, 9, 'Dystopian', 12, '4'),
-    ('ms-appx:///Assets/image9.jpg', 'Animal Farm', 'George Orwell', 'George Orwell', '9780451536050', 1945, 9.99, 8, 'Allegory', 11, '9'),
-    ('ms-appx:///Assets/image1.jpg', 'The Lord', 'J.R.R. Tolkien', 'J.R.R. Tolkien', '9780007567499', 1954, 29.99, 25, 'Fantasy', 10, '1'),
-    ('ms-appx:///Assets/image2.jpg', 'Pride', 'Jane Austen', 'Jane Austen', '9780140283204', 1813, 15.99, 12, 'Classic', 5, '2'),
-    ('ms-appx:///Assets/image3.jpg', 'Killer', 'Harper Lee', 'Harper Lee', '9780060735097', 1960, 12.99, 11, 'Fiction', 8, '3'),
-    ('ms-appx:///Assets/image5.jpg', 'The Catcher', 'J.D. Salinger', 'J.D. Salinger', '9780316769487', 1951, 14.99, 13, 'Coming-of-age', 7, '5'),
-    ('ms-appx:///Assets/image6.jpg', 'Harry Potter', 'J.K. Rowling', 'J.K. Rowling', '9780590353258', 1997, 19.99, 15, 'Fantasy', 15, '6'),
-    ('ms-appx:///Assets/image7.jpg', 'Hitchhiker''s', 'Douglas Adams', 'Douglas Adams', '9780345390827', 1979, 13.99, 12, 'Science Fiction', 9, '7'),
-    ('ms-appx:///Assets/image8.jpg', 'The Great', 'F. Scott Fitzgerald', 'F. Scott Fitzgerald', '9780743273563', 1925, 16.99, 15, 'Classic', 6, '8'),
-    ('ms-appx:///Assets/image10.jpg', 'Little Prince', 'Antoine de Saint-Exupéry', 'Antoine de Saint-Exupéry', '9780446315981', 1943, 11.99, 10, 'Children''s', 13, '10');
+    ('ms-appx:///Assets/image4.jpg', '1984', 'George Orwell', 'George Orwell', '9780451534852', 1949, 10.99, 9, 'Dystopian', 12, 4),
+    ('ms-appx:///Assets/image9.jpg', 'Animal Farm', 'George Orwell', 'George Orwell', '9780451536050', 1945, 9.99, 8, 'Allegory', 11, 9),
+    ('ms-appx:///Assets/image1.jpg', 'The Lord', 'J.R.R. Tolkien', 'J.R.R. Tolkien', '9780007567499', 1954, 29.99, 25, 'Fantasy', 10, 1),
+    ('ms-appx:///Assets/image2.jpg', 'Pride', 'Jane Austen', 'Jane Austen', '9780140283204', 1813, 15.99, 12, 'Classic', 5, 2),
+    ('ms-appx:///Assets/image3.jpg', 'Killer', 'Harper Lee', 'Harper Lee', '9780060735097', 1960, 12.99, 11, 'Fiction', 8, 3),
+    ('ms-appx:///Assets/image5.jpg', 'The Catcher', 'J.D. Salinger', 'J.D. Salinger', '9780316769487', 1951, 14.99, 13, 'Coming-of-age', 7, 5),
+    ('ms-appx:///Assets/image6.jpg', 'Harry Potter', 'J.K. Rowling', 'J.K. Rowling', '9780590353258', 1997, 19.99, 15, 'Fantasy', 15, 6),
+    ('ms-appx:///Assets/image7.jpg', 'Hitchhiker''s', 'Douglas Adams', 'Douglas Adams', '9780345390827', 1979, 13.99, 12, 'Science Fiction', 9, 7),
+    ('ms-appx:///Assets/image8.jpg', 'The Great', 'F. Scott Fitzgerald', 'F. Scott Fitzgerald', '9780743273563', 1925, 16.99, 15, 'Classic', 6, 8),
+    ('ms-appx:///Assets/image10.jpg', 'Little Prince', 'Antoine de Saint-Exupéry', 'Antoine de Saint-Exupéry', '9780446315981', 1943, 11.99, 10, 'Children''s', 13, 10);
 
 -- Bảng genre
 CREATE TABLE IF NOT EXISTS public.genre (
@@ -52,11 +51,10 @@ INSERT INTO public.genre (id, name, description) VALUES
 
 -- Bảng order
 CREATE TABLE IF NOT EXISTS public."order" (
-    id VARCHAR(255) NOT NULL,
+    id INT NOT NULL,
     customer character varying(100) NOT NULL,
     date timestamp without time zone NOT NULL,
     is_delivered BOOLEAN NOT NULL DEFAULT FALSE,
-    created_at timestamp without time zone NOT NULL DEFAULT now(),
     PRIMARY KEY (id)
 ) TABLESPACE pg_default;
 
@@ -87,8 +85,8 @@ INSERT INTO public.coupon (name, discount, expiry_date) VALUES
 ('SAVE 50%', 0.5, '2025-01-01 23:59:59');
 
 -- Bảng order_coupon
-    CREATE TABLE IF NOT EXISTS public.order_coupon (
-    order_id VARCHAR(255) REFERENCES public."order"(id) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS public.order_coupon (
+    order_id INT REFERENCES public."order"(id) ON DELETE CASCADE,
     coupon_id INT REFERENCES public.coupon(id) ON DELETE CASCADE,
     PRIMARY KEY (order_id, coupon_id)
 ) TABLESPACE pg_default;
@@ -108,8 +106,8 @@ INSERT INTO public.order_coupon (order_id, coupon_id) VALUES
 -- Bảng order_item
 CREATE TABLE IF NOT EXISTS public.order_item (
     id SERIAL PRIMARY KEY,
-    order_id VARCHAR(255) REFERENCES public."order"(id) ON DELETE CASCADE,
-    book_id VARCHAR(255) REFERENCES public.book(index) ON DELETE CASCADE,
+    order_id INT REFERENCES public."order"(id) ON DELETE CASCADE,
+    book_id INT REFERENCES public.book(index) ON DELETE CASCADE,
     quantity INT NOT NULL
 ) TABLESPACE pg_default;
 
@@ -178,7 +176,7 @@ INSERT INTO public.customer (id, name, gender, phone, address, avatarlink, cvv, 
 
 -- Bang order_customer
 CREATE TABLE IF NOT EXISTS public.order_customer (
-    order_id VARCHAR(255) UNIQUE REFERENCES public."order"(id) ON DELETE CASCADE,
+    order_id INT UNIQUE REFERENCES public."order"(id) ON DELETE CASCADE,
     customer_id INT REFERENCES public.customer(id) ON DELETE CASCADE,
     PRIMARY KEY (order_id)
 ) TABLESPACE pg_default;
