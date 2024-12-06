@@ -50,8 +50,8 @@
     -	StatisticPage: Thể hiện được đồ thị phân tích tổng doanh thu theo ngày, tháng, năm và có hiện thi thông báo về số lượng tồn kho của sách.
     
 - **Yêu cầu phi chức năng**
-    -Về Back-end + Database: Hoàn thành 80%, 20% còn lại ở việc lưu trữ thông tin account và transaction cho giả lập thanh toán.
-    			+ Kết nối và xây dựng các hàm lấy dữ liệu từ PostgresSQL server.
+    - Về Back-end + Database: Hoàn thành 80%, 20% còn lại ở việc lưu trữ thông tin account và transaction cho giả lập thanh toán.
+    - Kết nối và xây dựng các hàm lấy dữ liệu từ PostgresSQL server.
     - Kiểm tra trên 80% các Exception  nhập liệu từ user.
 
     **==>	Ở milestone 1 nhóm thực hiện 50% về các features ở các trang. Trong milestone 2 này nâng khối lượng lên 80%, trong đó còn 20% lại là phần lớn về giải lập thanh toán.**
