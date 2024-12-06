@@ -16,7 +16,7 @@
 - **5h**: Cho việc implement code theo phân công ở milestone 2.
 - **2h**: Cho việc thiết kế cấu trúc và tìm dữ liệu cho database.
 - **45'**: Cho quá trình kiểm thử và sửa lỗi.
-- **45'**:check tổng tiến độ nghiệm thu và viết báo cáo.
+- **45'**: Check tổng tiến độ nghiệm thu và viết báo cáo.
 
 ## Đánh giá tiến độ theo tiêu chí (100% đáp ứng tiêu chí nghiệm thu)
 
