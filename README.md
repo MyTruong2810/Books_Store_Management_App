@@ -85,6 +85,7 @@ Các thành viên triển khai được những tính năng nâng cao và áp d�
   - Các Dev phát triển có nhánh **feature** riêng.
   - Có nhánh **development** thực hiện merge code từ các nhánh feature.
   - Người chịu trách nhiệm merge code là team leader.
+  - Minh chứng:
 ![image](https://github.com/user-attachments/assets/7918bf2e-bc98-44b3-999c-aa971be9d065)
 ![image](https://github.com/user-attachments/assets/7a74c5a4-7aa7-48d1-9e4d-f961e57dd0e4)
 ![image](https://github.com/user-attachments/assets/8d76b59c-bf99-4911-90dd-26283f37a3a5)
