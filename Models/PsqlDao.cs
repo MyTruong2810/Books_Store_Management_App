@@ -13,6 +13,8 @@ using Books_Store_Management_App.ViewModels;
 using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Data;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Books_Store_Management_App.Models
 {
@@ -21,7 +23,7 @@ namespace Books_Store_Management_App.Models
     /// </summary>
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
+        private string connectionString = ConfigurationManager.Instance.GetConnectionString();
 
         public ObservableCollection<Book> GetAllBooks()
         {

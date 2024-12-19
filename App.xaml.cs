@@ -19,6 +19,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Microsoft.Extensions.Configuration;
 
 namespace Books_Store_Management_App
 {
@@ -44,6 +45,8 @@ namespace Books_Store_Management_App
 
         private void ConfigureServices(IServiceCollection services)
         {
+
+
             //services.AddSingleton<IDao<Order>, MockOrderDao>();
             //services.AddSingleton<IDao<Book>, MockBookDao>();
             //services.AddTransient<OrderViewModel>();
