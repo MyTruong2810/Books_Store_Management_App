@@ -39,57 +39,36 @@ namespace Books_Store_Management_App.Models.ZaloPay
         {
             try
             {
-                var tranid = Guid.NewGuid().ToString();
-                var embeddata = new
-                {
-                    merchantinfo = "bookstore",
-                };
+                Random rnd = new Random();
+                var embed_data = new { };
+                var itemss = new[] { new { } };
+                var param = new Dictionary<string, string>();
+                var app_trans_id = rnd.Next(1000000);
 
-                var param = new Dictionary<string, string>
-                {
-                    {
-                        "appid", _appId
-                    },
-                    {
-                        "appuser", appUser
-                    },
-                    {
-                        "apptime", Utils.GetTimeStamp().ToString()
-                    },
-                    {
-                        "amount", amount
-                    },
-                    {
-                        "apptransid", DateTime.Now.ToString("yyyyMMdd") + "_" + tranid
-                    },
-                    {
-                        "embeddata", JsonConvert.SerializeObject(embeddata)
-                    },
-                    {
-                        "item", JsonConvert.SerializeObject(items)
-                    },
-                    {
-                        "description", "Thanh toán đơn hàng"
-                    },
-                    {
-                        "bankcode", ""
-                    }
-                };
+                param.Add("app_id", _appId);
+                param.Add("app_user", appUser);
+                param.Add("app_time", Utils.GetTimeStamp().ToString());
+                param.Add("amount", amount);
+                param.Add("app_trans_id", DateTime.Now.ToString("yyMMdd") + "_" + app_trans_id); // mã giao dich có định dạng yyMMdd_xxxx
+                param.Add("embed_data", JsonConvert.SerializeObject(embed_data));
+                param.Add("item", JsonConvert.SerializeObject(itemss));
+                param.Add("description", "Bookstore - Thanh toán đơn hàng #" + app_trans_id);
+                param.Add("bank_code", "");
 
-                var data = _appId + "|" + param["apptransid"] + "|" + param["appuser"] + "|" + param["amount"] + "|"
-                + param["apptime"] + "|" + param["embeddata"] + "|" + param["item"];
+                var data = _appId + "|" + param["app_trans_id"] + "|" + param["app_user"] + "|" + param["amount"] + "|"
+                    + param["app_time"] + "|" + param["embed_data"] + "|" + param["item"];
                 param.Add("mac", HmacHelper.Compute(ZaloPayHMAC.HMACSHA256, _key1, data));
 
                 var result = await HttpHelper.PostFormAsync(_createOrderUrl, param);
 
-                if (result != null && result.ContainsKey("returncode") && (string)result["returncode"] == "1")
+                if (result != null && result.ContainsKey("return_code") && (Int64)result["return_code"] == 1)
                 {
-                    string apptransid = (string)param["apptransid"];
-                    return new Tuple<string, string>((string)result["orderurl"], apptransid);
+                    string apptransid = (string)param["app_trans_id"];
+                    return new Tuple<string, string>((string)result["order_url"], apptransid);
                 }
                 else
                 {
-                    throw new Exception("Không thể tạo đơn hàng: " + result["returnmessage"]);
+                    throw new Exception("Không thể tạo đơn hàng: " + result["sub_return_message"]);
                 }
             }
             catch (Exception ex)
@@ -109,8 +88,8 @@ namespace Books_Store_Management_App.Models.ZaloPay
             try
             {
                 var param = new Dictionary<string, string>();
-                param.Add("appid", _appId);
-                param.Add("apptransid", apptransid);
+                param.Add("app_id", _appId);
+                param.Add("app_trans_id", apptransid);
 
                 var data = $"{_appId}|{apptransid}|{_key1}";
 
@@ -129,13 +108,13 @@ namespace Books_Store_Management_App.Models.ZaloPay
                     zptransid	long	Mã giao dịch của ZaloPay 
                  */
 
-                if (result != null && result.ContainsKey("returncode"))
+                if (result != null && result.ContainsKey("return_code") && (Int64)result["return_code"] == 1)
                 {
-                    return (string)result["returnmessage"];
+                    return (string)result["sub_return_message"];
                 }
                 else
                 {
-                    throw new Exception("Không thể kiểm tra trạng thái đơn hàng: " + result["returnmessage"]);
+                    throw new Exception("Không thể kiểm tra trạng thái đơn hàng: " + result["sub_return_message"]);
                 }
             }
             catch (Exception ex)

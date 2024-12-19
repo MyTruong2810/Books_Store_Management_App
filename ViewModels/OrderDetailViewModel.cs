@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Collections;
 using System.Security.Policy;
+using Books_Store_Management_App.Models.ZaloPay;
+using System.Drawing;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Books_Store_Management_App.ViewModels
 {
@@ -130,13 +133,17 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         // TODO
-        public Dictionary<string, string> PaymentMethods { get; set; } = new Dictionary<string, string>
+        public Dictionary<string, BitmapImage> PaymentMethods { get; set; } = new Dictionary<string, BitmapImage>
         {
-            { "Cash", "/Assets/cash.jpg" },
-            { "Momo", "/Assets/momo_qr.png" },
-            { "VNPay", "/Assets/vnpay_qr.jpg" }
+            { "Cash", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/cash.jpg")} },
+            { "Momo", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/momo_qr.png")} },
+            { "VNPay", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/vnpay_qr.jpg")} },
+            { "ZaloPay", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/zalopay_qr.jpg")} }
         };
-        public string PaymentMethodQRCode { get; set; } = "/Assets/cash.jpg";
+        public BitmapImage PaymentMethodQRCode { get; set; } = new BitmapImage()
+        {
+            UriSource = new Uri("ms-appx:///Assets/cash.jpg", UriKind.RelativeOrAbsolute)
+        };
         // 
 
         // Biến lưu trữ trạng thái hiển thị của QR Code
@@ -217,12 +224,34 @@ namespace Books_Store_Management_App.ViewModels
             OnPropertyChanged(nameof(IsBooksListViewVisible));
         }
 
-        /// <summary>
-        /// Xử lý sự kiện khi chọn thời gian.
-        /// Thêm thời gian vào ngày mua.
-        /// </summary>
-        /// <param name="parameter"></param>
-        private void HandleTimeSelected(object parameter)
+        public async Task<BitmapImage> CreateOrderAsync()
+        {
+            try
+            {
+                var _zaloPayService = new ZaloPayService();
+                var amount = Math.Ceiling(ActualTotal * 25462.5).ToString();
+                var orderurl = await _zaloPayService
+                    .CreateOrderAsync(amount, CustomerName, SelectedBooks.ToList());
+
+                var qrCode = await QRCodeGeneratorService.GenerateQRCode(orderurl.Item1);
+
+                return qrCode;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+
+            /// <summary>
+            /// Xử lý sự kiện khi chọn thời gian.
+            /// Thêm thời gian vào ngày mua.
+            /// </summary>
+            /// <param name="parameter"></param>
+            private void HandleTimeSelected(object parameter)
         {
             var selectedTime = parameter as TimeSpan?;
             if (selectedTime != null)

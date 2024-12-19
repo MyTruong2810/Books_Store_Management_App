@@ -410,7 +410,7 @@
                     <!-- Kết thúc Phần Cart -->
 
                     <!-- Phần QR -->
-                    <Image Source="{x:Bind ViewModel.PaymentMethodQRCode, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsQrCodeVisible, Mode=TwoWay, Converter={StaticResource boolToVisibleConverter}}" Stretch="Uniform" />
+                    <Image x:Name="QRCode" Source="{x:Bind ViewModel.PaymentMethodQRCode, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsQrCodeVisible, Mode=TwoWay, Converter={StaticResource boolToVisibleConverter}}" Stretch="Uniform" />
                     <!-- Kết thúc Phần QR -->
                 </Grid>
             </Border>

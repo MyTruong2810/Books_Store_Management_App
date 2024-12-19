@@ -18,6 +18,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Threading;
 using System.Timers;
+using System.Drawing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -248,6 +249,12 @@ namespace Books_Store_Management_App.Views
                 // Payment giả lập
                 PayBillOrderButtonGroup.Visibility = Visibility.Visible;
                 CreateOrderButton.Visibility = Visibility.Collapsed;
+
+                // Tạo mã QR Code
+                var QRCODE = await ViewModel.CreateOrderAsync();
+                ViewModel.PaymentMethods["ZaloPay"] = QRCODE;
+                ViewModel.PaymentMethodQRCode = QRCODE;
+
 
                 ViewModel.IsQrCodeVisible = true;
                 ViewModel.IsBooksListViewVisible = false;
