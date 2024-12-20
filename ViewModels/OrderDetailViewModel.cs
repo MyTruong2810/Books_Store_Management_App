@@ -224,6 +224,7 @@ namespace Books_Store_Management_App.ViewModels
             OnPropertyChanged(nameof(IsBooksListViewVisible));
         }
 
+        public string app_trans_id { get; set; }
         public async Task<BitmapImage> CreateOrderAsync()
         {
             try
@@ -235,6 +236,8 @@ namespace Books_Store_Management_App.ViewModels
 
                 var qrCode = await QRCodeGeneratorService.GenerateQRCode(orderurl.Item1);
 
+                app_trans_id = orderurl.Item2;
+
                 return qrCode;
 
             }
@@ -245,13 +248,42 @@ namespace Books_Store_Management_App.ViewModels
 
             return null;
         }
+        public async Task<bool> WaitForPaymentAsync(string appTransId, int maxRetries = 10, int delayMilliseconds = 2000)
+        {
+            var _zaloPayService = new ZaloPayService();
+            for (int count = 0; count < maxRetries; count++)
+            {
+                try
+                {
+                    // Kiểm tra trạng thái đơn hàng
+                    var status = await _zaloPayService.CheckOrderStatusAsync(appTransId);
 
-            /// <summary>
-            /// Xử lý sự kiện khi chọn thời gian.
-            /// Thêm thời gian vào ngày mua.
-            /// </summary>
-            /// <param name="parameter"></param>
-            private void HandleTimeSelected(object parameter)
+                    if (status != null && status.Item1 == 1)
+                    {
+                        // Thanh toán thành công
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error checking payment status: {ex.Message}");
+                }
+
+                // Chờ trước khi kiểm tra lần tiếp theo
+                await Task.Delay(delayMilliseconds);
+            }
+
+            // Hết số lần kiểm tra mà không thấy trạng thái thành công
+            return false;
+        }
+
+
+        /// <summary>
+        /// Xử lý sự kiện khi chọn thời gian.
+        /// Thêm thời gian vào ngày mua.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void HandleTimeSelected(object parameter)
         {
             var selectedTime = parameter as TimeSpan?;
             if (selectedTime != null)

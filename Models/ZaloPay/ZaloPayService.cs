@@ -83,7 +83,7 @@ namespace Books_Store_Management_App.Models.ZaloPay
         /// <param name="apptransid">Mã giao dịch của đơn hàng cần kiểm tra.</param>
         /// <returns>Thông tin trạng thái của đơn hàng.</returns>
         /// <exception cref="Exception">Ném ra khi có lỗi xảy ra trong quá trình kiểm tra trạng thái đơn hàng.</exception>
-        public async Task<string> CheckOrderStatusAsync(string apptransid)
+        public async Task<Tuple<Int64, string>> CheckOrderStatusAsync(string apptransid)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace Books_Store_Management_App.Models.ZaloPay
 
                 if (result != null && result.ContainsKey("return_code") && (Int64)result["return_code"] == 1)
                 {
-                    return (string)result["sub_return_message"];
+                    return new Tuple<Int64, string>((Int64)result["return_code"], (string)result["sub_return_message"]);
                 }
                 else
                 {

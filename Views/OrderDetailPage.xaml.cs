@@ -19,6 +19,9 @@ using Windows.Foundation.Collections;
 using System.Threading;
 using System.Timers;
 using System.Drawing;
+using Books_Store_Management_App.Models.ZaloPay;
+using Microsoft.Windows.AppNotifications.Builder;
+using Microsoft.Windows.AppNotifications;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -249,15 +252,6 @@ namespace Books_Store_Management_App.Views
                 // Payment giả lập
                 PayBillOrderButtonGroup.Visibility = Visibility.Visible;
                 CreateOrderButton.Visibility = Visibility.Collapsed;
-
-                // Tạo mã QR Code
-                var QRCODE = await ViewModel.CreateOrderAsync();
-                ViewModel.PaymentMethods["ZaloPay"] = QRCODE;
-                ViewModel.PaymentMethodQRCode = QRCODE;
-
-
-                ViewModel.IsQrCodeVisible = true;
-                ViewModel.IsBooksListViewVisible = false;
             }
             catch (Exception ex)
             {
@@ -395,11 +389,41 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PayOrderButton_Click(object sender, RoutedEventArgs e)
+        private async void PayOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread.Sleep(2000);
+            if ((string)PaymentMethodCombobox.SelectedItem == "ZaloPay")
+            {
+                // Tạo mã QR Code
+                var QRCODE = await ViewModel.CreateOrderAsync();
+                ViewModel.PaymentMethods["ZaloPay"] = QRCODE;
+                ViewModel.PaymentMethodQRCode = QRCODE;
 
-            ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+                ViewModel.IsQrCodeVisible = true;
+                ViewModel.IsBooksListViewVisible = false;
+
+                bool isPaymentSuccess = await ViewModel.WaitForPaymentAsync(ViewModel.app_trans_id);
+
+                if (!isPaymentSuccess)
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText($"Đơn hàng: {ViewModel.app_trans_id} của {ViewModel.CustomerName}")
+                        .AddText("Thanh toán thất bại!")
+                        .AddText("Vui lòng thử lại sau.");
+
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+
+                    return;
+                }
+
+                ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+            }
+            else
+            {
+                Thread.Sleep(2000);
+
+                ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+            }
         }
 
         /// <summary>

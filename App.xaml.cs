@@ -20,6 +20,11 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Windows.AppLifecycle;
+using Microsoft.Windows.AppNotifications;
+using Books_Store_Management_App.Helpers;
+using Microsoft.UI.Dispatching;
+using System.Diagnostics;
 
 namespace Books_Store_Management_App
 {
@@ -57,7 +62,89 @@ namespace Books_Store_Management_App
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
-            MainWindow.Activate();
+            //MainWindow.Activate();
+
+            // To ensure all Notification handling happens in this process instance, register for
+            // NotificationInvoked before calling Register(). Without this a new process will
+            // be launched to handle the notification.
+            AppNotificationManager notificationManager = AppNotificationManager.Default;
+            notificationManager.NotificationInvoked += NotificationManager_NotificationInvoked;
+            notificationManager.Register();
+
+            var activatedArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
+            var activationKind = activatedArgs.Kind;
+            if (activationKind != ExtendedActivationKind.AppNotification)
+            {
+                LaunchAndBringToForegroundIfNeeded();
+            }
+            else
+            {
+                HandleNotification((AppNotificationActivatedEventArgs)activatedArgs.Data);
+            }
+        }
+
+        private void LaunchAndBringToForegroundIfNeeded()
+        {
+            if (MainWindow == null)
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Activate();
+
+                // Additionally we show using our helper, since if activated via a app notification, it doesn't
+                // activate the window correctly
+                WindowHelper.ShowWindow(MainWindow);
+            }
+            else
+            {
+                WindowHelper.ShowWindow(MainWindow);
+            }
+        }
+
+        private void NotificationManager_NotificationInvoked(AppNotificationManager sender, AppNotificationActivatedEventArgs args)
+        {
+            HandleNotification(args);
+        }
+
+        private void HandleNotification(AppNotificationActivatedEventArgs args)
+        {
+            // Use the dispatcher from the window if present, otherwise the app dispatcher
+            var dispatcherQueue = MainWindow?.DispatcherQueue ?? DispatcherQueue.GetForCurrentThread();
+
+
+            dispatcherQueue.TryEnqueue(async delegate
+            {
+
+                if (args.Arguments == null || !args.Arguments.ContainsKey("action"))
+                {
+                    return;
+                }
+
+                switch (args.Arguments["action"])
+                {
+                    // Send a background message
+                    case "sendMessage":
+                        string message = args.UserInput["textBox"].ToString();
+                        // TODO: Send it
+
+                        // If the UI app isn't open
+                        if (MainWindow == null)
+                        {
+                            // Close since we're done
+                            Process.GetCurrentProcess().Kill();
+                        }
+
+                        break;
+
+                    // View a message
+                    case "viewMessage":
+
+                        // Launch/bring window to foreground
+                        LaunchAndBringToForegroundIfNeeded();
+
+                        // TODO: Open the message
+                        break;
+                }
+            });
         }
     }
 }
