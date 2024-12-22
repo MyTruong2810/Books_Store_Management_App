@@ -115,6 +115,10 @@ namespace Books_Store_Management_App.Views
                         PsqlDao psqlDao = new PsqlDao();
                         psqlDao.UpdateClassification(newClassificationClass);
                     }
+                    else
+                    {
+                        Frame.Navigate(typeof(ClassificationPage));
+                    }
                 }
             }
         }
@@ -207,6 +211,34 @@ namespace Books_Store_Management_App.Views
             ClassificationClassVM.Keyword = keywordTextBox.Text; // Set keyword for searching
             ClassificationClassVM.LoadingPage(1); // Reload page with search
             UpdatePagingInfo_bootstrap(); // Update pagination info
+        }
+
+        private void OnSave(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(Tag.Text))
+            {
+                System.Windows.MessageBox.Show("Tag is required.");
+                args.Cancel = true;
+                return;
+            }
+            SaveTag();
+        }
+
+        private void OnEdit(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(Tag_Edit.Text))
+            {
+                System.Windows.MessageBox.Show("Tag is required.");
+                args.Cancel = true;
+                return;
+            }
+            SaveTag();
+        }
+
+        private void SaveTag()
+        {
+            // Lưu thông tin profile tại đây
+            System.Windows.MessageBox.Show("Classification saved successfully!");
         }
     }
 }

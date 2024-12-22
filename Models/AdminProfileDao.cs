@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Books_Store_Management_App.ViewModels;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 
 namespace Books_Store_Management_App.Models
 {
@@ -13,32 +14,25 @@ namespace Books_Store_Management_App.Models
     /// </summary>
     public class AdminProfileDao : IDaos<AdminProfileViewModel>
     {
-        // Mock data source, simulating a database, API, or file storage
-        private AdminProfileViewModel mockDatabase = new AdminProfileViewModel
-        {
-            FullName = "LTCuberik",
-            Email = "pdlinh1402@gmail.com",
-            Phone = "+1 (123) 123 4654",
-            DateOfBirth = "01-Jan-2002",
-            Address = "Dong Hoa, Di An, Binh Duong, Viet Nam"
-        };
-
         // Load profile data (simulation)
+        public PsqlDao psqlDao = new PsqlDao();
         public AdminProfileViewModel LoadProfile(string id)
         {
             // In practice, data would be fetched from a database
-            return mockDatabase;
+            return psqlDao.GetAdminByUsername(id);
         }
 
         // Save or update profile data (simulation)
-        public void Save(AdminProfileViewModel profile)
+        public void Save(AdminProfileViewModel profile, string newpass)
         {
-            // In practice, data would be saved to a database
-            mockDatabase.FullName = profile.FullName;
-            mockDatabase.Email = profile.Email;
-            mockDatabase.DateOfBirth = profile.DateOfBirth;
-            mockDatabase.Phone = profile.Phone;
-            mockDatabase.Address = profile.Address;
+            string username = Windows.Storage.ApplicationData.Current.LocalSettings.Values["username"].ToString();
+            string hassedPass = "";
+            if (newpass != "")
+            {
+                hassedPass = LoginViewModel.SHA_256(newpass);
+            }
+            psqlDao.UpdateAdminInfo(profile, username, hassedPass);
+
         }
 
         // Optional implementation to delete profile by ID

@@ -78,37 +78,39 @@
             <TextBlock
                 Text="Dashboard" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
 
-            <Grid Margin="800 0 0 0">
+            <Grid Margin="650 0 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <RadioButton FontWeight="Bold" Content="Week" Checked="RadioButton_Checked_1" Grid.Column="0"/>
+                <RadioButton FontWeight="Bold" Content="Today" Checked="RadioButton_Checked_1" Grid.Column="0"/>
                 <RadioButton x:Name="monthStatistic" FontWeight="Bold" Content="Month" Checked="RadioButton_Checked_2" Grid.Column="1"/>
+                <RadioButton x:Name="total" FontWeight="Bold" Content="Total" Checked="RadioButton_Checked_3" Grid.Column="2"/>
             </Grid>
         </StackPanel>
 
         <!-- Rectangles -->
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="0">
-            <TextBlock Text="Total Books" FontSize="20" Foreground="White" Margin="20 10 0 0" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="Total Books" FontSize="20" Foreground="White" Margin="30 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xE736;" Foreground="White" Margin="10 0 0 100"/>
             <TextBlock Text="{x:Bind ViewModel.totalBook}"  FontSize="35" Foreground="White" Margin="-90 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Total Customers" FontSize="20" Foreground="White" Margin="0 10 0 0" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="Total Customers" FontSize="20" Foreground="White" Margin="10 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xE716;" Foreground="White" Margin="10 0 0 100"/>
-            <TextBlock Text="{x:Bind ViewModel.totalCustomer}"  FontSize="35" Foreground="White" Margin="-100 70 0 0" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind ViewModel.totalCustomer}"  FontSize="35" Foreground="White" Margin="-112 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="Total Orders" FontSize="20" Foreground="White" Margin="20 10 0 0" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="Total Orders" FontSize="20" Foreground="White" Margin="30 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xE7BF;" Foreground="White" Margin="10 0 0 100"/>
             <TextBlock Text="{x:Bind ViewModel.totalOrder}"  FontSize="35" Foreground="White" Margin="-90 70 0 0" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Background="#292c2d" CornerRadius="20" Width="200" Height="150" Grid.Row="1" Grid.Column="3">
-            <TextBlock Text="Total Revenues" FontSize="20" Foreground="White" Margin="10 10 0 0" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="Total Revenues" FontSize="20" Foreground="White" Margin="15 10 0 0" FontWeight="Bold"></TextBlock>
             <FontIcon Glyph="&#xF156;" Foreground="White" Margin="10 0 0 100" VerticalAlignment="Center"/>
             <TextBlock Text="{x:Bind ViewModel.totalRevenue, Converter={StaticResource DoubleToUsdCurrencyConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="35" Foreground="White" Margin="-145 70 0 0" FontWeight="Bold"/>
         </StackPanel>

@@ -36,16 +36,22 @@ namespace Books_Store_Management_App.Views
             ViewModel = new DashboardViewModel();
             ViewModel.Init();
             temp = ViewModel.totalRevenue;
+            ViewModel.totalRevenue = temp;
+            total.IsChecked = true;
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            ViewModel.totalRevenue = temp;
+            ViewModel.totalRevenue = ViewModel.totalDay;
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
-            ViewModel.totalRevenue = 678;
+            ViewModel.totalRevenue = ViewModel.totalMonth;
+        }
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            ViewModel.totalRevenue = temp;
         }
     }
 }
