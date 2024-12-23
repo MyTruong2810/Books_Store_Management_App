@@ -19,6 +19,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App
 {
@@ -29,6 +30,8 @@ namespace Books_Store_Management_App
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         /// 
+
+        public static SettingsViewModel SettingsViewModel { get; } = new SettingsViewModel();
         public IServiceProvider ServiceProvider { get; private set; }
         // Sử dụng thuộc tính tĩnh MainWindow
         public static Window MainWindow { get; private set; }
@@ -40,6 +43,9 @@ namespace Books_Store_Management_App
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
             ServiceProvider = serviceCollection.BuildServiceProvider();
+
+            // Áp dụng theme khi khởi chạy
+            ApplySavedTheme();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -51,10 +57,25 @@ namespace Books_Store_Management_App
             services.AddTransient<OrderDetailViewModel>();
         }
 
+        private void ApplySavedTheme()
+        {
+            // Kiểm tra theme đã được lưu trong Settings
+            var themeToApply = SettingsViewModel.CurrentTheme;
+
+            // Áp dụng theme cho MainWindow
+            if (MainWindow != null && MainWindow.Content is FrameworkElement rootElement)
+            {
+                rootElement.RequestedTheme = themeToApply;
+            }
+        }
+
+
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
             MainWindow.Activate();
+            // Áp dụng theme sau khi MainWindow được tạo
+            ApplySavedTheme();
         }
     }
 }

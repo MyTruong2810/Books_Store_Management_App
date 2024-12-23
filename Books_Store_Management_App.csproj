@@ -33,6 +33,9 @@
 
   <ItemGroup>
     <None Remove="BookPopupControl.xaml" />
+    <None Remove="Themes\ColorResources.xaml" />
+    <None Remove="Themes\Dark.xaml" />
+    <None Remove="Themes\Light.xaml" />
     <None Remove="Views\BookPopupControl.xaml" />
     <None Remove="Views\AdminPage.xaml" />
     <None Remove="Views\ClassificationPage.xaml" />
@@ -43,6 +46,7 @@
     <None Remove="Views\OrderDetailPage.xaml" />
     <None Remove="Views\OrderPage.xaml" />
     <None Remove="Views\ReadOnlyOrderDetailPage.xaml" />
+    <None Remove="Views\SettingPage.xaml" />
     <None Remove="Views\StatisticsPage.xaml" />
     <None Remove="Views\StockPage.xaml" />
   </ItemGroup>
@@ -125,6 +129,18 @@
     <None Update="Assets\vnpay_qr.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Themes\Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\ColorResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\SettingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\InvoicePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

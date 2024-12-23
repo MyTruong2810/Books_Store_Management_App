@@ -1,0 +1,27 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Màu sáng -->
+    <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+    <Color x:Key="TextColorLight">#000000</Color>
+
+    <!-- Màu tối -->
+    <Color x:Key="BackgroundColorDark">#1E1E1E</Color>
+    <Color x:Key="TextColorDark">#FFFFFF</Color>
+
+    <!-- Brush -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{ThemeResource BackgroundColor}" />
+    <SolidColorBrush x:Key="TextBrush" Color="{ThemeResource TextColor}" />
+
+    <!-- ThemeDictionary -->
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <Color x:Key="BackgroundColor" >{StaticResource BackgroundColorLight}</Color>
+            <Color x:Key="TextColor">{StaticResource TextColorLight}</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="BackgroundColor">{StaticResource BackgroundColorDark}</Color>
+            <Color x:Key="TextColor">{StaticResource TextColorDark}</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

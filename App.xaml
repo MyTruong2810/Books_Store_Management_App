@@ -3,16 +3,17 @@
     x:Class="Books_Store_Management_App.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Books_Store_Management_App">
+    xmlns:local="using:Books_Store_Management_App"
+    xmlns:local1="using:Books_Store_Management_App.Helpers">
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
+                <!-- Tải tài nguyên cho Light và Dark -->
+                <ResourceDictionary Source="Themes/Dark.xaml"/>
+                <ResourceDictionary Source="Themes/Light.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
-            <SolidColorBrush x:Key="NavigationViewBackgroundBrush" Color="#22396d"/>
-            <SolidColorBrush x:Key="NavigationViewItemBackgroundBrush" Color="#ffffff"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Books_Store_Management_App.ViewModels;
+using Catel.MVVM;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -13,6 +15,7 @@ namespace Books_Store_Management_App.Views
         public MainPage()
         {
             this.InitializeComponent();
+            DataContext = App.SettingsViewModel; // Sử dụng SettingsViewModel toàn cục
         }
         /// <summary>
         /// Hàm chuyển trang khi chọn mục trong NavigationView.
@@ -55,8 +58,24 @@ namespace Books_Store_Management_App.Views
             {
                 content.Navigate(typeof(CustomerPage));
             }
+            else if (selectedTag == "SettingPage")
+            {
+                content.Navigate(typeof(SettingPage));
+            }
             else if (selectedTag == "LogoutPage")
             {
+                App.SettingsViewModel.IsDarkModeEnabled = false; // Đặt lại theme mặc định
+
+
+                if (DataContext is SettingsViewModel viewModel)
+                {
+
+                    // Áp dụng theme cho root element
+                    if (App.MainWindow.Content is FrameworkElement rootElement)
+                    {
+                        rootElement.RequestedTheme = viewModel.CurrentTheme; // Cập nhật theme cho root element
+                    }
+                }
                 MainWindow.AppFrame.Navigate(typeof(LoginPage));
             }
         }
