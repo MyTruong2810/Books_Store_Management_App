@@ -406,7 +406,7 @@ namespace Books_Store_Management_App.Views
                 if (!isPaymentSuccess)
                 {
                     var builder = new AppNotificationBuilder()
-                        .AddText($"Đơn hàng: {ViewModel.app_trans_id} của {ViewModel.CustomerName}")
+                        .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
                         .AddText("Thanh toán thất bại!")
                         .AddText("Vui lòng thử lại sau.");
 
@@ -415,7 +415,7 @@ namespace Books_Store_Management_App.Views
 
                     return;
                 }
-
+                 
                 ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
             }
             else
