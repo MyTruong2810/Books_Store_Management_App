@@ -90,7 +90,7 @@ namespace Books_Store_Management_App.ViewModels
         // Updates an existing ClassificationClass with new data
         public void EditClassificationClass(ClassificationClass newClassificationClass)
         {
-            _dao.Save(newClassificationClass);
+            _dao.Save(newClassificationClass, "");
         }
 
         // Updates the current page and refreshes the ClassificationClass list for the new page

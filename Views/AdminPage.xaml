@@ -57,22 +57,30 @@
 
         <!-- Popup Dialog -->
         <ContentDialog
-         x:Name="EditProfileDialog"
-         Title="Edit Profile"
-         PrimaryButtonText="Save"
-         CloseButtonText="Cancel"
-         DefaultButton="Primary"
-         Background="Black">
+            x:Name="EditProfileDialog"
+            Title="Edit Profile"
+            PrimaryButtonText="Save"
+            CloseButtonText="Cancel"
+            DefaultButton="Primary"
+            Background="Black"
+            PrimaryButtonClick="OnSaveButtonClick">
 
             <StackPanel Width="500" Margin="0">
-                <TextBox Header="Fullname" FontSize="11" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" PlaceholderText="Fullname"/>
-                <TextBox Header="Email (*)" FontSize="11" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email"/>
-                <PasswordBox Header="Current Password (*)" FontSize="11" PlaceholderText="Password"/>
-                <PasswordBox Header="Confirm Password (*)" FontSize="11" PlaceholderText="Confirm Password"/>
-                <TextBox Header="Date of Birth" FontSize="11" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Date of Birth : (dd/mm/yyyy)"/>
-                <TextBox Header="Phone number" FontSize="11" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
-                <TextBox Header="Address" FontSize="11" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" PlaceholderText="Address"/>
+                <TextBox x:Name="fullname" Header="Fullname" FontSize="11" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" PlaceholderText="Fullname"/>
+
+                <!-- Email với Validation -->
+                <TextBox x:Name="email" Header="Email (*)" FontSize="11" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email"/>
+
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="newpass" Header="Set New Password (*)" FontSize="11" PlaceholderText="Confirm Password"/>
+
+                <!-- Date of Birth TextBox -->
+                <TextBox x:Name="dob" Header="Date of Birth (yyyy-mm-dd)" FontSize="11" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Date of Birth"/>
+
+                <TextBox x:Name="phone"  Header="Phone number" FontSize="11" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
+                <TextBox x:Name="address" Header="Address" FontSize="11" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" PlaceholderText="Address"/>
             </StackPanel>
         </ContentDialog>
+
     </StackPanel>
 </Page>

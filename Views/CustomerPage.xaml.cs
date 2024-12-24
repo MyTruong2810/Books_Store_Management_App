@@ -20,6 +20,7 @@ using Books_Store_Management_App.Models;
 using Microsoft.UI.Xaml.Media.Imaging;
 using WinRT.Interop;
 using OxyPlot.Axes;
+using Catel.MVVM;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -112,6 +113,28 @@ namespace Books_Store_Management_App.Views
             }
         }
 
+        private void OnAddButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(NameTextBox_Add.Text))
+            {
+                System.Windows.MessageBox.Show("Fullname is required.");
+                args.Cancel = true;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(PhoneTextBox_Add.Text))
+            {
+                System.Windows.MessageBox.Show("Phone number is required.");
+                args.Cancel = true;
+                return;
+            }
+            if (!IsPhoneNumberValid(PhoneTextBox.Text))
+            {
+                System.Windows.MessageBox.Show("Phone number must contain only digits.");
+                args.Cancel = true;
+                return;
+            }
+            SaveProfile();
+        }
         // Event handler for updating an existing customer
         private async void updateButton_Click(object sender, RoutedEventArgs e)
         {
@@ -135,8 +158,45 @@ namespace Books_Store_Management_App.Views
                         CustomerVM.GetAllCustomers(); // Refresh the customer list
                         psqlDao.UpdateCustomer(CustomerVM.SelectedCustomer); // Save to database
                     }
+                    else
+                    {
+                        Frame.Navigate(typeof(CustomerPage));
+                    }
                 }
             }
+        }
+
+        private void OnEditButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+            {
+                System.Windows.MessageBox.Show("Fullname is required.");
+                args.Cancel = true;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(PhoneTextBox.Text))
+            {
+                System.Windows.MessageBox.Show("Phone number is required.");
+                args.Cancel = true;
+                return;
+            }
+            if (!IsPhoneNumberValid(PhoneTextBox.Text))
+            {
+                System.Windows.MessageBox.Show("Phone number must contain only digits.");
+                args.Cancel = true;
+                return;
+            }
+            SaveProfile();
+        }
+
+        private bool IsPhoneNumberValid(string phone)
+        {
+            return phone.All(char.IsDigit);
+        }
+        private void SaveProfile()
+        {
+            // Lưu thông tin profile tại đây
+            System.Windows.MessageBox.Show("Customer saved successfully!");
         }
 
         // Event handler for changing the customer's avatar image

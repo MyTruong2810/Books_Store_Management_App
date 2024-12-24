@@ -5,10 +5,14 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Books_Store_Management_App.GoogleAuth;
+using Books_Store_Management_App.Models;
 using Books_Store_Management_App.Views;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Storage;
+using Books_Store_Management_App.ViewModels;
 
 namespace Books_Store_Management_App.ViewModels
 {
@@ -22,12 +26,7 @@ namespace Books_Store_Management_App.ViewModels
         private bool _isPasswordSaved; // Trạng thái lưu mật khẩu
 
         // Database giả lập thông tin người dùng
-        private readonly Dictionary<string, string> _usersDatabase = new Dictionary<string, string>
-        {
-            { "user1", "123" },
-            { "user2", "456" },
-            { "user3", "789" }
-        };
+        private Dictionary<string, string> _usersDatabase;
 
         public string Username
         {
@@ -59,7 +58,8 @@ namespace Books_Store_Management_App.ViewModels
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(async _ => await LoginAsync());
-            SignupCommand = new RelayCommand(_ => Signup());
+
+            SignupCommand = new RelayCommand(async _ => await SignupAsync());
             LoadSavedCredentials();
         }
         /// <summary>
@@ -82,7 +82,9 @@ namespace Books_Store_Management_App.ViewModels
                     {
                         await SaveCredentialsAsync(Username, Password);
                     }
-                    MainWindow.AppFrame.Navigate(typeof(MainPage));
+
+                    MainWindow.AppFrame.Navigate(typeof(MainPage), Username);
+
                 }
                 else
                 { 
@@ -103,7 +105,8 @@ namespace Books_Store_Management_App.ViewModels
         /// <returns></returns>
         private bool AuthenticateUser(string username, string password)
         {
-            return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == password;
+            _usersDatabase = new PsqlDao().GetAdminCredentials(username);
+            return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == SHA_256(password);
         }
         /// <summary>
         /// Lưu thông tin đăng nhập nếu người dùng chọn lưu mật khẩu vào hệ thống local settings.
@@ -149,9 +152,35 @@ namespace Books_Store_Management_App.ViewModels
         /// <summary>
         /// Hàm xử lý đăng ký tài khoản, nhóm đang phát triển chức năng này.
         /// </summary>
-        private void Signup()
+        private async Task SignupAsync()
         {
-            // Todo: Implement signup functionality later
+            var result = await GoogleLoginHandler.LoginWithGoogle();
+            string userName = result.Item1;
+            string userEmail = result.Item2;
+
+            List<string> admins = new PsqlDao().GetAllAdminEmail();
+
+            if (admins.Contains(userEmail))
+            {
+                MainWindow.AppFrame.Navigate(typeof(MainPage), userEmail);
+                return; 
+            }
+
+            Random random = new Random();
+            int n = random.Next(100, 500);
+            string pass = SHA_256(n.ToString());
+
+            new PsqlDao().InsertAdmin(new AdminProfileViewModel(), userEmail, pass);
+
+            MessageBox.Show(
+                $"Signup Successful!\n\n" +
+                $"Username: {userEmail}\n" +
+                $"Password: {n}\n\n" +
+                $"✅ You can now log in and update your password.\n",
+                "Signup Complete",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
         }
 
         private void SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
@@ -160,6 +189,20 @@ namespace Books_Store_Management_App.ViewModels
             {
                 field = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public static string SHA_256(string input)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
             }
         }
     }

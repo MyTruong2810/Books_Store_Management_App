@@ -26,6 +26,7 @@ using Books_Store_Management_App.Helpers;
 using Microsoft.UI.Dispatching;
 using System.Diagnostics;
 
+
 namespace Books_Store_Management_App
 {
     public partial class App : Application
@@ -50,8 +51,6 @@ namespace Books_Store_Management_App
 
         private void ConfigureServices(IServiceCollection services)
         {
-
-
             //services.AddSingleton<IDao<Order>, MockOrderDao>();
             //services.AddSingleton<IDao<Book>, MockBookDao>();
             //services.AddTransient<OrderViewModel>();
@@ -82,7 +81,7 @@ namespace Books_Store_Management_App
                 HandleNotification((AppNotificationActivatedEventArgs)activatedArgs.Data);
             }
         }
-
+		
         private void LaunchAndBringToForegroundIfNeeded()
         {
             if (MainWindow == null)

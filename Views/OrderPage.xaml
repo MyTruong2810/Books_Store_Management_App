@@ -34,11 +34,11 @@
                     <TextBlock Margin="20 0 10 0" VerticalAlignment="Center">Show</TextBlock>
                     <ComboBox PlaceholderText="10" ItemsSource="{x:Bind ShowEntities}" Width="65" Margin="0 0 50 0" SelectionChanged="Combo3_Selected"/>
                     <TextBlock Margin="20 0 10 0" VerticalAlignment="Center">Search</TextBlock>
-                    <TextBox PlaceholderText="Type here ..." Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged"/>
+                    <TextBox PlaceholderText="Type here ..." Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" x:Name="SearchTextBox"/>
                     <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
-                    <ComboBox PlaceholderText="Choose month ..." ItemsSource="{x:Bind monthSearch}" Width="150" Margin="0 0 50 0"/>
+                    <ComboBox PlaceholderText="Choose month ..." ItemsSource="{x:Bind monthSearch}" Width="150" Margin="0 0 50 0" SelectionChanged="SearchByMonth_SelectionChanged" x:Name="SearchByMonth"/>
                     <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
-                    <ComboBox PlaceholderText="Choose price ..." ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 140 0"/>
+                    <ComboBox PlaceholderText="Choose price ..." ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 140 0" SelectionChanged="SearchByPrice_SelectionChanged" x:Name="SearchByPrice"/>
                     <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Click="AddOrder_Click" Width="60" Height="30">
                         <FontIcon Glyph="&#xE710;" DataContext="Add New ClassificationClass" Foreground="White" />
                     </Button>
@@ -147,11 +147,21 @@
                 </ListView>
 
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Background="DarkCyan" CornerRadius="10"
+                    Padding="5" Margin="5">
+                    <Button Name="previousButton" Background="GhostWhite" Foreground="Red" Width="80" Height="30" Content="Previous" Click="PreviousPage_Click" Margin="5"/>
+                    <ComboBox ItemsSource="{x:Bind PageInfo}" Margin="5" Background="GhostWhite" Foreground="Red"  
+                       Width="80" Height="30" SelectionChanged="Combo3_Selected_Paging" SelectedIndex="0" x:Name="PageInfomation"/>
+                    <Button Name="nextButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Next" Click="NextPage_Click" Margin="5"/>
+                </StackPanel>
+
+
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                     <Button x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous" Click="PreviousPage_Click" IsEnabled="False" />
                     <TextBlock x:Name="PageInfo" Margin="10,0" />
                     <Button x:Name="NextButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Next" Click="NextPage_Click" IsEnabled="True" />
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
         </Grid>
         <ContentDialog

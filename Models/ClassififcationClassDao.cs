@@ -55,7 +55,7 @@ namespace Books_Store_Management_App.Models
                     origin = origin.OrderBy(e => e.Tags); // Sort by Tags
                     break;
                 default:
-                    origin = origin.OrderBy(e => e.ID); // Default sort by ID
+                    origin = origin.OrderBy(e => int.Parse(e.ID)); // Default sort by ID
                     break;
             }
 
@@ -90,7 +90,8 @@ namespace Books_Store_Management_App.Models
         }
 
         // Updates an existing ClassificationClass profile (simulates a database save operation)
-        public void Save(ClassificationClass profile)
+
+        public void Save(ClassificationClass profile, string temp)
         {
             var oldInfo = Db.FirstOrDefault(e => e.ID == profile.ID);
             if (oldInfo != null)

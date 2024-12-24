@@ -20,7 +20,6 @@ namespace Books_Store_Management_App.Helpers
             // Use the WindowNative class from the WinRT.Interop namespace to get the window handle
             return WindowNative.GetWindowHandle(window);
         }
-
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 

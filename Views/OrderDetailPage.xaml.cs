@@ -252,6 +252,7 @@ namespace Books_Store_Management_App.Views
                 // Payment giả lập
                 PayBillOrderButtonGroup.Visibility = Visibility.Visible;
                 CreateOrderButton.Visibility = Visibility.Collapsed;
+
             }
             catch (Exception ex)
             {
@@ -389,6 +390,7 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+<<<<<<< HEAD
         private async void PayOrderButton_Click(object sender, RoutedEventArgs e)
         {
             if ((string)PaymentMethodCombobox.SelectedItem == "ZaloPay")

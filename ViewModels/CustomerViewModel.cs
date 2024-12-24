@@ -89,7 +89,7 @@ namespace Books_Store_Management_App.ViewModels
         // Updates an existing customer record with new data
         public void EditCustomer(Customer newCustomer)
         {
-            _dao.Save(newCustomer);
+            _dao.Save(newCustomer, "");
         }
 
         // Loads a specific page of customers and updates the current page

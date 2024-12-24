@@ -166,12 +166,20 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Background="DarkCyan" CornerRadius="10"
+                    Padding="5" Margin="10">
+                    <Button Name="previousButton" Background="GhostWhite" Foreground="Red" Width="80" Height="30" Content="Previous" Click="PreviousPage_Click" Margin="5"/>
+                    <ComboBox ItemsSource="{x:Bind PageInfo}" Margin="5" Background="GhostWhite" Foreground="Red"  
+                    Width="80" Height="30" SelectionChanged="Combo3_Selected_Paging" SelectedIndex="0" x:Name="PageInfomation"/>
+                    <Button Name="nextButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Next" Click="NextPage_Click" Margin="5"/>
+                </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                     <Button x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous" Click="PreviousPage_Click" IsEnabled="False" />
                     <TextBlock x:Name="PageInfo" Margin="10,0" />
                     <Button x:Name="NextButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Next" Click="NextPage_Click" IsEnabled="True" />
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
         </Grid>
 
