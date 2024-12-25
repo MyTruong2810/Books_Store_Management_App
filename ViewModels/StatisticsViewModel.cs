@@ -1,5 +1,6 @@
 ﻿using Catel.MVVM;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore;
 using System;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ using Npgsql;
 using Catel.Data;
 using Books_Store_Management_App.Models;
 using Windows.Devices.Geolocation;
+using SkiaSharp;
 
 namespace Books_Store_Management_App.ViewModels
 {
@@ -23,6 +25,9 @@ namespace Books_Store_Management_App.ViewModels
         public ObservableCollection<ISeries> LineChartSeries { get; set; }
         public Axis[] XAxes { get; set; }
         public Axis[] YAxes { get; set; }
+
+        // Paint for axes
+        public SolidColorPaint AxisNamePaint { get; set; }
 
         // Command properties for setting charts
         public ICommand SetDailyChartCommand { get; }
@@ -47,6 +52,10 @@ namespace Books_Store_Management_App.ViewModels
             // Calculate daily revenue based on order data
             _dailyRevenue = CalculateDailyRevenue();
 
+
+            // Initialize paint colors
+            AxisNamePaint = new SolidColorPaint(SKColors.Green); // X and Y axes name color
+
             // Initialize commands for chart changes
             SetDailyChartCommand = new Command(SetDailyChart);
             SetMonthlyChartCommand = new Command(SetMonthlyChart);
@@ -56,6 +65,7 @@ namespace Books_Store_Management_App.ViewModels
             // Initialize stock alert data and visibility
             StockItems = new ObservableCollection<StockItem>();
             IsStockAlertVisible = false;
+
 
             // Commands to open and close stock alerts
             OpenStockAlertCommand = new RelayCommand(OpenStockAlert);
@@ -107,6 +117,7 @@ namespace Books_Store_Management_App.ViewModels
                 new Axis
                 {
                     Name = "Date", // X-axis label (Date)
+                    NamePaint = AxisNamePaint, // Apply paint to axis name
                     Labels = _dailyRevenue.Select(d => d.Date.ToShortDateString()).ToArray() // Labels for each day
                 }
             };
@@ -115,7 +126,8 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
-                    Name = "Total revenue ($)" // Y-axis label (Revenue in VND)
+                    Name = "Total revenue ($)", // Y-axis label (Revenue in VND)
+                    NamePaint = AxisNamePaint // Apply paint to axis name
                 }
             };
 
@@ -123,6 +135,7 @@ namespace Books_Store_Management_App.ViewModels
             RaisePropertyChanged(nameof(LineChartSeries));
             RaisePropertyChanged(nameof(XAxes));
             RaisePropertyChanged(nameof(YAxes));
+            RaisePropertyChanged(nameof(AxisNamePaint));
         }
 
         // Method to set the monthly revenue chart
@@ -149,6 +162,7 @@ namespace Books_Store_Management_App.ViewModels
                 new Axis
                 {
                     Name = "Month", // X-axis label (Month)
+                    NamePaint = AxisNamePaint, // Apply paint to axis name
                     Labels = monthlyRevenue.Select(m => m.Month).ToArray() // Labels for each month
                 }
             };
@@ -156,6 +170,7 @@ namespace Books_Store_Management_App.ViewModels
             // Notify the view to update the chart
             RaisePropertyChanged(nameof(LineChartSeries));
             RaisePropertyChanged(nameof(XAxes));
+            RaisePropertyChanged(nameof(AxisNamePaint));
         }
 
         // Method to set the yearly revenue chart
@@ -182,6 +197,7 @@ namespace Books_Store_Management_App.ViewModels
                 new Axis
                 {
                     Name = "Year", // X-axis label (Year)
+                    NamePaint = AxisNamePaint, // Apply paint to axis name
                     Labels = yearlyRevenue.Select(y => y.Year.ToString()).ToArray() // Labels for each year
                 }
             };
@@ -189,6 +205,7 @@ namespace Books_Store_Management_App.ViewModels
             // Notify the view to update the chart
             RaisePropertyChanged(nameof(LineChartSeries));
             RaisePropertyChanged(nameof(XAxes));
+            RaisePropertyChanged(nameof(AxisNamePaint));
         }
 
         #endregion
@@ -213,7 +230,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             StockItems.Clear(); // Clear any existing stock data
 
-            string connectionString = "Host=localhost;Username=postgres;Password=1234;Database=mybookstore";
+            string connectionString = "Host=localhost;Username=postgres;Password=admin;Database=mybookstore";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();

@@ -22,8 +22,7 @@ namespace Books_Store_Management_App.Views
         }
 
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-        {
-                
+        { 
             if (DataContext is SettingsViewModel viewModel && sender is ToggleSwitch toggleSwitch)
             {
                 // Đồng bộ trạng thái của ViewModel với ToggleSwitch
@@ -32,6 +31,16 @@ namespace Books_Store_Management_App.Views
                 // Áp dụng theme cho root element
                 if (App.MainWindow.Content is FrameworkElement rootElement)
                 {
+                    if (App.Current is App appInstance)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Updating theme resources...");
+                        appInstance.UpdateThemeResources(viewModel.CurrentTheme);
+                        System.Diagnostics.Debug.WriteLine("Theme updated successfully.");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("App.Current is not of type App.");
+                    }
                     rootElement.RequestedTheme = viewModel.CurrentTheme; // Cập nhật theme cho root element
                 }
             }

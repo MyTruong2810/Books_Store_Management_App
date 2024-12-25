@@ -44,66 +44,71 @@ namespace Books_Store_Management_App.Views
             var selectedItem = args.SelectedItem as NavigationViewItem;
             string selectedTag = selectedItem?.Tag?.ToString();
 
-            if (selectedTag == "DashboardPage")
+            switch (selectedTag)
             {
-                content.Navigate(typeof(DashboardPage));
-            }
-            else if (selectedTag == "StockPage")
-            {
-                content.Navigate(typeof(StockPage));
-            }
-            else if (selectedTag == "OrderPage")
-            {
-                content.Navigate(typeof(OrderPage));
-            }
-            else if (selectedTag == "Admin")
-            {
-                content.Navigate(typeof(AdminPage));
-            }
-            else if (selectedTag == "ClassificationPage")
-            {
-                content.Navigate(typeof(ClassificationPage));
-            }
-            else if (selectedTag == "StatisticsPage")
-            {
-                content.Navigate(typeof(StatisticsPage));
-            }
-            else if (selectedTag == "CustomerPage")
-            {
-                content.Navigate(typeof(CustomerPage));
-            }
-            else if (selectedTag == "LogoutPage")
-            {
-                MainWindow.AppFrame.Navigate(typeof(LoginPage));
-            }
-            else if (selectedTag == "StatisticsPage")
-            {
-                content.Navigate(typeof(StatisticsPage));
-            }
-            else if (selectedTag == "CustomerPage")
-            {
-                content.Navigate(typeof(CustomerPage));
-            }
-            else if (selectedTag == "SettingPage")
-            {
-                content.Navigate(typeof(SettingPage));
-            }
-            else if (selectedTag == "LogoutPage")
-            {
-                App.SettingsViewModel.IsDarkModeEnabled = false; // Đặt lại theme mặc định
+                case "DashboardPage":
+                    content.Navigate(typeof(DashboardPage));
+                    break;
 
+                case "StockPage":
+                    content.Navigate(typeof(StockPage));
+                    break;
 
-                if (DataContext is SettingsViewModel viewModel)
-                {
+                case "OrderPage":
+                    content.Navigate(typeof(OrderPage));
+                    break;
 
-                    // Áp dụng theme cho root element
-                    if (App.MainWindow.Content is FrameworkElement rootElement)
-                    {
-                        rootElement.RequestedTheme = viewModel.CurrentTheme; // Cập nhật theme cho root element
-                    }
-                }
-                MainWindow.AppFrame.Navigate(typeof(LoginPage));
+                case "Admin":
+                    content.Navigate(typeof(AdminPage));
+                    break;
+
+                case "ClassificationPage":
+                    content.Navigate(typeof(ClassificationPage));
+                    break;
+
+                case "StatisticsPage":
+                    content.Navigate(typeof(StatisticsPage));
+                    break;
+
+                case "CustomerPage":
+                    content.Navigate(typeof(CustomerPage));
+                    break;
+
+                case "SettingPage":
+                    content.Navigate(typeof(SettingPage));
+                    break;
+
+                case "LogoutPage":
+                    HandleLogout();
+                    break;
+
+                default:
+                    System.Diagnostics.Debug.WriteLine($"Unhandled navigation tag: {selectedTag}");
+                    break;
             }
         }
+
+        private void HandleLogout()
+        {
+            // Đặt lại theme về mặc định (Light Mode)
+            App.SettingsViewModel.IsDarkModeEnabled = false;
+
+            if (App.MainWindow.Content is FrameworkElement rootElement)
+            {
+                rootElement.RequestedTheme = App.SettingsViewModel.CurrentTheme;
+
+                if (App.Current is App appInstance)
+                {
+                    appInstance.UpdateThemeResources(App.SettingsViewModel.CurrentTheme);
+                }
+            }
+
+            // Điều hướng về trang đăng nhập
+            MainWindow.AppFrame.Navigate(typeof(LoginPage));
+
+            // Xóa thông tin người dùng khỏi LocalSettings (nếu cần)
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values.Remove("username");
+        }
+
     }
 }

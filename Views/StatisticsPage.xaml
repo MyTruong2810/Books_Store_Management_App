@@ -19,26 +19,68 @@
         <local1:DoubleToUsdCurrencyConverter x:Key="currencyConverter" />
         <local1:StringToVisibableConverter x:Key="toVisibableConverter" />
     </Page.Resources>
-    <Grid Background="#C4C4FC">
-        <!-- Biểu đồ -->
-        <lvc:CartesianChart Series="{Binding LineChartSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" />
+    <Grid Background="{ThemeResource StackPanelBackgroundColor}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <!-- Header Section -->
+                <RowDefinition Height="Auto" />
+                <!-- Buttons for changing chart view -->
+                <RowDefinition Height="Auto" />
+                <!-- Chart Section -->
+                <RowDefinition Height="*" />
+                <!-- Stock Alert Button -->
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <!-- Buttons for changing chart view mode (Daily, Monthly, Yearly) -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
-            <Button Content="Daily" Command="{Binding SetDailyChartCommand}" Margin="5" />
-            <Button Content="Monthly" Command="{Binding SetMonthlyChartCommand}" Margin="5" />
-            <Button Content="Yearly" Command="{Binding SetYearlyChartCommand}" Margin="5" />
-        </StackPanel>
+            <!-- Header Section -->
+            <StackPanel 
+                Grid.Row="0" 
+                Width="1200" 
+                CornerRadius="20" 
+                Background="{ThemeResource HeaderBackgroundColor}" 
+                Orientation="Horizontal" 
+                Padding="12" 
+                Margin="0,10,0,0">
+                    <TextBlock Text="Statistics" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40,0,0,0"/>
+            </StackPanel>
 
-        <!-- Button to open Stock Alert Modal -->
-        <Button 
-            Content="Stock Alert"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="10"
-            Width="100"
-            Height="40"
-            Command="{Binding OpenStockAlertCommand}" />
+            <!-- Buttons for changing chart view mode (Daily, Monthly, Yearly) -->
+            <StackPanel 
+                Grid.Row="1" 
+                Orientation="Horizontal" 
+                HorizontalAlignment="Right" 
+                Margin="35,10">
+                <Button Content="Daily" Command="{Binding SetDailyChartCommand}" Margin="5" />
+                <Button Content="Monthly" Command="{Binding SetMonthlyChartCommand}" Margin="5" />
+                <Button Content="Yearly" Command="{Binding SetYearlyChartCommand}" Margin="5" />
+            </StackPanel>
+
+            <!-- Biểu đồ -->
+            <lvc:CartesianChart
+                Grid.Row="2"
+                Series="{Binding LineChartSeries}"
+                XAxes="{Binding XAxes}"
+                YAxes="{Binding YAxes}">
+                <lvc:CartesianChart.Resources>
+                    <!-- Brush cho trục X -->
+                    <SolidColorBrush x:Key="XAxesBrush" Color="{ThemeResource AdminButtonBackgroundColor}" />
+                    <!-- Brush cho trục Y -->
+                    <SolidColorBrush x:Key="YAxesBrush" Color="{ThemeResource AdminButtonBackgroundColor}" />
+                </lvc:CartesianChart.Resources>
+            </lvc:CartesianChart>
+
+            <!-- Button to open Stock Alert Modal -->
+            <Button 
+                Grid.Row="3"
+                Content="Stock Alert"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Width="100"
+                Height="40"
+                Margin="35,20"
+                Command="{Binding OpenStockAlertCommand}" />
+        </Grid>
+
 
         <!-- Modal for Stock Alerts, shown when IsStockAlertVisible is true -->
         <Border Name="StockAlertModal"

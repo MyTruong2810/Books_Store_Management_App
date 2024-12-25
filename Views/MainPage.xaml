@@ -21,14 +21,16 @@
                   PaneDisplayMode="Left"
                   PaneTitle="Book Store Management"
                   SelectionFollowsFocus="Enabled"   
-                  SelectionChanged="nvSample_SelectionChanged" >
+                  SelectionChanged="nvSample_SelectionChanged"
+                  Background="{ThemeResource NavigationViewColor}">
             <NavigationView.MenuItems>
-                <NavigationViewItem Margin="0 10 0 0" Content="Admin" Tag="Admin" FontWeight="Bold" FontSize="16">
+                <NavigationViewItem Margin="0 10 0 0" Content="Admin" Tag="Admin" FontWeight="Bold" FontSize="16"  x:Name = "navAdmin"
+                                    Background="{ThemeResource NavigationViewItemBackgroundColor}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE77B;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
+ 
                 <NavigationViewItem x:Name="navDashboard" Margin="0 10 0 0" Content="Dashboard" IsSelected="True" FontWeight="Bold" FontSize="16" Tag="DashboardPage"
                               Background="{ThemeResource NavigationViewItemBackgroundColor}">
                     <NavigationViewItem.Icon>

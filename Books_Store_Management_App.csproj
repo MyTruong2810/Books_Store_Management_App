@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <None Remove="BookPopupControl.xaml" />
-    <None Remove="Themes\ColorResources.xaml" />
     <None Remove="Themes\Dark.xaml" />
     <None Remove="Themes\Light.xaml" />
     <None Remove="Views\BookPopupControl.xaml" />
@@ -138,9 +137,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Themes\Dark.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\ColorResources.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\SettingPage.xaml">

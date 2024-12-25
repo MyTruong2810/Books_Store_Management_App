@@ -1,13 +1,17 @@
-﻿using Microsoft.UI.Xaml;
+﻿using LiveChartsCore.SkiaSharpView.Painting;
+using Microsoft.UI.Xaml;
 using System;
 using System.ComponentModel;
-using Windows.Storage;
 
 namespace Books_Store_Management_App.ViewModels
 {
     public class SettingsViewModel : INotifyPropertyChanged
     {
-        private bool _isDarkModeEnabled; // Dùng bool để kiểm soát chế độ tối
+        private bool _isDarkModeEnabled; // Mặc định là chế độ sáng
+
+        // Paint for titles and axes
+        public SolidColorPaint TitlePaint { get; set; }
+        public SolidColorPaint AxisNamePaint { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -19,9 +23,7 @@ namespace Books_Store_Management_App.ViewModels
                 if (_isDarkModeEnabled != value)
                 {
                     _isDarkModeEnabled = value;
-                    SaveThemeToSettings(_isDarkModeEnabled); // Lưu trạng thái vào LocalSettings
                     OnPropertyChanged(nameof(IsDarkModeEnabled));
-                    // Thông báo thay đổi theme
                     OnPropertyChanged(nameof(CurrentTheme));
                 }
             }
@@ -29,38 +31,22 @@ namespace Books_Store_Management_App.ViewModels
 
         public ElementTheme CurrentTheme
         {
-            get => IsDarkModeEnabled ? ElementTheme.Dark : ElementTheme.Light; // Nếu bật Dark Mode thì dùng Dark, không thì dùng Light
+            get => IsDarkModeEnabled ? ElementTheme.Dark : ElementTheme.Light; // Chuyển đổi theme
         }
 
         public void ToggleTheme()
         {
-            IsDarkModeEnabled = !IsDarkModeEnabled; // Đảo ngược trạng thái
+            IsDarkModeEnabled = !IsDarkModeEnabled; 
         }
 
-        private void SaveThemeToSettings(bool isDarkModeEnabled)
+        public SettingsViewModel()
         {
-            var localSettings = ApplicationData.Current.LocalSettings;
-            localSettings.Values["IsDarkModeEnabled"] = isDarkModeEnabled;
-        }
-
-        private bool LoadThemeFromSettings()
-        {
-            var localSettings = ApplicationData.Current.LocalSettings;
-            return localSettings.Values.ContainsKey("IsDarkModeEnabled")
-                ? (bool)localSettings.Values["IsDarkModeEnabled"]
-                : false; // Mặc định là false (Light Mode)
+            _isDarkModeEnabled = false; // Mặc định là chế độ Light khi khởi chạy
         }
 
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        // Khi khởi tạo ViewModel, tải theme từ LocalSettings
-        public SettingsViewModel()
-        {
-            _isDarkModeEnabled = LoadThemeFromSettings();
-            OnPropertyChanged(nameof(IsDarkModeEnabled));
         }
     }
 }
