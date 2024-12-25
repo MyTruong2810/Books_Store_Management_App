@@ -111,12 +111,12 @@
                 <Button Name="nextButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Next" Click="nextButton_Click" Margin="5"/>
             </StackPanel>
 
-            <TextBlock Name="infoTextBlock" Foreground="Black" HorizontalAlignment="Right"  Margin="20 0">
+            <!--<TextBlock Name="infoTextBlock" Foreground="Black" HorizontalAlignment="Right"  Margin="20 0">
             Displaying
             <Run Text="{x:Bind CustomerVM.Customers.Count, Mode=OneWay}"/> /
             <Run Text="{x:Bind CustomerVM.RowsPerPage, Mode=OneWay}"/> of total
             <Run Text="{x:Bind CustomerVM.TotalItems, Mode=OneWay}"/>
-            </TextBlock>
+            </TextBlock>-->
         </StackPanel>
 
         <ContentDialog
@@ -125,6 +125,7 @@
         PrimaryButtonText="Save"
         CloseButtonText="Cancel"
         DefaultButton="Primary"
+        PrimaryButtonClick="OnEditButtonClick"
         Background="Black">
 
             <StackPanel Width="700" Margin="0">
@@ -132,12 +133,12 @@
                     <Border VariableSizedWrapGrid.RowSpan="3" CornerRadius="80" Width="150" Height="150" >
                         <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
                     </Border>
-                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" PlaceholderText="Fullname"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" x:Name="NameTextBox" PlaceholderText="Fullname"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
-                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" InputScope="TelephoneNumber" x:Name="PhoneTextBox" PlaceholderText="Phone number"/>
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="1" HorizontalAlignment="Center" >
                         <Button Content="Change Image" Click="ChangeImage_Click" />
-                        <TextBlock VariableSizedWrapGrid.ColumnSpan="1" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=TwoWay}"/>
+                        <TextBlock Visibility="Collapsed" VariableSizedWrapGrid.ColumnSpan="1" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=TwoWay}"/>
                     </StackPanel>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Payment" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Payment, Mode=TwoWay}" PlaceholderText="Payment"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="CVV" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.CVV, Mode=TwoWay}" PlaceholderText="CVV"/>
@@ -152,6 +153,7 @@
         PrimaryButtonText="Save"
         CloseButtonText="Cancel"
         DefaultButton="Primary"
+        PrimaryButtonClick="OnAddButtonClick"
         Background="Black">
 
             <StackPanel Width="700" Margin="0">
@@ -159,12 +161,12 @@
                     <Border VariableSizedWrapGrid.RowSpan="3" CornerRadius="80" Width="150" Height="150" >
                         <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
                     </Border>
-                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" PlaceholderText="Fullname"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" x:Name="NameTextBox_Add" PlaceholderText="Fullname"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
-                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
+                    <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" x:Name="PhoneTextBox_Add" PlaceholderText="Phone number"/>
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="1" HorizontalAlignment="Center" >
                         <Button Content="Change Image" Click="ChangeImage_Click" />
-                        <TextBlock VariableSizedWrapGrid.ColumnSpan="1" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=TwoWay}"/>
+                        <TextBlock Visibility="Collapsed" VariableSizedWrapGrid.ColumnSpan="1" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=TwoWay}"/>
                     </StackPanel>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Payment" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Payment, Mode=TwoWay}" PlaceholderText="Payment"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="CVV" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.CVV, Mode=TwoWay}" PlaceholderText="CVV"/>
@@ -182,7 +184,7 @@
         Background="Black">
 
             <StackPanel Width="500" Margin="0">
-                <TextBlock Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=OneWay}"/>
+                <TextBlock Text="{x:Bind CustomerVM.SelectedCustomer.ID, Mode=OneWay}" FontWeight="Bold"/>
                 <TextBlock>Do you want to delete this customer?</TextBlock>
             </StackPanel>
         </ContentDialog>

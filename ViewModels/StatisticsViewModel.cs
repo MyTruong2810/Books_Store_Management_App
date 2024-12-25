@@ -96,7 +96,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new LineSeries<double>
                 {
-                    Name = "Doanh thu theo ngày", // Chart title
+                    Name = "Total revenue by date", // Chart title
                     Values = _dailyRevenue.Select(d => (double)d.TotalRevenue).ToArray() // Revenue data
                 }
             };
@@ -106,7 +106,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
-                    Name = "Ngày", // X-axis label (Date)
+                    Name = "Date", // X-axis label (Date)
                     Labels = _dailyRevenue.Select(d => d.Date.ToShortDateString()).ToArray() // Labels for each day
                 }
             };
@@ -115,7 +115,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
-                    Name = "Doanh thu (VNĐ)" // Y-axis label (Revenue in VND)
+                    Name = "Total revenue ($)" // Y-axis label (Revenue in VND)
                 }
             };
 
@@ -138,7 +138,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new LineSeries<double>
                 {
-                    Name = "Doanh thu theo tháng", // Chart title
+                    Name = "Total revenue by month", // Chart title
                     Values = monthlyRevenue.Select(m => (double)m.Total).ToArray() // Revenue data
                 }
             };
@@ -148,7 +148,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
-                    Name = "Tháng", // X-axis label (Month)
+                    Name = "Month", // X-axis label (Month)
                     Labels = monthlyRevenue.Select(m => m.Month).ToArray() // Labels for each month
                 }
             };
@@ -171,7 +171,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new LineSeries<double>
                 {
-                    Name = "Doanh thu theo năm", // Chart title
+                    Name = "Total revenue by year", // Chart title
                     Values = yearlyRevenue.Select(y => (double)y.Total).ToArray() // Revenue data
                 }
             };
@@ -181,7 +181,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
-                    Name = "Năm", // X-axis label (Year)
+                    Name = "Year", // X-axis label (Year)
                     Labels = yearlyRevenue.Select(y => y.Year.ToString()).ToArray() // Labels for each year
                 }
             };
@@ -213,7 +213,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             StockItems.Clear(); // Clear any existing stock data
 
-            string connectionString = "Host=localhost;Username=postgres;Password=admin;Database=mybookstore";
+            string connectionString = "Host=localhost;Username=postgres;Password=1234;Database=mybookstore";
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();

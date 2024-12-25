@@ -42,6 +42,7 @@ namespace Books_Store_Management_App.Views
         private int ItemsPerPage = 10; // Số lượng sách hiển thị trên mỗi trang
         private int currentPage = 1; // Trang hiện tại
         private int totalPages; // Tổng số trang
+        private ObservableCollection<String> PageInfo = new ObservableCollection<string>(); // Thông tin trang hiện tại
         public StockPageViewModel ViewModel { get; set; }
 
         /// <summary>
@@ -55,6 +56,10 @@ namespace Books_Store_Management_App.Views
             AllBooksDisplay = ViewModel.AllBooks;
             genres = ViewModel.AllGenres;
             totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+            for (int i = 0; i < totalPages; i++)
+            {
+                PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+            }
             UpdateDisplayedBooks();
 
             // Khởi tạo thông số và vị trí hiển của popup
@@ -87,6 +92,11 @@ namespace Books_Store_Management_App.Views
 
                     AllBooksDisplay.Add(e);
                     totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                    PageInfo.Clear();
+                    for (int i = 0; i < totalPages; i++)
+                    {
+                        PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                    }
                     UpdateDisplayedBooks();
                 }
                 catch (Exception ex)
@@ -145,9 +155,8 @@ namespace Books_Store_Management_App.Views
             {
                 DisplayedBooks.Add(book);
             }
-            PageInfo.Text = $"Page {currentPage} of {totalPages}";
-            PreviousButton.IsEnabled = currentPage > 1;
-            NextButton.IsEnabled = currentPage < totalPages;
+            //PreviousButton.IsEnabled = currentPage > 1;
+            //NextButton.IsEnabled = currentPage < totalPages;
         }
 
         /// <summary>
@@ -160,6 +169,7 @@ namespace Books_Store_Management_App.Views
             if (currentPage < totalPages)
             {
                 currentPage++;
+                PageInfomation.SelectedIndex = currentPage - 1;
                 UpdateDisplayedBooks();
             }
         }
@@ -174,6 +184,7 @@ namespace Books_Store_Management_App.Views
             if (currentPage > 1)
             {
                 currentPage--;
+                PageInfomation.SelectedIndex = currentPage - 1;
                 UpdateDisplayedBooks();
             }
         }
@@ -210,7 +221,8 @@ namespace Books_Store_Management_App.Views
                 // Set the ISBN in the dialog dynamically
                 TextBlock isbnTextBlock = new TextBlock
                 {
-                    Text = book.ISBN
+                    Text = book.ISBN,
+                    FontWeight = Microsoft.UI.Text.FontWeights.Bold
                 };
 
                 // Create StackPanel and add ISBN TextBlock and confirmation TextBlock
@@ -237,6 +249,11 @@ namespace Books_Store_Management_App.Views
 
                     // Adjust the paging after deletion
                     totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                    PageInfo.Clear();
+                    for (int i = 0; i < totalPages; i++)
+                    {
+                        PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                    }
                     if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
                     UpdateDisplayedBooks();
                 }
@@ -338,8 +355,14 @@ namespace Books_Store_Management_App.Views
             {
                 ItemsPerPage = itemsPerPage;
                 totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+                PageInfo.Clear();
+                for (int i = 0; i < totalPages; i++)
+                {
+                    PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                }
                 currentPage = 1;
                 UpdateDisplayedBooks();
+                PageInfomation.SelectedIndex = 0;
             }
         }
 
@@ -357,7 +380,7 @@ namespace Books_Store_Management_App.Views
             // First filter books by title (searchText must be found in the title)
             var filteredBooks = ViewModel.AllBooks.Where(book =>
                 string.IsNullOrWhiteSpace(searchText) ||
-                book.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);  // Fix: check if searchText is in book.Title
+                book.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0); 
 
             // Then apply genre and price filters (if any)
             filteredBooks = filteredBooks.Where(book =>
@@ -397,6 +420,23 @@ namespace Books_Store_Management_App.Views
 
             return true; // Default to including all prices if no range is matched
         }
+
+        private void Combo3_Selected_Paging(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is string selectedItem)
+            {
+                var pageInfoParts = selectedItem.Split(" / ");
+                if (pageInfoParts.Length == 2 && int.TryParse(pageInfoParts[0], out int selectedPage))
+                {
+                    if (selectedPage > 0 && selectedPage <= totalPages)
+                    {
+                        currentPage = selectedPage;
+                        UpdateDisplayedBooks();
+                    }
+                }
+            }
+        }
+
     }
     /// <summary>
     /// Lớp giúp hiển thị màu sách bảng xen kẽ màu, ứng dụng tính chẵn lẽ của index.

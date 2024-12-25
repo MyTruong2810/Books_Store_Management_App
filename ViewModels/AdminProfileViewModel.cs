@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.ViewModels
@@ -31,8 +32,8 @@ namespace Books_Store_Management_App.ViewModels
             _profileDao = profileDao;
 
             // Load initial data from DAO (example usage)
-            var loadedProfile = _profileDao.LoadProfile("0"); // "0" is example ID
-            ID = loadedProfile.ID;
+            string username = Windows.Storage.ApplicationData.Current.LocalSettings.Values["username"].ToString();
+            var loadedProfile = _profileDao.LoadProfile(username);
             FullName = loadedProfile.FullName;
             Email = loadedProfile.Email;
             Phone = loadedProfile.Phone;
@@ -43,15 +44,14 @@ namespace Books_Store_Management_App.ViewModels
         // Parameterless constructor (optional)
         public AdminProfileViewModel()
         {
+            FullName = "-";
+            Email = "-";
+            Phone = "-";
+            dateOfBirth = "0000-00-00";
+            Address = "-";
         }
 
         // Properties with INotifyPropertyChanged to notify UI on change
-
-        public string ID
-        {
-            get { return id; }
-            set { SetProperty(ref id, value); } // SetProperty to raise PropertyChanged
-        }
 
         public string FullName
         {
@@ -97,9 +97,9 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         // Save method to persist profile changes using DAO
-        public void SaveProfile()
+        public void SaveProfile(string newpass)
         {
-            _profileDao.Save(this);  // Saves the current profile to storage
+            _profileDao.Save(this, newpass);  // Saves the current profile to storage
         }
     }
 }

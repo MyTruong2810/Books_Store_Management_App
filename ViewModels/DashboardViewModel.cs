@@ -18,6 +18,8 @@ namespace Books_Store_Management_App.ViewModels
         public int totalCustomer { get; set; }
         public int totalOrder { get; set; }
         public double totalRevenue { get; set; }
+        public double totalMonth { get; set; }
+        public double totalDay { get; set; }
 
         public ObservableCollection<Book> Books { get; set; }
 
@@ -39,18 +41,30 @@ namespace Books_Store_Management_App.ViewModels
             IDao dao = new PsqlDao();
             Books = dao.GetAllBooks();
             Orders = dao.GetAllOrders();
+            Customers = dao.GetAllCustomers();
             totalBook = Books.Count;
             totalOrder = Orders.Count;
-            totalCustomer = 10;
+            totalCustomer = Customers.Count; 
             totalRevenue = 0;
+            totalMonth = 0;
+            totalDay = 0;
+
+            DateTime now = DateTime.Now; 
+
             for (int i = 0; i < Orders.Count; i++)
             {
                 totalRevenue += Orders[i].Price;
+                if (Orders[i].Date.Month == now.Month && Orders[i].Date.Year == now.Year)
+                {
+                    totalMonth += Orders[i].Price;
+                }
+                if (Orders[i].Date.Date == now.Date)
+                {
+                    totalDay += Orders[i].Price;
+                }
             }
             OutStock = new ObservableCollection<Book>(Books.Where(x => x.Quantity < 10));
-
-            //Todo: Take from the user not from the quanlity, change later
-            BestSeller = new ObservableCollection<Book>(Books.OrderBy(x => x.Quantity).Take(5));
+            BestSeller = new ObservableCollection<Book>(Books.OrderByDescending(x => x.Quantity).Take(5)); 
         }
     }
 }

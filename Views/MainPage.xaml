@@ -76,7 +76,7 @@
                 <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Setting" Tag="SettingPage"
                               Background="{ThemeResource NavigationViewItemBackgroundColor}">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE713;" FontWeight="Bold" FontSize="16"/>
+                        <FontIcon Glyph="&#xE8C8;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

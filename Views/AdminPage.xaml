@@ -8,12 +8,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <StackPanel Background="{ThemeResource BackgroundColor}">
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="#C4C4FC">
 
         <StackPanel Width="1200" CornerRadius="20" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 100">
             <TextBlock
                 Text="Admin" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
         </StackPanel>
+        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 100">
+            <TextBlock
+                Text="Admin" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
+        </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="700">
+
             <Border Background="#292c2d" Padding="20" CornerRadius="10" Width="600" BorderBrush="DarkBlue" BorderThickness="1">
                 <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="80" ItemWidth="150">
 
@@ -50,27 +58,35 @@
                 </VariableSizedWrapGrid>
             </Border>
 
-            <Button Background="DarkGreen" BorderThickness="2" FontWeight="Bold" BorderBrush="White" Content="Edit Profile" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20" Click="EditProfile_Click"/>
+            <Button Background="DarkGreen" BorderThickness="2" Foreground="White" FontWeight="Bold" BorderBrush="White" Content="Edit Profile" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20" Click="EditProfile_Click"/>
         </StackPanel>
 
         <!-- Popup Dialog -->
         <ContentDialog
-         x:Name="EditProfileDialog"
-         Title="Edit Profile"
-         PrimaryButtonText="Save"
-         CloseButtonText="Cancel"
-         DefaultButton="Primary"
-         Background="Black">
+            x:Name="EditProfileDialog"
+            Title="Edit Profile"
+            PrimaryButtonText="Save"
+            CloseButtonText="Cancel"
+            DefaultButton="Primary"
+            Background="Black"
+            PrimaryButtonClick="OnSaveButtonClick">
 
             <StackPanel Width="500" Margin="0">
-                <TextBox Header="Fullname" FontSize="11" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" PlaceholderText="Fullname"/>
-                <TextBox Header="Email (*)" FontSize="11" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email"/>
-                <PasswordBox Header="Current Password (*)" FontSize="11" PlaceholderText="Password"/>
-                <PasswordBox Header="Confirm Password (*)" FontSize="11" PlaceholderText="Confirm Password"/>
-                <TextBox Header="Date of Birth" FontSize="11" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Date of Birth : (dd/mm/yyyy)"/>
-                <TextBox Header="Phone number" FontSize="11" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
-                <TextBox Header="Address" FontSize="11" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" PlaceholderText="Address"/>
+                <TextBox x:Name="fullname" Header="Fullname" FontSize="11" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" PlaceholderText="Fullname"/>
+
+                <!-- Email với Validation -->
+                <TextBox x:Name="email" Header="Email (*)" FontSize="11" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email"/>
+
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="newpass" Header="Set New Password (*)" FontSize="11" PlaceholderText="Confirm Password"/>
+
+                <!-- Date of Birth TextBox -->
+                <TextBox x:Name="dob" Header="Date of Birth (yyyy-mm-dd)" FontSize="11" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Date of Birth"/>
+
+                <TextBox x:Name="phone"  Header="Phone number" FontSize="11" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
+                <TextBox x:Name="address" Header="Address" FontSize="11" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" PlaceholderText="Address"/>
             </StackPanel>
         </ContentDialog>
+
     </StackPanel>
 </Page>

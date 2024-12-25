@@ -41,7 +41,7 @@ namespace Books_Store_Management_App.Models
         void Insert(T insertItem);
 
         // Save or update the profile data
-        void Save(T profile);
+        void Save(T profile, string newpass);
 
         // Optionally delete profile if needed
         void Delete(string id);

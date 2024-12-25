@@ -181,4 +181,24 @@ CREATE TABLE IF NOT EXISTS public.order_customer (
     PRIMARY KEY (order_id)
 ) TABLESPACE pg_default;
 
+-- Create table if not exists
+CREATE TABLE IF NOT EXISTS public.admin (
+    name character varying(255),
+    phone character varying(15),
+    email character varying(255),
+    dob date,
+    address character varying(255),
+    username character varying(50),
+    password character varying(255), -- Field for hashed password
+    id SERIAL, -- SERIAL type for auto incrementing id
+    CONSTRAINT admin_pkey PRIMARY KEY (id)
+) TABLESPACE pg_default;
+
+-- Insert hashed passwords (hash of '123' is precomputed as 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7')
+INSERT INTO public.admin (name, phone, email, dob, address, username, password) VALUES
+    ('John Doe', '1234567890', 'johndoe@example.com', '1985-04-15', '123 Main St, Cityville', 'johndoe85', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7'),
+    ('Jane Smith', '9876543210', 'janesmith@example.com', '1990-06-22', '456 Elm St, Townsville', 'janesmith90', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7'),
+    ('Emily Davis', '5678901234', 'emilydavis@example.com', '1992-11-03', '789 Oak St, Villageton', 'emilyd92', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7'),
+    ('Michael Brown', '6789012345', 'michaelbrown@example.com', '1988-02-12', '321 Pine St, Hamletburg', 'michaelb88', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7'),
+    ('Sophia Johnson', '3456789012', 'sophiajohnson@example.com', '1995-08-27', '654 Maple St, Boroughport', 'sophiaj95', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7');
 

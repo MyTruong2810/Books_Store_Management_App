@@ -13,6 +13,9 @@ using Books_Store_Management_App.ViewModels;
 using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Data;
+using System.Windows.Forms;
+using Catel.Reflection;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Books_Store_Management_App.Models
 {
@@ -21,7 +24,7 @@ namespace Books_Store_Management_App.Models
     /// </summary>
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=mybookstore";
+        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
 
         public ObservableCollection<Book> GetAllBooks()
         {
@@ -92,7 +95,6 @@ namespace Books_Store_Management_App.Models
             {
                 connection.Open();
                 string query = "SELECT code, ten, description FROM classification";
-                int cnt = 0;
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {
@@ -981,7 +983,6 @@ namespace Books_Store_Management_App.Models
 
             return null;
         }
-
         public async Task<Customer> GetCustomerByOrderId(int orderId)
         {
             const string query = @"
@@ -1020,5 +1021,143 @@ namespace Books_Store_Management_App.Models
 
             return null;
         }
+        public bool UpdateAdminInfo(AdminProfileViewModel admin, string username, string password)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Admin SET Name = @Name, Phone = @Phone, Email = @Email, DOB = @DOB, Address = @Address";
+                if (!string.IsNullOrEmpty(password))
+                {
+                    query += ", Password = @Password";
+                }
+
+                query += " WHERE Username = @Username";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", admin.FullName);
+                    command.Parameters.AddWithValue("@Phone", admin.Phone);
+                    command.Parameters.AddWithValue("@Email", admin.Email);
+                    command.Parameters.AddWithValue("@DOB", DateTime.Parse(admin.DateOfBirth));
+                    command.Parameters.AddWithValue("@Address", admin.Address);
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    if (!string.IsNullOrEmpty(password))
+                    {
+                        command.Parameters.AddWithValue("@Password", password);
+                    }
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        public bool InsertAdmin(AdminProfileViewModel admin, string username, string password)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Admin (Username, Password, Name, Phone, Email, DOB, Address) VALUES (@Username, @Password, @Name, @Phone, @Email, @DOB, @Address)";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+                    command.Parameters.AddWithValue("@Name", admin.FullName);
+                    command.Parameters.AddWithValue("@Phone", admin.Phone);
+                    command.Parameters.AddWithValue("@Email", username); 
+                    command.Parameters.AddWithValue("@DOB", DateTime.Now.Date);
+                    command.Parameters.AddWithValue("@Address", admin.Address);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        public AdminProfileViewModel GetAdminByUsername(string username)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Name, Phone, Email, DOB, Address FROM Admin WHERE Username = @Username";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var adminProfile = new AdminProfileViewModel
+                            {
+                                FullName = reader.GetString(0),
+                                Phone = reader.GetString(1),
+                                Email = reader.GetString(2),
+                                DateOfBirth = reader.GetDateTime(3).ToString("yyyy-MM-dd"),
+                                Address = reader.GetString(4)
+                            };
+                            return adminProfile;
+                        }
+                        else
+                        {
+                            return null; 
+                        }
+                    }
+                }
+            }
+        }
+        public Dictionary<string, string> GetAdminCredentials(string username)
+        {
+            var adminCredentials = new Dictionary<string, string>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Username, Password FROM Admin WHERE Username = @Username";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string user = reader.GetString(0); 
+                            string password = reader.GetString(1); 
+                            adminCredentials.Add(user, password);
+                        }
+                    }
+                }
+            }
+
+            return adminCredentials;
+        }
+        public List<string> GetAllAdminEmail()
+        {
+            var admins = new List<string>();
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Email FROM Admin";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string user = reader.GetString(0); 
+                            admins.Add(user);
+                        }
+                    }
+                }
+            }
+            return admins;
+        }
+
     }
 }

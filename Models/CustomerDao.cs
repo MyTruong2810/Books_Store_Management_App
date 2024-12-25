@@ -102,7 +102,7 @@ namespace Books_Store_Management_App.Models
         }
 
         // Updates an existing customer profile (simulates database update operation)
-        public void Save(Customer profile)
+        public void Save(Customer profile, string temp)
         {
             var oldInfo = Db.FirstOrDefault(e => e.ID == profile.ID);
             if (oldInfo != null)
