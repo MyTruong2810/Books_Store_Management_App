@@ -43,7 +43,6 @@ namespace Books_Store_Management_App.Models
         public int ID { get; set; }
         public string Customer { get; set; }
         public DateTime Date { get; set; }
-
         public FullObservableCollection<Coupon> Coupons { get; set; }
         public double Discount
         {
@@ -59,10 +58,9 @@ namespace Books_Store_Management_App.Models
                 return totalDiscount;
             }
         }
-
         public Boolean IsDelivered { get; set; }
+        public bool IsPaid { get; set; }
         public List<OrderItem> OrderItems { get; set; }
-
         public int Amount
         {
             get

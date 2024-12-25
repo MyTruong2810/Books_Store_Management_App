@@ -137,6 +137,7 @@ namespace Books_Store_Management_App.Models
                             Customer = reader.GetString(1),
                             Date = reader.GetDateTime(2),
                             IsDelivered = reader.GetBoolean(3),
+                            IsPaid = reader.GetBoolean(4)
                         };
 
                         // Get Order_Items
@@ -363,7 +364,6 @@ namespace Books_Store_Management_App.Models
                 }
             }
         }
-
         public bool UpdateClassification(ClassificationClass classification)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -713,7 +713,10 @@ namespace Books_Store_Management_App.Models
             {
                 await connection.OpenAsync();
 
-                string query = "UPDATE \"order\" SET customer = @Customer, date = @Date, is_delivered = @IsDelivered WHERE id = @Id";
+                string query = @"
+                    UPDATE ""order"" 
+                    SET customer = @Customer, date = @Date, is_delivered = @IsDelivered, is_paid = @IsPaid
+                    WHERE id = @Id";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 {
@@ -721,6 +724,7 @@ namespace Books_Store_Management_App.Models
                     command.Parameters.AddWithValue("@Customer", order.Customer);
                     command.Parameters.AddWithValue("@Date", order.Date);
                     command.Parameters.AddWithValue("@IsDelivered", order.IsDelivered);
+                    command.Parameters.AddWithValue("@IsPaid", order.IsPaid);
 
                     int result = await command.ExecuteNonQueryAsync();
 
