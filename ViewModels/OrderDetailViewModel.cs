@@ -15,6 +15,9 @@ using System.Security.Policy;
 using Books_Store_Management_App.Models.ZaloPay;
 using System.Drawing;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Books_Store_Management_App.Services;
+using Books_Store_Management_App.Models.Payment.Enums;
+using Books_Store_Management_App.Models.Payment;
 
 
 namespace Books_Store_Management_App.ViewModels
@@ -162,7 +165,6 @@ namespace Books_Store_Management_App.ViewModels
         public ICommand DateSelectedCommand { get; set; }
         public ICommand TimeSelectedCommand { get; set; }
         // Kết thúc khai báo các command
-
         public OrderDetailViewModel()
         {
             // Khởi tạo các biến
@@ -225,45 +227,36 @@ namespace Books_Store_Management_App.ViewModels
             OnPropertyChanged(nameof(IsBooksListViewVisible));
         }
 
-        public string app_trans_id { get; set; }
-        public async Task<BitmapImage> CreateOrderAsync()
+        /// <summary>
+        /// Chờ thanh toán cho một đơn hàng với các thông tin đã cho.
+        /// </summary>
+        /// <param name="appTransId">Mã giao dịch ứng dụng</param>
+        /// <param name="paymentService">Dịch vụ thanh toán</param>
+        /// <param name="paymentMethod">Phương thức thanh toán</param>
+        /// <param name="maxRetries">Số lần kiểm tra tối đa</param>
+        /// <param name="delayMilliseconds">Thời gian chờ giữa các lần kiểm tra</param>
+        /// <returns>Kết quả thanh toán</returns>
+        public async Task<PaymentResult> WaitForPaymentAsync(
+            string appTransId,
+            PaymentService paymentService,
+            PaymentMethod paymentMethod,
+            int maxRetries = 10,
+            int delayMilliseconds = 2000)
         {
-            try
-            {
-                var _zaloPayService = new ZaloPayService();
-                var amount = Math.Ceiling(ActualTotal * 25462.5).ToString();
-                var orderurl = await _zaloPayService
-                    .CreateOrderAsync(amount, CustomerName, SelectedBooks.ToList());
-
-                var qrCode = await QRCodeGeneratorService.GenerateQRCode(orderurl.Item1);
-
-                app_trans_id = orderurl.Item2;
-
-                return qrCode;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            return null;
-        }
-        public async Task<bool> WaitForPaymentAsync(string appTransId, int maxRetries = 100, int delayMilliseconds = 2000)
-        {
-            var _zaloPayService = new ZaloPayService();
+            PaymentResult status = null;
             for (int count = 0; count < maxRetries; count++)
             {
                 try
                 {
                     // Kiểm tra trạng thái đơn hàng
-                    var status = await _zaloPayService.CheckOrderStatusAsync(appTransId);
+                    status = await paymentService.QueryOrder(paymentMethod, appTransId);
 
-                    if (status != null && status.Item1 == 1)
+                    if (status != null && status.Success)
                     {
                         // Thanh toán thành công
-                        return true;
+                        return status;
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -275,7 +268,7 @@ namespace Books_Store_Management_App.ViewModels
             }
 
             // Hết số lần kiểm tra mà không thấy trạng thái thành công
-            return false;
+            return status;
         }
 
         /// <summary>

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.Services.Payment.Implementations
 {
+    /// <summary>
+    /// Chiến lược thanh toán demo.
+    /// </summary>
     public class DemoPaymentStrategy : IPaymentStrategy
     {
         private readonly PaymentRepository _paymentRepository;
@@ -18,6 +21,11 @@ namespace Books_Store_Management_App.Services.Payment.Implementations
             _paymentRepository = paymentRepository;
         }
 
+        /// <summary>
+        /// Xử lý thanh toán dựa trên yêu cầu thanh toán được cung cấp.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<PaymentResult> ProcessPayment(PaymentRequest request)
         {
             var (success, message) = await _paymentRepository.ProcessDemoPayment(request);
@@ -30,6 +38,12 @@ namespace Books_Store_Management_App.Services.Payment.Implementations
             };
         }
 
+        /// <summary>
+        /// Xử lý truy vấn thông tin đơn hàng dựa trên appTransId.
+        /// </summary>
+        /// <param name="appTransId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public Task<PaymentResult> QueryOrder(string appTransId)
         {
             throw new NotImplementedException();

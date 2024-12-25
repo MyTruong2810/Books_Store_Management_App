@@ -66,14 +66,17 @@ namespace Books_Store_Management_App
             services.AddScoped<PaymentService>();
         }
 
+        /// <summary>
+        /// Phương thức được gọi khi ứng dụng được khởi chạy.
+        /// </summary>
+        /// <param name="args">Thông tin về việc khởi chạy ứng dụng.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
             //MainWindow.Activate();
 
-            // To ensure all Notification handling happens in this process instance, register for
-            // NotificationInvoked before calling Register(). Without this a new process will
-            // be launched to handle the notification.
+            // Để đảm bảo tất cả việc xử lý thông báo xảy ra trong cùng một quá trình, đăng ký sự kiện NotificationInvoked trước khi gọi Register().
+            // Nếu không, một quá trình mới sẽ được khởi chạy để xử lý thông báo.
             AppNotificationManager notificationManager = AppNotificationManager.Default;
             notificationManager.NotificationInvoked += NotificationManager_NotificationInvoked;
             notificationManager.Register();
@@ -90,6 +93,11 @@ namespace Books_Store_Management_App
             }
         }
 		
+    /// <summary>
+        /// Kiểm tra và khởi chạy ứng dụng nếu cần thiết.
+        /// Nếu cửa sổ chính (MainWindow) chưa được khởi tạo, hàm này sẽ tạo mới cửa sổ và đưa nó lên phía trước.
+        /// Nếu ứng dụng được kích hoạt thông qua một thông báo ứng dụng, hàm này sẽ xử lý thông báo đó.
+        /// </summary>
         private void LaunchAndBringToForegroundIfNeeded()
         {
             if (MainWindow == null)
@@ -97,8 +105,8 @@ namespace Books_Store_Management_App
                 MainWindow = new MainWindow();
                 MainWindow.Activate();
 
-                // Additionally we show using our helper, since if activated via a app notification, it doesn't
-                // activate the window correctly
+                // Đồng thời, chúng ta sử dụng helper của chúng tôi để hiển thị cửa sổ, vì nếu được kích hoạt thông qua một thông báo ứng dụng, nó sẽ không
+                // kích hoạt cửa sổ một cách chính xác.
                 WindowHelper.ShowWindow(MainWindow);
             }
             else
@@ -107,11 +115,20 @@ namespace Books_Store_Management_App
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi thông báo ứng dụng được kích hoạt.
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện.</param>
+        /// <param name="args">Thông tin về sự kiện được kích hoạt.</param>
         private void NotificationManager_NotificationInvoked(AppNotificationManager sender, AppNotificationActivatedEventArgs args)
         {
             HandleNotification(args);
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi thông báo ứng dụng được kích hoạt.
+        /// </summary>
+        /// <param name="args">Thông tin về sự kiện được kích hoạt.</param>
         private void HandleNotification(AppNotificationActivatedEventArgs args)
         {
             // Use the dispatcher from the window if present, otherwise the app dispatcher
@@ -143,7 +160,7 @@ namespace Books_Store_Management_App
                     return;
                 }
 
-                if (args.Arguments == null)
+                if (args.Arguments == null || !args.Arguments.ContainsKey("action"))
                 {
                     return;
                 }

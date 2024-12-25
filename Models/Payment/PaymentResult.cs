@@ -14,6 +14,9 @@ namespace Books_Store_Management_App.Models.Payment
         public bool Success { get; set; }
         public string Message { get; set; }
         public string TransactionId { get; set; }
+        public string orderUrl { get; set; }
+        public string appTransId { get; set; }
+        public string qrCode { get; set; }
 
         // TODO: Thêm các thông tin khác cần thiết cho kết quả thanh toán.
     }
