@@ -802,6 +802,30 @@ namespace Books_Store_Management_App.Models
 
         }
 
+        /// <summary>
+        /// Cập nhật trạng thái thanh toán của một đơn hàng.
+        /// </summary>
+        /// <param name="orderId">Id của order</param>
+        /// <param name="isPaid">Trạng thái đã thanh toán hay chưa (bool)</param>
+        /// <returns></returns>
+        public async Task<bool> UpdateOrderPaidStatusAsync(int orderId, bool isPaid)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE \"order\" SET is_paid = @IsPaid WHERE id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IsPaid", isPaid);
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
 
         /// <summary>
         /// Xóa một đơn hàng theo ID.

@@ -15,6 +15,7 @@ namespace Books_Store_Management_App.Models.Payment.Enums
         VNPay,
         Paypal,
         ZaloPay,
+        Cash,
         Demo
     }
 }

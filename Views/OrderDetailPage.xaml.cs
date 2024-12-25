@@ -86,6 +86,7 @@ namespace Books_Store_Management_App.Views
                 // Nếu đang sửa thông tin đơn hàng
                 // Bật nút cập nhật thông tin đơn hàng
                 CreateOrderButton.Visibility = Visibility.Collapsed;
+                UpdatePayOrderButtonGroup.Visibility = Visibility.Visible;
                 UpdateOrderButton.Visibility = Visibility.Visible;
 
                 // Đưa thông tin đơn hàng cần sửa vào ViewModel
@@ -398,6 +399,8 @@ namespace Books_Store_Management_App.Views
         {
             var _paymentService = (Application.Current as App).ServiceProvider.GetService<PaymentService>();
 
+            var method = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), (string)PaymentMethodCombobox.SelectedItem, true);
+
             var result = await _paymentService.ProcessPayment(PaymentMethod.Demo, new PaymentRequest()
             {
                 Amount = Math.Ceiling(ViewModel.ActualTotal * 25462.5).ToString(),
@@ -418,6 +421,9 @@ namespace Books_Store_Management_App.Views
             if (result.Success)
             {
                 ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+
+                var PsqlDao = new PsqlDao();
+                await PsqlDao.UpdateOrderPaidStatusAsync(ViewModel.Order.ID, true);
 
                 return;
             }
