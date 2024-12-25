@@ -11,8 +11,18 @@ namespace ZaloPay.Helper.Crypto
         HMACSHA512
     }
 
+    /// <summary>
+    /// Class hỗ trợ tính toán giá trị HMAC cho một thông điệp.
+    /// </summary>
     public class HmacHelper
     {
+        /// <summary>
+        /// Tính toán giá trị HMAC cho một thông điệp sử dụng thuật toán đã cho và khóa đã cho.
+        /// </summary>
+        /// <param name="algorithm">Thuật toán HMAC.</param>
+        /// <param name="key">Khóa sử dụng để tính toán HMAC.</param>
+        /// <param name="message">Thông điệp cần tính toán HMAC.</param>
+        /// <returns>Giá trị HMAC tính toán được dưới dạng chuỗi hexa.</returns>
         public static string Compute(ZaloPayHMAC algorithm = ZaloPayHMAC.HMACSHA256, string key = "", string message = "")
         {
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(key);
@@ -37,7 +47,7 @@ namespace ZaloPay.Helper.Crypto
                     hashMessage = new HMACSHA256(keyByte).ComputeHash(messageBytes);
                     break;
             }
-            
+
             return BitConverter.ToString(hashMessage).Replace("-", "").ToLower();
         }
     }

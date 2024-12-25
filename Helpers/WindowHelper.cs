@@ -20,22 +20,31 @@ namespace Books_Store_Management_App.Helpers
             // Use the WindowNative class from the WinRT.Interop namespace to get the window handle
             return WindowNative.GetWindowHandle(window);
         }
+
+        // DLL imports để hiển thị và đưa cửa sổ lên phía trước
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
+        // DLL imports để hiển thị và đưa cửa sổ lên phía trước
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
+
+        /// <summary>
+        /// Hiển thị cửa sổ WinUI.
+        /// </summary>
+        /// <param name="window"></param>
         public static void ShowWindow(Window window)
         {
-            // Bring the window to the foreground... first get the window handle...
+            // Đưa cửa sổ lên phía trước... trước tiên lấy handle của cửa sổ...
             var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
 
-            // Restore window if minimized... requires DLL import above
+            // Khôi phục cửa sổ nếu đã bị thu nhỏ... yêu cầu DLL import ở trên
+            // 0x00000009 là mã lệnh cho SW_RESTORE
             ShowWindow(hwnd, 0x00000009);
 
-            // And call SetForegroundWindow... requires DLL import above
+            // Đưa cửa sổ lên phía trước
             SetForegroundWindow(hwnd);
         }
     }

@@ -10,8 +10,17 @@ using Org.BouncyCastle.Security;
 
 namespace ZaloPay.Helper.Crypto
 {
+    /// <summary>
+    /// Lớp RSAHelper cung cấp các phương thức để mã hóa và giải mã dữ liệu sử dụng thuật toán RSA.
+    /// </summary>
     public class RSAHelper
     {
+        /// <summary>
+        /// Mã hóa dữ liệu sử dụng khóa công khai RSA.
+        /// </summary>
+        /// <param name="data">Dữ liệu cần mã hóa.</param>
+        /// <param name="publicKey">Khóa công khai dùng để mã hóa.</param>
+        /// <returns>Chuỗi đã mã hóa dưới dạng Base64.</returns>
         public static string Encrypt(string data, string publicKey)
         {
             byte[] publicKeyBytes = Convert.FromBase64String(publicKey);
@@ -24,19 +33,22 @@ namespace ZaloPay.Helper.Crypto
                 Exponent = rsaKeyParameters.Exponent.ToByteArrayUnsigned()
             };
 
-            //You can then easily import the key parameters into RSACryptoServiceProvider:
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.ImportParameters(rsaParameters);
-            
-            //Finally, do your encryption:
+
             byte[] dataToEncrypt = Encoding.UTF8.GetBytes(data);
-            // Sign data with Pkcs1
             byte[] encryptedData = rsa.Encrypt(dataToEncrypt, false);
-            // Convert Bytes to Hash
             var hash = Convert.ToBase64String(encryptedData);
 
             return hash;
         }
+
+        /// <summary>
+        /// Mã hóa dữ liệu sử dụng khóa công khai RSA từ phiên bản 1.
+        /// </summary>
+        /// <param name="data">Dữ liệu cần mã hóa.</param>
+        /// <param name="publicKey">Khóa công khai dùng để mã hóa.</param>
+        /// <returns>Chuỗi đã mã hóa dưới dạng Base64.</returns>
         public static string EncryptV1(string data, string publicKey)
         {
             string hash = "";
@@ -53,6 +65,13 @@ namespace ZaloPay.Helper.Crypto
 
             return hash;
         }
+
+        /// <summary>
+        /// Mã hóa dữ liệu sử dụng chứng chỉ X509Certificate2.
+        /// </summary>
+        /// <param name="plainText">Dữ liệu cần mã hóa.</param>
+        /// <param name="cert">Chứng chỉ X509Certificate2 dùng để mã hóa.</param>
+        /// <returns>Chuỗi đã mã hóa dưới dạng Base64.</returns>
         public static string Encrypt(string plainText, X509Certificate2 cert)
         {
             RSACryptoServiceProvider publicKey = (RSACryptoServiceProvider)cert.PublicKey.Key;
@@ -62,6 +81,12 @@ namespace ZaloPay.Helper.Crypto
             return encryptedText;
         }
 
+        /// <summary>
+        /// Giải mã dữ liệu đã mã hóa sử dụng chứng chỉ X509Certificate2.
+        /// </summary>
+        /// <param name="encryptedText">Dữ liệu đã mã hóa dưới dạng Base64.</param>
+        /// <param name="cert">Chứng chỉ X509Certificate2 dùng để giải mã.</param>
+        /// <returns>Chuỗi đã giải mã.</returns>
         public static string Decrypt(string encryptedText, X509Certificate2 cert)
         {
             RSACryptoServiceProvider privateKey = (RSACryptoServiceProvider)cert.PrivateKey;
