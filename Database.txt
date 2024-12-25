@@ -158,21 +158,17 @@ CREATE TABLE IF NOT EXISTS public.customer (
 ) TABLESPACE pg_default;
 
 INSERT INTO public.customer (id, name, gender, phone, address, avatarlink, cvv, paymentmethod) VALUES
-(7, 'George White', 'Male', '4455667788', '159 Spruce St, Metropolis', 'ms-appx:///Assets/Male.jpg', 123, 'Credit Card'),
-(8, 'Hannah Adams', 'Female', '3344556677', '753 Cedar St, Urbanville', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
-(9, 'Ian Black', 'Male', '2233445566', '951 Redwood St, Cosmopolis', 'ms-appx:///Assets/Male.jpg', 789, 'PayPal'),
-(11, 'Kevin Brown', 'Male', '9988775544', '753 Sycamore St, Ridgeville', 'ms-appx:///Assets/Male.jpg', 567, 'Debit Card'),
-(12, 'Laura Taylor', 'Female', '5566771122', '357 Chestnut St, Hilltown', 'ms-appx:///Assets/Female.jpg', 890, 'PayPal'),
-(13, 'Michael Scott', 'Male', '4455669900', '789 Willow St, Greenfield', 'ms-appx:///Assets/Male.jpg', 123, 'Credit Card'),
-(14, 'Nina Williams', 'Female', '2233447788', '951 Aspen St, Lakeview', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
-(15, 'Oscar Martinez', 'Male', '1122336677', '123 Beech St, Rivertown', 'ms-appx:///Assets/Male.jpg', 789, 'PayPal'),
-(17, 'Quincy Jones', 'Male', '6677885566', '654 Fir St, Forestville', 'ms-appx:///Assets/Male.jpg', 567, 'Debit Card'),
-(18, 'Rachel Green', 'Female', '3344557788', '789 Cypress St, Springtown', 'ms-appx:///Assets/Female.jpg', 890, 'PayPal'),
-(20, 'Tina Davis', 'Female', '5566779900', '951 Alder St, Valleycity', 'ms-appx:///Assets/Female.jpg', 456, 'Debit Card'),
-(21, 'My', 'Male', '6677889900', '654 Pine St, Villagetown', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 567, 'Debit Card'),
-(23, 'My', 'Female', '0353844003', 'ABCD', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Female.jpg', 101, 'Momo'),
-(19, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo'),
-(22, 'My Truong', 'Female', '0353844003', 'ABC', 'C:\\Users\\Admin\\Desktop\\WORK\\WP\\Books_Store_Management_App\\Assets\\Male.jpg', 123, 'Momo');
+(7, 'George White', 'Male', '4455667788', '159 Spruce St, Metropolis', 'ms-appx:///Assets/Male.jpg', 2, 'Credit Card'),
+(8, 'Hannah Adams', 'Female', '3344556677', '753 Cedar St, Urbanville', 'ms-appx:///Assets/Female.jpg', 3, 'Debit Card'),
+(9, 'Ian Black', 'Male', '2233445566', '951 Redwood St, Cosmopolis', 'ms-appx:///Assets/Male.jpg', 4, 'PayPal'),
+(11, 'Kevin Brown', 'Male', '9988775544', '753 Sycamore St, Ridgeville', 'ms-appx:///Assets/Male.jpg', 5, 'Debit Card'),
+(12, 'Laura Taylor', 'Female', '5566771122', '357 Chestnut St, Hilltown', 'ms-appx:///Assets/Female.jpg', 6, 'PayPal'),
+(13, 'Michael Scott', 'Male', '4455669900', '789 Willow St, Greenfield', 'ms-appx:///Assets/Male.jpg', 7, 'Credit Card'),
+(14, 'Nina Williams', 'Female', '2233447788', '951 Aspen St, Lakeview', 'ms-appx:///Assets/Female.jpg', 8, 'Debit Card'),
+(15, 'Oscar Martinez', 'Male', '1122336677', '123 Beech St, Rivertown', 'ms-appx:///Assets/Male.jpg', 9, 'PayPal'),
+(17, 'Quincy Jones', 'Male', '6677885566', '654 Fir St, Forestville', 'ms-appx:///Assets/Male.jpg', 10, 'Debit Card'),
+(18, 'Rachel Green', 'Female', '3344557788', '789 Cypress St, Springtown', 'ms-appx:///Assets/Female.jpg', 11, 'PayPal'),
+(20, 'Tina Davis', 'Female', '5566779900', '951 Alder St, Valleycity', 'ms-appx:///Assets/Female.jpg', 12, 'Debit Card');
 
 -- Bang order_customer
 CREATE TABLE IF NOT EXISTS public.order_customer (
@@ -202,3 +198,46 @@ INSERT INTO public.admin (name, phone, email, dob, address, username, password) 
     ('Michael Brown', '6789012345', 'michaelbrown@example.com', '1988-02-12', '321 Pine St, Hamletburg', 'michaelb88', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7'),
     ('Sophia Johnson', '3456789012', 'sophiajohnson@example.com', '1995-08-27', '654 Maple St, Boroughport', 'sophiaj95', 'a665a5f42fd805107a3fd58d1ea3be5a94f7fd261bffcf94b8fbc12bb41ad2b7');
 
+-- Bảng account chứa thông tin thanh toán
+CREATE TABLE accounts (
+    id SERIAL PRIMARY KEY,
+    balance DECIMAL(18,2) NOT NULL DEFAULT 0,
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+    time_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO accounts (balance, is_admin)
+VALUES (0, true)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO accounts (balance, is_admin)
+VALUES (50000, false),
+         (100000, false),
+         (200000, false),
+         (300000, false),
+         (400000, false),
+         (500000, false),
+         (600000, false),
+         (700000, false),
+         (800000, false),
+         (900000, false),
+         (1000000, false)
+ON CONFLICT (id) DO NOTHING;
+
+-- 
+CREATE TABLE transactions (
+    id SERIAL PRIMARY KEY,
+    from_user_id INTEGER,
+    to_user_id INTEGER NOT NULL,
+    amount DECIMAL(18,2) NOT NULL,
+    order_id INTEGER NOT NULL,
+    content TEXT,
+    time_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (from_user_id) REFERENCES accounts(id),
+    FOREIGN KEY (to_user_id) REFERENCES accounts(id),
+    CHECK (from_user_id <> to_user_id)
+);
+
+-- Thêm vào bảng order thuộc tính is_paid
+ALTER TABLE "order"
+ADD COLUMN "is_paid" BOOLEAN NOT NULL DEFAULT FALSE;
