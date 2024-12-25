@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Books_Store_Management_App.Models.Payment;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace Books_Store_Management_App.Models
 {
@@ -19,7 +21,7 @@ namespace Books_Store_Management_App.Models
         /// </summary>
         /// <param name="paymentRequest">Yêu cầu thanh toán.</param>
         /// <returns>Kết quả xử lý thanh toán, bao gồm trạng thái thành công và thông báo.</returns>
-        public async Task<(bool success, string message)> ProcessPayment(PaymentRequest paymentRequest)
+        public async Task<(bool success, string message)> ProcessDemoPayment(PaymentRequest paymentRequest)
         {
             using var connection = new NpgsqlConnection(_connectionString);
             await connection.OpenAsync();
@@ -45,6 +47,25 @@ namespace Books_Store_Management_App.Models
 
                     // 3. Trừ tiền từ tài khoản người dùng
                     await UpdateMemberBalance(connection, paymentRequest.MemberPaymentId.Value, -Decimal.Parse(paymentRequest.Amount));
+                }
+                else if (!string.IsNullOrEmpty(paymentRequest.MemberPhoneNumber))
+                {
+                    // 2. Lấy tài khoản người dùng
+                    var memberPaymentId = await GetMemberIdByPhoneNumber(connection, paymentRequest.MemberPhoneNumber);
+
+                    if (memberPaymentId == 0)
+                    {
+                        return (false, "Không tìm thấy tài khoản người dùng.");
+                    }
+
+                    var memberBalance = await GetMemberBalance(connection, memberPaymentId);
+                    if (memberBalance < Decimal.Parse(paymentRequest.Amount))
+                    {
+                        return (false, "Số dư không đủ để thanh toán.");
+                    }
+
+                    // 3. Trừ tiền từ tài khoản người dùng
+                    await UpdateMemberBalance(connection, memberPaymentId, -Decimal.Parse(paymentRequest.Amount));
                 }
 
                 // 4. Cộng tiền vào tài khoản admin
@@ -129,7 +150,7 @@ namespace Books_Store_Management_App.Models
         /// <param name="memberId">ID của thành viên.</param>
         /// <param name="amount">Số tiền cần cập nhật.</param>
         /// <returns></returns>
-        private async Task UpdateMemberBalance(NpgsqlConnection connection, int memberId, Decimal amount)
+        private async Task UpdateMemberBalance(NpgsqlConnection connection, int? memberId, Decimal amount)
         {
             const string sql = @"
                 UPDATE accounts
@@ -170,13 +191,35 @@ namespace Books_Store_Management_App.Models
             ";
 
             using var command = new NpgsqlCommand(sql, connection);
-            command.Parameters.AddWithValue("fromUserId", fromUserId);
+            command.Parameters.AddWithValue("fromUserId", NpgsqlDbType.Integer, (object)fromUserId ?? DBNull.Value);
             command.Parameters.AddWithValue("toUserId", toUserId);
             command.Parameters.AddWithValue("amount", amount);
             command.Parameters.AddWithValue("content", content);
             command.Parameters.AddWithValue("orderId", orderId);
 
             return (int)await command.ExecuteScalarAsync();
+        }
+
+        /// <summary>
+        /// Phương thức lấy ID thành viên dựa trên số điện thoại.
+        /// </summary>
+        /// <param name="connection">Kết nối đến cơ sở dữ liệu.</param>
+        /// <param name="phoneNumber">Số điện thoại của thành viên.</param>
+        /// <returns>ID của thành viên tương ứng với số điện thoại, hoặc 0 nếu không tìm thấy.</returns>
+        private async Task<int> GetMemberIdByPhoneNumber(NpgsqlConnection connection, string phoneNumber)
+        {
+            const string sql = @"
+                SELECT cvv
+                FROM customer
+                WHERE phone = @phoneNumber
+            ";
+
+            using var command = new NpgsqlCommand(sql, connection);
+            command.Parameters.AddWithValue("phoneNumber", phoneNumber);
+
+            var result = await command.ExecuteScalarAsync();
+
+            return result == null ? 0 : (int)result;
         }
     }
 }

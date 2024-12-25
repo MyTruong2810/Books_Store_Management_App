@@ -22,6 +22,10 @@ using System.Drawing;
 using Books_Store_Management_App.Models.ZaloPay;
 using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
+using Books_Store_Management_App.Services;
+using Books_Store_Management_App.Models.Payment.Enums;
+using Books_Store_Management_App.Models.Payment;
+using Newtonsoft.Json;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -392,6 +396,32 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private async void PayOrderButton_Click(object sender, RoutedEventArgs e)
         {
+            var _paymentService = (Application.Current as App).ServiceProvider.GetService<PaymentService>();
+
+            var result = await _paymentService.ProcessPayment(PaymentMethod.Demo, new PaymentRequest()
+            {
+                Amount = Math.Ceiling(ViewModel.ActualTotal * 25462.5).ToString(),
+                Description = "Thanh toán đơn hàng",
+                orderId = ViewModel.Order.ID,
+                MemberPaymentId = null,
+                MemberPhoneNumber = CustomerPhoneNumberTextBox.Text,
+            });
+
+            var builder = new AppNotificationBuilder()
+                .AddText($"Đơn hàng id: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
+                .AddText(result.Message)
+                .AddArgument("Order", JsonConvert.SerializeObject(ViewModel.Order));
+
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
+
+            if (result.Success)
+            {
+                ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+
+                return;
+            }
+
             if ((string)PaymentMethodCombobox.SelectedItem == "ZaloPay")
             {
                 // Tạo mã QR Code
@@ -404,18 +434,18 @@ namespace Books_Store_Management_App.Views
 
                 bool isPaymentSuccess = await ViewModel.WaitForPaymentAsync(ViewModel.app_trans_id);
 
-                if (!isPaymentSuccess)
-                {
-                    var builder = new AppNotificationBuilder()
-                        .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
-                        .AddText("Thanh toán thất bại!")
-                        .AddText("Vui lòng thử lại sau.");
+                //if (!isPaymentSuccess)
+                //{
+                //    var builder = new AppNotificationBuilder()
+                //        .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
+                //        .AddText("Thanh toán thất bại!")
+                //        .AddText("Vui lòng thử lại sau.");
 
-                    var notificationManager = AppNotificationManager.Default;
-                    notificationManager.Show(builder.BuildNotification());
+                //    var notificationManager = AppNotificationManager.Default;
+                //    notificationManager.Show(builder.BuildNotification());
 
-                    return;
-                }
+                //    return;
+                //}
                  
                 ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
             }

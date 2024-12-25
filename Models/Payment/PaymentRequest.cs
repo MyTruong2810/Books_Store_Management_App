@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Books_Store_Management_App.Models
+namespace Books_Store_Management_App.Models.Payment
 {
     /// <summary>
     /// Clas này chứa thông tin của một yêu cầu thanh toán.
@@ -23,5 +23,6 @@ namespace Books_Store_Management_App.Models
         public string Mac { get; set; }
         public int orderId { get; set; }
         public int? MemberPaymentId { get; set; }
+        public string? MemberPhoneNumber { get; set; }
     }
 }

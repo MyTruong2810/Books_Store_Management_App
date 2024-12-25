@@ -284,7 +284,6 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <!-- Command="{x:Bind ViewModel.ChangeToQRCodeCommand}" -->
@@ -294,16 +293,17 @@
                         FontWeight="SemiBold"
                         Foreground="Black"
                         Background="#8CB3ED"
-                        
+                        Visibility="Visible"
                         Click="PayOrderButton_Click"/>
 
-                    <Button Grid.Column="1"
+                    <Button Grid.Column="0"
                         Content="Bill"
                         HorizontalAlignment="Stretch" 
                         FontWeight="SemiBold"
                         Foreground="Black"
                         Background="#8CB3ED" 
                         Margin="10, 0, 0, 0" 
+                        Visibility="Collapsed"
                         Click="BillOrderButton_Click"/>
                 </Grid>
                 <!-- End Pay Bill Order Button -->

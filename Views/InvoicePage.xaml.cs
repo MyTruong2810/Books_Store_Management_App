@@ -32,11 +32,18 @@ namespace Books_Store_Management_App.Views
     public sealed partial class InvoicePage : Page
     {
         public InvoiceViewModel ViewModel { get; set; }
+
+        private Window _parentWindow;
         public InvoicePage()
         {
             this.InitializeComponent();
 
             ViewModel = new InvoiceViewModel();
+        }
+
+        public InvoicePage(Window parentWindow) : this()
+        {
+            _parentWindow = parentWindow;
         }
 
         /// <summary>
@@ -104,12 +111,24 @@ namespace Books_Store_Management_App.Views
 
         /// <summary>
         /// Xử lý sự kiện khi nhấn nút Back để quay lại trang Order Detail.
+        /// Hoặc đóng cửa sổ nếu không thể quay lại.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.GoBack();
+            if (Frame != null && Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+            else
+            {
+                if (_parentWindow != null)
+                {
+                    _parentWindow.Close();
+                    _parentWindow = null;
+                }
+            }
         }
     }
 

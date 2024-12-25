@@ -25,6 +25,10 @@ using Microsoft.Windows.AppNotifications;
 using Books_Store_Management_App.Helpers;
 using Microsoft.UI.Dispatching;
 using System.Diagnostics;
+using Books_Store_Management_App.Models;
+using Books_Store_Management_App.Services;
+using Newtonsoft.Json;
+using Books_Store_Management_App.Views;
 
 
 namespace Books_Store_Management_App
@@ -56,6 +60,10 @@ namespace Books_Store_Management_App
             //services.AddTransient<OrderViewModel>();
             services.AddSingleton<OrderPageViewModel>();
             services.AddTransient<OrderDetailViewModel>();
+
+            services.AddScoped<PaymentRepository>();
+            services.AddScoped<PaymentStrategyFactory>();
+            services.AddScoped<PaymentService>();
         }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -112,8 +120,30 @@ namespace Books_Store_Management_App
 
             dispatcherQueue.TryEnqueue(async delegate
             {
+                if (args.Argument != "")
+                {
+                    // Get the order
+                    var order = JsonConvert.DeserializeObject<Order>(args.Arguments["Order"]);
 
-                if (args.Arguments == null || !args.Arguments.ContainsKey("action"))
+                    // If the UI app isn't open
+                    if (MainWindow == null)
+                    {
+                        // Close since we're done
+                        Process.GetCurrentProcess().Kill();
+                    }
+
+                    var newWindow = new Window();
+                    var invoicePage = new InvoicePage(newWindow);
+                    invoicePage.ViewModel.Order = order;
+
+                    //LaunchAndBringToForegroundIfNeeded();
+                    newWindow.Content = invoicePage;
+                    newWindow.Activate();
+
+                    return;
+                }
+
+                if (args.Arguments == null)
                 {
                     return;
                 }
