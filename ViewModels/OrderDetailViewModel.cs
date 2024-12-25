@@ -249,7 +249,7 @@ namespace Books_Store_Management_App.ViewModels
 
             return null;
         }
-        public async Task<bool> WaitForPaymentAsync(string appTransId, int maxRetries = 10, int delayMilliseconds = 2000)
+        public async Task<bool> WaitForPaymentAsync(string appTransId, int maxRetries = 100, int delayMilliseconds = 2000)
         {
             var _zaloPayService = new ZaloPayService();
             for (int count = 0; count < maxRetries; count++)

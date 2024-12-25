@@ -415,15 +415,5 @@ namespace Books_Store_Management_App.Views
             Frame.Navigate(typeof(ReadOnlyOrderDetailPage), order);
         }
 
-        /// <summary>
-        /// Hiện thị thông tin chi tiết order khi chọn vào danh sách hiển thị.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OrderListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var order = e.ClickedItem as Order;
-            Frame.Navigate(typeof(ReadOnlyOrderDetailPage), order);
-        }
     }
 }

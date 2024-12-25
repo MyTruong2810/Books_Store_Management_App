@@ -106,6 +106,7 @@ namespace Books_Store_Management_App.ViewModels
         private bool AuthenticateUser(string username, string password)
         {
             _usersDatabase = new PsqlDao().GetAdminCredentials(username);
+
             return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == SHA_256(password);
         }
         /// <summary>
