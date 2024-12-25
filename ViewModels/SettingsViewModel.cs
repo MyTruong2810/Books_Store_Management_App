@@ -21,6 +21,8 @@ namespace Books_Store_Management_App.ViewModels
                     _isDarkModeEnabled = value;
                     SaveThemeToSettings(_isDarkModeEnabled); // Lưu trạng thái vào LocalSettings
                     OnPropertyChanged(nameof(IsDarkModeEnabled));
+                    // Thông báo thay đổi theme
+                    OnPropertyChanged(nameof(CurrentTheme));
                 }
             }
         }

@@ -1,9 +1,24 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Color x:Key="BackgroundColor">#C4C4FC</Color>
-    <Color x:Key="TextColor">#000000</Color>
-    <Color x:Key="NavigationViewBackgroundColor">#22396d</Color>
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Key="Light">
+    <Color x:Key="BorderBackgroundColor">#22396d</Color>
+    <Color x:Key="BackgroundColor">#22396d</Color>
+    <Color x:Key="TextColor">#0078D7</Color>
+    <Color x:Key="NavigationViewColor">#22396d</Color>
     <Color x:Key="NavigationViewItemBackgroundColor">#EDEDED</Color>
     <Color x:Key="HighlightColor">#0078D7</Color>
-    <!-- Màu chọn -->
+    <Color x:Key="NavigationViewItemForegroundColor">#22396d</Color>
+    <!-- Màu chọn --><!--
+    <Style TargetType="NavigationViewItem">
+        <Setter Property="Background" Value="{ThemeResource NavigationViewItemBackgroundColor}" />
+        <Setter Property="Foreground" Value="{ThemeResource NavigationViewItemForegroundColor}" />
+    </Style>
+
+    <Style TargetType="NavigationView">
+        <Setter Property="Background" Value="{ThemeResource NavigationViewBackgroundColor}" />
+    </Style>
+
+    <Style TargetType="StackPanel">
+        <Setter Property="Background" Value="{ThemeResource BorderBackgroundColor}" />
+    </Style>-->
 </ResourceDictionary>

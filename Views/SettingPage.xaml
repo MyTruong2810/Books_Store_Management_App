@@ -4,15 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Books_Store_Management_App.Views"
     xmlns:Converters="using:Books_Store_Management_App.Helpers" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    Background="{StaticResource BackgroundColor}">
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" >
 
-    <Page.Resources>
-        <!-- Đảm bảo rằng ThemeToBoolConverter được đăng ký trong Resources -->
-        <Converters:ThemeToBoolConverter x:Key="ThemeToBoolConverter"/>
-    </Page.Resources>
-
-    <Grid Padding="20">
+    <Grid Padding="20" Background="{ThemeResource HighlightColor}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Settings" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
             <TextBlock Text="Dark Mode" FontSize="16" />

@@ -20,6 +20,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Books_Store_Management_App.Models;
+using WinRT.Interop;
+using Microsoft.UI.Windowing;
+using Microsoft.UI;
 
 namespace Books_Store_Management_App
 {
@@ -61,21 +64,67 @@ namespace Books_Store_Management_App
         {
             // Kiểm tra theme đã được lưu trong Settings
             var themeToApply = SettingsViewModel.CurrentTheme;
-
-            // Áp dụng theme cho MainWindow
-            if (MainWindow != null && MainWindow.Content is FrameworkElement rootElement)
+             
+            // Đảm bảo MainWindow đã được tạo trước khi áp dụng theme
+            if (MainWindow != null)
             {
-                rootElement.RequestedTheme = themeToApply;
+                // Áp dụng theme cho MainWindow khi cửa sổ đã được tạo
+                MainWindow.Activated += (sender, e) =>
+                {
+                    if (MainWindow.Content is FrameworkElement rootElement)
+                    {
+                        rootElement.RequestedTheme = themeToApply;
+                        // Cập nhật tài nguyên động khi theme thay đổi
+                        UpdateThemeResources(themeToApply);
+                    }
+                };
+            }
+            else
+            {
+                // Nếu MainWindow chưa được tạo, có thể đăng ký lại khi MainWindow được khởi tạo
+                System.Diagnostics.Debug.WriteLine("MainWindow is not initialized yet.");
             }
         }
 
+        private void UpdateThemeResources(ElementTheme theme)
+        {
+            var resourceDict = (ResourceDictionary)Application.Current.Resources;
+            resourceDict.MergedDictionaries.Clear();
+
+            // Thêm các tài nguyên tương ứng với theme
+            if (theme == ElementTheme.Dark)
+            {
+                resourceDict.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Dark.xaml") });
+            }
+            else
+            {
+                resourceDict.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Light.xaml") });
+            }
+        }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
             MainWindow.Activate();
             // Áp dụng theme sau khi MainWindow được tạo
-            ApplySavedTheme();
+            // Lấy HWND sau khi cửa sổ chính được tạo
+            // Đảm bảo rằng bạn chỉ gọi ApplySavedTheme sau khi MainWindow đã được tạo
+            MainWindow.Activated += (sender, e) =>
+            {
+                // Lấy HWND sau khi cửa sổ chính được tạo
+                var hwnd = WindowNative.GetWindowHandle(MainWindow);
+
+                if (hwnd == IntPtr.Zero)
+                {
+                    throw new InvalidOperationException("Unable to retrieve window handle (HWND).");
+                }
+
+                var appWindow = AppWindow.GetFromWindowId(Win32Interop.GetWindowIdFromWindow(hwnd));
+                appWindow.SetIcon("Assets/Icons/icon.ico");
+
+                // Áp dụng theme sau khi MainWindow đã sẵn sàng
+                ApplySavedTheme();
+            };
         }
     }
 }

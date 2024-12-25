@@ -21,11 +21,9 @@
                   PaneDisplayMode="Left"
                   PaneTitle="Book Store Management"
                   SelectionFollowsFocus="Enabled"   
-                  SelectionChanged="nvSample_SelectionChanged"  
-                  Background="{ThemeResource NavigationViewBackgroundColor}">
+                  SelectionChanged="nvSample_SelectionChanged" >
             <NavigationView.MenuItems>
-                <NavigationViewItem Margin="0 10 0 0" Content="Admin" Tag="Admin" FontWeight="Bold" FontSize="16"
-                              Background="{ThemeResource NavigationViewItemBackgroundColor}">
+                <NavigationViewItem Margin="0 10 0 0" Content="Admin" Tag="Admin" FontWeight="Bold" FontSize="16">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE77B;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>

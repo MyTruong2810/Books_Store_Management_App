@@ -10,9 +10,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Tải tài nguyên cho Light và Dark -->
-                <ResourceDictionary Source="Themes/Dark.xaml"/>
-                <ResourceDictionary Source="Themes/Light.xaml"/>
+                <!--<ResourceDictionary Source="Themes/Dark.xaml" />-->
+                <ResourceDictionary Source="Themes/Light.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

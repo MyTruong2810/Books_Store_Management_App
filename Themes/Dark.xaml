@@ -1,10 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <Color x:Key="BackgroundColor">#1A1A1A</Color> <!-- Nền tối -->
-    <Color x:Key="TextColor">#FFFFFF</Color> <!-- Chữ màu trắng -->
-    <Color x:Key="NavigationViewBackgroundColor">#22396d</Color> <!-- Nền NavigationView -->
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Key="Dark">
+    <Color x:Key="BackgroundColor">#0078D7</Color>
+    <Color x:Key="BorderBackgroundColor">#22396d</Color>
+    <Color x:Key="TextColor">#FFFFFF</Color>
+    <Color x:Key="NavigationViewColor">#22396d</Color> <!-- Nền NavigationView -->
     <Color x:Key="NavigationViewItemBackgroundColor">#ffffff</Color> <!-- Nền NavigationViewItem -->
-    <Color x:Key="HighlightColor">#0078D7</Color> <!-- Màu chọn -->
+    <Color x:Key="HighlightColor">#22396d</Color> <!-- Màu chọn -->
+    <Color x:Key="NavigationViewItemForegroundColor">#FFFFFF</Color>
+    <!--<Style TargetType="NavigationViewItem">
+        <Setter Property="Background" Value="{ThemeResource NavigationViewItemBackgroundColor}" />
+        <Setter Property="Foreground" Value="{ThemeResource NavigationViewItemForegroundColor}" />
+    </Style>
 
+    <Style TargetType="NavigationView">
+        <Setter Property="Background" Value="{ThemeResource TextColor}" />
+    </Style>
+
+    <Style TargetType="StackPanel">
+        <Setter Property="Background" Value="{ThemeResource BackgroundColor}" />
+    </Style>-->
 </ResourceDictionary>
