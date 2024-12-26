@@ -1,80 +1,78 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Metrics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Books_Store_Management_App.Models;
-using Catel.Collections;
-using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Books_Store_Management_App.Models
 {
     /// <summary>
-    /// Lớp đại diện cho việc thực hiện các thao tác với thể loại sách.
+    /// Provides operations for managing book classification categories.
     /// </summary>
     public class ClassificationClassDao : IDaos<ClassificationClass>
     {
-        // In-memory list representing the database for ClassificationClass objects
+        /// <summary>
+        /// In-memory list simulating a database for classification objects.
+        /// </summary>
         public ObservableCollection<ClassificationClass> Db = new ObservableCollection<ClassificationClass>();
 
-
-        // Loads sample data into the in-memory database
+        /// <summary>
+        /// Loads sample data into the in-memory database.
+        /// </summary>
         public void loadDatafromDbList()
         {
             PsqlDao psqlDao = new PsqlDao();
-            psqlDao.GetClassificationClasses();
             foreach (var item in psqlDao.GetClassificationClasses())
             {
                 Db.Add(item);
             }
         }
 
-        // Retrieves paginated and filtered ClassificationClass items based on search and sort parameters
+        /// <summary>
+        /// Retrieves paginated and filtered classification items based on search and sort parameters.
+        /// </summary>
+        /// <param name="page">The current page number.</param>
+        /// <param name="rowsPerPage">The number of rows per page.</param>
+        /// <param name="keyword">The keyword for filtering items.</param>
+        /// <param name="typerOfSearch">The search type (e.g., by ID or Tags).</param>
+        /// <param name="typerOfSort">The sort type (e.g., by ID or Tags).</param>
+        /// <returns>A tuple containing the total item count and a paginated list.</returns>
         public Tuple<int, ObservableCollection<ClassificationClass>> GetAll(
             int page, int rowsPerPage, string keyword, int typerOfSearch, int typerOfSort)
         {
             IEnumerable<ClassificationClass> origin;
 
-            // Apply search filter based on type of search
             switch (typerOfSearch)
             {
                 case 2:
-                    origin = Db.Where(e => e.Tags.Contains(keyword)); // Search by Tags
+                    origin = Db.Where(e => e.Tags.Contains(keyword));
                     break;
                 default:
-                    origin = Db.Where(e => e.ID.Contains(keyword)); // Default search by ID
+                    origin = Db.Where(e => e.ID.Contains(keyword));
                     break;
             }
 
-            // Apply sorting based on type of sort
             switch (typerOfSort)
             {
                 case 2:
-                    origin = origin.OrderBy(e => e.Tags); // Sort by Tags
+                    origin = origin.OrderBy(e => e.Tags);
                     break;
                 default:
-                    origin = origin.OrderBy(e => int.Parse(e.ID)); // Default sort by ID
+                    origin = origin.OrderBy(e => int.Parse(e.ID));
                     break;
             }
 
-            // Count total items after filtering
             var totalItems = origin.Count();
-
-            // Apply pagination and convert to list
-            var result = origin
-                .Skip((page - 1) * rowsPerPage)
-                .Take(rowsPerPage)
-                .ToList();
-
-            // Return the total item count and the paginated list as a tuple
-
+            var result = origin.Skip((page - 1) * rowsPerPage).Take(rowsPerPage).ToList();
             ObservableCollection<ClassificationClass> observableResult = new ObservableCollection<ClassificationClass>(result);
+
             return new Tuple<int, ObservableCollection<ClassificationClass>>(totalItems, observableResult);
         }
 
-        // Inserts a new ClassificationClass item into the in-memory database
+        /// <summary>
+        /// Inserts a new classification item into the in-memory database.
+        /// </summary>
+        /// <param name="insertItem">The classification item to insert.</param>
         public void Insert(ClassificationClass insertItem)
         {
             if (insertItem != null)
@@ -83,24 +81,36 @@ namespace Books_Store_Management_App.Models
             }
         }
 
-        // Loads a ClassificationClass profile based on ID (simulates a database retrieval)
+        /// <summary>
+        /// Retrieves a classification item based on its ID.
+        /// </summary>
+        /// <param name="id">The ID of the classification item.</param>
+        /// <returns>The classification item if found, otherwise null.</returns>
         public ClassificationClass LoadProfile(string id)
         {
             return Db.FirstOrDefault(e => e.ID == id);
         }
 
-        // Updates an existing ClassificationClass profile (simulates a database save operation)
+        /// <summary>
+        /// Updates an existing classification item.
+        /// </summary>
+        /// <param name="profile">The updated classification item.</param>
+        /// <param name="temp">Temporary parameter (unused).</param>
         public void Save(ClassificationClass profile, string temp)
         {
             var oldInfo = Db.FirstOrDefault(e => e.ID == profile.ID);
+
             if (oldInfo != null)
             {
-                Db.Remove(oldInfo); // Remove old record
-                Db.Add(profile); // Add updated profile
+                Db.Remove(oldInfo);
+                Db.Add(profile);
             }
         }
 
-        // Deletes a ClassificationClass item by ID, throws exception if ID not found
+        /// <summary>
+        /// Deletes a classification item by ID.
+        /// </summary>
+        /// <param name="id">The ID of the classification item to delete.</param>
         public void Delete(string id)
         {
             var itemToDelete = Db.FirstOrDefault(e => e.ID == id);

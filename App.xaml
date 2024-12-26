@@ -6,6 +6,11 @@
     xmlns:local="using:Books_Store_Management_App"
     xmlns:local1="using:Books_Store_Management_App.Helpers">
 
+    <!--
+    <summary>
+    Defines the resources and themes for the application, including merged dictionaries for light and dark themes.
+    </summary>
+    -->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

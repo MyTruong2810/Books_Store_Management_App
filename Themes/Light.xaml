@@ -5,9 +5,11 @@
     <Color x:Key="NavigationViewColor">#7697A0</Color>
     <Color x:Key="NavigationViewItemBackgroundColor">#C2C8C5</Color>
 
-    <!-- AdminPage -->
+    <!--Back ground-->
     <Color x:Key="StackPanelBackgroundColor">#DDDDDA</Color>
     <Color x:Key="HeaderBackgroundColor">#94B0B7</Color>
+    
+    <!-- AdminPage -->
     <Color x:Key="AdminPanelBackgroundColor">#7097A8</Color>
     <Color x:Key="AdminPanelBorderColor">DarkBlue</Color>
     <Color x:Key="AdminTextColor">#FFFFFF</Color>

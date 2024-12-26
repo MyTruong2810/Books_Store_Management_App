@@ -27,19 +27,29 @@ using SkiaSharp;
 
 namespace Books_Store_Management_App
 {
+    /// <summary>
+    /// Represents the main application class that initializes and manages application-level resources and settings.
+    /// </summary>
     public partial class App : Application
     {
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// Provides access to the settings view model instance.
         /// </summary>
-        /// 
-
         public static SettingsViewModel SettingsViewModel { get; } = new SettingsViewModel();
+
+        /// <summary>
+        /// Provides access to the service provider instance for dependency injection.
+        /// </summary>
         public IServiceProvider ServiceProvider { get; private set; }
-        // Sử dụng thuộc tính tĩnh MainWindow
+
+        /// <summary>
+        /// Provides access to the main application window instance.
+        /// </summary>
         public static Window MainWindow { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
             this.InitializeComponent();
@@ -49,6 +59,10 @@ namespace Books_Store_Management_App
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Configures the services used by the application.
+        /// </summary>
+        /// <param name="services">The service collection to configure.</param>
         private void ConfigureServices(IServiceCollection services)
         {
             //services.AddSingleton<IDao<Order>, MockOrderDao>();
@@ -58,7 +72,9 @@ namespace Books_Store_Management_App
             services.AddTransient<OrderDetailViewModel>();
         }
 
-        // Áp dụng theme được chọn (gọi từ nơi cần thiết, ví dụ từ SettingPage)
+        /// <summary>
+        /// Toggles the application theme and updates the relevant resources.
+        /// </summary>
         public void ApplySelectedTheme()
         {
             var themeToApply = SettingsViewModel.CurrentTheme;
@@ -66,17 +82,19 @@ namespace Books_Store_Management_App
             if (MainWindow.Content is FrameworkElement rootElement)
             {
                 rootElement.RequestedTheme = themeToApply;
-                SettingsViewModel.TitlePaint.Color = SettingsViewModel.IsDarkModeEnabled ? SKColors.White : SKColors.Black;
-                SettingsViewModel.AxisNamePaint.Color = SettingsViewModel.IsDarkModeEnabled ? SKColors.LightGray : SKColors.DarkGray;
                 UpdateThemeResources(themeToApply);
             }
         }
 
+        /// <summary>
+        /// Updates the application resources based on the selected theme.
+        /// </summary>
+        /// <param name="theme">The theme to apply.</param>
         public void UpdateThemeResources(ElementTheme theme)
         {
             var dictionaries = Application.Current.Resources.MergedDictionaries;
 
-            // Tìm và xóa các từ điển có chứa tài nguyên liên quan đến theme
+            // Remove existing theme-related resource dictionaries.
             var themeDictionaries = dictionaries.Where(d =>
                 d.Source != null &&
                 (d.Source.AbsoluteUri.Contains("Themes/Light.xaml") ||
@@ -87,7 +105,7 @@ namespace Books_Store_Management_App
                 dictionaries.Remove(dict);
             }
 
-            // Thêm tài nguyên theme mới
+            // Add the new theme resource dictionary.
             if (theme == ElementTheme.Dark)
             {
                 dictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Dark.xaml") });
@@ -98,9 +116,11 @@ namespace Books_Store_Management_App
             }
         }
 
+        /// <summary>
+        /// Sets the application icon for the main window.
+        /// </summary>
         private void SetWindowIcon()
         {
-            // Lấy HWND sau khi cửa sổ chính được tạo
             var hwnd = WindowNative.GetWindowHandle(MainWindow);
             if (hwnd == IntPtr.Zero)
             {
@@ -111,12 +131,15 @@ namespace Books_Store_Management_App
             appWindow.SetIcon("Assets/Icons/icon.ico");
         }
 
+        /// <summary>
+        /// Handles the application launch event and initializes the main window.
+        /// </summary>
+        /// <param name="args">Launch activation arguments.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             MainWindow = new MainWindow();
             MainWindow.Activate();
 
-            // Áp dụng theme mặc định (Light Mode) khi ứng dụng khởi động
             if (MainWindow.Content is FrameworkElement rootElement)
             {
                 if (App.Current is App appInstance)
@@ -125,7 +148,7 @@ namespace Books_Store_Management_App
                 }
                 rootElement.RequestedTheme = ElementTheme.Light;
             }
-            // Thiết lập biểu tượng cho cửa sổ
+
             SetWindowIcon();
         }
     }

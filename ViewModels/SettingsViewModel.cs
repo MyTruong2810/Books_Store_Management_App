@@ -5,16 +5,31 @@ using System.ComponentModel;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// ViewModel for managing application settings, including theme preferences and visual configurations.
+    /// </summary>
     public class SettingsViewModel : INotifyPropertyChanged
     {
-        private bool _isDarkModeEnabled; // Mặc định là chế độ sáng
+        private bool _isDarkModeEnabled;
 
-        // Paint for titles and axes
+        /// <summary>
+        /// Gets or sets the paint used for chart titles.
+        /// </summary>
         public SolidColorPaint TitlePaint { get; set; }
+
+        /// <summary>
+        /// Gets or sets the paint used for axis names.
+        /// </summary>
         public SolidColorPaint AxisNamePaint { get; set; }
 
+        /// <summary>
+        /// Event triggered when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether dark mode is enabled.
+        /// </summary>
         public bool IsDarkModeEnabled
         {
             get => _isDarkModeEnabled;
@@ -29,21 +44,34 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the current application theme based on the dark mode setting.
+        /// </summary>
         public ElementTheme CurrentTheme
         {
-            get => IsDarkModeEnabled ? ElementTheme.Dark : ElementTheme.Light; // Chuyển đổi theme
+            get => IsDarkModeEnabled ? ElementTheme.Dark : ElementTheme.Light;
         }
 
+        /// <summary>
+        /// Toggles between light and dark themes.
+        /// </summary>
         public void ToggleTheme()
         {
-            IsDarkModeEnabled = !IsDarkModeEnabled; 
+            IsDarkModeEnabled = !IsDarkModeEnabled;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingsViewModel"/> class with default settings.
+        /// </summary>
         public SettingsViewModel()
         {
-            _isDarkModeEnabled = false; // Mặc định là chế độ Light khi khởi chạy
+            _isDarkModeEnabled = false;
         }
 
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

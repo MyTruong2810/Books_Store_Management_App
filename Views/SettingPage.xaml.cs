@@ -9,26 +9,43 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Represents the settings page of the application.
+    /// </summary>
     public sealed partial class SettingPage : Page
     {
-        private bool _isToggling; // Biến cờ để ngăn vòng lặp
+        /// <summary>
+        /// A flag to prevent redundant toggling loops.
+        /// </summary>
+        private bool _isToggling;
 
+        /// <summary>
+        /// The ViewModel associated with the settings page.
+        /// </summary>
         private readonly SettingsViewModel _viewModel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingPage"/> class.
+        /// </summary>
         public SettingPage()
         {
             this.InitializeComponent();
-            DataContext = App.SettingsViewModel; // Sử dụng SettingsViewModel toàn cục
+            DataContext = App.SettingsViewModel; // Use the global SettingsViewModel
         }
 
+        /// <summary>
+        /// Handles the toggling of the theme switch.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event data that provides additional context.</param>
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-        { 
+        {
             if (DataContext is SettingsViewModel viewModel && sender is ToggleSwitch toggleSwitch)
             {
-                // Đồng bộ trạng thái của ViewModel với ToggleSwitch
+                // Synchronize the ViewModel state with the ToggleSwitch
                 viewModel.IsDarkModeEnabled = toggleSwitch.IsOn;
 
-                // Áp dụng theme cho root element
+                // Apply the theme to the root element
                 if (App.MainWindow.Content is FrameworkElement rootElement)
                 {
                     if (App.Current is App appInstance)
@@ -41,7 +58,7 @@ namespace Books_Store_Management_App.Views
                     {
                         System.Diagnostics.Debug.WriteLine("App.Current is not of type App.");
                     }
-                    rootElement.RequestedTheme = viewModel.CurrentTheme; // Cập nhật theme cho root element
+                    rootElement.RequestedTheme = viewModel.CurrentTheme; // Update theme for the root element
                 }
             }
         }
