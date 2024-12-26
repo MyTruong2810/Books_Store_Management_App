@@ -135,13 +135,35 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private async void PayOrderButton_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.IsQrCodeVisible = true;
+            ViewModel.IsBooksListViewVisible = false;
+
             var _paymentService = (Application.Current as App).ServiceProvider.GetService<PaymentService>();
 
-            var method = PaymentMethod.Cash;
+            PaymentMethod? method = null;
 
             if (Enum.TryParse<PaymentMethod>((string)PaymentMethodCombobox.SelectedItem, true, out var t))
             {
                 method = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), (string)PaymentMethodCombobox.SelectedItem, true);
+            }
+
+            if (method == PaymentMethod.Cash)
+            {
+                ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+
+                var PsqlDao = new PsqlDao();
+                await PsqlDao.UpdateOrderPaidStatusAsync(ViewModel.Order.ID, true);
+
+                return;
+            }
+
+            if (method == null)
+            {
+                ViewModel.IsQrCodeVisible = false;
+                ViewModel.IsBooksListViewVisible = true;
+                ViewModel.PaymentMethodError = "Please select a payment method!";
+
+                return;
             }
 
             // Luồng thanh toán giả lập
@@ -170,6 +192,11 @@ namespace Books_Store_Management_App.Views
                 await PsqlDao.UpdateOrderPaidStatusAsync(ViewModel.Order.ID, true);
 
                 return;
+            }
+            else
+            {
+                ViewModel.IsQrCodeVisible = false;
+                ViewModel.IsBooksListViewVisible = true;
             }
 
             /*
@@ -275,6 +302,9 @@ namespace Books_Store_Management_App.Views
         /// <param name="e"></param>
         private void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
         {
+            ViewModel.PaymentMethodError = string.Empty;
+            ViewModel.IsQrCodeVisible = true;
+            ViewModel.IsBooksListViewVisible = false;
             ViewModel.PaymentMethodQRCode = ViewModel.PaymentMethods[PaymentMethodCombobox.SelectedItem.ToString()];
         }
     }

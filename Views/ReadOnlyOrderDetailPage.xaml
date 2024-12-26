@@ -17,6 +17,7 @@
         <local1:BoolToVisibleConverter x:Key="boolToVisibleConverter" />
         <local1:DoubleToUsdCurrencyConverter x:Key="currencyConverter" />
         <local1:BooleanToVisibilityInverseConverter x:Key="boolToVisibleInverseConverter" />
+        <local1:StringToVisibableConverter x:Key="toVisibleConverter" />
     </Page.Resources>
 
     <Grid>
@@ -205,6 +206,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -223,8 +225,15 @@
                        DelimiterText=","
                        ItemsSource="{x:Bind ViewModel.PaymentMethods.Keys}">
                     </editors:SfComboBox>
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Delivery:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="1" Grid.Row="1"
+                    <TextBlock 
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         TextWrapping="Wrap"
+                         Text="{x:Bind ViewModel.PaymentMethodError, Mode=OneWay}" Foreground="Red" 
+                         Visibility="{x:Bind ViewModel.PaymentMethodError, Mode=OneWay, Converter={StaticResource toVisibleConverter}}" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Delivery:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2"
                         x:Name="IsDeliveredCheckBox"
                               IsEnabled="False"
                      IsChecked="{x:Bind ViewModel.Order.IsDelivered, Mode=TwoWay}" />

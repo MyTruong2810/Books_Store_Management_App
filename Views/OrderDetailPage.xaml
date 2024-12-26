@@ -212,6 +212,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -231,8 +232,15 @@
                        ItemsSource="{x:Bind ViewModel.PaymentMethods.Keys}"
                     >
                     </editors:SfComboBox>
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Delivery:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="1" Grid.Row="1"
+                    <TextBlock 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        TextWrapping="Wrap"
+                        Text="{x:Bind ViewModel.PaymentMethodError, Mode=OneWay}" Foreground="Red" 
+                        Visibility="{x:Bind ViewModel.PaymentMethodError, Mode=OneWay, Converter={StaticResource toVisibableConverter}}" />
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Delivery:" Margin="0, 10, 0, 0" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2"
                         x:Name="IsDeliveredCheckBox"
                      IsChecked="{x:Bind ViewModel.Order.IsDelivered, Mode=TwoWay}" />
                 </Grid>

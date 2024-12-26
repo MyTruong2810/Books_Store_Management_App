@@ -144,11 +144,10 @@ namespace Books_Store_Management_App.ViewModels
             { "VNPay", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/vnpay_qr.jpg")} },
             { "ZaloPay", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/zalopay_qr.jpg")} }
         };
-        public BitmapImage PaymentMethodQRCode { get; set; } = new BitmapImage()
-        {
-            UriSource = new Uri("ms-appx:///Assets/cash.jpg", UriKind.RelativeOrAbsolute)
-        };
+        public BitmapImage PaymentMethodQRCode { get; set; } = new BitmapImage();
         // 
+        // Biến lưu trữ mã lỗi của phương thức thanh toán
+        public string PaymentMethodError { get; set; } = "";
 
         // Biến lưu trữ trạng thái hiển thị của QR Code
         public bool IsQrCodeVisible { get; set; } = false;
