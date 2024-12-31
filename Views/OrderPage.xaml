@@ -17,6 +17,7 @@
         <local1:StringToISBNConverter x:Key="StringToISBNConverter"/>
         <local3:AlternationIndexToBackgroundConverter x:Key="AlternationIndexToBackgroundConverter"/>
         <local1:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
+        <local1:BooleanToVisibilityInverseConverter x:Key="BooleanToVisibilityInverseConverter"/>
     </Page.Resources>
 
     <Grid Background="#C4C4FC">
@@ -138,7 +139,12 @@
                                     <FontIcon FontWeight="Bold" Foreground="Red" Glyph="&#xE74D;"/>
 
                                 </Button>
-                                <Button Background="Transparent" Grid.Column="7" Click="EditOrder_Click" Tag="{x:Bind}">
+                                <Button 
+                                    Visibility="{x:Bind IsPaid, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                                    Background="Transparent" 
+                                    Grid.Column="7" 
+                                    Click="EditOrder_Click" 
+                                    Tag="{x:Bind}">
                                     <FontIcon FontWeight="Bold" Foreground="Violet" Glyph="&#xE70F;" />
                                 </Button>
                             </Grid>

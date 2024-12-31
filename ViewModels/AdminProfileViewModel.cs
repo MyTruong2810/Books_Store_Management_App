@@ -52,7 +52,6 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         // Properties with INotifyPropertyChanged to notify UI on change
-
         public string FullName
         {
             get { return fullName; }

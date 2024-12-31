@@ -106,6 +106,7 @@ namespace Books_Store_Management_App.ViewModels
             {
                 new Axis
                 {
+
                     Name = "Date", // X-axis label (Date)
                     Labels = _dailyRevenue.Select(d => d.Date.ToShortDateString()).ToArray() // Labels for each day
                 }
@@ -213,7 +214,8 @@ namespace Books_Store_Management_App.ViewModels
         {
             StockItems.Clear(); // Clear any existing stock data
 
-            string connectionString = "Host=localhost;Username=postgres;Password=1234;Database=mybookstore";
+            string connectionString = ConfigurationManager.Instance.GetConnectionString();
+
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();

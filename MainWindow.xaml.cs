@@ -7,12 +7,14 @@ using Microsoft.UI;
 using WinRT.Interop;
 using System;
 using Windows.Media.Capture;
+using System.Threading.Tasks;
 
 namespace Books_Store_Management_App
 {
     public sealed partial class MainWindow : Window
     {
         public static Frame AppFrame { get; private set; }
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -24,5 +26,7 @@ namespace Books_Store_Management_App
             this.Title = "Book Store Management";
             contentMain.Navigate(typeof(Views.LoginPage));
         }
+
+       
     }
 }

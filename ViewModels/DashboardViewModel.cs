@@ -41,6 +41,7 @@ namespace Books_Store_Management_App.ViewModels
             IDao dao = new PsqlDao();
             Books = dao.GetAllBooks();
             Orders = dao.GetAllOrders();
+
             Customers = dao.GetAllCustomers();
             totalBook = Books.Count;
             totalOrder = Orders.Count;

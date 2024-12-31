@@ -13,9 +13,12 @@ using Books_Store_Management_App.ViewModels;
 using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Data;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 using System.Windows.Forms;
 using Catel.Reflection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 
 namespace Books_Store_Management_App.Models
 {
@@ -24,7 +27,7 @@ namespace Books_Store_Management_App.Models
     /// </summary>
     public class PsqlDao : IDao
     {
-        private string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=mybookstore";
+        private string connectionString = ConfigurationManager.Instance.GetConnectionString();
 
         public ObservableCollection<Book> GetAllBooks()
         {
@@ -95,6 +98,7 @@ namespace Books_Store_Management_App.Models
             {
                 connection.Open();
                 string query = "SELECT code, ten, description FROM classification";
+
                 using (var command = new NpgsqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {
@@ -133,6 +137,7 @@ namespace Books_Store_Management_App.Models
                             Customer = reader.GetString(1),
                             Date = reader.GetDateTime(2),
                             IsDelivered = reader.GetBoolean(3),
+                            IsPaid = reader.GetBoolean(4)
                         };
 
                         // Get Order_Items
@@ -359,7 +364,6 @@ namespace Books_Store_Management_App.Models
                 }
             }
         }
-
         public bool UpdateClassification(ClassificationClass classification)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -709,7 +713,10 @@ namespace Books_Store_Management_App.Models
             {
                 await connection.OpenAsync();
 
-                string query = "UPDATE \"order\" SET customer = @Customer, date = @Date, is_delivered = @IsDelivered WHERE id = @Id";
+                string query = @"
+                    UPDATE ""order"" 
+                    SET customer = @Customer, date = @Date, is_delivered = @IsDelivered, is_paid = @IsPaid
+                    WHERE id = @Id";
 
                 using (var command = new NpgsqlCommand(query, connection))
                 {
@@ -717,6 +724,7 @@ namespace Books_Store_Management_App.Models
                     command.Parameters.AddWithValue("@Customer", order.Customer);
                     command.Parameters.AddWithValue("@Date", order.Date);
                     command.Parameters.AddWithValue("@IsDelivered", order.IsDelivered);
+                    command.Parameters.AddWithValue("@IsPaid", order.IsPaid);
 
                     int result = await command.ExecuteNonQueryAsync();
 
@@ -794,6 +802,30 @@ namespace Books_Store_Management_App.Models
 
         }
 
+        /// <summary>
+        /// Cập nhật trạng thái thanh toán của một đơn hàng.
+        /// </summary>
+        /// <param name="orderId">Id của order</param>
+        /// <param name="isPaid">Trạng thái đã thanh toán hay chưa (bool)</param>
+        /// <returns></returns>
+        public async Task<bool> UpdateOrderPaidStatusAsync(int orderId, bool isPaid)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE \"order\" SET is_paid = @IsPaid WHERE id = @OrderId";
+
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IsPaid", isPaid);
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    int result = await command.ExecuteNonQueryAsync();
+
+                    return result > 0;
+                }
+            }
+        }
 
         /// <summary>
         /// Xóa một đơn hàng theo ID.
@@ -1158,6 +1190,5 @@ namespace Books_Store_Management_App.Models
             }
             return admins;
         }
-
     }
 }

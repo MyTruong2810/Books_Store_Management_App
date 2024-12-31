@@ -12,6 +12,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Collections;
 using System.Security.Policy;
+using Books_Store_Management_App.Models.ZaloPay;
+using System.Drawing;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Books_Store_Management_App.Services;
+using Books_Store_Management_App.Models.Payment.Enums;
+using Books_Store_Management_App.Models.Payment;
+
 
 namespace Books_Store_Management_App.ViewModels
 {
@@ -130,14 +137,17 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         // TODO
-        public Dictionary<string, string> PaymentMethods { get; set; } = new Dictionary<string, string>
+        public Dictionary<string, BitmapImage> PaymentMethods { get; set; } = new Dictionary<string, BitmapImage>
         {
-            { "Cash", "/Assets/cash.jpg" },
-            { "Momo", "/Assets/momo_qr.png" },
-            { "VNPay", "/Assets/vnpay_qr.jpg" }
+            { "Cash", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/cash.jpg")} },
+            { "Momo", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/momo_qr.png")} },
+            { "VNPay", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/vnpay_qr.jpg")} },
+            { "ZaloPay", new BitmapImage(){ UriSource = new Uri("ms-appx:///Assets/zalopay_qr.jpg")} }
         };
-        public string PaymentMethodQRCode { get; set; } = "/Assets/cash.jpg";
+        public BitmapImage PaymentMethodQRCode { get; set; } = new BitmapImage();
         // 
+        // Biến lưu trữ mã lỗi của phương thức thanh toán
+        public string PaymentMethodError { get; set; } = "";
 
         // Biến lưu trữ trạng thái hiển thị của QR Code
         public bool IsQrCodeVisible { get; set; } = false;
@@ -154,7 +164,6 @@ namespace Books_Store_Management_App.ViewModels
         public ICommand DateSelectedCommand { get; set; }
         public ICommand TimeSelectedCommand { get; set; }
         // Kết thúc khai báo các command
-
         public OrderDetailViewModel()
         {
             // Khởi tạo các biến
@@ -215,6 +224,50 @@ namespace Books_Store_Management_App.ViewModels
 
             OnPropertyChanged(nameof(IsQrCodeVisible));
             OnPropertyChanged(nameof(IsBooksListViewVisible));
+        }
+
+        /// <summary>
+        /// Chờ thanh toán cho một đơn hàng với các thông tin đã cho.
+        /// </summary>
+        /// <param name="appTransId">Mã giao dịch ứng dụng</param>
+        /// <param name="paymentService">Dịch vụ thanh toán</param>
+        /// <param name="paymentMethod">Phương thức thanh toán</param>
+        /// <param name="maxRetries">Số lần kiểm tra tối đa</param>
+        /// <param name="delayMilliseconds">Thời gian chờ giữa các lần kiểm tra</param>
+        /// <returns>Kết quả thanh toán</returns>
+        public async Task<PaymentResult> WaitForPaymentAsync(
+            string appTransId,
+            PaymentService paymentService,
+            PaymentMethod paymentMethod,
+            int maxRetries = 10,
+            int delayMilliseconds = 2000)
+        {
+            PaymentResult status = null;
+            for (int count = 0; count < maxRetries; count++)
+            {
+                try
+                {
+                    // Kiểm tra trạng thái đơn hàng
+                    status = await paymentService.QueryOrder(paymentMethod, appTransId);
+
+                    if (status != null && status.Success)
+                    {
+                        // Thanh toán thành công
+                        return status;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error checking payment status: {ex.Message}");
+                }
+
+                // Chờ trước khi kiểm tra lần tiếp theo
+                await Task.Delay(delayMilliseconds);
+            }
+
+            // Hết số lần kiểm tra mà không thấy trạng thái thành công
+            return status;
         }
 
         /// <summary>
