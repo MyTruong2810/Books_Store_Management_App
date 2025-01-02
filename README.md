@@ -116,9 +116,9 @@
 - **Quản lý công việc:**  
   - Trello (vai trò rõ ràng).
   - Minh chứng
+    ![image](https://github.com/user-attachments/assets/50b0482a-6f56-40f3-866f-c4e287acc3b2)
     ![image](https://github.com/user-attachments/assets/f0734253-c395-4072-a9df-bfb4f94bcf4f)
     ![image](https://github.com/user-attachments/assets/ec6120ab-0eb1-4e4b-b372-65aab1c6ccf5)
-    ![image](https://github.com/user-attachments/assets/42f9cd51-f910-48c7-b81d-e8fb4ae412ee)
 - **Quản lý source:**  
   - GitHub với GitFlow:
     - Mỗi Dev có nhánh **feature** riêng.
@@ -127,7 +127,7 @@
     - Minh chứng
       ![image](https://github.com/user-attachments/assets/d2b37841-b9f4-4083-ab53-e3c4cf5df6e7)
       ![image](https://github.com/user-attachments/assets/ee5dbc1b-2eaa-4683-bb5a-9bfbce39f4a5)
-      ![Uploading image.png…]()
+      ![image](https://github.com/user-attachments/assets/42f9cd51-f910-48c7-b81d-e8fb4ae412ee)
 
 **Phân công công việc Milestone 3:**  
 - **Trương Thị Tú My:**  
