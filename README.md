@@ -83,36 +83,36 @@ Các thành viên triển khai được những tính năng nâng cao và áp d�
 - Milestone này nhóm thực hiện họp online thông qua Google Meet trong 30' vào ngày 10/12/2024 để thảo luận về các công việc cần giải quyết tiếp theo.
 - Quản lý công việc nhóm thông qua Trello với vai trò như đã trình bày trong milestone 1.
 - Minh chứng:
-  ![image](https://github.com/user-attachments/assets/f0734253-c395-4072-a9df-bfb4f94bcf4f)
-  ![image](https://github.com/user-attachments/assets/ec6120ab-0eb1-4e4b-b372-65aab1c6ccf5)
-  ![image](https://github.com/user-attachments/assets/42f9cd51-f910-48c7-b81d-e8fb4ae412ee)
+![image](https://github.com/user-attachments/assets/f0734253-c395-4072-a9df-bfb4f94bcf4f)
+![image](https://github.com/user-attachments/assets/ec6120ab-0eb1-4e4b-b372-65aab1c6ccf5)
+![image](https://github.com/user-attachments/assets/42f9cd51-f910-48c7-b81d-e8fb4ae412ee)
 
 - Quản lý source trên **Github**:
-  - Các Dev phát triển có nhánh **feature** riêng.
-  - Có nhánh **development** thực hiện merge code từ các nhánh feature.
-  - Người chịu trách nhiệm merge code là team leader.
-  - Minh chứng:
-    ![image](https://github.com/user-attachments/assets/d2b37841-b9f4-4083-ab53-e3c4cf5df6e7)
-    ![image](https://github.com/user-attachments/assets/ee5dbc1b-2eaa-4683-bb5a-9bfbce39f4a5)
-    ![Uploading image.png…]()
+- Các Dev phát triển có nhánh **feature** riêng.
+- Có nhánh **development** thực hiện merge code từ các nhánh feature.
+- Người chịu trách nhiệm merge code là team leader.
+- Minh chứng:
+  ![image](https://github.com/user-attachments/assets/d2b37841-b9f4-4083-ab53-e3c4cf5df6e7)
+  ![image](https://github.com/user-attachments/assets/ee5dbc1b-2eaa-4683-bb5a-9bfbce39f4a5)
+  ![Uploading image.png…]()
 
 - Phân chia công việc cho các thành viên trong team ở milstone 2 như sau:
-  - Trương Thị Tú My:
-    - Xác thực với hash password, goole.
-    - Chỉnh sửa UI thống nhất giữa cho ứng dụng.
-    - Merge code, viết testcase cho các tính năng trên page đảm nhiệm và viết tổng báo cáo.
-    - Kiểm tra, theo dõi tiến độ làm việc.
-  - Hoàng Lê Nam: 
-    - Tiến hành validate khi người dùng không chọn phương thức thanh toán mà nhấn Pay.
-    - Cập nhật database thêm các table accounts, transactions và thêm cột is_paid cho bảng order để phục vụ việc giả lập thanh toán.
-    - Triển khai chiến lược thanh toán giả lập và Zalo pay (Zalo Pay chỉ đến mức tạo được mã QR) bằng pattern strategy và factory.
-    - Thêm logic không thể cập nhật các order đã thanh toán và thêm khả năng thanh toán cho các order chưa thanh thanh toán trong các màn hình cập nhập và xem order.
-    - Di chuyển ConnectionStrings và Zalopay key vào file appsettings.json.
-    - Merge code, viết testcase cho các tính năng trên page đảm nhiệm.
-  - Phan Dương Linh:
-    + Phụ trách thiết kế tính năng Dark/Light mode.
-    + Thêm logo cho ứng dụng để nhận diện thương hiệu.
-    + Merge code, viết testcase cho các tính năng trên page đảm nhiệm.
+- Trương Thị Tú My:
+  - Xác thực với hash password, goole.
+  - Chỉnh sửa UI thống nhất giữa cho ứng dụng.
+  - Merge code, viết testcase cho các tính năng trên page đảm nhiệm và viết tổng báo cáo.
+  - Kiểm tra, theo dõi tiến độ làm việc.
+- Hoàng Lê Nam: 
+  - Tiến hành validate khi người dùng không chọn phương thức thanh toán mà nhấn Pay.
+  - Cập nhật database thêm các table accounts, transactions và thêm cột is_paid cho bảng order để phục vụ việc giả lập thanh toán.
+  - Triển khai chiến lược thanh toán giả lập và Zalo pay (Zalo Pay chỉ đến mức tạo được mã QR) bằng pattern strategy và factory.
+  - Thêm logic không thể cập nhật các order đã thanh toán và thêm khả năng thanh toán cho các order chưa thanh thanh toán trong các màn hình cập nhập và xem order.
+  - Di chuyển ConnectionStrings và Zalopay key vào file appsettings.json.
+  - Merge code, viết testcase cho các tính năng trên page đảm nhiệm.
+- Phan Dương Linh:
+  + Phụ trách thiết kế tính năng Dark/Light mode.
+  + Thêm logo cho ứng dụng để nhận diện thương hiệu.
+  + Merge code, viết testcase cho các tính năng trên page đảm nhiệm.
 
 **Kết quả đạt được:**
 Thực hiện được mô hình team work đề ra.
@@ -127,4 +127,4 @@ Thực hiện được mô hình team work đề ra.
 
 ## Tổng kết
 Nhìn chung nhóm thực hiện tốt những tiêu chí nghiệm thu đề ra, ở milestone này nhóm hoàn thiện các tính năng của ứng dụng đáp ứng trên 95% như ban đầu đề ra xây dựng ứng dụng.
-  **--> Điểm đánh giá 10.**
+**--> Điểm đánh giá 10.**
