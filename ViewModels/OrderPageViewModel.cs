@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App
 {
+
+    /// <summary>
+    /// Lớp ViewModel cho trang OrderPage để hiển thị danh sách đơn hàng, nhưng chưa thực hiện logic theo mô hình.
+    /// </summary>
     public class OrderPageViewModel : INotifyPropertyChanged
     {
-        //Todo: Implement the OrderPageViewModel later
-        //private readonly IDao<Order> _orderDao;
-
         private ObservableCollection<Order> _orders;
+
+        public PsqlDao PsqlDao { get; set; }
         public ObservableCollection<Order> Orders
         {
             get => _orders;
@@ -31,10 +34,11 @@ namespace Books_Store_Management_App
             LoadOrders();
         }
 
-        private void LoadOrders()
+        public void LoadOrders()
         {
             var orders = new PsqlDao().GetAllOrders();
             Orders = new ObservableCollection<Order>(orders);
+            PsqlDao = new PsqlDao();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -2,6 +2,7 @@
 using Books_Store_Management_App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using CommunityToolkit.WinUI.UI.Controls;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -18,15 +19,20 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Windows.AppLifecycle;
+using Microsoft.Windows.AppNotifications;
+using Books_Store_Management_App.Helpers;
+using Microsoft.UI.Dispatching;
+using System.Diagnostics;
+using Books_Store_Management_App.Models;
+using Books_Store_Management_App.Services;
+using Newtonsoft.Json;
+using Books_Store_Management_App.Views;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace Books_Store_Management_App
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     public partial class App : Application
     {
         /// <summary>
@@ -35,6 +41,8 @@ namespace Books_Store_Management_App
         /// </summary>
         /// 
         public IServiceProvider ServiceProvider { get; private set; }
+        // Sử dụng thuộc tính tĩnh MainWindow
+        public static Window MainWindow { get; private set; }
 
         public App()
         {
@@ -52,18 +60,137 @@ namespace Books_Store_Management_App
             //services.AddTransient<OrderViewModel>();
             services.AddSingleton<OrderPageViewModel>();
             services.AddTransient<OrderDetailViewModel>();
+
+            services.AddScoped<PaymentRepository>();
+            services.AddScoped<PaymentStrategyFactory>();
+            services.AddScoped<PaymentService>();
         }
 
         /// <summary>
-        /// Invoked when the application is launched.
+        /// Phương thức được gọi khi ứng dụng được khởi chạy.
         /// </summary>
-        /// <param name="args">Details about the launch request and process.</param>
+        /// <param name="args">Thông tin về việc khởi chạy ứng dụng.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            MainWindow = new MainWindow();
+            //MainWindow.Activate();
+
+            // Để đảm bảo tất cả việc xử lý thông báo xảy ra trong cùng một quá trình, đăng ký sự kiện NotificationInvoked trước khi gọi Register().
+            // Nếu không, một quá trình mới sẽ được khởi chạy để xử lý thông báo.
+            AppNotificationManager notificationManager = AppNotificationManager.Default;
+            notificationManager.NotificationInvoked += NotificationManager_NotificationInvoked;
+            notificationManager.Register();
+
+            var activatedArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
+            var activationKind = activatedArgs.Kind;
+            if (activationKind != ExtendedActivationKind.AppNotification)
+            {
+                LaunchAndBringToForegroundIfNeeded();
+            }
+            else
+            {
+                HandleNotification((AppNotificationActivatedEventArgs)activatedArgs.Data);
+            }
+        }
+		
+    /// <summary>
+        /// Kiểm tra và khởi chạy ứng dụng nếu cần thiết.
+        /// Nếu cửa sổ chính (MainWindow) chưa được khởi tạo, hàm này sẽ tạo mới cửa sổ và đưa nó lên phía trước.
+        /// Nếu ứng dụng được kích hoạt thông qua một thông báo ứng dụng, hàm này sẽ xử lý thông báo đó.
+        /// </summary>
+        private void LaunchAndBringToForegroundIfNeeded()
+        {
+            if (MainWindow == null)
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Activate();
+
+                // Đồng thời, chúng ta sử dụng helper của chúng tôi để hiển thị cửa sổ, vì nếu được kích hoạt thông qua một thông báo ứng dụng, nó sẽ không
+                // kích hoạt cửa sổ một cách chính xác.
+                WindowHelper.ShowWindow(MainWindow);
+            }
+            else
+            {
+                WindowHelper.ShowWindow(MainWindow);
+            }
         }
 
-        private Window m_window;
+        /// <summary>
+        /// Xử lý sự kiện khi thông báo ứng dụng được kích hoạt.
+        /// </summary>
+        /// <param name="sender">Đối tượng gửi sự kiện.</param>
+        /// <param name="args">Thông tin về sự kiện được kích hoạt.</param>
+        private void NotificationManager_NotificationInvoked(AppNotificationManager sender, AppNotificationActivatedEventArgs args)
+        {
+            HandleNotification(args);
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi thông báo ứng dụng được kích hoạt.
+        /// </summary>
+        /// <param name="args">Thông tin về sự kiện được kích hoạt.</param>
+        private void HandleNotification(AppNotificationActivatedEventArgs args)
+        {
+            // Use the dispatcher from the window if present, otherwise the app dispatcher
+            var dispatcherQueue = MainWindow?.DispatcherQueue ?? DispatcherQueue.GetForCurrentThread();
+
+
+            dispatcherQueue.TryEnqueue(async delegate
+            {
+                if (args.Argument != "")
+                {
+                    // Get the order
+                    var order = JsonConvert.DeserializeObject<Order>(args.Arguments["Order"]);
+
+                    // If the UI app isn't open
+                    if (MainWindow == null)
+                    {
+                        // Close since we're done
+                        Process.GetCurrentProcess().Kill();
+                    }
+
+                    var newWindow = new Window();
+                    var invoicePage = new InvoicePage(newWindow);
+                    invoicePage.ViewModel.Order = order;
+
+                    //LaunchAndBringToForegroundIfNeeded();
+                    newWindow.Content = invoicePage;
+                    newWindow.Activate();
+
+                    return;
+                }
+
+                if (args.Arguments == null || !args.Arguments.ContainsKey("action"))
+                {
+                    return;
+                }
+
+                switch (args.Arguments["action"])
+                {
+                    // Send a background message
+                    case "sendMessage":
+                        string message = args.UserInput["textBox"].ToString();
+                        // TODO: Send it
+
+                        // If the UI app isn't open
+                        if (MainWindow == null)
+                        {
+                            // Close since we're done
+                            Process.GetCurrentProcess().Kill();
+                        }
+
+                        break;
+
+                    // View a message
+                    case "viewMessage":
+
+                        // Launch/bring window to foreground
+                        LaunchAndBringToForegroundIfNeeded();
+
+                        // TODO: Open the message
+                        break;
+                }
+            });
+        }
     }
 }

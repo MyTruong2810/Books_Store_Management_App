@@ -23,78 +23,120 @@ using Windows.UI.Popups;
 using Microsoft.UI;
 using System.ComponentModel;
 using static Books_Store_Management_App.Views.DashboardPage;
+using Books_Store_Management_App.ViewModels;
 using System.Drawing;
 using Books_Store_Management_App.Models;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp StockPage hiển thị danh sách sách trong kho.
+    /// </summary>
     public sealed partial class StockPage : Page
     {
-        public int[] ShowEntities = { 5, 10, 15, 20 };
+        public int[] ShowEntities = { 5, 10, 15, 20 }; // Số lượng sách hiển thị trên mỗi trang
+        public ObservableCollection<Genre> genres = new ObservableCollection<Genre>(); // Danh sách thể loại sách
+        public string[] priceSearch = {"Greater than $10.00", "Smaller than $10.00" };
+        public ObservableCollection<Book> AllBooksDisplay { get; set; } = new ObservableCollection<Book>(); // Danh sách sách hiển thị
+        public ObservableCollection<Book> DisplayedBooks { get; set; } = new ObservableCollection<Book>();  // Danh sách sách được hiển thị trên mỗi trang
+        private int ItemsPerPage = 10; // Số lượng sách hiển thị trên mỗi trang
+        private int currentPage = 1; // Trang hiện tại
+        private int totalPages; // Tổng số trang
 
-        public string[] generSearch = { "Drama", "Novel", "Science" };
-        public string[] priceSearch = { "Greater than $100", "Smaller than $100" };
-        public ObservableCollection<Book> AllBooksDisplay { get; set; } = new ObservableCollection<Book>();
-        public ObservableCollection<Book> DisplayedBooks { get; set; } = new ObservableCollection<Book>();
-        private int ItemsPerPage = 10;
-        private int currentPage = 1;
-        private int totalPages;
-        public class StockPageViewModel
-        {
-            public ObservableCollection<Book> AllBooks { get; set; }
-            public void Init()
-            {
-                IDao dao = new PsqlDao();
-                AllBooks = dao.GetAllBooks();
-            }
-        }
+        private ObservableCollection<String> PageInfo = new ObservableCollection<string>(); // Thông tin trang hiện tại
         public StockPageViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Khởi tạo trang StockPage, gọi ViewModel và danh sách sách.
+        /// </summary>
         public StockPage()
         {
             this.InitializeComponent();
             ViewModel = new StockPageViewModel();
             ViewModel.Init();
             AllBooksDisplay = ViewModel.AllBooks;
+            genres = ViewModel.AllGenres;
             totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+            for (int i = 0; i < totalPages; i++)
+            {
+                PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+            }
             UpdateDisplayedBooks();
 
-            // Init BookPopupControl
+            // Khởi tạo thông số và vị trí hiển của popup
             StandardPopup.HorizontalOffset = this.ActualWidth - 730;
             BookPopupControl.RightDialogHeight = this.ActualHeight;
             BookPopupControl.SaveButtonClicked += BookPopupControl_SaveButtonClicked;
         }
-        private void BookPopupControl_SaveButtonClicked(object sender, Book e)
+
+        /// <summary>
+        /// Lấy dữ liệu từ trang Order Detail khi từ trang Order Detail chuyển qua.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void BookPopupControl_SaveButtonClicked(object sender, Book e)
         {
             if (BookPopupControl.GetButton() == "Add")
             {
-                // Todo in view model
-                //e.Index = ViewModel.Books.Count + 1;
-                //ViewModel.Books.Add(e);
+                // id is max id + 1
+                var id = AllBooksDisplay.Max(x => x.Index) + 1;
+                e.Index = id;
 
-                // Update the displayed books
-                e.Index = AllBooksDisplay.Count + 1;
-                AllBooksDisplay.Add(e);
-                totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-                UpdateDisplayedBooks();
+                try
+                {
+                    bool success = await new PsqlDao().SaveBookAsync(e);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+
+                    AllBooksDisplay.Add(e);
+                    totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+
+                    PageInfo.Clear();
+                    for (int i = 0; i < totalPages; i++)
+                    {
+                        PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                    }
+                    UpdateDisplayedBooks();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             else if (BookPopupControl.GetButton() == "Edit")
             {
-                //var index = ViewModel.Books.ToList().FindIndex(x => x.Id == e.Id);
-                //if (index != -1)
-                //{
-                //    ViewModel.Books[index] = e;
-                //}
-
-                // Update the displayed books
-                var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
-                if (index != -1)
+                try
                 {
-                    AllBooksDisplay[index] = e;
+                    bool success = await new PsqlDao().UpdateBookAsync(e);
+
+                    if (!success)
+                    {
+                        return;
+                    }
+
+
+                    var index = AllBooksDisplay.ToList().FindIndex(x => x.Index == e.Index);
+                    if (index != -1)
+                    {
+                        AllBooksDisplay[index] = e;
+                    }
+                    UpdateDisplayedBooks();
                 }
-                UpdateDisplayedBooks();
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
+
+        /// <summary>
+        /// Dùng để thay đổi lại vị trí và chiều cao của popup khi thay đổi kích thước cửa sổ.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             StandardPopup.HorizontalOffset = this.ActualWidth - 730;
@@ -107,7 +149,7 @@ namespace Books_Store_Management_App.Views
             int cnt = 0;
             foreach (var book in AllBooksDisplay)
             {
-                book.Index = cnt;
+                book.CurrentRow= cnt;
                 cnt++;
             }
 
@@ -115,34 +157,48 @@ namespace Books_Store_Management_App.Views
             {
                 DisplayedBooks.Add(book);
             }
-            PageInfo.Text = $"Page {currentPage} of {totalPages}";
-            PreviousButton.IsEnabled = currentPage > 1;
-            NextButton.IsEnabled = currentPage < totalPages;
+            //PreviousButton.IsEnabled = currentPage > 1;
+            //NextButton.IsEnabled = currentPage < totalPages;
         }
+
+        /// <summary>
+        /// Hiện thị trang tiếp theo của listview.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage < totalPages)
             {
                 currentPage++;
+                PageInfomation.SelectedIndex = currentPage - 1;
                 UpdateDisplayedBooks();
             }
         }
+
+        /// <summary>
+        /// Hiện thị trang trước của listview.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage > 1)
             {
                 currentPage--;
+                PageInfomation.SelectedIndex = currentPage - 1;
                 UpdateDisplayedBooks();
             }
         }
+
+        /// <summary>
+        /// Thêm sách mới vào trong kho hoặc danh sách.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
-            //var newBook = new Book("ms-appx:///Assets/image1.jpg", "New Book", "New Publisher", "New Author", "1234567890123", 2024, 9.99, "New Genre", 100, 0);
-            //AllBooksDisplay.Add(newBook);
-            //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-            //UpdateDisplayedBooks();
-
-            // Open the popup to add a new book
+            // Khởi tạo popup để thêm sách mới
             BookPopupControl.ViewModel.ClearData();
             BookPopupControl.ClearErrorMessage();
             BookPopupControl.SetPopupTitle("Add New Book");
@@ -150,34 +206,71 @@ namespace Books_Store_Management_App.Views
             BookPopupControl.SetEditable(true);
             StandardPopup.IsOpen = true;
         }
-        private void DeleteBook_Click(object sender, RoutedEventArgs e)
+
+        /// <summary>
+        /// Xóa sách khỏi kho hoặc danh sách.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        async private void DeleteBook_Click(object sender, RoutedEventArgs e)
         {
-            //var book = (sender as Button).DataContext as Book;
-            //AllBooksDisplay.Remove(book);
-            //totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-            //if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
-
-            //UpdateDisplayedBooks();
-
+            // Chỉ giả lập xóa sách, chưa đụng vào database
             var button = sender as Button;
             var book = button?.Tag as Book;
 
             if (book != null)
             {
-                AllBooksDisplay.Remove(book);
+                // Set the ISBN in the dialog dynamically
+                TextBlock isbnTextBlock = new TextBlock
+                {
+                    Text = book.ISBN,
+                    FontWeight = Microsoft.UI.Text.FontWeights.Bold
+                };
+
+                // Create StackPanel and add ISBN TextBlock and confirmation TextBlock
+                StackPanel stackPanel = new StackPanel
+                {
+                    Width = 500,
+                    Margin = new Thickness(0)
+                };
+
+                stackPanel.Children.Add(isbnTextBlock);
+                stackPanel.Children.Add(new TextBlock { Text = "Do you want to delete this book?" });
+
+                // Set the content of the dialog
+                DeleteBookDialog.Content = stackPanel;
+
+                // Show the dialog
+                ContentDialogResult result = await DeleteBookDialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary) // If confirmed
+                {
+                    // Call the delete method on the ViewModel
+                    bool success = await new PsqlDao().DeleteBookAsync(book.Index);
+                    AllBooksDisplay.Remove(book);
+
+                    // Adjust the paging after deletion
+                    totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+
+                    PageInfo.Clear();
+                    for (int i = 0; i < totalPages; i++)
+                    {
+                        PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                    }
+                    if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+                    UpdateDisplayedBooks();
+                }
             }
-            totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
-            UpdateDisplayedBooks();
         }
+
+
+        /// <summary>
+        /// Chỉnh sửa thông tin sách.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditBook_Click(object sender, RoutedEventArgs e)
         {
-
-            /* ==========================================================
-             * You: Implement code to change the edit Page / edit Frame ||
-             * ==========================================================
-             */
-
             StandardPopup.IsOpen = true;
 
             var button = sender as Button;
@@ -192,6 +285,12 @@ namespace Books_Store_Management_App.Views
                 BookPopupControl.SetEditable(true);
             }
         }
+
+        /// <summary>
+        /// Lấy thông tin trường yêu cầu sắp xếp và tyêu cầu sắp xếp theo tăng hay giảm dần.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuFlyoutItem;
@@ -204,6 +303,12 @@ namespace Books_Store_Management_App.Views
                 SortBooks(property, order);
             }
         }
+
+        /// <summary>
+        /// Thực hiện sắp xếp sách theo trường yêu cầu.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="order"></param>
         private void SortBooks(string property, string order)
         {
             if (order == "ASC")
@@ -213,7 +318,7 @@ namespace Books_Store_Management_App.Views
                 int cnt = 0;
                 foreach (var book in sortedBooks)
                 {
-                    book.Index = cnt;
+                    book.CurrentRow = cnt;
                     AllBooksDisplay.Add(book);
                     cnt++;
                 }
@@ -227,7 +332,7 @@ namespace Books_Store_Management_App.Views
                 int cnt = 0;
                 foreach (var book in sortedBooks)
                 {
-                    book.Index = cnt;
+                    book.CurrentRow = cnt;
                     AllBooksDisplay.Add(book);
                     cnt++;
                 }
@@ -238,38 +343,107 @@ namespace Books_Store_Management_App.Views
                 return;
             }
         }
-        private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
-        {
-            // Get the submitted text
-            string submittedText = args.Text;
 
-            // Attempt to convert the submitted text to an integer
-            if (int.TryParse(submittedText, out int itemsPerPage))
+        /// <summary>
+        /// Chọn số lượng sách hiển thị trên mỗi trang.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void Combo3_Selected(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            string submittedText = comboBox?.SelectedItem?.ToString() ?? string.Empty;
+
+            if (int.TryParse(submittedText, out int itemsPerPage) && itemsPerPage > 0)
             {
                 ItemsPerPage = itemsPerPage;
+                totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+
+                PageInfo.Clear();
+                for (int i = 0; i < totalPages; i++)
+                {
+                    PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                }
+                currentPage = 1;
+                UpdateDisplayedBooks();
+                PageInfomation.SelectedIndex = 0;
             }
         }
+
+        /// <summary>
+        /// AutoTextSearch cho ô tìm kiếm sách.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ApplyFilters()
+        {
+            var searchText = SearchTextBox?.Text.Trim() ?? string.Empty;
+            var selectedGenre = SearchByGenres?.SelectedItem?.ToString() ?? string.Empty;
+            var selectedPriceRange = SearchByPrices?.SelectedItem?.ToString() ?? string.Empty;
+
+            // First filter books by title (searchText must be found in the title)
+            var filteredBooks = ViewModel.AllBooks.Where(book =>
+                string.IsNullOrWhiteSpace(searchText) ||
+                book.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0); 
+
+            // Then apply genre and price filters (if any)
+            filteredBooks = filteredBooks.Where(book =>
+                (string.IsNullOrWhiteSpace(selectedGenre) ||
+                 book.Genre.Equals(selectedGenre, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrWhiteSpace(selectedPriceRange) ||
+                 IsPriceInRange(book.Price, selectedPriceRange))
+            );
+
+            // Update displayed books
+            DisplayedBooks.Clear();
+            foreach (var book in filteredBooks)
+            {
+                DisplayedBooks.Add(book);
+            }
+        }
+
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var searchText = (sender as TextBox).Text.Trim();
+            ApplyFilters();
+        }
+        private void SearchByGenres_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+        private void SearchByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+        private bool IsPriceInRange(double price, string priceRange)
+        {
+            // Example implementation for price range filtering
+            if (priceRange.Equals("Greater than $10.00", StringComparison.OrdinalIgnoreCase))
+                return price > 10;
+            if (priceRange.Equals("Smaller than $10.00", StringComparison.OrdinalIgnoreCase))
+                return price <= 10;
 
-            if (!string.IsNullOrWhiteSpace(searchText))
+            return true; // Default to including all prices if no range is matched
+        }
+
+        private void Combo3_Selected_Paging(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is string selectedItem)
             {
-                var filteredOrders = ViewModel.AllBooks.Where(order =>
-                    order.Title.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-
-                DisplayedBooks.Clear();
-                foreach (var order in filteredOrders)
+                var pageInfoParts = selectedItem.Split(" / ");
+                if (pageInfoParts.Length == 2 && int.TryParse(pageInfoParts[0], out int selectedPage))
                 {
-                    DisplayedBooks.Add(order);
+                    if (selectedPage > 0 && selectedPage <= totalPages)
+                    {
+                        currentPage = selectedPage;
+                        UpdateDisplayedBooks();
+                    }
                 }
-            }
-            else
-            {
-                UpdateDisplayedBooks();
             }
         }
     }
+    /// <summary>
+    /// Lớp giúp hiển thị màu sách bảng xen kẽ màu, ứng dụng tính chẵn lẽ của index.
+    /// </summary>
     public class AlternationIndexToBackgroundConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

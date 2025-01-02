@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -16,40 +16,42 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Books_Store_Management_App.Models;
+using Books_Store_Management_App.ViewModels;
+using Windows.ApplicationModel.Appointments;
+using System.Diagnostics.Eventing.Reader;
+
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp xử lý các sự kiện của trang Dashboard.
+    /// </summary>
     public sealed partial class DashboardPage : Page
     {
-        public class DashboardViewModel
-        {
-            public ObservableCollection<Book> Books { get; set; }
-
-            public void Init()
-            {
-                IDao dao = new MockDao();
-                Books = dao.GetAllBooks();
-            }
-        }
-
         public DashboardViewModel ViewModel { get; set; }
 
+        private double temp;
         public DashboardPage()
         {
             this.InitializeComponent();
             ViewModel = new DashboardViewModel();
             ViewModel.Init();
+            temp = ViewModel.totalRevenue;
+            ViewModel.totalRevenue = temp;
+            total.IsChecked = true;
         }
 
-        public void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            RadioButton rb = sender as RadioButton;
-            if (rb != null)
-            {
-                if (rb.IsChecked == true)
-                {
-                    // Todo: Implement code later
-                }
-            }
+            ViewModel.totalRevenue = ViewModel.totalDay;
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            ViewModel.totalRevenue = ViewModel.totalMonth;
+        }
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            ViewModel.totalRevenue = temp;
         }
     }
 }

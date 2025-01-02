@@ -16,6 +16,8 @@
     <Page.Resources>
         <local1:StringToISBNConverter x:Key="StringToISBNConverter"/>
         <local3:AlternationIndexToBackgroundConverter x:Key="AlternationIndexToBackgroundConverter"/>
+        <local1:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
+        <local1:BooleanToVisibilityInverseConverter x:Key="BooleanToVisibilityInverseConverter"/>
     </Page.Resources>
 
     <Grid Background="#C4C4FC">
@@ -28,15 +30,21 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="40">
             <StackPanel>
-                <!-- Add Order Button -->
+                <!-- Thông tin các nút diều khiển bao gồm showentities, search, filter và add new order -->
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                    <ComboBox PlaceholderText="Show 10" IsEditable="True" ItemsSource="{x:Bind ShowEntities}" Width="90" Margin="0 0 50 0" TextSubmitted="Combo3_TextSubmitted"/>
-                    <TextBox Margin="0 0 50 0" Width="150" Height="30" PlaceholderText="                             🔎" TextChanged="SearchTextBox_TextChanged"/>
-                    <ComboBox ItemsSource="{x:Bind monthSearch}" Width="150" Margin="0 0 50 0"/>
-                    <ComboBox ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 350 0"/>
-                    <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Content="+ Add Order" Click="AddOrder_Click"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center">Show</TextBlock>
+                    <ComboBox PlaceholderText="10" ItemsSource="{x:Bind ShowEntities}" Width="65" Margin="0 0 50 0" SelectionChanged="Combo3_Selected"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center">Search</TextBlock>
+                    <TextBox PlaceholderText="Type here ..." Margin="0 0 50 0" Width="150" Height="30" TextChanged="SearchTextBox_TextChanged" x:Name="SearchTextBox"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                    <ComboBox PlaceholderText="Choose month ..." ItemsSource="{x:Bind monthSearch}" Width="150" Margin="0 0 50 0" SelectionChanged="SearchByMonth_SelectionChanged" x:Name="SearchByMonth"/>
+                    <TextBlock Margin="20 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                    <ComboBox PlaceholderText="Choose price ..." ItemsSource="{x:Bind priceSearch}" Width="160" Margin="0 0 140 0" SelectionChanged="SearchByPrice_SelectionChanged" x:Name="SearchByPrice"/>
+                    <Button BorderBrush="AntiqueWhite" BorderThickness="2" Background="#624DE3" Foreground="White" FontWeight="Bold" Click="AddOrder_Click" Width="60" Height="30">
+                        <FontIcon Glyph="&#xE710;" DataContext="Add New ClassificationClass" Foreground="White" />
+                    </Button>
                 </StackPanel>
-
+                <!-- Grid chứa các nút sắp xếp -->
                 <Grid Margin="60 0 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -104,8 +112,9 @@
                     <Button Grid.Column="6" Content="Action" Background="White" FontWeight="Bold"/>
                 </Grid>
 
-                <!-- ListView to display Orders -->
+                <!-- ListView hiển thị Orders -->
                 <ListView x:Name="OrderListView" Background="Transparent" ItemsSource="{x:Bind DisplayedOrders }"
+                      IsItemClickEnabled="True" ItemClick="OrderListView_ItemClick"
                       Height="500"
                       MinWidth="550">
                     <ListView.ItemTemplate>
@@ -120,17 +129,22 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Padding="50 0 0 0" Grid.Column="0" FontWeight="Bold" Foreground="White" Text="{x:Bind ID}"/>
+                                <TextBlock Padding="50 0 0 0" Grid.Column="0" FontWeight="Bold" Foreground="White" Text="{x:Bind Index}"/>
                                 <TextBlock Grid.Column="1" FontWeight="Bold" Foreground="White" Text="{x:Bind Customer}" />
                                 <TextBlock Grid.Column="2" FontWeight="Bold" Foreground="White" Text="{x:Bind Date}" />
-                                <TextBlock Padding="50 0 0 0" Grid.Column="3" FontWeight="Bold" Foreground="White" Text="{x:Bind Discount}" />
+                                <TextBlock Padding="50 0 0 0" Grid.Column="3" FontWeight="Bold" Foreground="White" Text="{x:Bind Discount, Converter={StaticResource DoubleToPercentageConverter}}" />
                                 <TextBlock Padding="50 0 0 0" Grid.Column="4" FontWeight="Bold" Foreground="White" Text="{x:Bind Amount}" />
                                 <TextBlock Padding="50 0 0 0" Grid.Column="5" FontWeight="Bold" Foreground="White" Text="{x:Bind Price}" />
-                                <Button Background="Transparent" Grid.Column="6" Click="DeleteOrder_Click" Margin="40 0 0 0">
+                                <Button Background="Transparent" Grid.Column="6" Click="DeleteOrder_Click" Tag="{x:Bind}" Margin="40 0 0 0">
                                     <FontIcon FontWeight="Bold" Foreground="Red" Glyph="&#xE74D;"/>
 
                                 </Button>
-                                <Button Background="Transparent" Grid.Column="7" Click="EditOrder_Click">
+                                <Button 
+                                    Visibility="{x:Bind IsPaid, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                                    Background="Transparent" 
+                                    Grid.Column="7" 
+                                    Click="EditOrder_Click" 
+                                    Tag="{x:Bind}">
                                     <FontIcon FontWeight="Bold" Foreground="Violet" Glyph="&#xE70F;" />
                                 </Button>
                             </Grid>
@@ -139,12 +153,30 @@
                 </ListView>
 
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Background="DarkCyan" CornerRadius="10"
+                    Padding="5" Margin="5">
+                    <Button Name="previousButton" Background="GhostWhite" Foreground="Red" Width="80" Height="30" Content="Previous" Click="PreviousPage_Click" Margin="5"/>
+                    <ComboBox ItemsSource="{x:Bind PageInfo}" Margin="5" Background="GhostWhite" Foreground="Red"  
+                       Width="80" Height="30" SelectionChanged="Combo3_Selected_Paging" SelectedIndex="0" x:Name="PageInfomation"/>
+                    <Button Name="nextButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Next" Click="NextPage_Click" Margin="5"/>
+                </StackPanel>
+
+
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                     <Button x:Name="PreviousButton" Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Previous" Click="PreviousPage_Click" IsEnabled="False" />
                     <TextBlock x:Name="PageInfo" Margin="10,0" />
                     <Button x:Name="NextButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold" BorderBrush="White" BorderThickness="3" Content="Next" Click="NextPage_Click" IsEnabled="True" />
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
         </Grid>
+        <ContentDialog
+        x:Name="DeleteOrderDialog"
+        Title="Delete order"
+        PrimaryButtonText="Yes"
+        CloseButtonText="No"
+        DefaultButton="Primary"
+        Background="Black">
+        </ContentDialog>
     </Grid>
 </Page> 

@@ -16,7 +16,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        <!--- Hiển thị navagationview -->
         <NavigationView x:Name="nvSample" CornerRadius="100" Grid.Column="0" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                   IsPaneOpen="True"
                   PaneDisplayMode="Left"
@@ -25,7 +25,7 @@
                   SelectionChanged="nvSample_SelectionChanged"  
                   Background="{StaticResource NavigationViewBackgroundBrush}">
             <NavigationView.MenuItems>
-                <NavigationViewItem Margin="0 10 0 0" Content="Admin" Tag="Admin" FontWeight="Bold" FontSize="16"
+                <NavigationViewItem Margin="0 10 0 0" Tag="Admin" FontWeight="Bold" FontSize="16" x:Name = "navAdmin"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE77B;" FontWeight="Bold" FontSize="16"/>
@@ -39,11 +39,10 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Classification" Tag="ClassificationPage"
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Statistic" Tag="StatisticsPage"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8C8;" FontWeight="Bold" FontSize="16"/>
+                        <FontIcon Glyph="&#xE870;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
@@ -54,24 +53,25 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Statistics" Tag="StatisticsPage"
-                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE870;" FontWeight="Bold" FontSize="16"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Orders" Tag="OrderPage"
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Order" Tag="OrderPage"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7BF;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Setting" Tag="SettingPage"
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Customer" Tag="CustomerPage"
                               Background="{StaticResource NavigationViewItemBackgroundBrush}">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE713;" FontWeight="Bold" FontSize="16"/>
+                        <FontIcon Glyph="&#xE716;" FontWeight="Bold" FontSize="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+
+                <NavigationViewItem Margin="0 10 0 0" FontWeight="Bold" FontSize="16" Content="Classification" Tag="ClassificationPage"
+                              Background="{StaticResource NavigationViewItemBackgroundBrush}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8C8;" FontWeight="Bold" FontSize="16"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 

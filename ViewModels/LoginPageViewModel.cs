@@ -5,25 +5,28 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Books_Store_Management_App.GoogleAuth;
+using Books_Store_Management_App.Models;
 using Books_Store_Management_App.Views;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Storage;
+using Books_Store_Management_App.ViewModels;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// Lớp ViewModel của LoginPage chứa các thuộc tính và command để xử lý logic đăng nhập.
+    /// </summary>
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private string _username;
-        private string _password;
-        private bool _isPasswordSaved;
+        private string _username; // Tên đăng nhập
+        private string _password; // Mật khẩu
+        private bool _isPasswordSaved; // Trạng thái lưu mật khẩu
 
-        private readonly Dictionary<string, string> _usersDatabase = new Dictionary<string, string>
-        {
-            { "user1", "123" },
-            { "user2", "456" },
-            { "user3", "789" }
-        };
+        // Database giả lập thông tin người dùng
+        private Dictionary<string, string> _usersDatabase;
 
         public string Username
         {
@@ -46,39 +49,72 @@ namespace Books_Store_Management_App.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand SignupCommand { get; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event Action LoginFailed;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Khởi tạo lớp LoginViewModel, event được xử lý thông qua command giúp UI và code-behind được tách biệt.
+        /// </summary>
         public LoginViewModel()
         {
-            //LoginCommand = new RelayCommand(async () => await LoginAsync());
-            //SignupCommand = new RelayCommand(Signup);
-
             LoginCommand = new RelayCommand(async _ => await LoginAsync());
-            SignupCommand = new RelayCommand(_ => Signup());
+
+            SignupCommand = new RelayCommand(async _ => await SignupAsync());
             LoadSavedCredentials();
         }
-
+        /// <summary>
+        /// Hàm sử lý logic đăng nhập, thành công trả về trang dashboard, thất bại hiển thị thông báo lỗi.
+        /// </summary>
+        /// <returns></returns>
         private async Task LoginAsync()
         {
-            if (AuthenticateUser(Username, Password))
+            try
             {
-                if (IsPasswordSaved)
+                if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
                 {
-                    await SaveCredentialsAsync(Username, Password);
+                    LoginFailed?.Invoke();
+                    return;
                 }
-                MainWindow.AppFrame.Navigate(typeof(MainPage));
+
+                if (AuthenticateUser(Username, Password))
+                {
+                    if (IsPasswordSaved)
+                    {
+                        await SaveCredentialsAsync(Username, Password);
+                    }
+
+                    MainWindow.AppFrame.Navigate(typeof(MainPage), Username);
+
+                }
+                else
+                { 
+                    LoginFailed?.Invoke();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Todo: Show error message
+                System.Diagnostics.Debug.WriteLine($"Error during login: {ex.Message}");
+                LoginFailed?.Invoke();
             }
         }
-
+        /// <summary>
+        /// Xác thực mật khẩu đăng nhập.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private bool AuthenticateUser(string username, string password)
         {
-            return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == password;
-        }
+            _usersDatabase = new PsqlDao().GetAdminCredentials(username);
 
+            return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == SHA_256(password);
+        }
+        /// <summary>
+        /// Lưu thông tin đăng nhập nếu người dùng chọn lưu mật khẩu vào hệ thống local settings.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="passwordRaw"></param>
+        /// <returns></returns>
         private async Task SaveCredentialsAsync(string username, string passwordRaw)
         {
             var passwordInBytes = Encoding.UTF8.GetBytes(passwordRaw);
@@ -96,6 +132,9 @@ namespace Books_Store_Management_App.ViewModels
             localSettings.Values["EntropyInBase64"] = entropyInBase64;
         }
 
+        /// <summary>
+        /// Lấy thông tin đăng nhập được ghi nhớ từ hệ thống local settings.
+        /// </summary>
         private void LoadSavedCredentials()
         {
             var localSettings = ApplicationData.Current.LocalSettings;
@@ -111,10 +150,38 @@ namespace Books_Store_Management_App.ViewModels
                 IsPasswordSaved = true;
             }
         }
-
-        private void Signup()
+        /// <summary>
+        /// Hàm xử lý đăng ký tài khoản, nhóm đang phát triển chức năng này.
+        /// </summary>
+        private async Task SignupAsync()
         {
-           //Todo: Implement code later
+            var result = await GoogleLoginHandler.LoginWithGoogle();
+            string userName = result.Item1;
+            string userEmail = result.Item2;
+
+            List<string> admins = new PsqlDao().GetAllAdminEmail();
+
+            if (admins.Contains(userEmail))
+            {
+                MainWindow.AppFrame.Navigate(typeof(MainPage), userEmail);
+                return; 
+            }
+
+            Random random = new Random();
+            int n = random.Next(100, 500);
+            string pass = SHA_256(n.ToString());
+
+            new PsqlDao().InsertAdmin(new AdminProfileViewModel(), userEmail, pass);
+
+            MessageBox.Show(
+                $"Signup Successful!\n\n" +
+                $"Username: {userEmail}\n" +
+                $"Password: {n}\n\n" +
+                $"✅ You can now log in and update your password.\n",
+                "Signup Complete",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
         }
 
         private void SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
@@ -123,6 +190,20 @@ namespace Books_Store_Management_App.ViewModels
             {
                 field = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public static string SHA_256(string input)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
             }
         }
     }

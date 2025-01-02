@@ -10,6 +10,10 @@ using Windows.Foundation.Collections;
 
 namespace Books_Store_Management_App.Helpers
 {
+    /// <summary>
+    /// Lớp hỗ trợ ObservableCollection hoàn chỉnh.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public sealed class FullObservableCollection<T> : ObservableCollection<T>
  where T : INotifyPropertyChanged
     {

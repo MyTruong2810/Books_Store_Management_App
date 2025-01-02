@@ -4,39 +4,28 @@ using System.Windows.Input;
 
 namespace Books_Store_Management_App
 {
-    //public class RelayCommand : ICommand
-    //{
-    //    private readonly Func<bool> _canExecute;
-    //    private readonly Action _execute;
 
-    //    public RelayCommand(Action execute, Func<bool> canExecute = null)
-    //    {
-    //        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-    //        _canExecute = canExecute;
-    //    }
-
-    //    public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
-
-    //    public void Execute(object parameter) => _execute();
-
-    //    public event EventHandler CanExecuteChanged
-    //    {
-    //        add => System.Windows.Input.CommandManager.RequerySuggested += value;
-    //        remove => System.Windows.Input.CommandManager.RequerySuggested -= value;
-    //    }
-    //}
-
+    /// <summary>
+    /// Lớp giúp cho việc xử lý UI và code-behind tách biệt nhau, mọi xử lý điều chuyển qua cho VỉewModel đảm nhiệm.
+    /// </summary>
     public class RelayCommand : ICommand
     {
-        private readonly Action<object> _execute;
+        private readonly Action<object> _executeWithParameter;
         private readonly Func<object, bool> _canExecute;
+        private readonly Action _executeWithoutParameter;
         private ICommand changeToQRCodeCommand;
 
         public event EventHandler CanExecuteChanged;
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            _execute = execute;
+            _executeWithParameter = execute;
+            _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action execute, Func<object, bool> canExecute = null)
+        {
+            _executeWithoutParameter = execute;
             _canExecute = canExecute;
         }
 
@@ -52,7 +41,14 @@ namespace Books_Store_Management_App
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            if (_executeWithoutParameter != null)
+            {
+                _executeWithoutParameter();
+            }
+            else
+            {
+                _executeWithParameter(parameter);
+            }
         }
 
         public void RaiseCanExecuteChanged()

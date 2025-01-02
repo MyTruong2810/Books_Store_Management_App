@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Books_Store_Management_App.ViewModels
 {
+    /// <summary>
+    /// View model cho BookPopupControl
+    /// dùng để xử lý dữ liệu và validate dữ liệu nhập vào.
+    /// </summary>
     public class BookPopupControlViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         private Book _book;
@@ -26,6 +30,9 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        // Các trường lấy thông tin để Validate xong mới đưa vào Book
+        // Note: Sở dĩ không đưa trực tiếp vào Book vì khi nhập liệu có thể có lỗi,
+        // nếu đưa vào Book ngay thì dữ liệu trong Book sẽ bị thay đổi ngay lập tức
         private string _title;
         private string _author;
         private string _publisher;
@@ -37,7 +44,6 @@ namespace Books_Store_Management_App.ViewModels
         private string _quantity;
         private string _description;
         private string _imageSource;
-
         public string ImageSource
         {
             get => _imageSource;
@@ -50,6 +56,8 @@ namespace Books_Store_Management_App.ViewModels
                 }
             }
         }
+        //
+
         public string TitleErrorMessage { get; set; } = "";
 
         [Required(ErrorMessage = "Title is required.")]
@@ -143,7 +151,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public string SellingPricesErrorMessage { get; set; } = "";
         [Required(ErrorMessage = "Selling price is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Selling price must be greater than 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Selling price must be greater than 0.")]
         public string SellingPrices
         {
             get => _sellingPrices;
@@ -159,7 +167,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public string PurchasePriceErrorMessage { get; set; } = "";
         [Required(ErrorMessage = "Purchase price is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Purchase price must be greater than 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Purchase price must be greater than 0.")]
         public string PurchasePrice
         {
             get => _purchasePrice;
@@ -175,7 +183,7 @@ namespace Books_Store_Management_App.ViewModels
 
         public string QuantityErrorMessage { get; set; } = "";
         [Required(ErrorMessage = "Quantity is required.")]
-        [Range(0, int.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1.")]
         public string Quantity
         {
             get => _quantity;
@@ -202,6 +210,10 @@ namespace Books_Store_Management_App.ViewModels
             }
         }
 
+        /// <summary>
+        /// Set dữ liệu cho các trường nhập liệu.
+        /// </summary>
+        /// <param name="book"></param>
         public void SetData(Book book)
         {
             Book = book;
@@ -218,6 +230,9 @@ namespace Books_Store_Management_App.ViewModels
             ImageSource = book.ImageSource;
         }
 
+        /// <summary>
+        /// Xóa dữ liệu của các trường nhập liệu.
+        /// </summary>
         public void ClearData()
         {
             Book = null;
@@ -234,6 +249,9 @@ namespace Books_Store_Management_App.ViewModels
             ImageSource = "ms-appx:///Assets/default_image.jpg";
         }
 
+        /// <summary>
+        /// Xóa thông báo lỗi.
+        /// </summary>
         public void ClearErrorMessage()
         {
             TitleErrorMessage = "";
@@ -245,6 +263,10 @@ namespace Books_Store_Management_App.ViewModels
             PurchasePriceErrorMessage = "";
             QuantityErrorMessage = "";
         }
+
+        /// <summary>
+        /// Đưa dữ liệu từ các trường nhập liệu vào Book.
+        /// </summary>
         public void MergeToBook()
         {
             if (Book == null)
@@ -266,9 +288,7 @@ namespace Books_Store_Management_App.ViewModels
         }
 
         // Triển khai INotifyDataErrorInfo
-
-        //public ICommand ValidateAllCommand => new RelayCommand(ValidateAll);
-
+        // Sẽ tách ra thành một class riêng nếu cần
         public void ValidateAll()
         {
             ValidateProperty(Title, nameof(Title));
@@ -325,7 +345,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             return _errors.ContainsKey(propertyName) ? _errors[propertyName].First() : string.Empty;
         }
-
+        // Kết thúc triển khai INotifyDataErrorInfo
 
         // Triển khai INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -334,6 +354,7 @@ namespace Books_Store_Management_App.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        // Kết thúc triển khai INotifyPropertyChanged
     }
 
 }

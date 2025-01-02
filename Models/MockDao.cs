@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace Books_Store_Management_App.Models
 {
+    /// <summary>
+    /// Lớp MockDao chứa dữ liệu mẫu.
+    /// </summary>
     public class MockDao : IDao
     {
         public ObservableCollection<Book> GetAllBooks()
@@ -19,12 +22,21 @@ namespace Books_Store_Management_App.Models
 
             return result;
         }
-
+        public List<Coupon> GetAllCoupons()
+        {
+            throw new NotImplementedException();
+        }
         public ObservableCollection<Genre> GetAllGenres()
         {
             throw new NotImplementedException();
         }
-
+        public ObservableCollection<ClassificationClass> GetClassificationClasses()
+        {
+            throw new NotImplementedException();
+        }
+        public ObservableCollection<Customer> GetAllCustomers() {
+            throw new NotImplementedException();
+        }
         public ObservableCollection<Order> GetAllOrders()
         {
             var result = new ObservableCollection<Order>
@@ -36,6 +48,22 @@ namespace Books_Store_Management_App.Models
                 };
 
             return result;
+        }
+        public bool DeleteBook(Book book)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteOrder(Order order)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteClassificationClasses(ClassificationClass genre)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteCustomer(Customer customer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

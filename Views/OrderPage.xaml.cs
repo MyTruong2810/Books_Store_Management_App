@@ -25,40 +25,77 @@ using System.ComponentModel;
 using static Books_Store_Management_App.Views.DashboardPage;
 using System.Drawing;
 using Books_Store_Management_App.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Books_Store_Management_App.Views
 {
+    /// <summary>
+    /// Lớp hiển thị danh sách Order.
+    /// </summary>
     public sealed partial class OrderPage : Page
     { 
-        public int[] ShowEntities = { 5, 10, 15, 20 };
-        public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>();
-        public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>();
-        public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        public string[] priceSearch = { "Greater than $100", "Smaller than $100" };
-        private int ItemsPerPage = 10;
-        private int currentPage = 1;
-        private int totalPages;
-        public class OrderPageViewModel
-        {
-            public ObservableCollection<Order> AllOrders { get; set; }
-            public void Init()
-            {
-                IDao dao = new PsqlDao();
-                AllOrders = dao.GetAllOrders();
-            }
-        }
+        public int[] ShowEntities = { 5, 10, 15, 20 }; // Số lượng Order hiển thị trên mỗi trang
+        public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>(); // Danh order Order hiển thị
+        public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>(); // Danh order Order hiển thị trên mỗi trang
+        public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }; // Danh sách tháng trong trường filter
+
+        public string[] priceSearch = { "Greater than $10.00", "Smaller than $10.00" }; // Danh sách giá tiền trong trường filter
+        private int ItemsPerPage = 10; // Số lượng Order hiển thị trên mỗi trang
+        private int currentPage = 1; // Trang hiện tại
+        private int totalPages; // Tổng số trang
+        private ObservableCollection<String> PageInfo = new ObservableCollection<string>(); // Thông tin trang hiện tại
 
         public OrderPageViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Hàm khởi tạo, gọi vỉewmodel và khởi tạo dữ liệu, định dạng trang.
+        /// </summary>
         public OrderPage()
         {
             this.InitializeComponent();
-            ViewModel = new OrderPageViewModel();
-            ViewModel.Init();
-            AllOrdersDisplay = ViewModel.AllOrders;
+
+            // ViewModel dùng chung
+            ViewModel = (Microsoft.UI.Xaml.Application.Current as App).ServiceProvider.GetService<OrderPageViewModel>();
+            ViewModel.LoadOrders();
+
+            AllOrdersDisplay = ViewModel.Orders;
             totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+            for (int i = 0; i < totalPages; i++)
+            {
+                PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+            }
             UpdateDisplayedOrders();
         }
+
+        /// <summary>
+        /// Chuyển trang theo các tính năng được chọn.
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            string previousPage = e.Parameter as string;
+
+            if (previousPage == nameof(OrderDetailPage))
+            {
+                //ViewModel.Init();
+                //AllOrdersDisplay = ViewModel.AllOrders;
+                AllOrdersDisplay = ViewModel.Orders;
+                totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+
+                PageInfo.Clear();
+                for (int i = 0; i < totalPages; i++)
+                {
+                    PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                }
+                UpdateDisplayedOrders();
+            }
+        }
+
+        /// <summary>
+        /// Cập nhật lại các danh sách thông tin order theo yêu cầu định dạng trang được chọn.
+        /// </summary>
         private void UpdateDisplayedOrders()
         {
             var skip = (currentPage - 1) * ItemsPerPage;
@@ -74,26 +111,57 @@ namespace Books_Store_Management_App.Views
             {
                 DisplayedOrders.Add(Order);
             }
-            PageInfo.Text = $"Page {currentPage} of {totalPages}";
-            PreviousButton.IsEnabled = currentPage > 1;
-            NextButton.IsEnabled = currentPage < totalPages;
+
+            //PreviousButton.IsEnabled = currentPage > 1;
+            //NextButton.IsEnabled = currentPage < totalPages;
         }
+
+        private void Combo3_Selected_Paging(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItem = (string)((ComboBox)sender).SelectedItem;
+            var pageInfoParts = selectedItem.Split(" / ");
+            if (pageInfoParts.Length == 2 && int.TryParse(pageInfoParts[0], out int selectedPage))
+            {
+                currentPage = selectedPage;
+                UpdateDisplayedOrders();
+            }
+        }
+
+        /// <summary>
+        /// Trang listview kế tiếp được chọn.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage < totalPages)
             {
                 currentPage++;
+                PageInfomation.SelectedIndex = currentPage - 1;
                 UpdateDisplayedOrders();
             }
         }
+
+        /// <summary>
+        /// Quay lại trang listview trước đó.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage > 1)
             {
                 currentPage--;
+                PageInfomation.SelectedIndex = currentPage - 1;
                 UpdateDisplayedOrders();
             }
         }
+
+        /// <summary>
+        /// Thêm order mới.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
             //var newOrder = new Order("#001", "Peter Pan", "12:00AM - 12/10/2024", 30, 3, 12.2, 0);
@@ -104,20 +172,78 @@ namespace Books_Store_Management_App.Views
             //New add page
             Frame.Navigate(typeof(OrderDetailPage));
         }
-        private void DeleteOrder_Click(object sender, RoutedEventArgs e)
-        {
-            var Order = (sender as Button).DataContext as Order;
-            AllOrdersDisplay.Remove(Order);
-            totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
 
-            UpdateDisplayedOrders();
+        /// <summary>
+        /// Xoá order ra khỏi trang.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        async private void DeleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            // Chỉ giả lập xóa sách, chưa đụng vào database
+            var button = sender as Button;
+            var order = button?.Tag as Order;
+
+            if (order != null)
+            {
+                // Set the ISBN in the dialog dynamically
+                TextBlock IDOrder = new TextBlock
+                {
+                    Text = order.ID.ToString(),
+                    FontWeight = Microsoft.UI.Text.FontWeights.Bold
+                };
+
+                // Create StackPanel and add ISBN TextBlock and confirmation TextBlock
+                StackPanel stackPanel = new StackPanel
+                {
+                    Width = 500,
+                    Margin = new Thickness(0)
+                };
+
+                stackPanel.Children.Add(IDOrder);
+                stackPanel.Children.Add(new TextBlock { Text = "Do you want to delete this order?" });
+
+                // Set the content of the dialog
+                DeleteOrderDialog.Content = stackPanel;
+
+                // Show the dialog
+                ContentDialogResult result = await DeleteOrderDialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary) // If confirmed
+                {
+                    // Call the delete method on the ViewModel
+                    await new PsqlDao().DeleteOrderAsync(order.ID);
+                    AllOrdersDisplay.Remove(order);
+
+                    // Adjust the paging after deletion
+                    totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+                    if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+
+                    PageInfo.Clear();
+                    for (int i = 0; i < totalPages; i++)
+                    {
+                        PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                    }
+                    UpdateDisplayedOrders();
+                }
+            }
         }
+        /// <summary>
+        /// Chỉnh sửa thông tin order.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditOrder_Click(object sender, RoutedEventArgs e)
         {
             //New edit page
             Frame.Navigate(typeof(OrderDetailPage), (sender as Button).DataContext);
         }
+
+        /// <summary>
+        /// Thực hiện lấy trường và yêu cầu sắp xếp tăng hay giảm dần.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PublisherMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuFlyoutItem;
@@ -130,6 +256,12 @@ namespace Books_Store_Management_App.Views
                 SortOrders(property, order);
             }
         }
+
+        /// <summary>
+        /// Xử lý sắp xếp tăng hoặc giảm dần, xử lý trên nguyên tắc update lại danh sách order.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="order"></param>
         private void SortOrders(string property, string order)
         {
             if (order == "ASC")
@@ -164,36 +296,124 @@ namespace Books_Store_Management_App.Views
                 return;
             }
         }
-        private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
-        {
-            // Get the submitted text
-            string submittedText = args.Text;
 
-            // Attempt to convert the submitted text to an integer
-            if (int.TryParse(submittedText, out int itemsPerPage))
+        /// <summary>
+        /// Chọn số lượng order hiển thị trên mỗi trang.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void Combo3_Selected(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            string submittedText = comboBox?.SelectedItem?.ToString() ?? string.Empty;
+
+            if (int.TryParse(submittedText, out int itemsPerPage) && itemsPerPage > 0)
             {
                 ItemsPerPage = itemsPerPage;
+                totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+
+                PageInfo.Clear();
+                for (int i = 0; i < totalPages; i++)
+                {
+                    PageInfo.Add((i + 1).ToString() + " / " + totalPages.ToString());
+                }
+                currentPage = 1;
+                UpdateDisplayedOrders();
+                PageInfomation.SelectedIndex = 0;
             }
         }
+
+
+        /// <summary>
+        /// AutoTextSearch cho ô tìm kiếm sách.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ApplyFilters()
+        {
+            var searchText = SearchTextBox?.Text.Trim() ?? string.Empty;
+            var selectedMonth = SearchByMonth?.SelectedItem?.ToString() ?? string.Empty;
+            var selectedPriceRange = SearchByPrice?.SelectedItem?.ToString() ?? string.Empty;
+
+            var filteredOrders = ViewModel.Orders.Where(order =>
+                string.IsNullOrWhiteSpace(searchText) ||
+                order.Customer.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
+
+            filteredOrders = filteredOrders.Where(order =>
+                (string.IsNullOrWhiteSpace(selectedMonth) ||
+                 order.Date.Month.ToString().Equals(selectedMonth, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrWhiteSpace(selectedPriceRange) ||
+                 IsPriceInRange(order.Price, selectedPriceRange))
+            );
+
+            DisplayedOrders.Clear();
+            foreach (var order in filteredOrders)
+            {
+                DisplayedOrders.Add(order);
+            }
+        }
+
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var searchText = (sender as TextBox).Text.Trim();
-
-            if (!string.IsNullOrWhiteSpace(searchText))
-            {
-                var filteredOrders = ViewModel.AllOrders.Where(order =>
-                    order.Customer.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-
-                DisplayedOrders.Clear();
-                foreach (var order in filteredOrders)
-                {
-                    DisplayedOrders.Add(order);
-                }
-            }
-            else
-            {
-                UpdateDisplayedOrders();
-            }
+            ApplyFilters();
         }
+        private void SearchByMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+        private void SearchByPrice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+        private bool IsPriceInRange(double price, string priceRange)
+        {
+            // Example implementation for price range filtering
+            if (priceRange.Equals("Greater than $10.00", StringComparison.OrdinalIgnoreCase))
+                return price > 10;
+            if (priceRange.Equals("Smaller than $10.00", StringComparison.OrdinalIgnoreCase))
+                return price <= 10;
+
+
+            return true; // Default to including all prices if no range is matched
+        }
+
+
+        ///// <summary>
+        ///// AutotextSearch, xử lý search theo tên khách hàng.
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    var searchText = (sender as TextBox).Text.Trim();
+
+        //    if (!string.IsNullOrWhiteSpace(searchText))
+        //    {
+        //        var filteredOrders = ViewModel.Orders.Where(order =>
+        //            order.Customer.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+
+        //        DisplayedOrders.Clear();
+        //        foreach (var order in filteredOrders)
+        //        {
+        //            DisplayedOrders.Add(order);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        UpdateDisplayedOrders();
+        //    }
+        //}
+
+        /// <summary>
+        /// Hiện thị thông tin chi tiết order khi chọn vào danh sách hiển thị.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrderListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var order = e.ClickedItem as Order;
+            Frame.Navigate(typeof(ReadOnlyOrderDetailPage), order);
+        }
+
     }
 }
