@@ -38,11 +38,13 @@ namespace Books_Store_Management_App.Views
         public ObservableCollection<Order> AllOrdersDisplay { get; set; } = new ObservableCollection<Order>(); // Danh order Order hiển thị
         public ObservableCollection<Order> DisplayedOrders { get; set; } = new ObservableCollection<Order>(); // Danh order Order hiển thị trên mỗi trang
         public int[] monthSearch = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }; // Danh sách tháng trong trường filter
+
         public string[] priceSearch = { "Greater than $10.00", "Smaller than $10.00" }; // Danh sách giá tiền trong trường filter
         private int ItemsPerPage = 10; // Số lượng Order hiển thị trên mỗi trang
         private int currentPage = 1; // Trang hiện tại
         private int totalPages; // Tổng số trang
         private ObservableCollection<String> PageInfo = new ObservableCollection<string>(); // Thông tin trang hiện tại
+
         public OrderPageViewModel ViewModel { get; set; }
 
         /// <summary>
@@ -81,6 +83,7 @@ namespace Books_Store_Management_App.Views
                 //AllOrdersDisplay = ViewModel.AllOrders;
                 AllOrdersDisplay = ViewModel.Orders;
                 totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+
                 PageInfo.Clear();
                 for (int i = 0; i < totalPages; i++)
                 {
@@ -112,6 +115,7 @@ namespace Books_Store_Management_App.Views
             //PreviousButton.IsEnabled = currentPage > 1;
             //NextButton.IsEnabled = currentPage < totalPages;
         }
+
         private void Combo3_Selected_Paging(object sender, SelectionChangedEventArgs e)
         {
             var selectedItem = (string)((ComboBox)sender).SelectedItem;
@@ -122,7 +126,6 @@ namespace Books_Store_Management_App.Views
                 UpdateDisplayedOrders();
             }
         }
-
 
         /// <summary>
         /// Trang listview kế tiếp được chọn.
@@ -196,6 +199,7 @@ namespace Books_Store_Management_App.Views
                     Width = 500,
                     Margin = new Thickness(0)
                 };
+
                 stackPanel.Children.Add(IDOrder);
                 stackPanel.Children.Add(new TextBlock { Text = "Do you want to delete this order?" });
 
@@ -214,6 +218,7 @@ namespace Books_Store_Management_App.Views
                     // Adjust the paging after deletion
                     totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
                     if (currentPage > totalPages) currentPage = totalPages; // Adjust page if last page is removed
+
                     PageInfo.Clear();
                     for (int i = 0; i < totalPages; i++)
                     {
@@ -306,6 +311,7 @@ namespace Books_Store_Management_App.Views
             {
                 ItemsPerPage = itemsPerPage;
                 totalPages = (int)Math.Ceiling((double)AllOrdersDisplay.Count / ItemsPerPage);
+
                 PageInfo.Clear();
                 for (int i = 0; i < totalPages; i++)
                 {

@@ -58,6 +58,7 @@ namespace Books_Store_Management_App.ViewModels
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(async _ => await LoginAsync());
+
             SignupCommand = new RelayCommand(async _ => await SignupAsync());
             LoadSavedCredentials();
         }
@@ -81,6 +82,7 @@ namespace Books_Store_Management_App.ViewModels
                     {
                         await SaveCredentialsAsync(Username, Password);
                     }
+					
                     MainWindow.AppFrame.Navigate(typeof(MainPage), Username);
                 }
                 else
@@ -103,6 +105,7 @@ namespace Books_Store_Management_App.ViewModels
         private bool AuthenticateUser(string username, string password)
         {
             _usersDatabase = new PsqlDao().GetAdminCredentials(username);
+
             return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == SHA_256(password);
             //return true;
         }

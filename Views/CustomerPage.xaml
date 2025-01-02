@@ -155,6 +155,7 @@
                     <Border VariableSizedWrapGrid.RowSpan="3" CornerRadius="80" Width="150" Height="150" >
                         <Image Source="{x:Bind CustomerVM.SelectedCustomer.Avatar, Mode=OneWay}" Stretch="UniformToFill" Width="150" Height="150"/>
                     </Border>
+
                     <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Name" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Name, Mode=TwoWay}" x:Name="NameTextBox_Add" PlaceholderText="Fullname"/>
                     <TextBox  VariableSizedWrapGrid.ColumnSpan="1" Header="Gender" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Gender, Mode=TwoWay}" PlaceholderText="Gender"/>
                     <TextBox VariableSizedWrapGrid.ColumnSpan="2" Header="Phone number" FontSize="11" Text="{x:Bind CustomerVM.SelectedCustomer.Phone, Mode=TwoWay}" x:Name="PhoneTextBox_Add" PlaceholderText="Phone number"/>

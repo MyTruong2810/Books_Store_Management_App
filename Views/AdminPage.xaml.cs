@@ -37,6 +37,7 @@ namespace Books_Store_Management_App.Views
             // Injecting the DAO into the ViewModel.
             var profileDao = new AdminProfileDao();  // Can be replaced with a different DAO if needed.
             ViewModel = new AdminProfileViewModel(profileDao);
+
             this.DataContext = ViewModel; // Set the data context for data binding.
         }
 

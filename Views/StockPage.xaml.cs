@@ -42,6 +42,7 @@ namespace Books_Store_Management_App.Views
         private int ItemsPerPage = 10; // Số lượng sách hiển thị trên mỗi trang
         private int currentPage = 1; // Trang hiện tại
         private int totalPages; // Tổng số trang
+
         private ObservableCollection<String> PageInfo = new ObservableCollection<string>(); // Thông tin trang hiện tại
         public StockPageViewModel ViewModel { get; set; }
 
@@ -92,6 +93,7 @@ namespace Books_Store_Management_App.Views
 
                     AllBooksDisplay.Add(e);
                     totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+					
                     PageInfo.Clear();
                     for (int i = 0; i < totalPages; i++)
                     {
@@ -249,6 +251,7 @@ namespace Books_Store_Management_App.Views
 
                     // Adjust the paging after deletion
                     totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+
                     PageInfo.Clear();
                     for (int i = 0; i < totalPages; i++)
                     {
@@ -355,6 +358,7 @@ namespace Books_Store_Management_App.Views
             {
                 ItemsPerPage = itemsPerPage;
                 totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
+
                 PageInfo.Clear();
                 for (int i = 0; i < totalPages; i++)
                 {

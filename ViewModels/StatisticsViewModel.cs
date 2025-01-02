@@ -230,7 +230,8 @@ namespace Books_Store_Management_App.ViewModels
         {
             StockItems.Clear(); // Clear any existing stock data
 
-            string connectionString = "Host=localhost;Username=postgres;Password=admin;Database=mybookstore";
+            string connectionString = ConfigurationManager.Instance.GetConnectionString();
+
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();

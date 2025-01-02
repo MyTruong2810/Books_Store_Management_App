@@ -58,7 +58,7 @@ namespace Books_Store_Management_App.Models
                     origin = origin.OrderBy(e => e.Tags);
                     break;
                 default:
-                    origin = origin.OrderBy(e => int.Parse(e.ID));
+                    origin = origin.OrderBy(e => int.Parse(e.ID)); // Default sort by ID
                     break;
             }
 
