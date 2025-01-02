@@ -32,23 +32,31 @@ namespace Books_Store_Management_App.Services.Payment.Implementations
         {
             try
             {
-                var embed_data = new { merchantinfo = "embeddata123" };
-                var itemss = new[] { new { } };
+                var transid = Guid.NewGuid().ToString();
+                var embeddata = new { merchantinfo = "embeddata123" };
+                var items = new[]{
+                new { itemid = "knb", itemname = "kim nguyen bao", itemprice = 198400, itemquantity = 1 }
+            };
                 var param = new Dictionary<string, string>();
-                var app_trans_id = Guid.NewGuid().ToString();
+
+                var amount = request.Amount;
+                if (amount == "0")
+                {
+                    amount = "1000";   
+                }
 
                 param.Add("appid", _appId);
                 param.Add("appuser", request.AppUser);
                 param.Add("apptime", Utils.GetTimeStamp().ToString());
-                param.Add("amount", request.Amount);
-                param.Add("apptransid", DateTime.Now.ToString("yyMMdd") + "_" + app_trans_id); // mã giao dich có định dạng yyMMdd_xxxx
-                param.Add("embeddata", JsonConvert.SerializeObject(embed_data));
-                param.Add("item", JsonConvert.SerializeObject(itemss));
-                param.Add("description", "Bookstore - Thanh toán đơn hàng #" + app_trans_id);
-                param.Add("bank_code", "");
+                param.Add("amount", amount);
+                param.Add("apptransid", DateTime.Now.ToString("yyMMdd") + "_" + transid); // mã giao dich có định dạng yyMMdd_xxxx
+                param.Add("embeddata", JsonConvert.SerializeObject(embeddata));
+                param.Add("item", JsonConvert.SerializeObject(items));
+                param.Add("description", "Bookstore - Thanh toán đơn hàng #" + transid);
+                param.Add("bankcode", "zalopayapp");
 
                 var data = _appId + "|" + param["apptransid"] + "|" + param["appuser"] + "|" + param["amount"] + "|"
-                    + param["apptime"] + "|" + param["embeddata"] + "|" + param["item"];
+                + param["apptime"] + "|" + param["embeddata"] + "|" + param["item"];
                 param.Add("mac", HmacHelper.Compute(ZaloPayHMAC.HMACSHA256, _key1, data));
 
                 var result = await HttpHelper.PostFormAsync(_createOrderUrl, param);

@@ -22,6 +22,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Threading;
+using static SkiaSharp.HarfBuzz.SKShaper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -61,6 +62,11 @@ namespace Books_Store_Management_App.Views
             if (e.Parameter is Order order)
             {
                 IsMemberCheckbox.IsEnabled = false;
+
+                if (order.IsPaid == true)
+                {
+                    PaymentMethodCombobox.IsEnabled = false;
+                }
 
                 // Gán thông tin của đơn hàng vào ViewModel, để hiển thị lên giao diện
                 ViewModel.Order = order;
@@ -201,58 +207,61 @@ namespace Books_Store_Management_App.Views
 
             /*
              * Luồng QR Code
-            //if (method == PaymentMethod.ZaloPay)
-            //{
-            //    var result = await _paymentService.ProcessPayment(PaymentMethod.ZaloPay, new Models.Payment.PaymentRequest()
-            //    {
-            //        Amount = Math.Ceiling(ViewModel.ActualTotal * 25462.5).ToString(),
-            //        Description = "Thanh toán đơn hàng",
-            //        orderId = ViewModel.Order.ID,
-            //        MemberPaymentId = null,
-            //        AppUser = ViewModel.CustomerName,
-            //        MemberPhoneNumber = CustomerPhoneNumberTextBox.Text,
-            //    });
+            if (method == PaymentMethod.ZaloPay)
+            {
+                result = await _paymentService.ProcessPayment(PaymentMethod.ZaloPay, new Models.Payment.PaymentRequest()
+                {
+                    Amount = Math.Ceiling(ViewModel.ActualTotal * 25462.5).ToString(),
+                    Description = "Thanh toán đơn hàng",
+                    orderId = ViewModel.Order.ID,
+                    MemberPaymentId = null,
+                    AppUser = ViewModel.CustomerName,
+                    MemberPhoneNumber = CustomerPhoneNumberTextBox.Text,
+                });
 
-            //    // Tạo mã QR Code
-            //    //var QRCODE = await ViewModel.CreateOrderAsync();
-            //    var QRCODE = await QRCodeGeneratorService.GenerateQRCode(result.qrCode);
-            //    ViewModel.PaymentMethods[(string)PaymentMethodCombobox.SelectedItem] = QRCODE;
-            //    ViewModel.PaymentMethodQRCode = QRCODE;
+                // Tạo mã QR Code
+                // var QRCODE = await ViewModel.CreateOrderAsync();
+                var QRCODE = await QRCodeGeneratorService.GenerateQRCode(result.qrCode);
+                ViewModel.PaymentMethods[(string)PaymentMethodCombobox.SelectedItem] = QRCODE;
+                ViewModel.PaymentMethodQRCode = QRCODE;
 
-            //    ViewModel.IsQrCodeVisible = true;
-            //    ViewModel.IsBooksListViewVisible = false;
+                ViewModel.IsQrCodeVisible = true;
+                ViewModel.IsBooksListViewVisible = false;
 
-            //    var isPaymentSuccess = await ViewModel.WaitForPaymentAsync(result.appTransId, _paymentService, method);
+                if (method != null)
+                {
+                    var isPaymentSuccess = await ViewModel.WaitForPaymentAsync(result.appTransId, _paymentService, (PaymentMethod)method);
+                }
 
-            //    if (!isPaymentSuccess.Success)
-            //    {
-            //        var builder = new AppNotificationBuilder()
-            //            .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
-            //            .AddText("Thanh toán thất bại!")
-            //            .AddText("Vui lòng thử lại sau.");
+                if (!isPaymentSuccess.Success)
+                {
+                    builder = new AppNotificationBuilder()
+                        .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
+                        .AddText("Thanh toán thất bại!")
+                        .AddText("Vui lòng thử lại sau.");
 
-            //        var notificationManager = AppNotificationManager.Default;
-            //        notificationManager.Show(builder.BuildNotification());
+                    notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
 
-            //        ViewModel.IsQrCodeVisible = false;
-            //        ViewModel.IsBooksListViewVisible = true;
+                    ViewModel.IsQrCodeVisible = false;
+                    ViewModel.IsBooksListViewVisible = true;
 
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        var PsqlDao = new PsqlDao();
-            //        await PsqlDao.UpdateOrderPaidStatusAsync(ViewModel.Order.ID, true);
+                    return;
+                }
+                else
+                {
+                    var PsqlDao = new PsqlDao();
+                    await PsqlDao.UpdateOrderPaidStatusAsync(ViewModel.Order.ID, true);
 
-            //        var builder = new AppNotificationBuilder()
-            //            .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
-            //            .AddText("Thanh toán thành công!")
-            //            .AddText("Bạn có muốn xuất hóa đơn không?")
-            //            .AddArgument("Order", JsonConvert.SerializeObject(ViewModel.Order));
-            //    }
+                    builder = new AppNotificationBuilder()
+                        .AddText($"Đơn hàng: {ViewModel.Order.ID} của {ViewModel.CustomerName}")
+                        .AddText("Thanh toán thành công!")
+                        .AddText("Bạn có muốn xuất hóa đơn không?")
+                        .AddArgument("Order", JsonConvert.SerializeObject(ViewModel.Order));
 
-            //    ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
-            //}
+                    ShowDialog("Payment", "Thanh toán thành công! Bạn có muốn xuất hóa đơn không?");
+                }
+            }
             //else
             //{
             //    Thread.Sleep(2000);
@@ -300,12 +309,49 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
+        private async void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
         {
             ViewModel.PaymentMethodError = string.Empty;
             ViewModel.IsQrCodeVisible = true;
             ViewModel.IsBooksListViewVisible = false;
             ViewModel.PaymentMethodQRCode = ViewModel.PaymentMethods[PaymentMethodCombobox.SelectedItem.ToString()];
+
+            var methodString = PaymentMethodCombobox.SelectedItem.ToString();
+            var method = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), methodString, true);
+
+            if (method == PaymentMethod.ZaloPay)
+            {
+                var _paymentService = (Application.Current as App).ServiceProvider.GetService<PaymentService>();
+
+                var result = await _paymentService.ProcessPayment(PaymentMethod.ZaloPay, new Models.Payment.PaymentRequest()
+                {
+                    Amount = Math.Ceiling(ViewModel.ActualTotal * 25462.5).ToString(),
+                    Description = "Thanh toán đơn hàng",
+                    orderId = ViewModel.Order.ID,
+                    MemberPaymentId = null,
+                    AppUser = ViewModel.CustomerName,
+                    MemberPhoneNumber = CustomerPhoneNumberTextBox.Text,
+                });
+
+                // Tạo mã QR Code
+                // var QRCODE = await ViewModel.CreateOrderAsync();
+
+                var QRCODE = await QRCodeGeneratorService.GenerateQRCode(result.qrCode);
+
+                if (QRCODE == null)
+                {
+                    return;
+                }
+
+                ViewModel.PaymentMethods[(string)PaymentMethodCombobox.SelectedItem] = QRCODE;
+                ViewModel.PaymentMethodQRCode = QRCODE;
+
+                ViewModel.IsQrCodeVisible = true;
+                ViewModel.IsBooksListViewVisible = false;
+
+            
+                //var isPaymentSuccess = await ViewModel.WaitForPaymentAsync(result.appTransId, _paymentService, (PaymentMethod)method);
+            }
         }
     }
 

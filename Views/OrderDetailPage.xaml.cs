@@ -62,6 +62,9 @@ namespace Books_Store_Management_App.Views
             _typingTimer.Elapsed += OnTypingTimerElapsed;
             // Thiết lập _typingTimer không tự động reset sau khi kích hoạt
             _typingTimer.AutoReset = false;
+
+            // 
+            PaymentMethodCombobox.IsEnabled = false;
         }
 
         /// <summary>
@@ -80,6 +83,7 @@ namespace Books_Store_Management_App.Views
             if (e.Parameter is Order order)
             {
                 IsMemberCheckbox.IsEnabled = false;
+                PaymentMethodCombobox.IsEnabled = true;
 
                 Order orderClone = (Order)order.Clone();
 
@@ -255,6 +259,7 @@ namespace Books_Store_Management_App.Views
                 this.ViewModel.Order = order;
 
                 // Payment giả lập
+                PaymentMethodCombobox.IsEnabled = true;
                 PayBillOrderButtonGroup.Visibility = Visibility.Visible;
                 CreateOrderButton.Visibility = Visibility.Collapsed;
 
@@ -385,12 +390,48 @@ namespace Books_Store_Management_App.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
+        private async void PaymentMethodCombobox_SelectionChanged(object sender, Syncfusion.UI.Xaml.Editors.ComboBoxSelectionChangedEventArgs e)
         {
             ViewModel.PaymentMethodError = string.Empty;
-            ViewModel.IsQrCodeVisible = true;
-            ViewModel.IsBooksListViewVisible = false;
             ViewModel.PaymentMethodQRCode = ViewModel.PaymentMethods[PaymentMethodCombobox.SelectedItem.ToString()];
+
+            var methodString = PaymentMethodCombobox.SelectedItem.ToString();
+            var method = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), methodString, true);
+
+            if (method == PaymentMethod.ZaloPay && 
+                ViewModel.Order != null && 
+                ViewModel.Order.ID != 0 &&
+                ViewModel.CustomerName != "")
+            {
+                var _paymentService = (Application.Current as App).ServiceProvider.GetService<PaymentService>();
+
+                var result = await _paymentService.ProcessPayment(PaymentMethod.ZaloPay, new Models.Payment.PaymentRequest()
+                {
+                    Amount = Math.Ceiling(ViewModel.ActualTotal * 25462.5).ToString(),
+                    Description = "Thanh toán đơn hàng",
+                    orderId = ViewModel.Order.ID,
+                    MemberPaymentId = null,
+                    AppUser = ViewModel.CustomerName,
+                    MemberPhoneNumber = CustomerPhoneNumberTextBox.Text,
+                });
+
+                // Tạo mã QR Code
+                // var QRCODE = await ViewModel.CreateOrderAsync();
+                var QRCODE = await QRCodeGeneratorService.GenerateQRCode(result.qrCode);
+
+                if (QRCODE == null)
+                {
+                    return;
+                }
+
+                ViewModel.PaymentMethods[(string)PaymentMethodCombobox.SelectedItem] = QRCODE;
+                ViewModel.PaymentMethodQRCode = QRCODE;
+
+                ViewModel.IsQrCodeVisible = true;
+                ViewModel.IsBooksListViewVisible = false;
+
+                //var isPaymentSuccess = await ViewModel.WaitForPaymentAsync(result.appTransId, _paymentService, (PaymentMethod)method);
+           }
         }
 
         /// <summary>

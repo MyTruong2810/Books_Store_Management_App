@@ -238,7 +238,7 @@ namespace Books_Store_Management_App.ViewModels
         public async Task<PaymentResult> WaitForPaymentAsync(
             string appTransId,
             PaymentService paymentService,
-            PaymentMethod paymentMethod,
+            PaymentMethod paymentMethod = PaymentMethod.ZaloPay,
             int maxRetries = 10,
             int delayMilliseconds = 2000)
         {
