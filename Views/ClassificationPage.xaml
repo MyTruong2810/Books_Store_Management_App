@@ -14,11 +14,11 @@
     <Page.Resources>
         <local3:AlternationIndexToBackgroundConverter x:Key="AlternationIndexToBackgroundConverter"/>
         <DataTemplate x:Key="HorizontalFormat" x:DataType="models:ClassificationClass">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="5" BorderBrush="DarkCyan" Background="{Binding IsEven, Converter={StaticResource AlternationIndexToBackgroundConverter}}"  CornerRadius="10">
-                <StackPanel Orientation="Horizontal" Margin="5 0 0 0" Height="45" >
-                    <TextBlock Width="100" Margin="10 0" Foreground="White"><Run Text="{x:Bind ID}" Foreground="White" FontWeight="Bold"/></TextBlock>
-                    <TextBlock Width="130" Margin="5 0" Foreground="White"><Run Text="{x:Bind Tags}" Foreground="White" FontWeight="Bold"/></TextBlock>
-                    <TextBlock Width="850" Margin="5 0" Foreground="White"><Run Text="{x:Bind Description}" Foreground="White" FontWeight="Bold"/></TextBlock>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="5" BorderBrush="{ThemeResource NavigationViewColor}" Background="{Binding IsEven, Converter={StaticResource AlternationIndexToBackgroundConverter}}" CornerRadius="10">
+                <StackPanel Orientation="Horizontal" Margin="5 0 0 0" Height="45">
+                    <TextBlock Width="100" Margin="10 0" Foreground="{ThemeResource AdminTextColor}"><Run Text="{x:Bind ID}" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="130" Margin="5 0" Foreground="{ThemeResource AdminTextColor}"><Run Text="{x:Bind Tags}" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Width="850" Margin="5 0" Foreground="{ThemeResource AdminTextColor}"><Run Text="{x:Bind Description}" FontWeight="Bold"/></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Name="updateButton" Click="updateButton_Click" Tag="{x:Bind ID}" Background="Transparent">
@@ -32,20 +32,20 @@
         </DataTemplate>
     </Page.Resources>
 
-    <StackPanel Background="#C4C4FC">
+    <StackPanel Background="{ThemeResource StackPanelBackgroundColor}">
 
-        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 0">
-            <TextBlock
-                Text="Classification" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
+        <StackPanel Width="1200" CornerRadius="20" Background="{ThemeResource HeaderBackgroundColor}" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 0">
+            <TextBlock Text="Classification" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
         </StackPanel>
-        <StackPanel Margin="10" BorderBrush="DarkBlue" CornerRadius="15">
+
+        <StackPanel Margin="10" BorderBrush="{ThemeResource AdminPanelBorderColor}" CornerRadius="15">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Background="Transparent" Padding="10">
                 <TextBlock Margin="10 0" VerticalAlignment="Center">Show</TextBlock>
                 <ComboBox x:Name="rowsPerPageComboBox" Height="30" SelectionChanged="rowsPerPageComboBox_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                            <Run Text="{Binding item}"/>
+                                <Run Text="{Binding item}"/>
                             </TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -55,7 +55,7 @@
 
                 <Button Name="searchButton" Width="80" Height="30" Content="Search" Click="searchButton_Click"/>
 
-                <TextBlock Margin="70 0 10 0" VerticalAlignment="Center" >Search by</TextBlock>
+                <TextBlock Margin="70 0 10 0" VerticalAlignment="Center">Search by</TextBlock>
 
                 <ComboBox x:Name="filterSearchComboBox" Width="150" SelectionChanged="filterbyComboBox_SelectionChanged" PlaceholderText="Search by...">
                     <TextBlock>ID</TextBlock>
@@ -68,54 +68,43 @@
                     <TextBlock>Tags</TextBlock>
                 </ComboBox>
 
-
-                <Button  Name="addButton" Width="60" HorizontalAlignment="Right" Height="30" Background="#624DE3" Click="addButton_Click" BorderBrush="White" BorderThickness="2">
-                    <FontIcon Glyph="&#xE710;" DataContext="Add New ClassificationClass" Foreground="White" />
+                <Button Name="addButton" Width="60" HorizontalAlignment="Right" Height="30" Background="{ThemeResource AdminButtonBackgroundColor}" Click="addButton_Click" BorderBrush="{ThemeResource AdminButtonBorderColor}" BorderThickness="2">
+                    <FontIcon Glyph="&#xE710;" DataContext="Add New ClassificationClass" Foreground="{ThemeResource AdminButtonForegroundColor}" />
                 </Button>
             </StackPanel>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <ListView Name="CustomerComboBox" Background="Transparent" Height="570"
-                      ItemsSource="{x:Bind ClassificationClassVM.ClassificationClasss, Mode=OneWay}"
-                      ItemTemplate="{StaticResource HorizontalFormat}">
+                          ItemsSource="{x:Bind ClassificationClassVM.ClassificationClasss, Mode=OneWay}"
+                          ItemTemplate="{StaticResource HorizontalFormat}">
                 </ListView>
             </ScrollViewer>
 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="{ThemeResource NavigationViewColor}" CornerRadius="10"
+                        Padding="5" Margin="3">
+                <Button Name="previousButton" Background="GhostWhite" Foreground="Red" Width="80" Height="30" Content="Previous" Click="prevButton_Click" Margin="5"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
-                    Background="DarkCyan" CornerRadius="10"
-                    Padding="5" Margin="3">
-                <Button Name="previousButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Previous" Click="prevButton_Click" Margin="5"/>
-
-                <ComboBox x:Name="pagesComboBox" Background="GhostWhite" Foreground="Red"  Width="80" Height="30" SelectionChanged="pagesComboBox_SelectionChanged" Margin="5">
+                <ComboBox x:Name="pagesComboBox" Background="GhostWhite" Foreground="Red" Width="80" Height="30" SelectionChanged="pagesComboBox_SelectionChanged" Margin="5">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                            <Run Text="{Binding Page}"/> / <Run Text="{Binding Total}"/>
+                                <Run Text="{Binding Page}"/> / <Run Text="{Binding Total}"/>
                             </TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <Button Name="nextButton" Background="GhostWhite"  Foreground="Red" Width="80" Height="30" Content="Next" Click="nextButton_Click" Margin="5"/>
+                <Button Name="nextButton" Background="GhostWhite" Foreground="Red" Width="80" Height="30" Content="Next" Click="nextButton_Click" Margin="5"/>
             </StackPanel>
-
-            <!--<TextBlock Name="infoTextBlock" Foreground="Black" HorizontalAlignment="Right"  Margin="20 0">
-            Displaying
-            <Run Text="{x:Bind ClassificationClassVM.ClassificationClasss.Count, Mode=OneWay}"/> /
-            <Run Text="{x:Bind ClassificationClassVM.RowsPerPage, Mode=OneWay}"/> of total
-            <Run Text="{x:Bind ClassificationClassVM.TotalItems, Mode=OneWay}"/>
-            </TextBlock>-->
         </StackPanel>
 
-        <ContentDialog
-        x:Name="EditClassificationClassDialog"
-        Title="Edit ClassificationClass Profile"
-        PrimaryButtonText="Save"
-        PrimaryButtonClick="OnEdit"
-        CloseButtonText="Cancel"
-        DefaultButton="Primary"
-        Background="Black">
-
+        <ContentDialog x:Name="EditClassificationClassDialog"
+                       Title="Edit ClassificationClass Profile"
+                       PrimaryButtonText="Save"
+                       PrimaryButtonClick="OnEdit"
+                       CloseButtonText="Cancel"
+                       DefaultButton="Primary"
+                       Background="{ThemeResource AdminDialogBackgroundColor}">
             <StackPanel Width="700" Margin="0">
                 <TextBlock Visibility="Collapsed" VariableSizedWrapGrid.ColumnSpan="2" FontSize="11" Text="{x:Bind ClassificationClassVM.SelectedClassificationClass.ID, Mode=TwoWay}"/>
                 <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Tag" FontSize="11" Text="{x:Bind ClassificationClassVM.SelectedClassificationClass.Tags, Mode=TwoWay}" x:Name="Tag_Edit" PlaceholderText="Tag"/>
@@ -123,15 +112,13 @@
             </StackPanel>
         </ContentDialog>
 
-        <ContentDialog
-        x:Name="AddClassificationClassDialog"
-        Title="Add ClassificationClass Profile"
-        PrimaryButtonText="Save"
-        PrimaryButtonClick="OnSave"
-        CloseButtonText="Cancel"
-        DefaultButton="Primary"
-        Background="Black">
-
+        <ContentDialog x:Name="AddClassificationClassDialog"
+                       Title="Add ClassificationClass Profile"
+                       PrimaryButtonText="Save"
+                       PrimaryButtonClick="OnSave"
+                       CloseButtonText="Cancel"
+                       DefaultButton="Primary"
+                       Background="{ThemeResource AdminDialogBackgroundColor}">
             <StackPanel Width="700" Margin="0">
                 <TextBox Visibility="Collapsed" VariableSizedWrapGrid.ColumnSpan="2" Header="ID" FontSize="11" Text="{x:Bind ClassificationClassVM.SelectedClassificationClass.ID, Mode=TwoWay}" PlaceholderText="ID"/>
                 <TextBox VariableSizedWrapGrid.ColumnSpan="1" Header="Tag" FontSize="11" Text="{x:Bind ClassificationClassVM.SelectedClassificationClass.Tags, Mode=TwoWay}" x:Name="Tag" PlaceholderText="Tag"/>
@@ -139,14 +126,12 @@
             </StackPanel>
         </ContentDialog>
 
-        <ContentDialog
-        x:Name="DeleteClassificationClassDialog"
-        Title="Delete ClassificationClass"
-        PrimaryButtonText="Yes"
-        CloseButtonText="No"
-        DefaultButton="Primary"
-        Background="Black">
-
+        <ContentDialog x:Name="DeleteClassificationClassDialog"
+                       Title="Delete ClassificationClass"
+                       PrimaryButtonText="Yes"
+                       CloseButtonText="No"
+                       DefaultButton="Primary"
+                       Background="{ThemeResource AdminDialogBackgroundColor}">
             <StackPanel Width="500" Margin="0">
                 <TextBlock Text="{x:Bind ClassificationClassVM.SelectedClassificationClass.ID, Mode=OneWay}" FontWeight="Bold"/>
                 <TextBlock>Do you want to delete this Classification?</TextBlock>

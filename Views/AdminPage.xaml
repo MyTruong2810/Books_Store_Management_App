@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="Books_Store_Management_App.Views.AdminPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -6,53 +5,52 @@
     xmlns:local="using:Books_Store_Management_App.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel Background="#C4C4FC">
+    mc:Ignorable="d">
 
-        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 100">
+    <StackPanel Background="{ThemeResource StackPanelBackgroundColor}">
+        <StackPanel Width="1200" CornerRadius="20" Background="{ThemeResource HeaderBackgroundColor}" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Padding="12" Margin="0 10 0 100">
             <TextBlock
                 Text="Admin" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="700">
 
-            <Border Background="#292c2d" Padding="20" CornerRadius="10" Width="600" BorderBrush="DarkBlue" BorderThickness="1">
+            <Border Background="{ThemeResource AdminPanelBackgroundColor}" Padding="20" CornerRadius="10" Width="600" BorderBrush="{ThemeResource AdminPanelBorderColor}" BorderThickness="1">
                 <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3" ItemHeight="80" ItemWidth="150">
 
                     <!-- Full Name -->
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="2">
-                        <TextBlock Foreground="White" Text="Full Name" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" Margin="0,0,0,10"/>
+                        <TextBlock Text="Full Name" FontWeight="Bold" Foreground="{ThemeResource AdminTextColor}"/>
+                        <TextBlock Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" Margin="0,0,0,10" Foreground="{ThemeResource AdminTextColor}"/>
                     </StackPanel>
 
                     <!-- Email -->
-                    <StackPanel >
-                        <TextBlock Foreground="White" Text="Email" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" Margin="0,0,0,10"/>
+                    <StackPanel>
+                        <TextBlock Text="Email" FontWeight="Bold" Foreground="{ThemeResource AdminTextColor}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Email, Mode=TwoWay}" Margin="0,0,0,10" Foreground="{ThemeResource AdminTextColor}"/>
                     </StackPanel>
 
                     <!-- Phone -->
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="2">
-                        <TextBlock Foreground="White" Text="Phone number" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" Margin="0,0,0,10"/>
+                        <TextBlock Text="Phone number" FontWeight="Bold" Foreground="{ThemeResource AdminTextColor}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" Margin="0,0,0,10" Foreground="{ThemeResource AdminTextColor}"/>
                     </StackPanel>
 
                     <!-- Date of Birth -->
-                    <StackPanel >
-                        <TextBlock Foreground="White" Text="Date of birth" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" Margin="0,0,0,10"/>
+                    <StackPanel>
+                        <TextBlock Text="Date of birth" FontWeight="Bold" Foreground="{ThemeResource AdminTextColor}"/>
+                        <TextBlock Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" Margin="0,0,0,10" Foreground="{ThemeResource AdminTextColor}"/>
                     </StackPanel>
 
                     <!-- Address -->
                     <StackPanel VariableSizedWrapGrid.ColumnSpan="3">
-                        <TextBlock Foreground="White" Text="Address" FontWeight="Bold"/>
-                        <TextBlock Foreground="White" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" Margin="0,0,0,10"/>
+                        <TextBlock Text="Address" FontWeight="Bold" Foreground="{ThemeResource AdminTextColor}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Address, Mode=TwoWay}" Margin="0,0,0,10" Foreground="{ThemeResource AdminTextColor}"/>
                     </StackPanel>
 
                 </VariableSizedWrapGrid>
             </Border>
 
-            <Button Background="DarkGreen" BorderThickness="2" Foreground="White" FontWeight="Bold" BorderBrush="White" Content="Edit Profile" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20" Click="EditProfile_Click"/>
+            <Button Background="{ThemeResource AdminButtonBackgroundColor}" BorderThickness="2" Foreground="{ThemeResource AdminButtonForegroundColor}" FontWeight="Bold" BorderBrush="{ThemeResource AdminButtonBorderColor}" Content="Edit Profile" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20" Click="EditProfile_Click"/>
         </StackPanel>
 
         <!-- Popup Dialog -->
@@ -62,23 +60,20 @@
             PrimaryButtonText="Save"
             CloseButtonText="Cancel"
             DefaultButton="Primary"
-            Background="Black"
+            Background="{ThemeResource AdminDialogBackgroundColor}"
             PrimaryButtonClick="OnSaveButtonClick">
 
             <StackPanel Width="500" Margin="0">
-                <TextBox x:Name="fullname" Header="Fullname" FontSize="11" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" PlaceholderText="Fullname"/>
+                <TextBox x:Name="fullname" Header="Fullname" FontSize="11" Text="{x:Bind ViewModel.FullName, Mode=TwoWay}" PlaceholderText="Fullname" Foreground="{ThemeResource AdminDialogTextColor}"/>
 
-                <!-- Email với Validation -->
-                <TextBox x:Name="email" Header="Email (*)" FontSize="11" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email"/>
+                <TextBox x:Name="email" Header="Email (*)" FontSize="11" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" PlaceholderText="Email" Foreground="{ThemeResource AdminDialogTextColor}"/>
 
-                <!-- PasswordBox -->
-                <PasswordBox x:Name="newpass" Header="Set New Password (*)" FontSize="11" PlaceholderText="Confirm Password"/>
+                <PasswordBox x:Name="newpass" Header="Set New Password (*)" FontSize="11" PlaceholderText="Confirm Password" Foreground="{ThemeResource AdminDialogTextColor}"/>
 
-                <!-- Date of Birth TextBox -->
-                <TextBox x:Name="dob" Header="Date of Birth (yyyy-mm-dd)" FontSize="11" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Date of Birth"/>
+                <TextBox x:Name="dob" Header="Date of Birth (yyyy-mm-dd)" FontSize="11" Text="{x:Bind ViewModel.DateOfBirth, Mode=TwoWay}" PlaceholderText="Date of Birth" Foreground="{ThemeResource AdminDialogTextColor}"/>
 
-                <TextBox x:Name="phone"  Header="Phone number" FontSize="11" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" PlaceholderText="Phone number"/>
-                <TextBox x:Name="address" Header="Address" FontSize="11" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" PlaceholderText="Address"/>
+                <TextBox x:Name="phone" Header="Phone number" FontSize="11" Text="{x:Bind ViewModel.Phone, Mode=TwoWay}" PlaceholderText="Phone number" Foreground="{ThemeResource AdminDialogTextColor}"/>
+                <TextBox x:Name="address" Header="Address" FontSize="11" Text="{x:Bind ViewModel.Address, Mode=TwoWay}" PlaceholderText="Address" Foreground="{ThemeResource AdminDialogTextColor}"/>
             </StackPanel>
         </ContentDialog>
 

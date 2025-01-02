@@ -49,7 +49,6 @@ namespace Books_Store_Management_App.Views
 
             if (result == ContentDialogResult.Primary)
             {
-
                 ViewModel.SaveProfile(newpass.Password);
             }
 

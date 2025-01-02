@@ -19,7 +19,6 @@ using System.Windows.Forms;
 using Catel.Reflection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
-
 namespace Books_Store_Management_App.Models
 {
     /// <summary>
@@ -364,6 +363,7 @@ namespace Books_Store_Management_App.Models
                 }
             }
         }
+
         public bool UpdateClassification(ClassificationClass classification)
         {
             using (var connection = new NpgsqlConnection(connectionString))

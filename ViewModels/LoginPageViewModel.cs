@@ -82,9 +82,8 @@ namespace Books_Store_Management_App.ViewModels
                     {
                         await SaveCredentialsAsync(Username, Password);
                     }
-
+					
                     MainWindow.AppFrame.Navigate(typeof(MainPage), Username);
-
                 }
                 else
                 { 
@@ -108,6 +107,7 @@ namespace Books_Store_Management_App.ViewModels
             _usersDatabase = new PsqlDao().GetAdminCredentials(username);
 
             return _usersDatabase.ContainsKey(username) && _usersDatabase[username] == SHA_256(password);
+            //return true;
         }
         /// <summary>
         /// Lưu thông tin đăng nhập nếu người dùng chọn lưu mật khẩu vào hệ thống local settings.

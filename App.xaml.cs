@@ -29,21 +29,36 @@ using Books_Store_Management_App.Models;
 using Books_Store_Management_App.Services;
 using Newtonsoft.Json;
 using Books_Store_Management_App.Views;
-
+using WinRT.Interop;
+using Microsoft.UI.Windowing;
+using Microsoft.UI;
+using SkiaSharp;
 
 namespace Books_Store_Management_App
 {
+    /// <summary>
+    /// Represents the main application class that initializes and manages application-level resources and settings.
+    /// </summary>
     public partial class App : Application
     {
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// Provides access to the settings view model instance.
         /// </summary>
-        /// 
+        public static SettingsViewModel SettingsViewModel { get; } = new SettingsViewModel();
+
+        /// <summary>
+        /// Provides access to the service provider instance for dependency injection.
+        /// </summary>
         public IServiceProvider ServiceProvider { get; private set; }
-        // Sử dụng thuộc tính tĩnh MainWindow
+
+        /// <summary>
+        /// Provides access to the main application window instance.
+        /// </summary>
         public static Window MainWindow { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
             this.InitializeComponent();
@@ -53,6 +68,10 @@ namespace Books_Store_Management_App
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Configures the services used by the application.
+        /// </summary>
+        /// <param name="services">The service collection to configure.</param>
         private void ConfigureServices(IServiceCollection services)
         {
             //services.AddSingleton<IDao<Order>, MockOrderDao>();
@@ -74,6 +93,7 @@ namespace Books_Store_Management_App
         {
             MainWindow = new MainWindow();
             //MainWindow.Activate();
+			
 
             // Để đảm bảo tất cả việc xử lý thông báo xảy ra trong cùng một quá trình, đăng ký sự kiện NotificationInvoked trước khi gọi Register().
             // Nếu không, một quá trình mới sẽ được khởi chạy để xử lý thông báo.
@@ -91,9 +111,20 @@ namespace Books_Store_Management_App
             {
                 HandleNotification((AppNotificationActivatedEventArgs)activatedArgs.Data);
             }
+			
+			if (MainWindow.Content is FrameworkElement rootElement)
+            {
+                if (App.Current is App appInstance)
+                {
+                    appInstance.UpdateThemeResources(ElementTheme.Light);
+                }
+                rootElement.RequestedTheme = ElementTheme.Light;
+            }
+
+            SetWindowIcon();
         }
 		
-    /// <summary>
+		/// <summary>
         /// Kiểm tra và khởi chạy ứng dụng nếu cần thiết.
         /// Nếu cửa sổ chính (MainWindow) chưa được khởi tạo, hàm này sẽ tạo mới cửa sổ và đưa nó lên phía trước.
         /// Nếu ứng dụng được kích hoạt thông qua một thông báo ứng dụng, hàm này sẽ xử lý thông báo đó.
@@ -191,6 +222,64 @@ namespace Books_Store_Management_App
                         break;
                 }
             });
+		}
+		/// <summary>
+        /// Toggles the application theme and updates the relevant resources.
+        /// </summary>
+        public void ApplySelectedTheme()
+        {
+            var themeToApply = SettingsViewModel.CurrentTheme;
+
+            if (MainWindow.Content is FrameworkElement rootElement)
+            {
+                rootElement.RequestedTheme = themeToApply;
+                UpdateThemeResources(themeToApply);
+            }
+        }
+
+        /// <summary>
+        /// Updates the application resources based on the selected theme.
+        /// </summary>
+        /// <param name="theme">The theme to apply.</param>
+        public void UpdateThemeResources(ElementTheme theme)
+        {
+            var dictionaries = Application.Current.Resources.MergedDictionaries;
+
+            // Remove existing theme-related resource dictionaries.
+            var themeDictionaries = dictionaries.Where(d =>
+                d.Source != null &&
+                (d.Source.AbsoluteUri.Contains("Themes/Light.xaml") ||
+                 d.Source.AbsoluteUri.Contains("Themes/Dark.xaml"))).ToList();
+
+            foreach (var dict in themeDictionaries)
+            {
+                dictionaries.Remove(dict);
+            }
+
+            // Add the new theme resource dictionary.
+            if (theme == ElementTheme.Dark)
+            {
+                dictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Dark.xaml") });
+            }
+            else
+            {
+                dictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Light.xaml") });
+            }
+        }
+
+        /// <summary>
+        /// Sets the application icon for the main window.
+        /// </summary>
+        private void SetWindowIcon()
+        {
+            var hwnd = WindowNative.GetWindowHandle(MainWindow);
+            if (hwnd == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Unable to retrieve window handle (HWND).");
+            }
+
+            var appWindow = AppWindow.GetFromWindowId(Win32Interop.GetWindowIdFromWindow(hwnd));
+            appWindow.SetIcon("Assets/Icons/icon.ico");
         }
     }
 }

@@ -20,12 +20,12 @@
         <local1:BooleanToVisibilityInverseConverter x:Key="BooleanToVisibilityInverseConverter"/>
     </Page.Resources>
 
-    <Grid Background="#C4C4FC">
+    <Grid Background="{ThemeResource StackPanelBackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Width="1200" CornerRadius="20" Background="#a7a7df" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Padding="10" Margin="0 10 0 0">
+        <StackPanel Width="1200" CornerRadius="20" Background="{ThemeResource HeaderBackgroundColor}" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Padding="10" Margin="0 10 0 0">
             <TextBlock Text="Order" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="40 0 0 0"/>
         </StackPanel>
         <Grid Grid.Row="1" Margin="40">
@@ -55,7 +55,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <DropDownButton x:Name="ID" Grid.Column="0" Content="ID" Background="White" FontWeight="Bold">
+                    <DropDownButton x:Name="ID" Grid.Column="0" Content="ID" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuFlyoutItem Text="ASC" CommandParameter="ID,ASC" Click="PublisherMenuItem_Click"/>
@@ -64,7 +64,7 @@
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:Name="Customer" Grid.Column="1" Content="Customer" Background="White" FontWeight="Bold">
+                    <DropDownButton x:Name="Customer" Grid.Column="1" Content="Customer" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuFlyoutItem Text="ASC" CommandParameter="Customer,ASC" Click="PublisherMenuItem_Click"/>
@@ -73,7 +73,7 @@
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:Name="Date" Grid.Column="2" Content="Date" Background="White" FontWeight="Bold">
+                    <DropDownButton x:Name="Date" Grid.Column="2" Content="Date" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuFlyoutItem Text="ASC" CommandParameter="Date,ASC" Click="PublisherMenuItem_Click"/>
@@ -82,7 +82,7 @@
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:Name="Discount" Grid.Column="3" Content="Discount" Background="White" FontWeight="Bold">
+                    <DropDownButton x:Name="Discount" Grid.Column="3" Content="Discount" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuFlyoutItem Text="ASC" CommandParameter="Discount,ASC" Click="PublisherMenuItem_Click"/>
@@ -91,7 +91,7 @@
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:Name="Amount" Grid.Column="4" Content="Amount" Background="White" FontWeight="Bold">
+                    <DropDownButton x:Name="Amount" Grid.Column="4" Content="Amount" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuFlyoutItem Text="ASC" CommandParameter="Amount,ASC" Click="PublisherMenuItem_Click"/>
@@ -100,7 +100,7 @@
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <DropDownButton x:Name="Price" Grid.Column="5" Content="Price" Background="White" FontWeight="Bold">
+                    <DropDownButton x:Name="Price" Grid.Column="5" Content="Price" FontWeight="Bold">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuFlyoutItem Text="ASC" CommandParameter="Price,ASC" Click="PublisherMenuItem_Click"/>
@@ -109,7 +109,7 @@
                         </DropDownButton.Flyout>
                     </DropDownButton>
 
-                    <Button Grid.Column="6" Content="Action" Background="White" FontWeight="Bold"/>
+                    <Button Grid.Column="6" Content="Action" FontWeight="Bold"/>
                 </Grid>
 
                 <!-- ListView hiển thị Orders -->
@@ -154,7 +154,7 @@
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
-                    Background="DarkCyan" CornerRadius="10"
+                    Background="{ThemeResource NavigationViewColor}" CornerRadius="10"
                     Padding="5" Margin="5">
                     <Button Name="previousButton" Background="GhostWhite" Foreground="Red" Width="80" Height="30" Content="Previous" Click="PreviousPage_Click" Margin="5"/>
                     <ComboBox ItemsSource="{x:Bind PageInfo}" Margin="5" Background="GhostWhite" Foreground="Red"  

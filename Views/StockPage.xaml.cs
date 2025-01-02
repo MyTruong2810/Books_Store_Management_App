@@ -93,7 +93,7 @@ namespace Books_Store_Management_App.Views
 
                     AllBooksDisplay.Add(e);
                     totalPages = (int)Math.Ceiling((double)AllBooksDisplay.Count / ItemsPerPage);
-
+					
                     PageInfo.Clear();
                     for (int i = 0; i < totalPages; i++)
                     {
@@ -440,6 +440,7 @@ namespace Books_Store_Management_App.Views
                 }
             }
         }
+
     }
     /// <summary>
     /// Lớp giúp hiển thị màu sách bảng xen kẽ màu, ứng dụng tính chẵn lẽ của index.

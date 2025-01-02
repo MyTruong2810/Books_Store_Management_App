@@ -373,7 +373,6 @@ namespace Books_Store_Management_App.Views
             if (priceRange.Equals("Smaller than $10.00", StringComparison.OrdinalIgnoreCase))
                 return price <= 10;
 
-
             return true; // Default to including all prices if no range is matched
         }
 
@@ -414,6 +413,5 @@ namespace Books_Store_Management_App.Views
             var order = e.ClickedItem as Order;
             Frame.Navigate(typeof(ReadOnlyOrderDetailPage), order);
         }
-
     }
 }

@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Key="Dark">
+
+    <!-- MainPage -->
+    <Color x:Key="NavigationViewColor">#2C3E50</Color>
+    <Color x:Key="NavigationViewItemBackgroundColor">#1C2A34</Color>
+
+
+    <!--Back ground-->
+    <Color x:Key="StackPanelBackgroundColor">#1E1E1E</Color>
+    <Color x:Key="HeaderBackgroundColor">#34495E</Color>
+    
+    <!-- AdminPage -->
+    <Color x:Key="AdminPanelBackgroundColor">#455054</Color>
+    <Color x:Key="AdminPanelBorderColor">DarkSlateBlue</Color>
+    <Color x:Key="AdminTextColor">#E1E1E1</Color>
+    <Color x:Key="AdminButtonBackgroundColor">#2E8B57</Color>
+    <Color x:Key="AdminButtonForegroundColor">White</Color>
+    <Color x:Key="AdminButtonBorderColor">White</Color>
+    <Color x:Key="AdminDialogBackgroundColor">#333333</Color>
+    <Color x:Key="AdminDialogTextColor">#E1E1E1</Color>
+
+</ResourceDictionary>

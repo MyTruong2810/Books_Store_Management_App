@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <Source>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</Source>
+    <SmallTileSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</SmallTileSource>
+    <MediumTileSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</MediumTileSource>
+    <WideTileSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</WideTileSource>
+    <LargeTileSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</LargeTileSource>
+    <AppIconSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</AppIconSource>
+    <SplashScreenSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</SplashScreenSource>
+    <PackageLogoSource>D:\WD\Project\Dev18.12\Assets\Icons\icon.jpg</PackageLogoSource>
+  </PropertyGroup>
   <ItemGroup>
     <None Update="App.xaml">
       <SubType>Designer</SubType>
@@ -14,6 +23,15 @@
     <None Update="Package.appxmanifest">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Themes\Light.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Dark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SettingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\InvoicePage.xaml">
       <SubType>Designer</SubType>
     </Page>
