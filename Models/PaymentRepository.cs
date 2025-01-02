@@ -29,6 +29,8 @@ namespace Books_Store_Management_App.Models
             using var transaction = await connection.BeginTransactionAsync();
             try
             {
+                var memberPaymentId = paymentRequest.MemberPaymentId;
+
                 // 1. Lấy thông tin tài khoản admin nhận tiền
                 var adminAccount = await GetAdminAccount(connection);
                 if (adminAccount == null)
@@ -51,14 +53,14 @@ namespace Books_Store_Management_App.Models
                 else if (!string.IsNullOrEmpty(paymentRequest.MemberPhoneNumber))
                 {
                     // 2. Lấy tài khoản người dùng
-                    var memberPaymentId = await GetMemberIdByPhoneNumber(connection, paymentRequest.MemberPhoneNumber);
+                    memberPaymentId = await GetMemberIdByPhoneNumber(connection, paymentRequest.MemberPhoneNumber);
 
                     if (memberPaymentId == 0)
                     {
                         return (false, "Không tìm thấy tài khoản người dùng.");
                     }
 
-                    var memberBalance = await GetMemberBalance(connection, memberPaymentId);
+                    var memberBalance = await GetMemberBalance(connection, (int)memberPaymentId);
                     if (memberBalance < Decimal.Parse(paymentRequest.Amount))
                     {
                         return (false, "Số dư không đủ để thanh toán.");
@@ -74,7 +76,7 @@ namespace Books_Store_Management_App.Models
                 // 5. Tạo bản ghi giao dịch
                 int transactionId = await CreateTransactionRecord(
                     connection,
-                    paymentRequest.MemberPaymentId,
+                    memberPaymentId,
                     adminAccount.Id,
                     Decimal.Parse(paymentRequest.Amount),
                     paymentRequest.orderId,

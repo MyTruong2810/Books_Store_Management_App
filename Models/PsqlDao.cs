@@ -470,6 +470,36 @@ namespace Books_Store_Management_App.Models
                     command.Parameters.AddWithValue("@Payment", customer.Payment);
 
                     int rowsAffected = command.ExecuteNonQuery();
+
+                    // Giả lập tạo tài khoản ngân hàng cho khách hàng
+                    if (rowsAffected > 0)
+                    {
+                        query = @"
+                            INSERT INTO accounts (balance, is_admin) VALUES (10000000, false)
+                            RETURNING id;
+                        ";
+                        using (var commandAccount = new NpgsqlCommand(query, connection))
+                        {
+                            int id = (int)commandAccount.ExecuteScalar();
+
+                            // Gán tài khoản ngân hàng cho khách hàng
+                            query = @"
+                                UPDATE customer
+                                SET cvv = @AccountId
+                                WHERE id = @CustomerId;
+                            ";
+
+                            using (var commandCustomer = new NpgsqlCommand(query, connection))
+                            {
+                                commandCustomer.Parameters.AddWithValue("@AccountId", id);
+                                commandCustomer.Parameters.AddWithValue("@CustomerId", customer.ID);
+
+                                rowsAffected = commandCustomer.ExecuteNonQuery();
+                            }
+                        }
+
+                    }
+
                     return rowsAffected > 0; // Return true if a record is added
                 }
             }
